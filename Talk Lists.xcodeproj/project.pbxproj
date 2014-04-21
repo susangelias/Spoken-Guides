@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
+		C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */; };
+		C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
+		C0DCB17C1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB17A1905D9F400E29DBB /* InfoPlist.strings */; };
+		C0DCB17E1905D9F400E29DBB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB17D1905D9F400E29DBB /* main.m */; };
+		C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1811905D9F400E29DBB /* TalkListAppDelegate.m */; };
+		C0DCB1851905D9F400E29DBB /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB1831905D9F400E29DBB /* Main_iPhone.storyboard */; };
+		C0DCB1881905D9F400E29DBB /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB1861905D9F400E29DBB /* Main_iPad.storyboard */; };
+		C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB18A1905D9F400E29DBB /* TalkListViewController.m */; };
+		C0DCB18D1905D9F400E29DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB18C1905D9F400E29DBB /* Images.xcassets */; };
+		C0DCB1941905D9F400E29DBB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1931905D9F400E29DBB /* XCTest.framework */; };
+		C0DCB1951905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
+		C0DCB1961905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
+		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
+		C0DCB1A01905D9F400E29DBB /* Talk_ListsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB19F1905D9F400E29DBB /* Talk_ListsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C0DCB1971905D9F400E29DBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0DCB1661905D9F400E29DBB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0DCB16D1905D9F400E29DBB;
+			remoteInfo = "Talk Lists";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C0DCB16E1905D9F400E29DBB /* Talk Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talk Lists.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0DCB1711905D9F400E29DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C0DCB1751905D9F400E29DBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C0DCB1791905D9F400E29DBB /* Talk Lists-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Talk Lists-Info.plist"; sourceTree = "<group>"; };
+		C0DCB17B1905D9F400E29DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C0DCB17D1905D9F400E29DBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C0DCB17F1905D9F400E29DBB /* Talk Lists-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Talk Lists-Prefix.pch"; sourceTree = "<group>"; };
+		C0DCB1801905D9F400E29DBB /* TalkListAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TalkListAppDelegate.h; sourceTree = "<group>"; };
+		C0DCB1811905D9F400E29DBB /* TalkListAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TalkListAppDelegate.m; sourceTree = "<group>"; };
+		C0DCB1841905D9F400E29DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		C0DCB1871905D9F400E29DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		C0DCB1891905D9F400E29DBB /* TalkListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TalkListViewController.h; sourceTree = "<group>"; };
+		C0DCB18A1905D9F400E29DBB /* TalkListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TalkListViewController.m; sourceTree = "<group>"; };
+		C0DCB18C1905D9F400E29DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C0DCB1921905D9F400E29DBB /* Talk ListsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Talk ListsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0DCB1931905D9F400E29DBB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C0DCB19B1905D9F400E29DBB /* Talk ListsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Talk ListsTests-Info.plist"; sourceTree = "<group>"; };
+		C0DCB19D1905D9F400E29DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C0DCB19F1905D9F400E29DBB /* Talk_ListsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Talk_ListsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C0DCB16B1905D9F400E29DBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */,
+				C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */,
+				C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DCB18F1905D9F400E29DBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DCB1941905D9F400E29DBB /* XCTest.framework in Frameworks */,
+				C0DCB1961905D9F400E29DBB /* UIKit.framework in Frameworks */,
+				C0DCB1951905D9F400E29DBB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C0DCB1651905D9F400E29DBB = {
+			isa = PBXGroup;
+			children = (
+				C0DCB1771905D9F400E29DBB /* Talk Lists */,
+				C0DCB1991905D9F400E29DBB /* Talk ListsTests */,
+				C0DCB1701905D9F400E29DBB /* Frameworks */,
+				C0DCB16F1905D9F400E29DBB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C0DCB16F1905D9F400E29DBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB16E1905D9F400E29DBB /* Talk Lists.app */,
+				C0DCB1921905D9F400E29DBB /* Talk ListsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0DCB1701905D9F400E29DBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB1711905D9F400E29DBB /* Foundation.framework */,
+				C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */,
+				C0DCB1751905D9F400E29DBB /* UIKit.framework */,
+				C0DCB1931905D9F400E29DBB /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB1801905D9F400E29DBB /* TalkListAppDelegate.h */,
+				C0DCB1811905D9F400E29DBB /* TalkListAppDelegate.m */,
+				C0DCB1831905D9F400E29DBB /* Main_iPhone.storyboard */,
+				C0DCB1861905D9F400E29DBB /* Main_iPad.storyboard */,
+				C0DCB1891905D9F400E29DBB /* TalkListViewController.h */,
+				C0DCB18A1905D9F400E29DBB /* TalkListViewController.m */,
+				C0DCB18C1905D9F400E29DBB /* Images.xcassets */,
+				C0DCB1781905D9F400E29DBB /* Supporting Files */,
+			);
+			path = "Talk Lists";
+			sourceTree = "<group>";
+		};
+		C0DCB1781905D9F400E29DBB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB1791905D9F400E29DBB /* Talk Lists-Info.plist */,
+				C0DCB17A1905D9F400E29DBB /* InfoPlist.strings */,
+				C0DCB17D1905D9F400E29DBB /* main.m */,
+				C0DCB17F1905D9F400E29DBB /* Talk Lists-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0DCB1991905D9F400E29DBB /* Talk ListsTests */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB19F1905D9F400E29DBB /* Talk_ListsTests.m */,
+				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
+			);
+			path = "Talk ListsTests";
+			sourceTree = "<group>";
+		};
+		C0DCB19A1905D9F400E29DBB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB19B1905D9F400E29DBB /* Talk ListsTests-Info.plist */,
+				C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C0DCB16D1905D9F400E29DBB /* Talk Lists */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0DCB1A31905D9F400E29DBB /* Build configuration list for PBXNativeTarget "Talk Lists" */;
+			buildPhases = (
+				C0DCB16A1905D9F400E29DBB /* Sources */,
+				C0DCB16B1905D9F400E29DBB /* Frameworks */,
+				C0DCB16C1905D9F400E29DBB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Talk Lists";
+			productName = "Talk Lists";
+			productReference = C0DCB16E1905D9F400E29DBB /* Talk Lists.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C0DCB1911905D9F400E29DBB /* Talk ListsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0DCB1A61905D9F400E29DBB /* Build configuration list for PBXNativeTarget "Talk ListsTests" */;
+			buildPhases = (
+				C0DCB18E1905D9F400E29DBB /* Sources */,
+				C0DCB18F1905D9F400E29DBB /* Frameworks */,
+				C0DCB1901905D9F400E29DBB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0DCB1981905D9F400E29DBB /* PBXTargetDependency */,
+			);
+			name = "Talk ListsTests";
+			productName = "Talk ListsTests";
+			productReference = C0DCB1921905D9F400E29DBB /* Talk ListsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C0DCB1661905D9F400E29DBB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TalkList;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = GriffTech;
+				TargetAttributes = {
+					C0DCB1911905D9F400E29DBB = {
+						TestTargetID = C0DCB16D1905D9F400E29DBB;
+					};
+				};
+			};
+			buildConfigurationList = C0DCB1691905D9F400E29DBB /* Build configuration list for PBXProject "Talk Lists" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C0DCB1651905D9F400E29DBB;
+			productRefGroup = C0DCB16F1905D9F400E29DBB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C0DCB16D1905D9F400E29DBB /* Talk Lists */,
+				C0DCB1911905D9F400E29DBB /* Talk ListsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C0DCB16C1905D9F400E29DBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DCB1881905D9F400E29DBB /* Main_iPad.storyboard in Resources */,
+				C0DCB18D1905D9F400E29DBB /* Images.xcassets in Resources */,
+				C0DCB1851905D9F400E29DBB /* Main_iPhone.storyboard in Resources */,
+				C0DCB17C1905D9F400E29DBB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DCB1901905D9F400E29DBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C0DCB16A1905D9F400E29DBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
+				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
+				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DCB18E1905D9F400E29DBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DCB1A01905D9F400E29DBB /* Talk_ListsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0DCB1981905D9F400E29DBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0DCB16D1905D9F400E29DBB /* Talk Lists */;
+			targetProxy = C0DCB1971905D9F400E29DBB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C0DCB17A1905D9F400E29DBB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0DCB17B1905D9F400E29DBB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C0DCB1831905D9F400E29DBB /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0DCB1841905D9F400E29DBB /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		C0DCB1861905D9F400E29DBB /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0DCB1871905D9F400E29DBB /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0DCB19D1905D9F400E29DBB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C0DCB1A11905D9F400E29DBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C0DCB1A21905D9F400E29DBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C0DCB1A41905D9F400E29DBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
+				INFOPLIST_FILE = "Talk Lists/Talk Lists-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C0DCB1A51905D9F400E29DBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
+				INFOPLIST_FILE = "Talk Lists/Talk Lists-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C0DCB1A71905D9F400E29DBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Talk Lists.app/Talk Lists";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Talk ListsTests/Talk ListsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C0DCB1A81905D9F400E29DBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Talk Lists.app/Talk Lists";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
+				INFOPLIST_FILE = "Talk ListsTests/Talk ListsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C0DCB1691905D9F400E29DBB /* Build configuration list for PBXProject "Talk Lists" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0DCB1A11905D9F400E29DBB /* Debug */,
+				C0DCB1A21905D9F400E29DBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0DCB1A31905D9F400E29DBB /* Build configuration list for PBXNativeTarget "Talk Lists" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0DCB1A41905D9F400E29DBB /* Debug */,
+				C0DCB1A51905D9F400E29DBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C0DCB1A61905D9F400E29DBB /* Build configuration list for PBXNativeTarget "Talk ListsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0DCB1A71905D9F400E29DBB /* Debug */,
+				C0DCB1A81905D9F400E29DBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C0DCB1661905D9F400E29DBB /* Project object */;
+}
