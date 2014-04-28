@@ -10,4 +10,7 @@
 
 @interface GuideDetailViewController : UIViewController
 
+@property (strong, nonatomic) NSString *guideTitle;
+
+
 @end

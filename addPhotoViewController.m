@@ -38,20 +38,21 @@
         UIImageWriteToSavedPhotosAlbum(selectedPhoto, nil, nil, nil);
     }
     
-    // dismiss view controller
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    // extract and clean up photo for our app's use
+    self.photo = [self cleanUpImage:selectedPhoto];
 
-    // clean up photo for our app's use and display it
-    if (selectedPhoto) {
-        self.photo = [self cleanUpImage:selectedPhoto];
-        
+    // dismiss view controller
+    [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
+
+    // Display image
+    if (self.photo) {
         // wait for imageView to render before attempting to display photo
         [UIView animateWithDuration:0.0
                          animations:^{
                              [self.view addSubview:self.photoView];
                              self.doneButton.hidden = NO;
                              self.redoButton.hidden = NO;
-                         }
+                          }
                          completion:^(BOOL finished) {
                              self.photoView.image = self.photo;
                          }
@@ -160,7 +161,6 @@
     
     // release core graphics images as ARC does not do this for us
     CGImageRelease(croppedImage);
-    CGImageRelease(coreGraphicsImage);
     
     return cleanedImage;
 }

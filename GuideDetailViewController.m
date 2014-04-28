@@ -33,6 +33,12 @@
     self.guideTableView.delegate = nil; // create class and object here
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    self.title = self.guideTitle;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -50,4 +56,13 @@
 }
 */
 
+#pragma mark initializers
+
+- (NSString *)guideTitle
+{
+    if (! _guideTitle) {
+        _guideTitle = [[NSString alloc] init];
+    }
+    return _guideTitle;
+}
 @end

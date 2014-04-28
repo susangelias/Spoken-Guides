@@ -11,10 +11,12 @@
 
 @interface CatagoriesViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *generalButton;
+@property (strong, nonatomic) UISegmentedControl *LocalAllSegmentControl;
 
 @end
 
 @implementation CatagoriesViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +31,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.titleView = self.LocalAllSegmentControl;
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,12 +55,33 @@
     // Pass the selected object to the new view controller.
     if ([[segue destinationViewController] isKindOfClass:[CategoryTableViewController  class]]) {
         CategoryTableViewController *dvc = [segue destinationViewController];
-        NSLog(@"sender %@", sender);
         if ([sender isKindOfClass:[UIButton class]]) {
             UIButton *pressedButton = sender;
             dvc.title = pressedButton.titleLabel.text;
+            if (self.LocalAllSegmentControl.selectedSegmentIndex == 0) {
+                // 0 = Mine
+                dvc.myGuidesOnly = YES;
+            }
+            else {
+                dvc.myGuidesOnly = NO;
+            }
         }
     }
+}
+
+#pragma mark initializers
+
+- (UISegmentedControl *)LocalAllSegmentControl
+{
+    if (!_LocalAllSegmentControl) {
+        _LocalAllSegmentControl = [[UISegmentedControl alloc] initWithItems:@[@"All", @"Mine" ]];
+        NSInteger selectedIndex = [[[NSUserDefaults standardUserDefaults] valueForKey:@"com.griffoem.talkList.guideScope"] integerValue];
+        if (!selectedIndex) {
+            selectedIndex = 0;
+        }
+        _LocalAllSegmentControl.selectedSegmentIndex = selectedIndex;
+    }
+    return _LocalAllSegmentControl;
 }
 
 

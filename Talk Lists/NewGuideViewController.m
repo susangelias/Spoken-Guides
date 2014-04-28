@@ -10,7 +10,7 @@
 #import "addPhotoViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface NewGuideViewController ()
+@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
 @property (weak, nonatomic) IBOutlet UILabel *UserDirections;
@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *textViewPlaceholder;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *previewButton;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
 @end
 
@@ -90,7 +92,7 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (returnKeyPressed) {
-        NSLog(@"NEW TITLE: %@", textField.text);    // save to model
+      //  NSLog(@"NEW TITLE: %@", textField.text);    // save to model
         // update navigation title to the user's new title
         self.navigationItem.title = textField.text;
 
@@ -118,15 +120,12 @@
                              self.guideTitle.center = CGPointMake(self.guideTitle.center.x - 300, self.guideTitle.center.y);
                              self.StepTextView.hidden = NO;
                              self.StepTextView.center = CGPointMake(self.StepTextView.center.x - 300, self.StepTextView.center.y);
-                              // clear the photo image
-                           //  self.imageView.image = nil;
-                         }
+                           }
                          completion:^(BOOL finished) {
                              self.guideTitle.hidden = YES;
                              [self.StepTextView becomeFirstResponder];
                              self.StepTextView.delegate = self;
                              self.textViewPlaceholder.hidden = NO;
-
                          }];
     }
 }
@@ -220,6 +219,80 @@
 {
     // resume editing of step text
     [self resetFirstResponder];
+}
+
+- (IBAction)finishedPreview:(UIStoryboardSegue *)segue
+{
+    // finished looking at the preview
+    [self resetFirstResponder];
+}
+
+#pragma mark Set Category Button
+
+- (IBAction)setCategoryPressed
+{
+    [self.guideTitle resignFirstResponder];
+    [self.StepTextView resignFirstResponder];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Catagory for Your Guide"
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    
+    for (NSString *source in [self photoSources]) {
+        [actionSheet addButtonWithTitle:source];
+    }
+    [actionSheet addButtonWithTitle:@"Cancel"]; // put at bottom (don't do at all on iPad)
+    
+    [actionSheet showInView:self.view]; // different on iPad
+}
+
+- (NSDictionary *)photoSources
+{
+    return @{ @"Cooking" : @1,
+              @"General" : @2
+              };
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if ( ![choice isEqualToString:@"Cancel"]) {
+        // save category to model
+        self.categoryLabel.text = choice;
+     }
+    else {
+        // do nothing
+        self.categoryLabel.text = @"";
+    }
+    
+}
+
+- (IBAction)doneButtonPressed:(UIButton *)sender {
+    
+    [self.guideTitle resignFirstResponder];
+    [self.StepTextView resignFirstResponder];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
+                                                    message:@"Choose where to save your guide"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Save Local", @"Publish", nil];
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (!buttonIndex == 0)
+    {
+        // save choice to model
+        // return to main screen
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
