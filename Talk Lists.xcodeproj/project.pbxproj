@@ -31,6 +31,7 @@
 		C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */; };
 		C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
+		C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F532DE191178A20023CEF0 /* GuideCategories.m */; };
 		F05384D1F80548A7BDC6C99F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A39B4F7EF9E14A239DC702B6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,8 @@
 		C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
 		C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addPhotoViewController.h; path = ../addPhotoViewController.h; sourceTree = "<group>"; };
 		C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addPhotoViewController.m; path = ../addPhotoViewController.m; sourceTree = "<group>"; };
+		C0F532DD191178A20023CEF0 /* GuideCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCategories.h; sourceTree = "<group>"; };
+		C0F532DE191178A20023CEF0 /* GuideCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCategories.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +144,7 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		C036A978190C283100D1F251 /* Controllers - New Guide */ = {
+		C036A978190C283100D1F251 /* New Guide */ = {
 			isa = PBXGroup;
 			children = (
 				C0BC64B7190D85D6002F42D1 /* previewViewController.h */,
@@ -151,21 +154,16 @@
 				C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */,
 				C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */,
 			);
-			name = "Controllers - New Guide";
+			name = "New Guide";
 			sourceTree = "<group>";
 		};
-		C036A979190C28CA00D1F251 /* Controllers - Browse */ = {
+		C036A979190C28CA00D1F251 /* Guide Detail */ = {
 			isa = PBXGroup;
 			children = (
+				C0F532D9191168830023CEF0 /* Controllers */,
 				C02BEAA3190E9F2E0092426E /* Dialog */,
-				C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */,
-				C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */,
-				C0DCB1A91905E22100E29DBB /* CatagoriesViewController.h */,
-				C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */,
-				C047761B190848250085833C /* GuideDetailViewController.h */,
-				C047761C190848250085833C /* GuideDetailViewController.m */,
 			);
-			name = "Controllers - Browse";
+			name = "Guide Detail";
 			sourceTree = "<group>";
 		};
 		C036A97A190C28F000D1F251 /* View */ = {
@@ -212,9 +210,9 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C0F532D6191167E40023CEF0 /* Browse */,
 				C036A97A190C28F000D1F251 /* View */,
-				C036A979190C28CA00D1F251 /* Controllers - Browse */,
-				C036A978190C283100D1F251 /* Controllers - New Guide */,
+				C036A978190C283100D1F251 /* New Guide */,
 				C0DCB1801905D9F400E29DBB /* TalkListAppDelegate.h */,
 				C0DCB1811905D9F400E29DBB /* TalkListAppDelegate.m */,
 				C0DCB1891905D9F400E29DBB /* TalkListViewController.h */,
@@ -252,6 +250,61 @@
 				C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0F532D6191167E40023CEF0 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				C0F532D81911684D0023CEF0 /* Specific Category */,
+				C0F532D71911681A0023CEF0 /* Categories */,
+				C036A979190C28CA00D1F251 /* Guide Detail */,
+			);
+			name = Browse;
+			sourceTree = "<group>";
+		};
+		C0F532D71911681A0023CEF0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C0F532DB19116A480023CEF0 /* Controllers */,
+				C0F532DA19116A390023CEF0 /* Model */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		C0F532D81911684D0023CEF0 /* Specific Category */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */,
+				C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */,
+			);
+			name = "Specific Category";
+			sourceTree = "<group>";
+		};
+		C0F532D9191168830023CEF0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C047761B190848250085833C /* GuideDetailViewController.h */,
+				C047761C190848250085833C /* GuideDetailViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C0F532DA19116A390023CEF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0F532DD191178A20023CEF0 /* GuideCategories.h */,
+				C0F532DE191178A20023CEF0 /* GuideCategories.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C0F532DB19116A480023CEF0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCB1A91905E22100E29DBB /* CatagoriesViewController.h */,
+				C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +449,7 @@
 				C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
+				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */,

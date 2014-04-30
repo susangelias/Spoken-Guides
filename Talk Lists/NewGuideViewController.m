@@ -9,6 +9,7 @@
 #import "NewGuideViewController.h"
 #import "addPhotoViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "GuideCategories.h"
 
 @interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 
@@ -240,19 +241,18 @@
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
     
-    for (NSString *source in [self photoSources]) {
-        [actionSheet addButtonWithTitle:source];
+    for (NSString *category in [self categoryChoices]) {
+        [actionSheet addButtonWithTitle:category];
     }
     [actionSheet addButtonWithTitle:@"Cancel"]; // put at bottom (don't do at all on iPad)
     
     [actionSheet showInView:self.view]; // different on iPad
 }
 
-- (NSDictionary *)photoSources
+- (NSDictionary *)categoryChoices
 {
-    return @{ @"Cooking" : @1,
-              @"General" : @2
-              };
+    GuideCategories *guideCats = [[GuideCategories alloc]init];
+    return [guideCats categories];
 }
 
 #pragma mark UIActionSheetDelegate
