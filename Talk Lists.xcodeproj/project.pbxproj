@@ -10,6 +10,7 @@
 		C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */; };
 		C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA9190EA0EC0092426E /* SpeakingController.m */; };
 		C02BEAAE190EA10E0092426E /* voice.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAAD190EA10E0092426E /* voice.m */; };
+		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
@@ -54,6 +55,8 @@
 		C02BEAA9190EA0EC0092426E /* SpeakingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakingController.m; sourceTree = "<group>"; };
 		C02BEAAC190EA10E0092426E /* voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voice.h; sourceTree = "<group>"; };
 		C02BEAAD190EA10E0092426E /* voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = voice.m; sourceTree = "<group>"; };
+		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
+		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
 		C047761B190848250085833C /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideDetailViewController.h; path = ../GuideDetailViewController.h; sourceTree = "<group>"; };
 		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
 		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
@@ -175,6 +178,22 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		C03D6B4A1911827200CC213B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C03D6B4C1911832A00CC213B /* ArrayDataSource.h */,
+				C03D6B4D1911832A00CC213B /* ArrayDataSource.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C03D6B4B1911828A00CC213B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		C0DCB1651905D9F400E29DBB = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +293,8 @@
 		C0F532D81911684D0023CEF0 /* Specific Category */ = {
 			isa = PBXGroup;
 			children = (
+				C03D6B4B1911828A00CC213B /* Controllers */,
+				C03D6B4A1911827200CC213B /* Model */,
 				C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */,
 				C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */,
 			);
@@ -446,6 +467,7 @@
 			files = (
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
 				C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */,
+				C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */,
 				C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,

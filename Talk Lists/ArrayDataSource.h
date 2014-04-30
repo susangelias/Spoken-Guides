@@ -1,0 +1,23 @@
+//
+//  ArrayDataSource.h
+//  Talk Lists
+//
+//  Created by Susan Elias on 4/30/14.
+//  Copyright (c) 2014 GriffTech. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef void(^configureCellBlock)(UITableViewCell *, id);
+
+@interface ArrayDataSource : NSObject <UITableViewDataSource>
+
+@property (strong, nonatomic) NSArray *items;
+@property (strong, nonatomic) NSString *cellIdentifier;
+@property (nonatomic, copy) configureCellBlock configureCell;
+
+-(ArrayDataSource *)initWithItems:(NSArray *)initialItems
+                     cellIDString:(NSString *)IDString
+                            block:(configureCellBlock)configCellBlock;
+
+@end
