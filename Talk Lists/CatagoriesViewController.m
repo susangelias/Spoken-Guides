@@ -15,6 +15,8 @@
 
 @end
 
+#warning The images/buttons here are too big - need to convert image/button to single image and assign image to the button.  Must be correctly sized, i.e. not too big
+
 @implementation CatagoriesViewController
 
 
@@ -37,12 +39,15 @@
 {
     [super viewWillAppear:animated];
     self.navigationItem.titleView = self.LocalAllSegmentControl;
+    
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"didReceiveMemoryWarning: %s ", __PRETTY_FUNCTION__ );
 }
 
 
