@@ -64,6 +64,7 @@
         if ([sender isKindOfClass:[UIButton class]]) {
             UIButton *pressedButton = sender;
             dvc.guideCategory = pressedButton.titleLabel.text;
+            dvc.title = pressedButton.titleLabel.text;
             if (self.LocalAllSegmentControl.selectedSegmentIndex == 0) {
                 // 0 = Mine
                 dvc.myGuidesOnly = YES;
