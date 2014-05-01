@@ -8,12 +8,14 @@
 
 #import "previewViewController.h"
 #import "ArrayDataSource.h"
+#import "GuideContents.h"
+#import "Step.h"
 
 @interface previewViewController ()  <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *stepTableView;
-@property (strong, nonatomic) NSMutableArray *steps;
 @property (strong, nonatomic) ArrayDataSource *guideStepsDataSource;
+@property (strong, nonatomic) GuideContents *guideInProgress;
 
 @end
 
@@ -23,16 +25,17 @@
 {
     if (!_guideStepsDataSource) {
         // get the guide steps from our working copy of the new guide in progress
+        
 
         // set up the block that will fill each tableViewCell
-        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, NSString *guideStep) {
-            cell.textLabel.text = guideStep;
+        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, Step *guideStep) {
+            cell.textLabel.text = guideStep.instruction;
           //  if (guidePhoto) {
           //      cell.imageView.image = guidePhoto;
            // }
         };
 
-        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:self.steps
+        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:[self.guideInProgress steps]
                                                           cellIDString:@"stepCell"
                                                                  block:configureCell];
         
@@ -40,15 +43,14 @@
     return _guideStepsDataSource;
 }
 
-
-- (NSMutableArray *)steps
+-(GuideContents *)guideInProgress
 {
-    // set up dummy data
-    if (!_steps) {
-        _steps = [@[@"step 1 instructions", @"step 2 instructions", @"step 3 instructions", @"step 4 instructions", @"step 5 instructions"]mutableCopy];;
+    if (!_guideInProgress) {
+        _guideInProgress = [[GuideContents alloc]init];
     }
-    return _steps;
+    return _guideInProgress;
 }
+
 
 - (void)viewDidLoad
 {

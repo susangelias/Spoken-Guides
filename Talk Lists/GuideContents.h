@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Step.h"
 
 @interface GuideContents : NSObject
 
-// step = instruction with optional picture
-// array of steps = guide
-// number of steps
-// guideID
+@property (strong, nonatomic) NSArray *steps;
+@property (nonatomic) NSUInteger *guideID;
+@property (strong, nonatomic) UIImage *guidePhoto;
+
+-(NSUInteger)numberOfSteps;
+
 
 @end

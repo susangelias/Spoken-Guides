@@ -10,7 +10,9 @@
 
 @interface GuideMetaData : NSObject
 
-// title, url, creater ID, guide ID
-
+//  creater ID, guide ID
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSURL *fileURL;
+@property (nonatomic) NSUInteger *guideID;
 
 @end

@@ -36,6 +36,7 @@
 		C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
 		C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F532DE191178A20023CEF0 /* GuideCategories.m */; };
+		C0F9DED21912D30E0051CDAB /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F9DED11912D30E0051CDAB /* Step.m */; };
 		F05384D1F80548A7BDC6C99F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A39B4F7EF9E14A239DC702B6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,8 @@
 		C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addPhotoViewController.m; path = ../addPhotoViewController.m; sourceTree = "<group>"; };
 		C0F532DD191178A20023CEF0 /* GuideCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCategories.h; sourceTree = "<group>"; };
 		C0F532DE191178A20023CEF0 /* GuideCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCategories.m; sourceTree = "<group>"; };
+		C0F9DED01912D30E0051CDAB /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Step.h; sourceTree = "<group>"; };
+		C0F9DED11912D30E0051CDAB /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Step.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 		C03D6B521911E3AF00CC213B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C0F9DED01912D30E0051CDAB /* Step.h */,
+				C0F9DED11912D30E0051CDAB /* Step.m */,
 				C03D6B561911E60600CC213B /* GuideContents.h */,
 				C03D6B571911E60600CC213B /* GuideContents.m */,
 				C03D6B531911E41B00CC213B /* GuideMetaData.h */,
@@ -489,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */,
+				C0F9DED21912D30E0051CDAB /* Step.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
 				C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */,
 				C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */,
