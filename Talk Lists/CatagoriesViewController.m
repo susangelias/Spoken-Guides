@@ -11,6 +11,7 @@
 
 @interface CatagoriesViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *generalButton;
+
 @property (strong, nonatomic) UISegmentedControl *LocalAllSegmentControl;
 
 @end
@@ -62,7 +63,7 @@
         CategoryTableViewController *dvc = [segue destinationViewController];
         if ([sender isKindOfClass:[UIButton class]]) {
             UIButton *pressedButton = sender;
-            dvc.title = pressedButton.titleLabel.text;
+            dvc.guideCategory = pressedButton.titleLabel.text;
             if (self.LocalAllSegmentControl.selectedSegmentIndex == 0) {
                 // 0 = Mine
                 dvc.myGuidesOnly = YES;

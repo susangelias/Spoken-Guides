@@ -9,10 +9,11 @@
 #import "CategoryTableViewController.h"
 #import "GuideDetailViewController.h"
 #import "ArrayDataSource.h"
+#import "guideList.h"
+#import "GuideCategories.h"
 
 @interface CategoryTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *dummyGuides;
 @property (strong, nonatomic) ArrayDataSource *guideListDataSource;
 
 @end
@@ -32,12 +33,21 @@
 {
     if (!_guideListDataSource) {
         
+        guideList *listForCategory = [[guideList alloc] init];
+        // set the category for the search
+        GuideCategories *guideCats = [[GuideCategories alloc]init];
+        listForCategory.guideCategory = [guideCats.categories objectForKey:self.guideCategory];
+        
+        // set whether search is local or database
+        listForCategory.local = self.myGuidesOnly;
+        
+        // guideList must run the search with a completion handler
+        // code can't crash if there is a lag in data coming back to populate the tableview
+        
         void (^configureCell)(UITableViewCell *, NSString *) = ^(UITableViewCell *cell, NSString *guideTitle) {
             cell.textLabel.text = guideTitle; };
-            
-        self.dummyGuides = [@[@"Whatever Guide", @"Making Breakfast Guide", @"Awesome Guide", @"Short Guide"] mutableCopy];
-
-        _guideListDataSource = [[ArrayDataSource alloc] initWithItems:self.dummyGuides
+        
+        _guideListDataSource = [[ArrayDataSource alloc] initWithItems:listForCategory.guides
                                                          cellIDString:@"CategoryItem"
                                                                 block:configureCell];
     }

@@ -11,5 +11,6 @@
 @interface CategoryTableViewController : UITableViewController
 
 @property (nonatomic) BOOL myGuidesOnly;
+@property (nonatomic, strong) NSString *guideCategory;
 
 @end

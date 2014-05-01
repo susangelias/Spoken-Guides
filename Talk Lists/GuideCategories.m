@@ -14,12 +14,12 @@
 {
     if (!_categoryKeys)
     {
-        _categoryKeys = @[NSLocalizedString(@"General", nil),
-                            NSLocalizedString(@"Cooking", nil),
+        _categoryKeys = @[NSLocalizedString(@"GENERAL", nil),
+                            NSLocalizedString(@"COOKING", nil),
                             NSLocalizedString(@"DIY", nil),
-                            NSLocalizedString(@"Automotive", nil),
-                            NSLocalizedString(@"Home & Garden", nil),
-                            NSLocalizedString(@"Health & Fitness", nil)];
+                            NSLocalizedString(@"AUTOMOTIVE", nil),
+                            NSLocalizedString(@"HOME & GARDEN", nil),
+                            NSLocalizedString(@"HEALTH & FITNESS", nil)];
     }
     return _categoryKeys;
 }
