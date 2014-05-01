@@ -13,7 +13,7 @@
 -(ArrayDataSource *)initWithItems:(NSArray *)initialItems cellIDString:(NSString *)IDString block:(__autoreleasing configureCellBlock)configCellBlock
 {
     self = [self init];
-    self.items = [NSArray arrayWithArray:initialItems];
+    self.items = [NSMutableArray arrayWithArray:initialItems];
     self.cellIdentifier = [NSString stringWithString:IDString];
     self.configureCell = configCellBlock;
     return self;
@@ -37,7 +37,6 @@
     return [self.items count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
@@ -48,43 +47,39 @@
     return cell;
 }
 
-/*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
- // Return NO if you do not want the specified item to be editable.
- return YES;
+     // Return NO if you do not want the specified item to be editable.
+     return self.editingAllowed;
  }
- */
 
-/*
+
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+         NSLog(@"delete row in model");
+         [self.items removeObjectAtIndex:indexPath.row];
+         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
  }
- }
- */
 
-/*
  // Override to support rearranging the table view.
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
  {
+     NSLog(@"move row in model");
  }
- */
 
-/*
  // Override to support conditional rearranging of the table view.
  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
  {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
+     // Return NO if you do not want the item to be re-orderable.
+     return self.rearrangingAllowed;
  }
- */
+
 
 
 @end

@@ -7,15 +7,39 @@
 //
 
 #import "previewViewController.h"
+#import "ArrayDataSource.h"
 
-@interface previewViewController ()  <UITableViewDataSource, UITableViewDelegate>
+@interface previewViewController ()  <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *stepTableView;
 @property (strong, nonatomic) NSMutableArray *steps;
+@property (strong, nonatomic) ArrayDataSource *guideStepsDataSource;
 
 @end
 
 @implementation previewViewController
+
+-(ArrayDataSource *)guideStepsDataSource
+{
+    if (!_guideStepsDataSource) {
+        // get the guide steps from our working copy of the new guide in progress
+
+        // set up the block that will fill each tableViewCell
+        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, NSString *guideStep) {
+            cell.textLabel.text = guideStep;
+          //  if (guidePhoto) {
+          //      cell.imageView.image = guidePhoto;
+           // }
+        };
+
+        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:self.steps
+                                                          cellIDString:@"stepCell"
+                                                                 block:configureCell];
+        
+    }
+    return _guideStepsDataSource;
+}
+
 
 - (NSMutableArray *)steps
 {
@@ -30,7 +54,7 @@
 {
     [super viewDidLoad];
     
-    self.stepTableView.dataSource = self;
+    self.stepTableView.dataSource = self.guideStepsDataSource;
     self.stepTableView.delegate = self;
     
 }
@@ -38,73 +62,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
+    NSLog(@"didReceiveMemoryWarning %s", __PRETTY_FUNCTION__);
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return [self.steps count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"stepCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    cell.textLabel.text = self.steps[indexPath.row];
-    return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [self.steps removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
-
-
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-    NSLog(@"MOVE ROW");
-}
-
-
-
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
 
 
 /*
@@ -121,8 +83,11 @@
 #pragma mark User Actions
 
 - (IBAction)editButtonPressed:(UIButton *)sender {
-    [self.stepTableView setEditing:YES
+    self.guideStepsDataSource.rearrangingAllowed = YES;
+    self.guideStepsDataSource.editingAllowed = YES;
+   [self.stepTableView setEditing:YES
                           animated:YES];
+
 }
 
 

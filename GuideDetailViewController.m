@@ -24,7 +24,7 @@
 {
     // set up dummy data
     if (!_steps) {
-        _steps = [@[@"step 1 instructions", @"step 2 instructions", @"step 3 instructions", @"step 4 instructions", @"step 5 instructions"]mutableCopy];;
+        _steps = [@[@"step 1 instructions. So what happens if my line of instructions gets really, really long.  Or even becomes more than one line ?", @"step 2 instructions", @"step 3 instructions", @"step 4 instructions", @"step 5 instructions"]mutableCopy];;
     }
     return _steps;
 }
@@ -47,6 +47,8 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
+    NSLog(@"didReceiveMemoryWarning %s", __PRETTY_FUNCTION__);
     // Dispose of any resources that can be recreated.
 }
 
