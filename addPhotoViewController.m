@@ -88,9 +88,15 @@
 
 - (NSDictionary *)photoSources
 {
-    return @{ @"Take Photo" : [NSNumber numberWithInt:UIImagePickerControllerSourceTypeCamera],
-              @"Choose Existing Photo" :[NSNumber numberWithInt:UIImagePickerControllerSourceTypePhotoLibrary]
-              };
+    NSMutableDictionary *sources = [[NSMutableDictionary alloc]init];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ])
+    {
+        [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypeCamera] forKey:@"Take Photo"];
+    }
+    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypePhotoLibrary)]) {
+        [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypePhotoLibrary] forKey:@"Choose Existing Photo"];
+    }
+    return [sources copy];
 }
 
 #pragma mark UIActionSheetDelegate
