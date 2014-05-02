@@ -49,7 +49,7 @@
         
         _guideListDataSource = [[ArrayDataSource alloc] initWithItems:listForCategory.guides
                                                          cellIDString:@"CategoryItem"
-                                                                block:configureCell];
+                                                   configureCellBlock:configureCell];
         _guideListDataSource.rearrangingAllowed = NO;
         _guideListDataSource.editingAllowed = NO;
     }

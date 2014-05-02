@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) NSString *instruction;
 @property (strong, nonatomic) UIImage *photo;
+@property (nonatomic) NSUInteger rank;          // position within the guide
 
 @end

@@ -11,11 +11,13 @@
 
 @interface GuideContents : NSObject
 
-@property (strong, nonatomic) NSArray *steps;
+@property (strong, nonatomic) NSMutableArray *steps;
 @property (nonatomic) NSUInteger *guideID;
 @property (strong, nonatomic) UIImage *guidePhoto;
 
 -(NSUInteger)numberOfSteps;
-
+-(void)deleteStep:(NSUInteger)stepNumber;
+-(void)moveStepFromNumber: (NSUInteger)fromNumber toNumber: (NSUInteger) newNumber;
+-(void)insertStep:(NSUInteger)stepNumber;
 
 @end

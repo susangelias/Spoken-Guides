@@ -8,15 +8,21 @@
 
 #import "ArrayDataSource.h"
 
+
 @implementation ArrayDataSource
 
--(ArrayDataSource *)initWithItems:(NSArray *)initialItems cellIDString:(NSString *)IDString block:(__autoreleasing configureCellBlock)configCellBlock
+-(ArrayDataSource *)initWithItems:(NSArray *)initialItems cellIDString:(NSString *)IDString configureCellBlock:configCellBlock
 {
-    self = [self init];
+    self = [super init];
     self.items = [NSMutableArray arrayWithArray:initialItems];
     self.cellIdentifier = [NSString stringWithString:IDString];
     self.configureCell = configCellBlock;
     return self;
+}
+
+-(ArrayDataSource *)init
+{
+    return nil;
 }
 
 #pragma mark - Table view data source
@@ -33,6 +39,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // This data source class only supports 1 section
+    NSParameterAssert(section == 0);
+    
     // Return the number of rows in the section.
     return [self.items count];
 }
@@ -59,7 +68,7 @@
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
      if (editingStyle == UITableViewCellEditingStyleDelete) {
-         NSLog(@"delete row in model");
+         [self.arrayDataSourceDelegate deletedRowAtIndex:indexPath.row];       // let the view controller know a row will be deleted
          [self.items removeObjectAtIndex:indexPath.row];
          [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
      } else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -70,7 +79,7 @@
  // Override to support rearranging the table view.
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
  {
-     NSLog(@"move row in model");
+     [self.arrayDataSourceDelegate movedRowFrom:fromIndexPath.row To:toIndexPath.row];  // let the view controller know a row is moving
  }
 
  // Override to support conditional rearranging of the table view.

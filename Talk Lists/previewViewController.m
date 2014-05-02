@@ -10,8 +10,9 @@
 #import "ArrayDataSource.h"
 #import "GuideContents.h"
 #import "Step.h"
+#import "ArrayDataSourceDelegate.h"
 
-@interface previewViewController ()  <UITableViewDelegate>
+@interface previewViewController ()  <UITableViewDelegate, ArrayDataSourceDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *stepTableView;
 @property (strong, nonatomic) ArrayDataSource *guideStepsDataSource;
@@ -37,7 +38,8 @@
 
         _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:[self.guideInProgress steps]
                                                           cellIDString:@"stepCell"
-                                                                 block:configureCell];
+                                                    configureCellBlock:configureCell];
+        _guideStepsDataSource.arrayDataSourceDelegate = self;
         
     }
     return _guideStepsDataSource;
@@ -70,18 +72,6 @@
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark User Actions
 
 - (IBAction)editButtonPressed:(UIButton *)sender {
@@ -92,6 +82,17 @@
 
 }
 
+#pragma mark ArrayDataSourceDelegate
+
+-(void)deletedRowAtIndex:(NSUInteger)index
+{
+    [self.guideInProgress deleteStep:index];
+}
+
+-(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
+{
+    [self.guideInProgress moveStepFromNumber:fromIndex toNumber:toIndex];
+}
 
 
 @end

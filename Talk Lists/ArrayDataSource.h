@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ArrayDataSourceDelegate.h"
 
 typedef void(^configureCellBlock)(UITableViewCell *, id);
 
@@ -17,9 +18,10 @@ typedef void(^configureCellBlock)(UITableViewCell *, id);
 @property (nonatomic, copy) configureCellBlock configureCell;
 @property (nonatomic) BOOL editingAllowed;
 @property (nonatomic) BOOL rearrangingAllowed;
+@property (nonatomic, strong) id <ArrayDataSourceDelegate> arrayDataSourceDelegate;
 
 -(ArrayDataSource *)initWithItems:(NSArray *)initialItems
                      cellIDString:(NSString *)IDString
-                            block:(configureCellBlock)configCellBlock;
+               configureCellBlock:configCellBlock;
 
 @end

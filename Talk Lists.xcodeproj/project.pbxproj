@@ -17,6 +17,9 @@
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
+		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
+		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
+		C0BE98D31913EE4600C2990E /* GuideContentsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98D21913EE4600C2990E /* GuideContentsTest.m */; };
 		C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */; };
 		C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
@@ -31,7 +34,6 @@
 		C0DCB1951905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1961905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
 		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
-		C0DCB1A01905D9F400E29DBB /* Talk_ListsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB19F1905D9F400E29DBB /* Talk_ListsTests.m */; };
 		C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */; };
 		C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
@@ -53,6 +55,7 @@
 /* Begin PBXFileReference section */
 		5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A39B4F7EF9E14A239DC702B6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrayDataSourceDelegate.h; sourceTree = "<group>"; };
 		C02BEAA4190E9F810092426E /* voiceSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voiceSettingsViewController.h; sourceTree = "<group>"; };
 		C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = voiceSettingsViewController.m; sourceTree = "<group>"; };
 		C02BEAA8190EA0EC0092426E /* SpeakingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakingController.h; sourceTree = "<group>"; };
@@ -73,6 +76,15 @@
 		C047761F190853A20085833C /* NewGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewController.m; sourceTree = "<group>"; };
 		C0BC64B7190D85D6002F42D1 /* previewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = previewViewController.h; sourceTree = "<group>"; };
 		C0BC64B8190D85D6002F42D1 /* previewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = previewViewController.m; sourceTree = "<group>"; };
+		C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSourceTest.m; sourceTree = "<group>"; };
+		C0BE98C81913E87F00C2990E /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		C0BE98CC1913E8E200C2990E /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		C0BE98CD1913E8E200C2990E /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		C0BE98CE1913E8E200C2990E /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		C0BE98CF1913E8E200C2990E /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		C0BE98D01913E8E200C2990E /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		C0BE98D11913E8E200C2990E /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		C0BE98D21913EE4600C2990E /* GuideContentsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideContentsTest.m; sourceTree = "<group>"; };
 		C0DCB16E1905D9F400E29DBB /* Talk Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talk Lists.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0DCB1711905D9F400E29DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,7 +104,6 @@
 		C0DCB1931905D9F400E29DBB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C0DCB19B1905D9F400E29DBB /* Talk ListsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Talk ListsTests-Info.plist"; sourceTree = "<group>"; };
 		C0DCB19D1905D9F400E29DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C0DCB19F1905D9F400E29DBB /* Talk_ListsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Talk_ListsTests.m; sourceTree = "<group>"; };
 		C0DCB1A91905E22100E29DBB /* CatagoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatagoriesViewController.h; sourceTree = "<group>"; };
 		C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatagoriesViewController.m; sourceTree = "<group>"; };
 		C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
@@ -114,6 +125,7 @@
 				C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */,
 				C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */,
 				F05384D1F80548A7BDC6C99F /* libPods.a in Frameworks */,
+				C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +206,7 @@
 		C03D6B4A1911827200CC213B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */,
 				C03D6B4C1911832A00CC213B /* ArrayDataSource.h */,
 				C03D6B4D1911832A00CC213B /* ArrayDataSource.m */,
 				C03D6B4F1911BFE100CC213B /* guideList.h */,
@@ -224,11 +237,50 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C0BE98C51913E87F00C2990E /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				C0BE98CA1913E8E200C2990E /* include */,
+				C0BE98C71913E87F00C2990E /* lib */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		C0BE98C71913E87F00C2990E /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				C0BE98C81913E87F00C2990E /* libOCMock.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		C0BE98CA1913E8E200C2990E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C0BE98CB1913E8E200C2990E /* OCMock */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C0BE98CB1913E8E200C2990E /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				C0BE98CC1913E8E200C2990E /* NSNotificationCenter+OCMAdditions.h */,
+				C0BE98CD1913E8E200C2990E /* OCMArg.h */,
+				C0BE98CE1913E8E200C2990E /* OCMConstraint.h */,
+				C0BE98CF1913E8E200C2990E /* OCMock.h */,
+				C0BE98D01913E8E200C2990E /* OCMockObject.h */,
+				C0BE98D11913E8E200C2990E /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
 		C0DCB1651905D9F400E29DBB = {
 			isa = PBXGroup;
 			children = (
 				C0DCB1771905D9F400E29DBB /* Talk Lists */,
 				C0DCB1991905D9F400E29DBB /* Talk ListsTests */,
+				C0BE98C51913E87F00C2990E /* usr */,
 				C0DCB1701905D9F400E29DBB /* Frameworks */,
 				C0DCB16F1905D9F400E29DBB /* Products */,
 				5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */,
@@ -286,7 +338,8 @@
 		C0DCB1991905D9F400E29DBB /* Talk ListsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C0DCB19F1905D9F400E29DBB /* Talk_ListsTests.m */,
+				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
+				C0BE98D21913EE4600C2990E /* GuideContentsTest.m */,
 				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
 			);
 			path = "Talk ListsTests";
@@ -518,7 +571,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0DCB1A01905D9F400E29DBB /* Talk_ListsTests.m in Sources */,
+				C0BE98D31913EE4600C2990E /* GuideContentsTest.m in Sources */,
+				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +716,11 @@
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
 				INFOPLIST_FILE = "Talk Lists/Talk Lists-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/usr/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -678,6 +737,11 @@
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
 				INFOPLIST_FILE = "Talk Lists/Talk Lists-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/usr/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -698,7 +762,16 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/usr/include/**",
+				);
 				INFOPLIST_FILE = "Talk ListsTests/Talk ListsTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -716,7 +789,16 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/usr/include/**",
+				);
 				INFOPLIST_FILE = "Talk ListsTests/Talk ListsTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
