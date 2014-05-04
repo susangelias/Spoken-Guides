@@ -15,19 +15,18 @@
 {
     if (!_steps) {
         _steps = [[NSMutableArray alloc] init];
+        /*
         for (int i = 0; i < 5; i++) {
             Step *stp = [[Step alloc]init];
             stp.rank = i+1;
             [_steps addObject:stp];
         }
+         */
     }
     return _steps;
 }
 
--(NSUInteger)numberOfSteps
-{
-    return [self.steps count];
-}
+
 
 -(void)deleteStep:(NSUInteger)stepNumber
 {
@@ -55,14 +54,40 @@
     }
 }
 
--(void)insertStep:(NSUInteger)stepNumber
+-(void)insertStep:(NSUInteger)stepNumber withInstruction: (NSString *)text withPhoto: (UIImage *)photo
 {
     // create step object
     Step *stepToInsert = [[Step alloc]init];
+    stepToInsert.instruction = text;
+    stepToInsert.photo = photo;
     
-    if (stepToInsert && (stepNumber <= [self.steps count])) {
+    if (stepToInsert && (stepNumber <= [self.steps count]) && (text || photo) ) {
         [self.steps insertObject:stepToInsert atIndex:stepNumber];
         }
+}
+
+-(void)replaceStepInstruction:(NSString *)stepText atNumber: (NSUInteger)stepNumber
+{
+    // make sure step exists
+    if (stepNumber < [self.steps count]) {
+        Step *modifyingStep = self.steps[stepNumber];
+        modifyingStep.instruction = stepText;
+    }
+    else {
+        NSParameterAssert(stepNumber < [self.steps count]);
+    }
+}
+
+-(void)replaceStepPhoto:(UIImage *)stepPhoto atNumber: (NSUInteger)stepNumber
+{
+    // make sure step exists
+    if (stepNumber < [self.steps count]) {
+        Step *modifyingStep = self.steps[stepNumber];
+        modifyingStep.photo = stepPhoto;
+    }
+    else {
+        NSParameterAssert(stepNumber < [self.steps count]);
+    }
 }
 
 

@@ -14,10 +14,12 @@
 @property (strong, nonatomic) NSMutableArray *steps;
 @property (nonatomic) NSUInteger *guideID;
 @property (strong, nonatomic) UIImage *guidePhoto;
+@property (strong, nonatomic) NSURL *guidePhotoURL;
 
--(NSUInteger)numberOfSteps;
 -(void)deleteStep:(NSUInteger)stepNumber;
 -(void)moveStepFromNumber: (NSUInteger)fromNumber toNumber: (NSUInteger) newNumber;
--(void)insertStep:(NSUInteger)stepNumber;
+-(void)insertStep:(NSUInteger)stepNumber withInstruction: (NSString *)text withPhoto: (UIImage *)photo;
+-(void)replaceStepInstruction:(NSString *)stepText atNumber: (NSUInteger)stepNumber;
+-(void)replaceStepPhoto:(UIImage *)stepPhoto atNumber: (NSUInteger)stepNumber;
 
 @end

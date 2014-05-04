@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GuideMetaData.h"
+#import "GuideContents.h"
 
 @interface NewGuideViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+
+
+
 
 @end

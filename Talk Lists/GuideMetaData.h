@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSURL *fileURL;
 @property (nonatomic) NSUInteger *guideID;
+@property (strong, nonatomic) NSString *guideCategory;
 
 @end

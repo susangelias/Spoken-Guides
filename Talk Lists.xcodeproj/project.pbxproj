@@ -16,6 +16,9 @@
 		C03D6B581911E60600CC213B /* GuideContents.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B571911E60600CC213B /* GuideContents.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
+		C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */; };
+		C05F1E2E19143A13005844D0 /* NewGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2D19143A13005844D0 /* NewGuideViewControllerTest.m */; };
+		C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A41916AEDB00CD8114 /* stepCell.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
@@ -74,6 +77,10 @@
 		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
 		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
 		C047761F190853A20085833C /* NewGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewController.m; sourceTree = "<group>"; };
+		C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideMetaDataTest.m; sourceTree = "<group>"; };
+		C05F1E2D19143A13005844D0 /* NewGuideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewControllerTest.m; sourceTree = "<group>"; };
+		C0B0F2A31916AEDB00CD8114 /* stepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepCell.h; sourceTree = "<group>"; };
+		C0B0F2A41916AEDB00CD8114 /* stepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepCell.m; sourceTree = "<group>"; };
 		C0BC64B7190D85D6002F42D1 /* previewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = previewViewController.h; sourceTree = "<group>"; };
 		C0BC64B8190D85D6002F42D1 /* previewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = previewViewController.m; sourceTree = "<group>"; };
 		C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSourceTest.m; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 		C036A979190C28CA00D1F251 /* Guide Detail */ = {
 			isa = PBXGroup;
 			children = (
+				C0B0F2A21916AE0C00CD8114 /* View */,
 				C03D6B521911E3AF00CC213B /* Model */,
 				C0F532D9191168830023CEF0 /* Controllers */,
 				C02BEAA3190E9F2E0092426E /* Dialog */,
@@ -235,6 +243,15 @@
 				C03D6B541911E41B00CC213B /* GuideMetaData.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C0B0F2A21916AE0C00CD8114 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C0B0F2A31916AEDB00CD8114 /* stepCell.h */,
+				C0B0F2A41916AEDB00CD8114 /* stepCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		C0BE98C51913E87F00C2990E /* usr */ = {
@@ -338,9 +355,11 @@
 		C0DCB1991905D9F400E29DBB /* Talk ListsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
+				C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */,
 				C0BE98D21913EE4600C2990E /* GuideContentsTest.m */,
+				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
 				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
+				C05F1E2D19143A13005844D0 /* NewGuideViewControllerTest.m */,
 			);
 			path = "Talk ListsTests";
 			sourceTree = "<group>";
@@ -556,6 +575,7 @@
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C03D6B581911E60600CC213B /* GuideContents.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
+				C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */,
 				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
@@ -571,7 +591,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */,
 				C0BE98D31913EE4600C2990E /* GuideContentsTest.m in Sources */,
+				C05F1E2E19143A13005844D0 /* NewGuideViewControllerTest.m in Sources */,
 				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

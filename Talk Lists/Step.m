@@ -20,7 +20,7 @@
 
 -(UIImage *)photo {
     if (!_photo) {
-        _photo = nil;
+        _photo = [[UIImage alloc] init];
     }
     return _photo;
 }

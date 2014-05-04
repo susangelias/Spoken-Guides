@@ -40,7 +40,8 @@
 {
     // extract new image
     UIImage *selectedPhoto = info[UIImagePickerControllerEditedImage];
-    
+#warning Get the thumbnail from the ALAssetsLibrary for photos in the photo stream
+#warning How to save metadata with the photo take with the camera and how to get the thumbnail from the camera photo
     // save image to user's photo stream if they took a picture
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImageWriteToSavedPhotosAlbum(selectedPhoto, nil, nil, nil);

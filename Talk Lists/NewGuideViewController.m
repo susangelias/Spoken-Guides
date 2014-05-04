@@ -11,8 +11,10 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "GuideCategories.h"
 
+
 @interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 
+// view properties
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
 @property (weak, nonatomic) IBOutlet UILabel *UserDirections;
 @property (weak, nonatomic) IBOutlet UITextView *StepTextView;
@@ -22,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *previewButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+
+// model properties
+@property (strong, nonatomic) GuideMetaData *guideInProgressMetaData;
+@property (strong, nonatomic) GuideContents *guideInProgress;
 
 @end
 
@@ -95,7 +101,12 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (returnKeyPressed) {
-      //  NSLog(@"NEW TITLE: %@", textField.text);    // save to model
+        // Save title into model       
+        if (self.guideInProgressMetaData) {
+            // save the title
+            self.guideInProgressMetaData.title = textField.text;
+        }
+        
         // update navigation title to the user's new title
         self.navigationItem.title = textField.text;
 
@@ -140,6 +151,11 @@
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         
+        // Save text instructions into model
+        [self.guideInProgress insertStep:stepNumber
+                         withInstruction:self.StepTextView.text
+                               withPhoto:self.imageView.image];
+        
         // Change the user directions for the next step
         [self updateStepText];
         
@@ -157,7 +173,6 @@
                              self.imageView.image = nil;
                          }
                          completion:^(BOOL finished) {
-                             // Save the entered text to the model here
                              // Then clear the text view for the next step entry
                              self.StepTextView.text = @"";
                              // Then swap the views
@@ -335,5 +350,20 @@
 
 #pragma mark Initializations
 
+-(GuideMetaData *)guideInProgressMetaData
+{
+    if (!_guideInProgressMetaData) {
+        _guideInProgressMetaData = [[GuideMetaData alloc] init];
+    }
+    return _guideInProgressMetaData;
+}
+
+-(GuideContents *)guideInProgress
+{
+    if (!_guideInProgress) {
+        _guideInProgress = [[GuideContents alloc] init];
+    }
+    return _guideInProgress;
+}
 
 @end
