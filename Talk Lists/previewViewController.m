@@ -11,6 +11,7 @@
 #import "GuideContents.h"
 #import "Step.h"
 #import "ArrayDataSourceDelegate.h"
+#import "stepCell.h"
 
 @interface previewViewController ()  <UITableViewDelegate, ArrayDataSourceDelegate>
 
@@ -22,37 +23,7 @@
 
 @implementation previewViewController
 
--(ArrayDataSource *)guideStepsDataSource
-{
-    if (!_guideStepsDataSource) {
-        // get the guide steps from our working copy of the new guide in progress
-        
-
-        // set up the block that will fill each tableViewCell
-        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, Step *guideStep) {
-            cell.textLabel.text = guideStep.instruction;
-          //  if (guidePhoto) {
-          //      cell.imageView.image = guidePhoto;
-           // }
-        };
-
-        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:[self.guideInProgress steps]
-                                                          cellIDString:@"stepCell"
-                                                    configureCellBlock:configureCell];
-        _guideStepsDataSource.arrayDataSourceDelegate = self;
-        
-    }
-    return _guideStepsDataSource;
-}
-
--(GuideContents *)guideInProgress
-{
-    if (!_guideInProgress) {
-        _guideInProgress = [[GuideContents alloc]init];
-    }
-    return _guideInProgress;
-}
-
+#pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
@@ -92,6 +63,36 @@
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
 {
     [self.guideInProgress moveStepFromNumber:fromIndex toNumber:toIndex];
+}
+
+#pragma mark Initializers
+
+-(ArrayDataSource *)guideStepsDataSource
+{
+    if (!_guideStepsDataSource) {
+        // get the guide steps from our working copy of the new guide in progress
+        
+        
+        // set up the block that will fill each tableViewCell
+        void (^configureCell)(stepCell *, id) = ^(stepCell *cell, Step *guideStep) {
+            [cell configureStepCell:guideStep];
+        };
+        
+        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:self.guideInProgress.steps
+                                                          cellIDString:@"stepCell"
+                                                    configureCellBlock:configureCell];
+        _guideStepsDataSource.arrayDataSourceDelegate = self;
+        
+    }
+    return _guideStepsDataSource;
+}
+
+-(GuideContents *)guideInProgress
+{
+    if (!_guideInProgress) {
+        _guideInProgress = [[GuideContents alloc]init];
+    }
+    return _guideInProgress;
 }
 
 
