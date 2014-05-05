@@ -10,6 +10,8 @@
 
 @protocol ArrayDataSourceDelegate <NSObject>
 
+@optional
+
 -(void)deletedRowAtIndex:(NSUInteger)index;
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex;
 

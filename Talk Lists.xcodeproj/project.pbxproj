@@ -19,6 +19,7 @@
 		C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */; };
 		C05F1E2E19143A13005844D0 /* NewGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2D19143A13005844D0 /* NewGuideViewControllerTest.m */; };
 		C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A41916AEDB00CD8114 /* stepCell.m */; };
+		C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
@@ -81,6 +82,8 @@
 		C05F1E2D19143A13005844D0 /* NewGuideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewControllerTest.m; sourceTree = "<group>"; };
 		C0B0F2A31916AEDB00CD8114 /* stepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepCell.h; sourceTree = "<group>"; };
 		C0B0F2A41916AEDB00CD8114 /* stepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepCell.m; sourceTree = "<group>"; };
+		C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuperView.h"; sourceTree = "<group>"; };
+		C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SuperView.m"; sourceTree = "<group>"; };
 		C0BC64B7190D85D6002F42D1 /* previewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = previewViewController.h; sourceTree = "<group>"; };
 		C0BC64B8190D85D6002F42D1 /* previewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = previewViewController.m; sourceTree = "<group>"; };
 		C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSourceTest.m; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 			children = (
 				C0B0F2A31916AEDB00CD8114 /* stepCell.h */,
 				C0B0F2A41916AEDB00CD8114 /* stepCell.m */,
+				C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */,
+				C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */,
 				C0F9DED21912D30E0051CDAB /* Step.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
+				C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */,
 				C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */,
 				C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */,
 				C03D6B511911BFE100CC213B /* guideList.m in Sources */,

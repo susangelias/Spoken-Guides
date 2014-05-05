@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GuideContents.h"
 
 @interface GuideDetailViewController : UIViewController
 
 @property (strong, nonatomic) NSString *guideTitle;
-
+@property (strong, nonatomic) GuideContents *guide;
 
 @end

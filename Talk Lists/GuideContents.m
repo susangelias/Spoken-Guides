@@ -11,17 +11,18 @@
 
 @implementation GuideContents
 
--(NSMutableArray *)steps
+- (NSMutableArray *)steps
 {
+    // set up dummy data
     if (!_steps) {
-        _steps = [[NSMutableArray alloc] init];
-        /*
-        for (int i = 0; i < 5; i++) {
-            Step *stp = [[Step alloc]init];
-            stp.rank = i+1;
-            [_steps addObject:stp];
-        }
-         */
+        Step *step1 = [[Step alloc]init];
+        step1.instruction = @"step A";
+        step1.photo = [UIImage imageNamed:@"cooking"];
+        Step * step2 = [[Step alloc]init];
+        step2.instruction = @"step B";
+        Step * step3 = [[Step alloc]init];
+        step3.instruction = @"step C";
+        _steps = [[NSMutableArray alloc] initWithArray:@[step1, step2, step3]];
     }
     return _steps;
 }
