@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Step.h"
+#import "StepClassic.h"
 
 @interface GuideContents : NSObject
 

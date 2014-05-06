@@ -12,9 +12,9 @@
 @interface GuideContentsTest : XCTestCase
 
 @property (nonatomic, strong) GuideContents *guide;
-@property (nonatomic, strong) Step *step1;
-@property (nonatomic, strong) Step *step2;
-@property (nonatomic, strong) Step *step3;
+@property (nonatomic, strong) StepClassic *step1;
+@property (nonatomic, strong) StepClassic *step2;
+@property (nonatomic, strong) StepClassic *step3;
 
 @end
 
@@ -26,12 +26,12 @@
     
     self.guide = [[GuideContents alloc] init];
     // setup dummy steps
-    self.step1 = [[Step alloc]init];
+    self.step1 = [[StepClassic alloc]init];
     self.step1.instruction = @"step A";
     self.step1.photo = [UIImage imageNamed:@"cooking"];
-    self.step2 = [[Step alloc]init];
+    self.step2 = [[StepClassic alloc]init];
     self.step2.instruction = @"step B";
-    self.step3 = [[Step alloc]init];
+    self.step3 = [[StepClassic alloc]init];
     self.step3.instruction = @"step C";
     self.guide.steps = [@[self.step1, self.step2, self.step3] mutableCopy];
 
@@ -134,7 +134,7 @@
 -(void)testGuideStepTextIsSetAtStepNumber
 {
     [self.guide insertStep:2 withInstruction:@"My Instructions" withPhoto:nil];
-    Step *step = self.guide.steps[2];
+    StepClassic *step = self.guide.steps[2];
     XCTAssertEqual(step.instruction, @"My Instructions", @"step instructions must be equal");
 }
 
@@ -148,13 +148,13 @@
 -(void)testGuideStepPhotoIsSetAtStepNumber
 {
     [self.guide insertStep:2 withInstruction:nil withPhoto:[UIImage imageNamed:@"Cooking"]];
-    Step *step = self.guide.steps[2];
+    StepClassic *step = self.guide.steps[2];
     XCTAssertEqual(step.photo, [UIImage imageNamed:@"Cooking"], @"step photos must be equal");
 }
 
 -(void)testReplaceInstructionInExistingStep
 {
-   Step *step = self.guide.steps[1];
+   StepClassic *step = self.guide.steps[1];
     NSString *existingInstruction = step.instruction;
     [self.guide replaceStepInstruction:@"Edited instruction" atNumber:1];
     XCTAssertNotEqual(step.instruction, existingInstruction, @"instruction must be replaced");
@@ -169,7 +169,7 @@
 
 -(void)testReplacePhotoInExistingStep
 {
-    Step *step = self.guide.steps[0];
+    StepClassic *step = self.guide.steps[0];
     UIImage *existingPhoto = step.photo;
     UIImage *updatePhoto = [UIImage imageNamed:@"general"];
     [self.guide replaceStepPhoto:updatePhoto atNumber:0];

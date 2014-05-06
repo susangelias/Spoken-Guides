@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Guide" representedClassName="Guide" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="classifiedCategory" maxCount="1" deletionRule="Nullify" destinationEntity="GuideCategory" inverseName="memberGuide" inverseEntity="GuideCategory" syncable="YES"/>
+        <relationship name="guidePhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="belongsToGuide" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="stepInGuide" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step" inverseName="belongsToGuide" inverseEntity="Step" syncable="YES"/>
+    </entity>
+    <entity name="GuideCategory" representedClassName="GuideCategory" syncable="YES">
+        <attribute name="tag" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="memberGuide" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guide" inverseName="classifiedCategory" inverseEntity="Guide" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="fileURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="belongsToGuide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guide" inverseName="guidePhoto" inverseEntity="Guide" syncable="YES"/>
+        <relationship name="belongsToStep" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Step" inverseName="stepPhoto" inverseEntity="Step" syncable="YES"/>
+    </entity>
+    <entity name="Step" representedClassName="Step" syncable="YES">
+        <attribute name="instruction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="belongsToGuide" maxCount="1" deletionRule="Nullify" destinationEntity="Guide" inverseName="stepInGuide" inverseEntity="Guide" syncable="YES"/>
+        <relationship name="stepPhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="belongsToStep" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="GuideCategory" positionX="-722" positionY="18" width="128" height="73"/>
+        <element name="Guide" positionX="-504" positionY="0" width="128" height="133"/>
+        <element name="Step" positionX="-317" positionY="-108" width="128" height="103"/>
+        <element name="Photo" positionX="-288" positionY="63" width="128" height="118"/>
+    </elements>
+</model>

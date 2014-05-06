@@ -39,7 +39,7 @@
     // Configure the view for the selected state
 }
 
--(void)configureStepCell: (Step *)step
+-(void)configureStepCell: (StepClassic *)step
 {
     UITapGestureRecognizer *tapped;
  

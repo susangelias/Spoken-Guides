@@ -7,7 +7,7 @@
 //
 
 #import "GuideContents.h"
-#import "Step.h"
+#import "StepClassic.h"
 
 @implementation GuideContents
 
@@ -15,12 +15,12 @@
 {
     // set up dummy data
     if (!_steps) {
-        Step *step1 = [[Step alloc]init];
+        StepClassic *step1 = [[StepClassic alloc]init];
         step1.instruction = @"step A";
         step1.photo = [UIImage imageNamed:@"cooking"];
-        Step * step2 = [[Step alloc]init];
+        StepClassic * step2 = [[StepClassic alloc]init];
         step2.instruction = @"step B";
-        Step * step3 = [[Step alloc]init];
+        StepClassic * step3 = [[StepClassic alloc]init];
         step3.instruction = @"step C";
         _steps = [[NSMutableArray alloc] initWithArray:@[step1, step2, step3]];
     }
@@ -40,7 +40,7 @@
 -(void)moveStepFromNumber: (NSUInteger)fromNumber toNumber: (NSUInteger) newNumber
 {
     // copy the moving step
-    Step *stepToMove = [self.steps objectAtIndex:fromNumber];
+    StepClassic *stepToMove = [self.steps objectAtIndex:fromNumber];
     if (fromNumber > newNumber) {
         // remove the step from the array
         [self.steps removeObject:stepToMove];
@@ -58,7 +58,7 @@
 -(void)insertStep:(NSUInteger)stepNumber withInstruction: (NSString *)text withPhoto: (UIImage *)photo
 {
     // create step object
-    Step *stepToInsert = [[Step alloc]init];
+    StepClassic *stepToInsert = [[StepClassic alloc]init];
     stepToInsert.instruction = text;
     stepToInsert.photo = photo;
     
@@ -71,7 +71,7 @@
 {
     // make sure step exists
     if (stepNumber < [self.steps count]) {
-        Step *modifyingStep = self.steps[stepNumber];
+        StepClassic *modifyingStep = self.steps[stepNumber];
         modifyingStep.instruction = stepText;
     }
     else {
@@ -83,7 +83,7 @@
 {
     // make sure step exists
     if (stepNumber < [self.steps count]) {
-        Step *modifyingStep = self.steps[stepNumber];
+        StepClassic *modifyingStep = self.steps[stepNumber];
         modifyingStep.photo = stepPhoto;
     }
     else {

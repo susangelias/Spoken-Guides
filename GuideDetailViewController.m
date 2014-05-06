@@ -9,7 +9,7 @@
 #import "GuideDetailViewController.h"
 #import "BlurryModalSegue.h"
 #import "stepCell.h"
-#import "Step.h"
+#import "StepClassic.h"
 #import "ArrayDataSource.h"
 #import "ArrayDataSourceDelegate.h"
 
@@ -94,7 +94,7 @@
         
         
         // set up the block that will fill each tableViewCell
-        void (^configureCell)(stepCell *, id) = ^(stepCell *cell, Step *guideStep) {
+        void (^configureCell)(stepCell *, id) = ^(stepCell *cell, StepClassic *guideStep) {
             [cell configureStepCell:guideStep];
         };
         
