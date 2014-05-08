@@ -10,4 +10,8 @@
 
 @interface Step (Addendums)
 
++(NSString *)entityName;
++(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc;
+
+
 @end

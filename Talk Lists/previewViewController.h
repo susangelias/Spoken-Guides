@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Guide+Addendums.h"
 
 @interface previewViewController : UIViewController
+
+@property (nonatomic, strong) Guide *guideToPreview;
 
 @end
 

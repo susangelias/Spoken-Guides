@@ -14,9 +14,11 @@
 -(ArrayDataSource *)initWithItems:(NSArray *)initialItems cellIDString:(NSString *)IDString configureCellBlock:configCellBlock
 {
     self = [super init];
-    self.items = [NSMutableArray arrayWithArray:initialItems];
-    self.cellIdentifier = [NSString stringWithString:IDString];
-    self.configureCell = configCellBlock;
+    if (self) {
+        self.items = [NSMutableArray arrayWithArray:initialItems];
+        self.cellIdentifier = [NSString stringWithString:IDString];
+        self.configureCell = configCellBlock;
+    }
     return self;
 }
 

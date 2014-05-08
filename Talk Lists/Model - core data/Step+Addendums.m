@@ -10,4 +10,15 @@
 
 @implementation Step (Addendums)
 
++(NSString *)entityName
+{
+    return @"Step";
+}
+
++(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:moc];
+}
+
+
 @end

@@ -2,11 +2,12 @@
 //  Step.m
 //  Talk Lists
 //
-//  Created by Susan Elias on 5/5/14.
+//  Created by Susan Elias on 5/7/14.
 //  Copyright (c) 2014 GriffTech. All rights reserved.
 //
 
 #import "Step.h"
+#import "Guide.h"
 #import "Photo.h"
 
 
@@ -14,7 +15,7 @@
 
 @dynamic instruction;
 @dynamic rank;
-@dynamic stepPhoto;
 @dynamic belongsToGuide;
+@dynamic photo;
 
 @end

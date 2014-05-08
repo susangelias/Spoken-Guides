@@ -8,6 +8,7 @@
 
 #import "stepCell.h"
 #import "UIView+SuperView.h"
+#import "Photo+Addendums.h"
 
 @interface stepCell()
 
@@ -39,13 +40,13 @@
     // Configure the view for the selected state
 }
 
--(void)configureStepCell: (StepClassic *)step
+-(void)configureStepCell: (Step *)stepToDisplay
 {
     UITapGestureRecognizer *tapped;
  
-    self.textLabel.text = step.instruction;
-    if (step.photo) {
-        self.imageView.image = step.photo;
+    self.textLabel.text = stepToDisplay.instruction;
+    if (stepToDisplay.photo.thumbnail) {
+        self.imageView.image = [UIImage imageWithData:stepToDisplay.photo.thumbnail];
         
         // Add Gesture Recognizer
         tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellImageTapped:)];

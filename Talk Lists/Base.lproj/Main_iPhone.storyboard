@@ -36,7 +36,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Wgp-Gh-Wlk" kind="push" id="KhV-zr-fQm"/>
+                                    <segue destination="Wgp-Gh-Wlk" kind="push" identifier="NewGuideSegue" id="KhV-zr-fQm"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6x-Hd-Shj">
@@ -243,7 +243,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crJ-VK-ptU">
-                                <rect key="frame" x="110" y="68" width="190" height="21"/>
+                                <rect key="frame" x="110" y="82" width="190" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
@@ -273,7 +273,7 @@
                         <outlet property="imageView" destination="Ykh-ey-lvV" id="0Cv-gA-Ygk"/>
                         <outlet property="previewButton" destination="4Bi-gV-BrI" id="2pv-KQ-LNe"/>
                         <outlet property="swapTextView" destination="eyX-oo-dXH" id="kfZ-uA-pB1"/>
-                        <outlet property="textViewPlaceholder" destination="Qgv-9H-qmG" id="YXS-2w-ZF1"/>
+                        <outlet property="textViewPlaceholder" destination="Qgv-9H-qmG" id="eBe-vn-6kM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjy-d8-Zn2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,8 +326,8 @@
                                     <segue destination="YCG-6o-h6G" kind="unwind" unwindAction="finishedPreview:" id="nwa-c8-ZVv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guide Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-PJ-pDL">
-                                <rect key="frame" x="20" y="101" width="83" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guide Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="159" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-PJ-pDL">
+                                <rect key="frame" x="20" y="60" width="159" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -351,6 +351,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="guidePhoto" destination="idq-yh-Edh" id="By4-B8-RaI"/>
+                        <outlet property="guideTitle" destination="6a5-PJ-pDL" id="dxP-Nf-DqY"/>
                         <outlet property="stepTableView" destination="SFv-Rh-5mm" id="PyQ-aK-TXb"/>
                     </connections>
                 </viewController>

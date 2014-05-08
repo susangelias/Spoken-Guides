@@ -8,16 +8,17 @@
 
 #import "previewViewController.h"
 #import "ArrayDataSource.h"
-#import "GuideContents.h"
 #import "Step.h"
 #import "ArrayDataSourceDelegate.h"
 #import "stepCell.h"
+#import "Photo+Addendums.h"
 
 @interface previewViewController ()  <UITableViewDelegate, ArrayDataSourceDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *stepTableView;
 @property (strong, nonatomic) ArrayDataSource *guideStepsDataSource;
-@property (strong, nonatomic) GuideContents *guideInProgress;
+@property (weak, nonatomic) IBOutlet UILabel *guideTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *guidePhoto;
 
 @end
 
@@ -32,6 +33,12 @@
     self.stepTableView.dataSource = self.guideStepsDataSource;
     self.stepTableView.delegate = self;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.guideTitle.text = self.guideToPreview.title;
+    self.guidePhoto.image  = [UIImage imageWithData:self.guideToPreview.photo.image];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,12 +64,12 @@
 
 -(void)deletedRowAtIndex:(NSUInteger)index
 {
-    [self.guideInProgress deleteStep:index];
+  //  [self.guideInProgress deleteStep:index];
 }
 
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
 {
-    [self.guideInProgress moveStepFromNumber:fromIndex toNumber:toIndex];
+  //  [self.guideInProgress moveStepFromNumber:fromIndex toNumber:toIndex];
 }
 
 #pragma mark Initializers
@@ -70,15 +77,14 @@
 -(ArrayDataSource *)guideStepsDataSource
 {
     if (!_guideStepsDataSource) {
-        // get the guide steps from our working copy of the new guide in progress
-        
         
         // set up the block that will fill each tableViewCell
         void (^configureCell)(stepCell *, id) = ^(stepCell *cell, Step *guideStep) {
             [cell configureStepCell:guideStep];
         };
         
-        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:self.guideInProgress.steps
+        // get the guide steps from our working copy of the new guide in progress
+        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:[self.guideToPreview sortedSteps]
                                                           cellIDString:@"stepCell"
                                                     configureCellBlock:configureCell];
         _guideStepsDataSource.arrayDataSourceDelegate = self;
@@ -87,13 +93,6 @@
     return _guideStepsDataSource;
 }
 
--(GuideContents *)guideInProgress
-{
-    if (!_guideInProgress) {
-        _guideInProgress = [[GuideContents alloc]init];
-    }
-    return _guideInProgress;
-}
 
 
 @end

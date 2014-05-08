@@ -8,33 +8,45 @@
 
 #import "NewGuideViewController.h"
 #import "addPhotoViewController.h"
+#import "previewViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "GuideCategories.h"
+#import "titleViewDelegate.h"
+#import "titleView.h"
+#import "stepEntryViewDelegate.h"
+#import "stepEntryView.h"
+#import "Guide+Addendums.h"
+#import "Step+Addendums.h"
 
-
-@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
+@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepEntryViewDelegate >
 
 // view properties
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
+@property (strong, nonatomic) titleView *guideTitleView;
+
 @property (weak, nonatomic) IBOutlet UILabel *UserDirections;
+
 @property (weak, nonatomic) IBOutlet UITextView *StepTextView;
+@property (strong, nonatomic) stepEntryView *stepInstruction;
 @property (weak, nonatomic) IBOutlet UITextView *swapTextView;
 @property (weak, nonatomic) IBOutlet UILabel *textViewPlaceholder;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *previewButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
 // model properties
-@property (strong, nonatomic) GuideMetaData *guideInProgressMetaData;
-@property (strong, nonatomic) GuideContents *guideInProgress;
+@property (strong, nonatomic) Guide *guideInProgress;
+@property (strong, nonatomic) Step *stepInProgess;
+
 
 @end
 
 @implementation NewGuideViewController
 {
     int stepNumber;
-    BOOL returnKeyPressed;
+
 }
 
 #pragma mark View Lifecycle
@@ -51,9 +63,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.guideTitle.delegate = self;
-    [self.guideTitle becomeFirstResponder];
+    
+    // Set up guide title entry view
+    self.guideTitleView = [[titleView alloc] initWithTextField:self.guideTitle];
+    self.guideTitleView.guideTitleDelegate = self;
+
     
     // make sure step text views are hidden to start with
     self.StepTextView.hidden = YES;
@@ -83,137 +97,50 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark <UITextFieldDelegate>
+#pragma mark <titleViewDelegate>
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+-(void)titleEntered:(NSString*)title
 {
-    returnKeyPressed = NO;
-    return YES;
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    returnKeyPressed = YES;
-    [textField resignFirstResponder];
-    return NO;
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (returnKeyPressed) {
-        // Save title into model       
-        if (self.guideInProgressMetaData) {
-            // save the title
-            self.guideInProgressMetaData.title = textField.text;
-        }
-        
-        // update navigation title to the user's new title
-        self.navigationItem.title = textField.text;
-
-        // Change the user directions for the next step
-        [self updateStepText];
-
-        // Clear the photo image of the guide title
-        if (self.imageView.image) {
-            [UIView animateWithDuration:0.5
-                                  delay:0.0
-                                options:UIViewAnimationOptionTransitionFlipFromRight
-                             animations:^{
-                                 self.imageView.image = nil;
-                             } completion:^(BOOL finished) {
-                                 Nil;
-                             }];
-        }
-        
-        // Slide in new view
-        self.StepTextView.center = CGPointMake(self.StepTextView.center.x + 300, self.StepTextView.center.y);
-        [UIView animateWithDuration:0.75
-                              delay:0.1
-                            options:UIViewAnimationOptionTransitionNone
+    NSLog(@"title entered: %@", title);
+    self.guideInProgress.title = title;
+    self.navigationItem.title = title;
+    
+    // update user's onscreen instructions
+    [self updateStepText];
+    
+    // Clear the photo image of the guide title - move to photoView class
+    if (self.imageView.image) {
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionTransitionFlipFromRight
                          animations:^{
-                             self.guideTitle.center = CGPointMake(self.guideTitle.center.x - 300, self.guideTitle.center.y);
-                             self.StepTextView.hidden = NO;
-                             self.StepTextView.center = CGPointMake(self.StepTextView.center.x - 300, self.StepTextView.center.y);
-                           }
-                         completion:^(BOOL finished) {
-                             self.guideTitle.hidden = YES;
-                             [self.StepTextView becomeFirstResponder];
-                             self.StepTextView.delegate = self;
-                             self.textViewPlaceholder.hidden = NO;
-                         }];
-    }
-}
-
-#pragma mark    <UITextViewDelegate>
-
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        
-        // Save text instructions into model
-        [self.guideInProgress insertStep:stepNumber
-                         withInstruction:self.StepTextView.text
-                               withPhoto:self.imageView.image];
-        
-        // Change the user directions for the next step
-        [self updateStepText];
-        
-        // swap the step views
-        self.swapTextView.center = CGPointMake(self.StepTextView.center.x + 300, self.StepTextView.center.y);
-        [UIView animateWithDuration:0.50
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.StepTextView.center = CGPointMake(self.StepTextView.center.x - 300, self.StepTextView.center.y);
-                             self.StepTextView.hidden = YES;
-                             self.swapTextView.hidden = NO;
-                             self.swapTextView.center = CGPointMake(self.swapTextView.center.x - 300, self.swapTextView.center.y);
-                             // clear the photo image
                              self.imageView.image = nil;
-                         }
-                         completion:^(BOOL finished) {
-                             // Then clear the text view for the next step entry
-                             self.StepTextView.text = @"";
-                             // Then swap the views
-                             UITextView *temp = self.StepTextView;
-                             self.StepTextView = self.swapTextView;
-                             self.swapTextView = temp;
-                             [self.StepTextView becomeFirstResponder];
-                             self.StepTextView.delegate = self;
-                             self.textViewPlaceholder.hidden = NO;
-                             
+                         } completion:^(BOOL finished) {
+                             Nil;
                          }];
-        
-        return NO;
     }
-    else {
-        return YES;
-    }
+
+    // create the step entry objects
+    self.stepInstruction = [[stepEntryView alloc]initWithPrimaryTextView:self.StepTextView secondaryTextView: self.swapTextView];
+    self.stepInstruction.stepEntryDelegate = self;
+    self.stepInstruction.textViewPlaceholder = self.textViewPlaceholder;
+
 }
 
--(void)textViewDidBeginEditing:(UITextView *)textView {
-    // clear the placeholder text
-    self.textViewPlaceholder.hidden = YES;
-}
+#pragma mark <stepEntryViewDelegate>
 
--(void)textViewDidChange:(UITextView *)textView
+-(void) stepInstructionEntered: (NSString *)instructionText
 {
-    self.textViewPlaceholder.hidden = ([textView.text length] > 0);
+    NSLog(@"step instruction:  %@", instructionText);
+    // save instructions in model
+    self.stepInProgess.instruction = instructionText;
+    
+    // update user's onscreen instructions
+    [self updateStepText];
+    
+    // clear the photo image
+       self.imageView.image = nil;
 }
-
-
-
-#pragma mark - Navigation
-
-/*
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)photoAdded:(UIStoryboardSegue *)segue
 {
@@ -272,7 +199,7 @@
     return [guideCats categories];
 }
 
-#pragma mark UIActionSheetDelegate
+#pragma mark UIActionSheetDelegate for Category Action sheet
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -280,6 +207,7 @@
     
     if ( ![choice isEqualToString:@"Cancel"]) {
         // save category to model
+        self.guideInProgress.classification = choice;
         self.categoryLabel.text = choice;
      }
     else {
@@ -288,6 +216,8 @@
     }
     
 }
+
+#pragma  mark Done Button Actions
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     
@@ -307,24 +237,55 @@
     if (!buttonIndex == 0)
     {
         // save choice to model
+        
+        // save guide to core data
+        if (self.guideInProgress.title) {
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            if (error) {
+                NSLog(@"ERROR saving context: %@", error);
+            }
+        }
+   
+        
         // return to main screen
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+#pragma mark Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"previewSegue"] )
+    {
+        if ([[segue destinationViewController] isKindOfClass:[previewViewController class]]) {
+            previewViewController *destController = [segue destinationViewController];
+            destController.guideToPreview = self.guideInProgress;
+        }
+    }
+    
 }
 
 
 #pragma mark Helpers
 -(void)updateStepText
 {
+    // moving on to the next step so let go of the current step
+    self.stepInProgess = nil;
+    
     // Change the user directions for the next step
     stepNumber++;
     self.UserDirections.text = [NSString stringWithFormat:@"Step %d", stepNumber];
+    
+    // record the step number in the model
+    self.stepInProgess.rank = [NSNumber numberWithInteger:stepNumber];
 }
 
 -(void)resetFirstResponder {
     if (self.StepTextView.hidden == NO) {
         //   self.StepTextView.clearsOnBeginEditing = NO;
-        [UIView animateWithDuration:0.0
+        [UIView animateWithDuration:0.0     // move to stepView class
                          animations:^{
                              [self.view addSubview:self.StepTextView];
                          }
@@ -334,7 +295,7 @@
          ];
     }
     else if (self.guideTitle.hidden == NO) {
-        self.guideTitle.clearsOnBeginEditing = NO;
+        self.guideTitle.clearsOnBeginEditing = NO;  // move to titleView class
         [UIView animateWithDuration:0.0
                          animations:^{
                              [self.view addSubview:self.guideTitle];
@@ -350,20 +311,26 @@
 
 #pragma mark Initializations
 
--(GuideMetaData *)guideInProgressMetaData
-{
-    if (!_guideInProgressMetaData) {
-        _guideInProgressMetaData = [[GuideMetaData alloc] init];
-    }
-    return _guideInProgressMetaData;
-}
 
--(GuideContents *)guideInProgress
+-(Guide *)guideInProgress
 {
     if (!_guideInProgress) {
-        _guideInProgress = [[GuideContents alloc] init];
+        _guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
+        GuideCategories *cats = [[GuideCategories alloc] init];
+        _guideInProgress.classification = cats.categoryStrings[0];  // Set to default category and let the user change this if they want
+        _guideInProgress.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
     }
     return _guideInProgress;
 }
+
+-(Step *)stepInProgess
+{
+    if (!_stepInProgess) {
+        _stepInProgess = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
+        [self.guideInProgress addStepInGuideObject:_stepInProgess];
+    }
+    return _stepInProgess;
+}
+
 
 @end

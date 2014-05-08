@@ -11,21 +11,18 @@
 		C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA9190EA0EC0092426E /* SpeakingController.m */; };
 		C02BEAAE190EA10E0092426E /* voice.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAAD190EA10E0092426E /* voice.m */; };
 		C02BFBA01918192700F6A035 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D55321917F95F006955E7 /* CoreData.framework */; };
+		C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBA119190D7500F6A035 /* Guide+Addendums.m */; };
+		C02BFBA619193D4300F6A035 /* titleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBA519193D4300F6A035 /* titleView.m */; };
+		C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBAA19195F6D00F6A035 /* stepEntryView.m */; };
 		C02D55331917F95F006955E7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D55321917F95F006955E7 /* CoreData.framework */; };
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
 		C03D6B511911BFE100CC213B /* guideList.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B501911BFE100CC213B /* guideList.m */; };
 		C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B541911E41B00CC213B /* GuideMetaData.m */; };
 		C03D6B581911E60600CC213B /* GuideContents.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B571911E60600CC213B /* GuideContents.m */; };
 		C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */; };
-		C046D84719180E6000212B5E /* GuideCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D84619180E6000212B5E /* GuideCategory.m */; };
-		C046D84A19180E6100212B5E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D84919180E6100212B5E /* Photo.m */; };
-		C046D84D19180E6100212B5E /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D84C19180E6100212B5E /* Step.m */; };
-		C046D85019180E6100212B5E /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D84F19180E6100212B5E /* Guide.m */; };
 		C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85219180F6300212B5E /* Guide+Addendums.m */; };
 		C046D85619180F9300212B5E /* Step+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85519180F9300212B5E /* Step+Addendums.m */; };
 		C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85819180FB500212B5E /* Photo+Addendums.m */; };
-		C046D85C19180FDB00212B5E /* GuideCategory+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85B19180FDB00212B5E /* GuideCategory+Addendums.m */; };
-		C046D85E191811DB00212B5E /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85D191811DB00212B5E /* Guide.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
 		C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */; };
@@ -51,6 +48,9 @@
 		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
 		C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */; };
 		C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */; };
+		C0EB60B5191AD29100AFFE4F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60B4191AD29100AFFE4F /* Photo.m */; };
+		C0EB60B8191AD29100AFFE4F /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60B7191AD29100AFFE4F /* Guide.m */; };
+		C0EB60BB191AD29100AFFE4F /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60BA191AD29100AFFE4F /* Step.m */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
 		C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F532DE191178A20023CEF0 /* GuideCategories.m */; };
 		C0F9DED21912D30E0051CDAB /* StepClassic.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F9DED11912D30E0051CDAB /* StepClassic.m */; };
@@ -78,6 +78,13 @@
 		C02BEAAC190EA10E0092426E /* voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voice.h; sourceTree = "<group>"; };
 		C02BEAAD190EA10E0092426E /* voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = voice.m; sourceTree = "<group>"; };
 		C02BFB9D191817F500F6A035 /* StepClassic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepClassic.h; sourceTree = "<group>"; };
+		C02BFBA119190D7500F6A035 /* Guide+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Guide+Addendums.m"; sourceTree = "<group>"; };
+		C02BFBA419193D4300F6A035 /* titleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = titleView.h; sourceTree = "<group>"; };
+		C02BFBA519193D4300F6A035 /* titleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = titleView.m; sourceTree = "<group>"; };
+		C02BFBA8191954C800F6A035 /* titleViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = titleViewDelegate.h; sourceTree = "<group>"; };
+		C02BFBA919195F6D00F6A035 /* stepEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepEntryView.h; sourceTree = "<group>"; };
+		C02BFBAA19195F6D00F6A035 /* stepEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepEntryView.m; sourceTree = "<group>"; };
+		C02BFBAC19195FB400F6A035 /* stepEntryViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stepEntryViewDelegate.h; sourceTree = "<group>"; };
 		C02D55321917F95F006955E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
@@ -88,23 +95,12 @@
 		C03D6B561911E60600CC213B /* GuideContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideContents.h; sourceTree = "<group>"; };
 		C03D6B571911E60600CC213B /* GuideContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideContents.m; sourceTree = "<group>"; };
 		C046D84319180B5800212B5E /* GuideModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuideModel.xcdatamodel; sourceTree = "<group>"; };
-		C046D84519180E6000212B5E /* GuideCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideCategory.h; path = "Model - core data/GuideCategory.h"; sourceTree = "<group>"; };
-		C046D84619180E6000212B5E /* GuideCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideCategory.m; path = "Model - core data/GuideCategory.m"; sourceTree = "<group>"; };
-		C046D84819180E6100212B5E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = "Model - core data/Photo.h"; sourceTree = "<group>"; };
-		C046D84919180E6100212B5E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = "Model - core data/Photo.m"; sourceTree = "<group>"; };
-		C046D84B19180E6100212B5E /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Step.h; path = "Model - core data/Step.h"; sourceTree = "<group>"; };
-		C046D84C19180E6100212B5E /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Step.m; path = "Model - core data/Step.m"; sourceTree = "<group>"; };
-		C046D84E19180E6100212B5E /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
-		C046D84F19180E6100212B5E /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Guide.m; path = "Model - core data/Guide.m"; sourceTree = "<group>"; };
 		C046D85119180F6300212B5E /* Guide+Addendums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Guide+Addendums.h"; path = "Model - core data/Guide+Addendums.h"; sourceTree = "<group>"; };
 		C046D85219180F6300212B5E /* Guide+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Guide+Addendums.m"; path = "Model - core data/Guide+Addendums.m"; sourceTree = "<group>"; };
 		C046D85419180F9300212B5E /* Step+Addendums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Step+Addendums.h"; path = "Model - core data/Step+Addendums.h"; sourceTree = "<group>"; };
 		C046D85519180F9300212B5E /* Step+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Step+Addendums.m"; path = "Model - core data/Step+Addendums.m"; sourceTree = "<group>"; };
 		C046D85719180FB500212B5E /* Photo+Addendums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Photo+Addendums.h"; path = "Model - core data/Photo+Addendums.h"; sourceTree = "<group>"; };
 		C046D85819180FB500212B5E /* Photo+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Photo+Addendums.m"; path = "Model - core data/Photo+Addendums.m"; sourceTree = "<group>"; };
-		C046D85A19180FDB00212B5E /* GuideCategory+Addendums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GuideCategory+Addendums.h"; path = "Model - core data/GuideCategory+Addendums.h"; sourceTree = "<group>"; };
-		C046D85B19180FDB00212B5E /* GuideCategory+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GuideCategory+Addendums.m"; path = "Model - core data/GuideCategory+Addendums.m"; sourceTree = "<group>"; };
-		C046D85D191811DB00212B5E /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		C047761B190848250085833C /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideDetailViewController.h; path = ../GuideDetailViewController.h; sourceTree = "<group>"; };
 		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
 		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
@@ -148,6 +144,12 @@
 		C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatagoriesViewController.m; sourceTree = "<group>"; };
 		C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
 		C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
+		C0EB60B3191AD29100AFFE4F /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = "Model - core data/Photo.h"; sourceTree = "<group>"; };
+		C0EB60B4191AD29100AFFE4F /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = "Model - core data/Photo.m"; sourceTree = "<group>"; };
+		C0EB60B6191AD29100AFFE4F /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
+		C0EB60B7191AD29100AFFE4F /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Guide.m; path = "Model - core data/Guide.m"; sourceTree = "<group>"; };
+		C0EB60B9191AD29100AFFE4F /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Step.h; path = "Model - core data/Step.h"; sourceTree = "<group>"; };
+		C0EB60BA191AD29100AFFE4F /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Step.m; path = "Model - core data/Step.m"; sourceTree = "<group>"; };
 		C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addPhotoViewController.h; path = ../addPhotoViewController.h; sourceTree = "<group>"; };
 		C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addPhotoViewController.m; path = ../addPhotoViewController.m; sourceTree = "<group>"; };
 		C0F532DD191178A20023CEF0 /* GuideCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCategories.h; sourceTree = "<group>"; };
@@ -212,6 +214,19 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C02BFBA719193D4C00F6A035 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C02BFBA919195F6D00F6A035 /* stepEntryView.h */,
+				C02BFBAA19195F6D00F6A035 /* stepEntryView.m */,
+				C02BFBAC19195FB400F6A035 /* stepEntryViewDelegate.h */,
+				C02BFBA419193D4300F6A035 /* titleView.h */,
+				C02BFBA519193D4300F6A035 /* titleView.m */,
+				C02BFBA8191954C800F6A035 /* titleViewDelegate.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		C02D5537191803F8006955E7 /* Model - Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,17 +236,13 @@
 				C046D85519180F9300212B5E /* Step+Addendums.m */,
 				C046D85719180FB500212B5E /* Photo+Addendums.h */,
 				C046D85819180FB500212B5E /* Photo+Addendums.m */,
-				C046D85A19180FDB00212B5E /* GuideCategory+Addendums.h */,
-				C046D85B19180FDB00212B5E /* GuideCategory+Addendums.m */,
 				C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */,
-				C046D84E19180E6100212B5E /* Guide.h */,
-				C046D84F19180E6100212B5E /* Guide.m */,
-				C046D84B19180E6100212B5E /* Step.h */,
-				C046D84C19180E6100212B5E /* Step.m */,
-				C046D84819180E6100212B5E /* Photo.h */,
-				C046D84919180E6100212B5E /* Photo.m */,
-				C046D84519180E6000212B5E /* GuideCategory.h */,
-				C046D84619180E6000212B5E /* GuideCategory.m */,
+				C0EB60B3191AD29100AFFE4F /* Photo.h */,
+				C0EB60B6191AD29100AFFE4F /* Guide.h */,
+				C0EB60B9191AD29100AFFE4F /* Step.h */,
+				C0EB60BA191AD29100AFFE4F /* Step.m */,
+				C0EB60B7191AD29100AFFE4F /* Guide.m */,
+				C0EB60B4191AD29100AFFE4F /* Photo.m */,
 			);
 			name = "Model - Core Data";
 			sourceTree = "<group>";
@@ -239,6 +250,7 @@
 		C036A978190C283100D1F251 /* New Guide */ = {
 			isa = PBXGroup;
 			children = (
+				C02BFBA719193D4C00F6A035 /* View */,
 				C0BC64B7190D85D6002F42D1 /* previewViewController.h */,
 				C0BC64B8190D85D6002F42D1 /* previewViewController.m */,
 				C047761E190853A20085833C /* NewGuideViewController.h */,
@@ -421,7 +433,7 @@
 				C0BE98D21913EE4600C2990E /* GuideContentsTest.m */,
 				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
 				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
-				C046D85D191811DB00212B5E /* Guide.m */,
+				C02BFBA119190D7500F6A035 /* Guide+Addendums.m */,
 			);
 			path = "Talk ListsTests";
 			sourceTree = "<group>";
@@ -630,12 +642,11 @@
 				C046D85619180F9300212B5E /* Step+Addendums.m in Sources */,
 				C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */,
 				C0F9DED21912D30E0051CDAB /* StepClassic.m in Sources */,
-				C046D85019180E6100212B5E /* Guide.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
 				C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */,
 				C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */,
 				C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */,
-				C046D84719180E6000212B5E /* GuideCategory.m in Sources */,
+				C0EB60BB191AD29100AFFE4F /* Step.m in Sources */,
 				C03D6B511911BFE100CC213B /* guideList.m in Sources */,
 				C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
@@ -643,17 +654,18 @@
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
 				C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */,
 				C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */,
-				C046D84D19180E6100212B5E /* Step.m in Sources */,
+				C02BFBA619193D4300F6A035 /* titleView.m in Sources */,
 				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
+				C0EB60B5191AD29100AFFE4F /* Photo.m in Sources */,
+				C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */,
+				C0EB60B8191AD29100AFFE4F /* Guide.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */,
 				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,
 				C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */,
-				C046D84A19180E6100212B5E /* Photo.m in Sources */,
 				C0477620190853A20085833C /* NewGuideViewController.m in Sources */,
 				C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */,
-				C046D85C19180FDB00212B5E /* GuideCategory+Addendums.m in Sources */,
 				C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
 			);
@@ -664,8 +676,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */,
+				C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */,
 				C0BE98D31913EE4600C2990E /* GuideContentsTest.m in Sources */,
-				C046D85E191811DB00212B5E /* Guide.m in Sources */,
 				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

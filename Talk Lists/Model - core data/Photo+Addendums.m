@@ -10,4 +10,15 @@
 
 @implementation Photo (Addendums)
 
++(NSString *)entityName
+{
+    return @"Photo";
+}
+
++(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:moc];
+}
+
+
 @end

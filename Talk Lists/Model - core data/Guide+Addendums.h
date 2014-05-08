@@ -13,4 +13,6 @@
 +(NSString *)entityName;
 +(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc;
 
+-(NSArray *)sortedSteps;
+
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StepClassic.h"
+#import "Step+Addendums.h"
 
 @interface stepCell : UITableViewCell
 
--(void)configureStepCell: (StepClassic *)step;
+-(void)configureStepCell: (Step *)stepToDisplay;
 
 @end

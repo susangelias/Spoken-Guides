@@ -20,4 +20,15 @@
     return [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:moc];
 }
 
+
+-(NSArray *)sortedSteps
+{
+    NSSortDescriptor *rankSort = [NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES];
+    NSArray *sorted;
+    if (rankSort) {
+        sorted = [self.stepInGuide sortedArrayUsingDescriptors:@[rankSort]];
+    }
+    return sorted;
+}
+
 @end

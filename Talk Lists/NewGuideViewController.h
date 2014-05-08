@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GuideMetaData.h"
-#import "GuideContents.h"
-
-@interface NewGuideViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 
+@interface NewGuideViewController : UIViewController
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
