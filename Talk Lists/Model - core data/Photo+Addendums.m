@@ -7,6 +7,7 @@
 //
 
 #import "Photo+Addendums.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation Photo (Addendums)
 

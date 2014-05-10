@@ -37,8 +37,12 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.guideTitle.text = self.guideToPreview.title;
-    self.guidePhoto.image  = [UIImage imageWithData:self.guideToPreview.photo.image];
+    if (self.guideToPreview.title) {
+        self.guideTitle.text = self.guideToPreview.title;
+    } else if (self.titleToPreview) {
+        self.guideTitle.text = self.titleToPreview;
+    }
+    self.guidePhoto.image  = [UIImage imageWithData:self.guideToPreview.photo.thumbnail];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,7 +88,12 @@
         };
         
         // get the guide steps from our working copy of the new guide in progress
-        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:[self.guideToPreview sortedSteps]
+        NSMutableArray *previewSteps = [[self.guideToPreview sortedSteps] mutableCopy];
+        // add the current inprogress step if there is one
+        if (self.stepToPreview) {
+            [previewSteps addObject:self.stepToPreview];
+        }
+        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:previewSteps
                                                           cellIDString:@"stepCell"
                                                     configureCellBlock:configureCell];
         _guideStepsDataSource.arrayDataSourceDelegate = self;

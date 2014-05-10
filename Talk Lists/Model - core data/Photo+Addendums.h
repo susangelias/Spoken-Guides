@@ -8,9 +8,11 @@
 
 #import "Photo.h"
 
+
 @interface Photo (Addendums)
 
 +(NSString *)entityName;
 +(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc;
+
 
 @end

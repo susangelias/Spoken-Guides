@@ -8,6 +8,8 @@
 
 #import "addPhotoViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "UIImage+Resize.h"
 
 @implementation addPhotoViewController
 
@@ -40,21 +42,32 @@
 {
     // extract new image
     UIImage *selectedPhoto = info[UIImagePickerControllerEditedImage];
-#warning Get the thumbnail from the ALAssetsLibrary for photos in the photo stream
-#warning How to save metadata with the photo take with the camera and how to get the thumbnail from the camera photo
+
     // save image to user's photo stream if they took a picture
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        UIImageWriteToSavedPhotosAlbum(selectedPhoto, nil, nil, nil);
+        //   UIImageWriteToSavedPhotosAlbum(selectedPhoto, nil, nil, nil);
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library writeImageToSavedPhotosAlbum:[selectedPhoto CGImage]
+                                  orientation:ALAssetOrientationUp
+                              completionBlock:^(NSURL *assetURL, NSError *error) {
+                                  if (!error) {
+                                      self.assetLibraryURL = assetURL;
+                                  }
+                                  else {
+                                      NSLog(@"Error saving camera photo to photo library: %@", error);
+                                  }
+                              }];
     }
-    
-    // extract and clean up photo for our app's use
-    self.photo = [self cleanUpImage:selectedPhoto];
+    else {
+        self.assetLibraryURL =  info[UIImagePickerControllerReferenceURL];
+    }
 
     // dismiss view controller
     [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
 
     // Display image
-    if (self.photo) {
+    UIImage *resizedPhoto = [selectedPhoto resizeToSquareImage:selectedPhoto];
+    if (resizedPhoto ) {
         // wait for imageView to render before attempting to display photo
         [UIView animateWithDuration:0.0
                          animations:^{
@@ -63,7 +76,8 @@
                              self.redoButton.hidden = NO;
                           }
                          completion:^(BOOL finished) {
-                             self.photoView.image = self.photo;
+                             self.photoView.image = resizedPhoto;
+                             self.photo = resizedPhoto;
                          }
          ];
     }
@@ -98,10 +112,12 @@
 - (NSDictionary *)photoSources
 {
     NSMutableDictionary *sources = [[NSMutableDictionary alloc]init];
+    // check if camera is avaiable
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ])
     {
         [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypeCamera] forKey:@"Take Photo"];
     }
+    // check if photo library is available
     if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypePhotoLibrary)]) {
         [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypePhotoLibrary] forKey:@"Choose Existing Photo"];
     }
@@ -147,6 +163,7 @@
     [self choosePhotoSource];
 }
 
+/*
 #pragma mark Helpers
 
 -(UIImage *)cleanUpImage: (UIImage *)rawImage
@@ -179,5 +196,5 @@
     
     return cleanedImage;
 }
-
+*/
 @end

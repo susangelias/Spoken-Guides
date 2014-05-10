@@ -17,8 +17,10 @@
 #import "stepEntryView.h"
 #import "Guide+Addendums.h"
 #import "Step+Addendums.h"
+#import "Photo+Addendums.h"
+#import "PhotoAsyncHelper.h"
 
-@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepEntryViewDelegate >
+@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepEntryViewDelegate, photoAsyncHelperDelegate >
 
 // view properties
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
@@ -39,7 +41,7 @@
 // model properties
 @property (strong, nonatomic) Guide *guideInProgress;
 @property (strong, nonatomic) Step *stepInProgess;
-
+@property (strong, nonatomic) Photo *userPhoto;
 
 @end
 
@@ -101,7 +103,6 @@
 
 -(void)titleEntered:(NSString*)title
 {
-    NSLog(@"title entered: %@", title);
     self.guideInProgress.title = title;
     self.navigationItem.title = title;
     
@@ -131,7 +132,6 @@
 
 -(void) stepInstructionEntered: (NSString *)instructionText
 {
-    NSLog(@"step instruction:  %@", instructionText);
     // save instructions in model
     self.stepInProgess.instruction = instructionText;
     
@@ -142,17 +142,21 @@
        self.imageView.image = nil;
 }
 
+#pragma mark Add Photo unwind segues
+
 - (IBAction)photoAdded:(UIStoryboardSegue *)segue
 {
-    addPhotoViewController *apVC = (addPhotoViewController *)segue.sourceViewController;
-    // get the image from modal vc
-    UIImage *photo;
-    photo = apVC.photo;
-    if (photo) {
+    addPhotoViewController *addPhotoVC = (addPhotoViewController *)segue.sourceViewController;
+
+    if (addPhotoVC.assetLibraryURL) {
         // save photo to model
+        self.userPhoto = nil;   // release previous photo
+        self.userPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
         
-        // Display thumbnail of photo
-        self.imageView.image =  photo;
+        // Retreive the thumbnail of the photo so it can be displayed in the delegate method
+        PhotoAsyncHelper *photoHelper = [[PhotoAsyncHelper alloc] initWithPhotoObject:self.userPhoto];
+        photoHelper.photoAsyncHelperDelegate = self;
+        [photoHelper thumbnailWithAssetLibraryURL];
     }
  
     // resume editing of step text
@@ -165,6 +169,15 @@
     // resume editing of step text
     [self resetFirstResponder];
 }
+
+#pragma mark Photo_AddendumsDelegate
+
+-(void)thumbNailRetrieved:(UIImage *)thumbNail
+{
+    self.imageView.image = thumbNail;
+}
+
+#pragma mark Preview unwind segue
 
 - (IBAction)finishedPreview:(UIStoryboardSegue *)segue
 {
@@ -262,6 +275,15 @@
         if ([[segue destinationViewController] isKindOfClass:[previewViewController class]]) {
             previewViewController *destController = [segue destinationViewController];
             destController.guideToPreview = self.guideInProgress;
+            if (self.StepTextView.hidden == NO) {
+                // add in progress step to guide even of user has not hit the Next key yet
+              //  self.stepInProgess.instruction = self.StepTextView.text;
+            }
+            else if (self.guideTitle.hidden == NO) {
+                // show title in progress in preview
+                destController.titleToPreview = self.guideTitle.text;
+            }
+
         }
     }
     
@@ -332,5 +354,21 @@
     return _stepInProgess;
 }
 
+-(Photo *)userPhoto
+{
+    if (!_userPhoto) {
+        _userPhoto = [Photo insertNewObjectInManagedObjectContext:self.managedObjectContext];
+        // if the guideTitle view is not hidden then this photo belongs to the guide
+        if (self.guideTitle.hidden == NO) {
+            self.guideInProgress.photo = _userPhoto;
+        }
+        else
+        // else photo belongs to the current step
+        {
+            self.stepInProgess.photo = _userPhoto;
+        }
+    }
+    return _userPhoto;
+}
 
 @end
