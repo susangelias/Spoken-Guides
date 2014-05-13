@@ -73,4 +73,61 @@
     
 }
 
+-(void)testDeleteInvalidStepFromArrayOfStepsFailsSilently
+{
+    // create guide and add 3 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    
+    // try to delete a step out of range
+    [guideInProgress deleteStepAtIndex:10];
+    
+    // guide should still have 3 steps
+    XCTAssertEqual([guideInProgress.stepInGuide count], 3, @"Should be 3 steps still in guide");
+}
+
+-(void)testDeleteValidStepFromArrayOfStepsSucceeds
+{
+    // create guide and add 3 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    
+    // try to delete the middle step
+    [guideInProgress deleteStepAtIndex:2];
+    
+    // guide should  have 2 steps left
+    XCTAssertEqual([guideInProgress.stepInGuide count], 2, @"Should be 2 steps still in guide");
+    
+    // remaining steps should have updated ranks
+    NSArray *sortedSteps = [guideInProgress sortedSteps];
+    
+    // Rank order check
+    if ([sortedSteps count] > 0) {
+        Step *step1 = (Step *)sortedSteps[0];
+        Step *step2 = (Step *)sortedSteps[1];
+        XCTAssertEqual([step1.rank intValue], 1, @"stepTest1 should be first in array");
+        XCTAssertEqual([step2.rank intValue], 2, @"stepTest3 should be 2nd in array");
+    }
+    else {
+        XCTFail(@"sorted steps was an empty array");
+    }
+    
+
+}
 @end

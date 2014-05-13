@@ -25,8 +25,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
 @property (strong, nonatomic) titleView *guideTitleView;
 
-@property (weak, nonatomic) IBOutlet UILabel *UserDirections;
-
 @property (weak, nonatomic) IBOutlet UITextView *StepTextView;
 @property (strong, nonatomic) stepEntryView *stepInstruction;
 @property (weak, nonatomic) IBOutlet UITextView *swapTextView;
@@ -306,7 +304,7 @@
     
     // Change the user directions for the next step
     stepNumber++;
-    self.UserDirections.text = [NSString stringWithFormat:@"Step %d", stepNumber];
+    self.textViewPlaceholder.text = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
     
     // record the step number in the model
     self.stepInProgess.rank = [NSNumber numberWithInteger:stepNumber];

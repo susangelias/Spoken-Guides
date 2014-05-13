@@ -68,7 +68,7 @@
 
 -(void)deletedRowAtIndex:(NSUInteger)index
 {
-  //  [self.guideInProgress deleteStep:index];
+    [self.guideToPreview deleteStepAtIndex:index+1];
 }
 
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex

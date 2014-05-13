@@ -14,5 +14,6 @@
 +(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc;
 
 -(NSArray *)sortedSteps;
+-(void)deleteStepAtIndex:(NSUInteger)index;
 
 @end
