@@ -59,8 +59,6 @@
                              self.stepTextView.hidden = YES;
                              self.swapTextView.hidden = NO;
                              self.swapTextView.center = CGPointMake(self.swapTextView.center.x - 300, self.swapTextView.center.y);
-                             // clear the photo image
-                          //   self.imageView.image = nil;
                          }
                          completion:^(BOOL finished) {
                              // Then clear the text view for the next step entry

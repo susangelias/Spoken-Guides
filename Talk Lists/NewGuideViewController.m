@@ -18,9 +18,8 @@
 #import "Guide+Addendums.h"
 #import "Step+Addendums.h"
 #import "Photo+Addendums.h"
-#import "PhotoAsyncHelper.h"
 
-@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepEntryViewDelegate, photoAsyncHelperDelegate >
+@interface NewGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepEntryViewDelegate >
 
 // view properties
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
@@ -50,6 +49,7 @@
     int stepNumber;
 
 }
+
 
 #pragma mark View Lifecycle
 
@@ -116,8 +116,10 @@
                             options:UIViewAnimationOptionTransitionFlipFromRight
                          animations:^{
                              self.imageView.image = nil;
-                         } completion:^(BOOL finished) {
-                             Nil;
+                         }
+                         completion:^(BOOL finished) {
+                             self.userPhoto = nil;// release pointer to current step's photo core data object which will force a new photo object to be created for the 1st step, if needed
+
                          }];
     }
 
@@ -139,7 +141,9 @@
     [self updateStepText];
     
     // clear the photo image
-       self.imageView.image = nil;
+    self.imageView.image = nil;
+    self.userPhoto = nil;   // release pointer to current step's photo core data object which will force a new photo object to be created when the user take's or chooses another photo
+
 }
 
 #pragma mark Add Photo unwind segues
@@ -149,14 +153,16 @@
     addPhotoViewController *addPhotoVC = (addPhotoViewController *)segue.sourceViewController;
 
     if (addPhotoVC.assetLibraryURL) {
-        // save photo to model
-        self.userPhoto = nil;   // release previous photo
         self.userPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
-        
+   
         // Retreive the thumbnail of the photo so it can be displayed in the delegate method
-        PhotoAsyncHelper *photoHelper = [[PhotoAsyncHelper alloc] initWithPhotoObject:self.userPhoto];
-        photoHelper.photoAsyncHelperDelegate = self;
-        [photoHelper thumbnailWithAssetLibraryURL];
+        [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:self.userPhoto.assetLibraryURL]
+                                withCompletionBlock:^(UIImage *image, NSError *error) {
+                                    // save thumbnail to model
+                                    self.userPhoto.thumbnail = UIImagePNGRepresentation(image);
+                                    // display thumbail on this screen
+                                    self.imageView.image = image;
+                                }];
     }
  
     // resume editing of step text
@@ -170,12 +176,8 @@
     [self resetFirstResponder];
 }
 
-#pragma mark Photo_AddendumsDelegate
 
--(void)thumbNailRetrieved:(UIImage *)thumbNail
-{
-    self.imageView.image = thumbNail;
-}
+
 
 #pragma mark Preview unwind segue
 
@@ -286,7 +288,13 @@
 
         }
     }
-    
+    else if ([segue.identifier isEqualToString:@"addPhotoSegue"] ) {
+        if ([[segue destinationViewController] isKindOfClass:[addPhotoViewController class]]) {
+            addPhotoViewController *destController = [segue destinationViewController];
+            destController.albumName = self.guideInProgress.uniqueID;
+        }
+
+    }
 }
 
 
@@ -338,6 +346,9 @@
 {
     if (!_guideInProgress) {
         _guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
+        // set this guide's unique ID
+#warning add user's ID to the uniqueID string
+        _guideInProgress.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
         GuideCategories *cats = [[GuideCategories alloc] init];
         _guideInProgress.classification = cats.categoryStrings[0];  // Set to default category and let the user change this if they want
         _guideInProgress.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -358,17 +369,19 @@
 {
     if (!_userPhoto) {
         _userPhoto = [Photo insertNewObjectInManagedObjectContext:self.managedObjectContext];
-        // if the guideTitle view is not hidden then this photo belongs to the guide
+         // if the guideTitle view is not hidden then this photo belongs to the guide
         if (self.guideTitle.hidden == NO) {
             self.guideInProgress.photo = _userPhoto;
         }
         else
-        // else photo belongs to the current step
+            // else photo belongs to the current step
         {
             self.stepInProgess.photo = _userPhoto;
         }
-    }
+
+     }
     return _userPhoto;
 }
+
 
 @end

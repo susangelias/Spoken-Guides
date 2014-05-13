@@ -8,10 +8,17 @@
 
 #import "addPhotoViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "UIImage+Resize.h"
 
+
 @implementation addPhotoViewController
+
+#pragma mark - View lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.library = [[ALAssetsLibrary alloc] init];
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -43,25 +50,17 @@
     // extract new image
     UIImage *selectedPhoto = info[UIImagePickerControllerEditedImage];
 
-    // save image to user's photo stream if they took a picture
-    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        //   UIImageWriteToSavedPhotosAlbum(selectedPhoto, nil, nil, nil);
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        [library writeImageToSavedPhotosAlbum:[selectedPhoto CGImage]
-                                  orientation:ALAssetOrientationUp
-                              completionBlock:^(NSURL *assetURL, NSError *error) {
-                                  if (!error) {
-                                      self.assetLibraryURL = assetURL;
-                                  }
-                                  else {
-                                      NSLog(@"Error saving camera photo to photo library: %@", error);
-                                  }
-                              }];
-    }
-    else {
-        self.assetLibraryURL =  info[UIImagePickerControllerReferenceURL];
-    }
-
+    [self.library saveImage:selectedPhoto
+                    toAlbum:self.albumName
+        withCompletionBlock:^(NSURL *assetLibraryURL, NSError *error) {
+            if (error != nil) {
+                NSLog(@"error saving photo to album: %@", error);
+            }
+            else {
+                self.assetLibraryURL = assetLibraryURL;
+            }
+        }];
+    
     // dismiss view controller
     [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
 
@@ -163,38 +162,4 @@
     [self choosePhotoSource];
 }
 
-/*
-#pragma mark Helpers
-
--(UIImage *)cleanUpImage: (UIImage *)rawImage
-{
-    UIImage *cleanedImage;
-    CGImageRef coreGraphicsImage = rawImage.CGImage;
-    CGFloat height = CGImageGetHeight(coreGraphicsImage);
-    CGFloat width = CGImageGetWidth(coreGraphicsImage);
-    CGRect crop;
-    // Want to use square images instead of rectangle, so crop to do this
-    if (height > width) {
-        crop.size.height = crop.size.width = width;
-        crop.origin.x = 0;
-        crop.origin.y = floorf((height- width)/2);
-    }
-    else {
-        crop.size.height = crop.size.width = height;
-        crop.origin.y = 0;
-        crop.origin.x = floorf((width-height)/2);
-    }
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(coreGraphicsImage, crop);
-    
-    // scale down image to smaller size and make sure it is oriented the way the picture was taken
-    cleanedImage = [UIImage imageWithCGImage:croppedImage
-                                       scale:MAX(crop.size.height/512, 1.0)
-                                 orientation:rawImage.imageOrientation];
-    
-    // release core graphics images as ARC does not do this for us
-    CGImageRelease(croppedImage);
-    
-    return cleanedImage;
-}
-*/
 @end

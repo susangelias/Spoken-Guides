@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		C0072C6E191BC474000254A8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0072C6D191BC474000254A8 /* AssetsLibrary.framework */; };
 		C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C70191BCE62000254A8 /* UIImage+Resize.m */; };
-		C0072C77191BD249000254A8 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C76191BD249000254A8 /* Guide.m */; };
 		C0072C7A191BD249000254A8 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C79191BD249000254A8 /* Step.m */; };
 		C0072C7F191BF30F000254A8 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C7E191BF30F000254A8 /* Photo.m */; };
-		C0072C82191BF46A000254A8 /* PhotoAsyncHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C81191BF46A000254A8 /* PhotoAsyncHelper.m */; };
 		C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */; };
 		C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA9190EA0EC0092426E /* SpeakingController.m */; };
 		C02BEAAE190EA10E0092426E /* voice.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAAD190EA10E0092426E /* voice.m */; };
@@ -32,6 +30,8 @@
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
 		C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */; };
+		C06E4A40191EBE7800093160 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A3F191EBE7800093160 /* Guide.m */; };
+		C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A41916AEDB00CD8114 /* stepCell.m */; };
 		C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
@@ -76,14 +76,10 @@
 		C0072C6D191BC474000254A8 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C0072C6F191BCE62000254A8 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		C0072C70191BCE62000254A8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
-		C0072C75191BD249000254A8 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
-		C0072C76191BD249000254A8 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Guide.m; path = "Model - core data/Guide.m"; sourceTree = "<group>"; };
 		C0072C78191BD249000254A8 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Step.h; path = "Model - core data/Step.h"; sourceTree = "<group>"; };
 		C0072C79191BD249000254A8 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Step.m; path = "Model - core data/Step.m"; sourceTree = "<group>"; };
 		C0072C7D191BF30F000254A8 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = "Model - core data/Photo.h"; sourceTree = "<group>"; };
 		C0072C7E191BF30F000254A8 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = "Model - core data/Photo.m"; sourceTree = "<group>"; };
-		C0072C80191BF46A000254A8 /* PhotoAsyncHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoAsyncHelper.h; path = "Model - core data/PhotoAsyncHelper.h"; sourceTree = "<group>"; };
-		C0072C81191BF46A000254A8 /* PhotoAsyncHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoAsyncHelper.m; path = "Model - core data/PhotoAsyncHelper.m"; sourceTree = "<group>"; };
 		C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrayDataSourceDelegate.h; sourceTree = "<group>"; };
 		C02BEAA4190E9F810092426E /* voiceSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voiceSettingsViewController.h; sourceTree = "<group>"; };
 		C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = voiceSettingsViewController.m; sourceTree = "<group>"; };
@@ -120,7 +116,10 @@
 		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
 		C047761F190853A20085833C /* NewGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewController.m; sourceTree = "<group>"; };
 		C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideMetaDataTest.m; sourceTree = "<group>"; };
-		C06E4A3D191E910E00093160 /* photoAsyncHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = photoAsyncHelperDelegate.h; sourceTree = "<group>"; };
+		C06E4A3E191EBE7800093160 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
+		C06E4A3F191EBE7800093160 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Guide.m; path = "Model - core data/Guide.m"; sourceTree = "<group>"; };
+		C06E4A41191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ALAssetsLibrary+CustomPhotoAlbum.h"; path = "Model - core data/ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
+		C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAssetsLibrary+CustomPhotoAlbum.m"; path = "Model - core data/ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		C0B0F2A31916AEDB00CD8114 /* stepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepCell.h; sourceTree = "<group>"; };
 		C0B0F2A41916AEDB00CD8114 /* stepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepCell.m; sourceTree = "<group>"; };
 		C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuperView.h"; sourceTree = "<group>"; };
@@ -240,22 +239,21 @@
 		C02D5537191803F8006955E7 /* Model - Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				C06E4A3D191E910E00093160 /* photoAsyncHelperDelegate.h */,
 				C046D85119180F6300212B5E /* Guide+Addendums.h */,
 				C046D85219180F6300212B5E /* Guide+Addendums.m */,
 				C046D85419180F9300212B5E /* Step+Addendums.h */,
 				C046D85519180F9300212B5E /* Step+Addendums.m */,
 				C046D85719180FB500212B5E /* Photo+Addendums.h */,
 				C046D85819180FB500212B5E /* Photo+Addendums.m */,
-				C0072C80191BF46A000254A8 /* PhotoAsyncHelper.h */,
-				C0072C81191BF46A000254A8 /* PhotoAsyncHelper.m */,
 				C0072C78191BD249000254A8 /* Step.h */,
 				C0072C79191BD249000254A8 /* Step.m */,
-				C0072C75191BD249000254A8 /* Guide.h */,
-				C0072C76191BD249000254A8 /* Guide.m */,
 				C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */,
+				C06E4A3E191EBE7800093160 /* Guide.h */,
+				C06E4A3F191EBE7800093160 /* Guide.m */,
 				C0072C7D191BF30F000254A8 /* Photo.h */,
 				C0072C7E191BF30F000254A8 /* Photo.m */,
+				C06E4A41191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
+				C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
 			);
 			name = "Model - Core Data";
 			sourceTree = "<group>";
@@ -332,8 +330,8 @@
 		C0B0F2A21916AE0C00CD8114 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C0B0F2A31916AEDB00CD8114 /* stepCell.h */,
 				C0B0F2A41916AEDB00CD8114 /* stepCell.m */,
+				C0B0F2A31916AEDB00CD8114 /* stepCell.h */,
 				C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */,
 				C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */,
 				C0072C6F191BCE62000254A8 /* UIImage+Resize.h */,
@@ -656,7 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C046D85619180F9300212B5E /* Step+Addendums.m in Sources */,
-				C0072C82191BF46A000254A8 /* PhotoAsyncHelper.m in Sources */,
+				C06E4A40191EBE7800093160 /* Guide.m in Sources */,
 				C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */,
 				C0F9DED21912D30E0051CDAB /* StepClassic.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
@@ -667,7 +665,6 @@
 				C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C03D6B581911E60600CC213B /* GuideContents.m in Sources */,
-				C0072C77191BD249000254A8 /* Guide.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
 				C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */,
 				C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */,
@@ -686,6 +683,7 @@
 				C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
+				C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

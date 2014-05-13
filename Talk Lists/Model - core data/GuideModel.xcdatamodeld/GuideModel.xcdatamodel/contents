@@ -5,6 +5,7 @@
         <attribute name="creationDate" attributeType="Date" syncable="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="belongsToGuide" inverseEntity="Photo" syncable="YES"/>
         <relationship name="stepInGuide" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step" inverseName="belongsToGuide" inverseEntity="Step" syncable="YES"/>
     </entity>
@@ -23,7 +24,7 @@
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="belongsToStep" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Guide" positionX="-504" positionY="0" width="128" height="135"/>
+        <element name="Guide" positionX="-504" positionY="0" width="128" height="148"/>
         <element name="Photo" positionX="-288" positionY="63" width="128" height="135"/>
         <element name="Step" positionX="-317" positionY="-108" width="128" height="105"/>
     </elements>
