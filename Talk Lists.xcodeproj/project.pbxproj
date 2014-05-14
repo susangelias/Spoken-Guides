@@ -277,7 +277,7 @@
 			children = (
 				C02D5537191803F8006955E7 /* Model - Core Data */,
 				C0B0F2A21916AE0C00CD8114 /* View */,
-				C03D6B521911E3AF00CC213B /* Model */,
+				C03D6B521911E3AF00CC213B /* Model - obsolete now */,
 				C0F532D9191168830023CEF0 /* Controllers */,
 				C02BEAA3190E9F2E0092426E /* Dialog */,
 			);
@@ -314,7 +314,7 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		C03D6B521911E3AF00CC213B /* Model */ = {
+		C03D6B521911E3AF00CC213B /* Model - obsolete now */ = {
 			isa = PBXGroup;
 			children = (
 				C02BFB9D191817F500F6A035 /* StepClassic.h */,
@@ -324,7 +324,7 @@
 				C03D6B531911E41B00CC213B /* GuideMetaData.h */,
 				C03D6B541911E41B00CC213B /* GuideMetaData.m */,
 			);
-			name = Model;
+			name = "Model - obsolete now";
 			sourceTree = "<group>";
 		};
 		C0B0F2A21916AE0C00CD8114 /* View */ = {

@@ -87,7 +87,11 @@
     else {
         self.addPhotoButton.hidden = YES;
     }
+   
+    [self.navigationItem.leftBarButtonItem setTarget:self];
+    [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -236,28 +240,38 @@
     
     [self.guideTitle resignFirstResponder];
     [self.StepTextView resignFirstResponder];
-    
+/*
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Save Changes ?"
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:@"Discard Guide"
+                                                    otherButtonTitles:@"Save Guide\n(You can choose to publish it later from the Browse screen.", nil];
+  */
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
-                                                    message:@"Choose where to save your guide"
+                                                    message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Save Local", @"Publish", nil];
+                                          otherButtonTitles:@"Save",@"Discard Changes", nil];
     [alert show];
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (!buttonIndex == 0)
+    if ( (!buttonIndex == 0) && (self.guideInProgress) )
     {
-        // save choice to model
-        
-        // save guide to core data
-        if (self.guideInProgress.title) {
-            NSError *error;
-            [self.managedObjectContext save:&error];
-            if (error) {
-                NSLog(@"ERROR saving context: %@", error);
+        if (buttonIndex == 1) {
+              // save guide to core data
+            if (self.guideInProgress.title) {
+                NSError *error;
+                [self.managedObjectContext save:&error];
+                if (error) {
+                    NSLog(@"ERROR saving context: %@", error);
+                }
             }
+        }
+        else if (buttonIndex == 2) {
+            // discard changes
+            [self.managedObjectContext deleteObject:self.guideInProgress];
         }
    
         
