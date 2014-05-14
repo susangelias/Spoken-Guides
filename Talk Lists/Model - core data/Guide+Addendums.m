@@ -54,4 +54,42 @@
     }
 }
 
+
+-(void)moveStepFromNumber:(NSUInteger)fromIndex toNumber:(NSUInteger)toIndex
+{
+    int newRank;
+    Step *thisStep;
+    
+   // get array of steps sorted by rank
+    NSMutableArray *rankedSteps = [[self sortedSteps] mutableCopy];
+ 
+    // verify range of indexes
+    if ( (fromIndex > [rankedSteps count]) || (toIndex > [rankedSteps count]) ) {
+        return;    // do nothing, fail silently
+    }
+        
+    if (fromIndex > toIndex) {
+        thisStep = rankedSteps[fromIndex-1];
+        thisStep.rank  = [NSNumber numberWithInt:toIndex];
+        // re-rank all the steps inbetween
+        for (int i = toIndex-1; i < fromIndex-1; i++) {
+            thisStep = rankedSteps[i];
+            newRank = [thisStep.rank intValue];
+            thisStep.rank = [NSNumber numberWithInt:newRank + 1];
+        }
+        
+    }
+    else if (fromIndex < toIndex) {
+        // re-rank all the steps downstream from the inserting point
+        for (int i = fromIndex; i < toIndex; i++) {
+            thisStep = rankedSteps[i];
+            newRank = [thisStep.rank intValue];
+            thisStep.rank = [NSNumber numberWithInt:newRank - 1];
+        }
+        // update the inserted step's rank
+        thisStep = rankedSteps[fromIndex-1];
+        thisStep.rank = [NSNumber numberWithInt:toIndex];
+    }
+}
+
 @end

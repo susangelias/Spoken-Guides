@@ -130,4 +130,132 @@
     
 
 }
+
+-(void)testMoveStepWithInvalidIndexesFailsSilently
+{
+    // create guide and add 3 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    
+    // try to move a step from an invalid index
+    [guideInProgress moveStepFromNumber:5 toNumber:2];
+    
+    // Ask for the 3 steps sorted, ascending by rank
+    NSArray *sortedSteps = [guideInProgress sortedSteps];
+    
+    // Should still have 3 steps in the array
+    XCTAssertEqual([sortedSteps count], 3, @"Should still have 3 steps in guide");
+    
+    // Rank order check
+    if ([sortedSteps count] > 0) {
+        XCTAssertEqual(sortedSteps[0], stepTest1, @"stepTest1 has lowest rank; should be first in array");
+        XCTAssertEqual(sortedSteps[1], stepTest2, @"stepTest2 has middle rank; should be 2nd in array");
+        XCTAssertEqual(sortedSteps[2], stepTest3, @"stepTest3 has highest rank; should be 3rd in array");
+    }
+    else {
+        XCTFail(@"sorted steps was an empty array");
+    }
+    
+    // try to move a step to an invalid index
+    [guideInProgress moveStepFromNumber:2 toNumber:5];
+    
+    // Ask for the 3 steps sorted, ascending by rank
+    sortedSteps = [guideInProgress sortedSteps];
+    
+    // Should still have 3 steps in the array
+    XCTAssertEqual([sortedSteps count], 3, @"Should still have 3 steps in guide");
+    
+    // Rank order check
+    if ([sortedSteps count] > 0) {
+        XCTAssertEqual(sortedSteps[0], stepTest1, @"stepTest1 has lowest rank; should be first in array");
+        XCTAssertEqual(sortedSteps[1], stepTest2, @"stepTest2 has middle rank; should be 2nd in array");
+        XCTAssertEqual(sortedSteps[2], stepTest3, @"stepTest3 has highest rank; should be 3rd in array");
+    }
+    else {
+        XCTFail(@"sorted steps was an empty array");
+    }
+ 
+}
+
+-(void)testMoveStepFromLowIndexToHigherIndexSuccessfully
+{
+    // create guide and add 4 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    Step *stepTest4 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest4.rank = [NSNumber numberWithInteger:4];
+    [guideInProgress addStepInGuideObject:stepTest4];
+    
+    // move step 1 to step 3
+    [guideInProgress moveStepFromNumber:1 toNumber:3];
+    
+    // Ask for the 4 steps sorted, ascending by rank
+    NSArray *sortedSteps = [guideInProgress sortedSteps];
+    
+    // Rank order check
+    if ([sortedSteps count] > 0) {
+        XCTAssertEqual(sortedSteps[0], stepTest2, @"stepTest2 should be first in array");
+        XCTAssertEqual(sortedSteps[1], stepTest3, @"stepTest3 should be 2nd in array");
+        XCTAssertEqual(sortedSteps[2], stepTest1, @"stepTest1 should be 3rd in array");
+        XCTAssertEqual(sortedSteps[3], stepTest4, @"stepTest4 should still be 4th in array");
+    }
+    else {
+        XCTFail(@"sorted steps was an empty array");
+    }
+
+}
+
+-(void)testMoveStepFromHighIndexToLowerIndexSuccessfully
+{
+    // create guide and add 4 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    Step *stepTest4 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest4.rank = [NSNumber numberWithInteger:4];
+    [guideInProgress addStepInGuideObject:stepTest4];
+    
+    // move step 3 to step 1
+    [guideInProgress moveStepFromNumber:3 toNumber:1];
+    
+    // Ask for the 4 steps sorted, ascending by rank
+    NSArray *sortedSteps = [guideInProgress sortedSteps];
+    
+    // Rank order check
+    if ([sortedSteps count] > 0) {
+        XCTAssertEqual(sortedSteps[0], stepTest3, @"stepTest3 should be first in array");
+        XCTAssertEqual(sortedSteps[1], stepTest1, @"stepTest1 should be 2nd in array");
+        XCTAssertEqual(sortedSteps[2], stepTest2, @"stepTest2 should be 3rd in array");
+        XCTAssertEqual(sortedSteps[3], stepTest4, @"stepTest4 should still be 4th in array");
+    }
+    else {
+        XCTFail(@"sorted steps was an empty array");
+    }
+    
+}
+
+
 @end

@@ -73,7 +73,7 @@
 
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
 {
-  //  [self.guideInProgress moveStepFromNumber:fromIndex toNumber:toIndex];
+    [self.guideToPreview moveStepFromNumber:fromIndex+1 toNumber:toIndex+1];
 }
 
 #pragma mark Initializers
