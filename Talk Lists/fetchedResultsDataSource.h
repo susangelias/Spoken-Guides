@@ -14,11 +14,14 @@ typedef void(^configureCellBlock)(UITableViewCell *, id);
 
 @property (nonatomic, copy) configureCellBlock configureCell;
 @property (nonatomic, strong) NSString *cellIdentifier;
+@property (nonatomic, strong) NSPredicate *searchPredicate;
+@property (nonatomic, strong) NSArray *filteredObjects;
 
 -(NSFetchedResultsController *)initWithEntity: (NSString *)entityName
                      withManagedObjectContext:(NSManagedObjectContext *)moc
                                   withSortKey: (NSString *)sortKey
                           withCellIndentifier: (NSString *)cellID
+                          withSearchPredicate: (NSPredicate *)searchPredicate
                            withConfigureBlock: (configureCellBlock)configureBlock;
 
 @end

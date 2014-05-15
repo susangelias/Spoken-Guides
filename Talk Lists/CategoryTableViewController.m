@@ -16,7 +16,6 @@
 
 @interface CategoryTableViewController ()
 
-//@property (strong, nonatomic) ArrayDataSource *guideListDataSource;
 @property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
 
 @end
@@ -34,43 +33,9 @@
     return self;
 }
 
-/*
--(ArrayDataSource *)guideListDataSource
-{
-    if (!_guideListDataSource) {
-        
-        guideList *listForCategory = [[guideList alloc] init];
-        // set the category for the search
-        GuideCategories *guideCats = [[GuideCategories alloc]init];
-        listForCategory.guideCategory = [guideCats.categories objectForKey:self.guideCategory];
-        
-        // set whether search is local or database
-        listForCategory.local = self.myGuidesOnly;
-        
-        // guideList must run the search with a completion handler
-        // code can't crash if there is a lag in data coming back to populate the tableview
-        
-        void (^configureCell)(UITableViewCell *, NSString *) = ^(UITableViewCell *cell, NSString *guideTitle) {
-            cell.textLabel.text = guideTitle; };
-        
-        _guideListDataSource = [[ArrayDataSource alloc] initWithItems:listForCategory.guides
-                                                         cellIDString:@"CategoryItem"
-                                                   configureCellBlock:configureCell];
-        _guideListDataSource.rearrangingAllowed = NO;
-        _guideListDataSource.editingAllowed = NO;
-    }
-    return _guideListDataSource;
-}
-*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     NSError *error;
     [self.guideFetchResultsController performFetch:&error];
@@ -118,10 +83,14 @@
     if (!_guideFetchResultsController) {
         void (^configureCell)(UITableViewCell *, Guide *) = ^(UITableViewCell *cell, Guide *fetchedGuide) {
             cell.textLabel.text = fetchedGuide.title; };
+        NSString *searchString = self.guideCategory;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"classification == %@", searchString];
         
         _guideFetchResultsController = [[fetchedResultsDataSource alloc] initWithEntity:@"Guide"
                                                                withManagedObjectContext:self.managedObjectContext
-                                                                            withSortKey:@"classification"                                                                    withCellIndentifier:@"CategoryItem"
+                                                                            withSortKey:@"classification"
+                                                                    withCellIndentifier:@"CategoryItem"
+                                                                    withSearchPredicate:predicate
                                                                      withConfigureBlock:configureCell];
     }
     return _guideFetchResultsController;

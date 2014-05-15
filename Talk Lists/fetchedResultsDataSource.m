@@ -16,6 +16,7 @@
                      withManagedObjectContext:(NSManagedObjectContext *)moc
                                   withSortKey: (NSString *)sortKey
                         withCellIndentifier:(NSString *)cellID
+                          withSearchPredicate: (NSPredicate *)searchPredicate
                          withConfigureBlock:(configureCellBlock)configureBlock
 {
     // Create and configure a fetch request with the  entity
@@ -28,6 +29,11 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey
                                                                        ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    // Add the search predicate
+    if (searchPredicate) {
+        [fetchRequest setPredicate:searchPredicate];
+    }
     
     // create and initialize the fetch results controller
     self = [super initWithFetchRequest:fetchRequest
@@ -48,6 +54,7 @@
 {
     return nil;
 }
+
 
 #pragma mark - Table view data source
 
