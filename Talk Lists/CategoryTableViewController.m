@@ -11,14 +11,19 @@
 #import "ArrayDataSource.h"
 #import "guideList.h"
 #import "GuideCategories.h"
+#import "fetchedResultsDataSource.h"
+#import "Guide.h"
 
 @interface CategoryTableViewController ()
 
-@property (strong, nonatomic) ArrayDataSource *guideListDataSource;
+//@property (strong, nonatomic) ArrayDataSource *guideListDataSource;
+@property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
 
 @end
 
 @implementation CategoryTableViewController
+
+#pragma mark view life cycle
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,6 +34,7 @@
     return self;
 }
 
+/*
 -(ArrayDataSource *)guideListDataSource
 {
     if (!_guideListDataSource) {
@@ -55,7 +61,7 @@
     }
     return _guideListDataSource;
 }
-
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -65,8 +71,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-    self.tableView.dataSource = self.guideListDataSource;
+    
+    NSError *error;
+    [self.guideFetchResultsController performFetch:&error];
+    if (error) {
+        NSLog(@"Error fetching guides for a specific category: %@", error);
+    }
+    
+    self.tableView.dataSource = self.guideFetchResultsController;
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,5 +111,20 @@
         
 }
 
+#pragma mark Initializations
+
+-(fetchedResultsDataSource *)guideFetchResultsController
+{
+    if (!_guideFetchResultsController) {
+        void (^configureCell)(UITableViewCell *, Guide *) = ^(UITableViewCell *cell, Guide *fetchedGuide) {
+            cell.textLabel.text = fetchedGuide.title; };
+        
+        _guideFetchResultsController = [[fetchedResultsDataSource alloc] initWithEntity:@"Guide"
+                                                               withManagedObjectContext:self.managedObjectContext
+                                                                            withSortKey:@"classification"                                                                    withCellIndentifier:@"CategoryItem"
+                                                                     withConfigureBlock:configureCell];
+    }
+    return _guideFetchResultsController;
+}
 
 @end

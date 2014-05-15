@@ -8,6 +8,7 @@
 
 #import "TalkListViewController.h"
 #import "NewGuideViewController.h"
+#import "CatagoriesViewController.h"
 
 @interface TalkListViewController ()
 
@@ -43,6 +44,13 @@
     {
         if ([[segue destinationViewController] isKindOfClass:[NewGuideViewController class]]) {
             NewGuideViewController *destController = [segue destinationViewController];
+            destController.managedObjectContext = self.moc;
+        }
+    }
+    else if ([segue.identifier isEqualToString:@"BrowseSegue"] )
+    {
+        if ([[segue destinationViewController] isKindOfClass:[CatagoriesViewController class]]) {
+            CatagoriesViewController *destController = [segue destinationViewController];
             destController.managedObjectContext = self.moc;
         }
     }

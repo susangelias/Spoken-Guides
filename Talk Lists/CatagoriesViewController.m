@@ -65,12 +65,13 @@
             UIButton *pressedButton = sender;
             dvc.guideCategory = pressedButton.titleLabel.text;
             dvc.title = pressedButton.titleLabel.text;
+            dvc.managedObjectContext = self.managedObjectContext;
             if (self.LocalAllSegmentControl.selectedSegmentIndex == 0) {
-                // 0 = Mine
-                dvc.myGuidesOnly = YES;
-            }
-            else {
+                // 0 = All
                 dvc.myGuidesOnly = NO;
+            }
+            else {  // 1 = Mine
+                dvc.myGuidesOnly = YES;
             }
         }
     }

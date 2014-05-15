@@ -12,5 +12,6 @@
 
 @property (nonatomic) BOOL myGuidesOnly;
 @property (nonatomic, strong) NSString *guideCategory;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
