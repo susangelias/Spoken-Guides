@@ -9,9 +9,10 @@
 #import "GuideDetailViewController.h"
 #import "BlurryModalSegue.h"
 #import "stepCell.h"
-#import "StepClassic.h"
+#import "Step.h"
 #import "ArrayDataSource.h"
 #import "ArrayDataSourceDelegate.h"
+#import "Guide+Addendums.h"
 
 @interface GuideDetailViewController () <ArrayDataSourceDelegate, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *guideTableView;
@@ -36,7 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    self.title = self.guideTitle;
+    self.title = self.guide.title;
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,38 +72,23 @@
 
 #pragma mark initializers
 
-- (NSString *)guideTitle
-{
-    if (! _guideTitle) {
-        _guideTitle = [[NSString alloc] init];
-    }
-    return _guideTitle;
-}
-
--(GuideContents *)guide
-{
-    if (!_guide) {
-        _guide = [[GuideContents alloc] init];
-    }
-    return _guide;
-}
-
 -(ArrayDataSource *)guideDetailVCDataSource
 {
     if (!_guideDetailVCDataSource) {
-        // get the guide steps from our working copy of the new guide in progress
-        
-        
         // set up the block that will fill each tableViewCell
-        void (^configureCell)(stepCell *, id) = ^(stepCell *cell, StepClassic *guideStep) {
+        void (^configureCell)(stepCell *, id) = ^(stepCell *cell, Step *guideStep) {
             [cell configureStepCell:guideStep];
         };
         
-        _guideDetailVCDataSource = [[ArrayDataSource alloc] initWithItems:self.guide.steps
+        // get the guide steps from our working copy of the new guide in progress
+        NSMutableArray *guideSteps = [[self.guide sortedSteps] mutableCopy];
+  
+        _guideDetailVCDataSource = [[ArrayDataSource alloc] initWithItems:guideSteps
                                                           cellIDString:@"stepCell"
                                                     configureCellBlock:configureCell];
         _guideDetailVCDataSource.arrayDataSourceDelegate = self;
         
+         
     }
     return _guideDetailVCDataSource;
 }

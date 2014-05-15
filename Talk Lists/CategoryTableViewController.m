@@ -9,10 +9,9 @@
 #import "CategoryTableViewController.h"
 #import "GuideDetailViewController.h"
 #import "ArrayDataSource.h"
-#import "guideList.h"
 #import "GuideCategories.h"
 #import "fetchedResultsDataSource.h"
-#import "Guide.h"
+#import "Guide+Addendums.h"
 
 @interface CategoryTableViewController ()
 
@@ -69,11 +68,19 @@
         if ([sender isKindOfClass:[UITableViewCell class]])
         {
             UITableViewCell *senderCell = sender;
-            destVC.guideTitle = senderCell.textLabel.text;
-
+            NSUInteger indexOfGuideObject = [[self.guideFetchResultsController fetchedObjects] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                Guide *fetchedGuide = (Guide *)obj;
+                if ([fetchedGuide.title isEqualToString:senderCell.textLabel.text]) {
+                    *stop = YES;     // found guide matching title from the selected table cell
+                    return YES;
+                }
+                else {
+                    return NO;
+                }
+            }];
+            destVC.guide = (Guide *)[[self.guideFetchResultsController fetchedObjects] objectAtIndex:indexOfGuideObject];
         }
     }
-        
 }
 
 #pragma mark Initializations

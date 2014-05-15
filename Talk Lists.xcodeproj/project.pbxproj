@@ -20,7 +20,6 @@
 		C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBAA19195F6D00F6A035 /* stepEntryView.m */; };
 		C02D55331917F95F006955E7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D55321917F95F006955E7 /* CoreData.framework */; };
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
-		C03D6B511911BFE100CC213B /* guideList.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B501911BFE100CC213B /* guideList.m */; };
 		C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B541911E41B00CC213B /* GuideMetaData.m */; };
 		C03D6B581911E60600CC213B /* GuideContents.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B571911E60600CC213B /* GuideContents.m */; };
 		C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */; };
@@ -99,8 +98,6 @@
 		C02D55321917F95F006955E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
-		C03D6B4F1911BFE100CC213B /* guideList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideList.h; sourceTree = "<group>"; };
-		C03D6B501911BFE100CC213B /* guideList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guideList.m; sourceTree = "<group>"; };
 		C03D6B531911E41B00CC213B /* GuideMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideMetaData.h; sourceTree = "<group>"; };
 		C03D6B541911E41B00CC213B /* GuideMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideMetaData.m; sourceTree = "<group>"; };
 		C03D6B561911E60600CC213B /* GuideContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideContents.h; sourceTree = "<group>"; };
@@ -302,8 +299,6 @@
 				C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */,
 				C03D6B4C1911832A00CC213B /* ArrayDataSource.h */,
 				C03D6B4D1911832A00CC213B /* ArrayDataSource.m */,
-				C03D6B4F1911BFE100CC213B /* guideList.h */,
-				C03D6B501911BFE100CC213B /* guideList.m */,
 				C06B50E9192434E0002EF96C /* fetchedResultsDataSource.h */,
 				C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */,
 			);
@@ -667,7 +662,6 @@
 				C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */,
 				C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */,
 				C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */,
-				C03D6B511911BFE100CC213B /* guideList.m in Sources */,
 				C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C03D6B581911E60600CC213B /* GuideContents.m in Sources */,
