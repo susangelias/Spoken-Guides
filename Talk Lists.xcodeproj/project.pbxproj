@@ -446,8 +446,8 @@
 				C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */,
 				C0BE98D21913EE4600C2990E /* GuideContentsTest.m */,
 				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
-				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
 				C02BFBA119190D7500F6A035 /* Guide+Addendums.m */,
+				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
 			);
 			path = "Talk ListsTests";
 			sourceTree = "<group>";

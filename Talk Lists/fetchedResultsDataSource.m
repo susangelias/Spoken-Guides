@@ -86,4 +86,14 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // delete
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // delete object from model
+        NSManagedObject  *item = [self itemAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:item];
+    }
+}
+
 @end

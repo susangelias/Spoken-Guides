@@ -45,6 +45,16 @@
     self.tableView.dataSource = self.guideFetchResultsController;
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    // save any changes to core data
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"ERROR saving context: %@", error);
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -54,7 +64,37 @@
 }
 
 
+#pragma mark User Actions
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
+    [self.tableView setEditing:YES
+                      animated:YES];
+}
 
+
+#pragma mark NSFetchedResultsController delegate methods
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView endUpdates];
+}
 
 #pragma mark - Navigation
 
@@ -100,6 +140,7 @@
                                                                     withSearchPredicate:predicate
                                                                      withConfigureBlock:configureCell];
     }
+    _guideFetchResultsController.delegate = self;
     return _guideFetchResultsController;
 }
 

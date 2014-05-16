@@ -466,7 +466,13 @@
                             <outlet property="delegate" destination="eyq-P8-2bo" id="9JU-IY-8T3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Utj-pS-YdJ"/>
+                    <navigationItem key="navigationItem" id="Utj-pS-YdJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="FAZ-FU-md5">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="eyq-P8-2bo" id="R64-3j-2cH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Hi6-1Y-LJ6">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
