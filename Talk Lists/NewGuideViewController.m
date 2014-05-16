@@ -68,7 +68,6 @@
     self.guideTitleView = [[titleView alloc] initWithTextField:self.guideTitle];
     self.guideTitleView.guideTitleDelegate = self;
 
-    
     // make sure step text views are hidden to start with
     self.StepTextView.hidden = YES;
     self.swapTextView.hidden = YES;
@@ -240,19 +239,37 @@
     
     [self.guideTitle resignFirstResponder];
     [self.StepTextView resignFirstResponder];
-/*
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Save Changes ?"
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:@"Discard Guide"
-                                                    otherButtonTitles:@"Save Guide\n(You can choose to publish it later from the Browse screen.", nil];
-  */
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
-                                                    message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Save",@"Discard Changes", nil];
-    [alert show];
+  
+    // check if there is an unsaved instruction
+    if ( (self.StepTextView.hidden == NO) && (self.stepInstruction.textViewPlaceholder.hidden == YES) && (![self.StepTextView.text isEqualToString:@""]))
+    {
+        // save this last step
+        [self stepInstructionEntered:self.StepTextView.text];
+    }
+    else {
+        // discard last step
+        if (self.stepInProgess) {
+            [self.managedObjectContext deleteObject:self.stepInProgess];
+        }
+    }
+        // if the user has at least entered a title, put up the alert to save the guide in progress
+    if (![self.guideTitle.text isEqualToString:@""]) {
+        // check if title needs to be saved
+        if (self.guideTitle.hidden == NO) {
+            // this title needs to be saved
+            [self titleEntered:self.guideTitle.text];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
+                                                        message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Save",@"Discard Changes", nil];
+        [alert show];
+    }
+    else {
+        // return to main screen
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -362,7 +379,7 @@
 #warning add user's ID to the uniqueID string
         _guideInProgress.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
         GuideCategories *cats = [[GuideCategories alloc] init];
-        _guideInProgress.classification = cats.categoryStrings[0];  // Set to default category and let the user change this if they want
+        _guideInProgress.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
         _guideInProgress.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
     }
     return _guideInProgress;
