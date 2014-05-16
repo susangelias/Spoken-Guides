@@ -467,7 +467,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Utj-pS-YdJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="FAZ-FU-md5">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="FAZ-FU-md5">
                             <connections>
                                 <action selector="editButtonPressed:" destination="eyq-P8-2bo" id="R64-3j-2cH"/>
                             </connections>

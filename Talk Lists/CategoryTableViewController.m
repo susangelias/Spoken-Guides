@@ -68,8 +68,17 @@
 - (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
     [self.tableView setEditing:YES
                       animated:YES];
+    sender.title = @"Done";
+    sender.action = @selector(DoneButtonPressed:);
 }
 
+-(IBAction)DoneButtonPressed:(UIBarButtonItem *)sender
+{
+    [self.tableView setEditing:NO
+                      animated:YES];
+    sender.title = @"Edit";
+    sender.action = @selector(editButtonPressed:);
+}
 
 #pragma mark NSFetchedResultsController delegate methods
 
