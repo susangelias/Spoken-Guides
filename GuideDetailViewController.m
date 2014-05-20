@@ -13,17 +13,49 @@
 #import "ArrayDataSource.h"
 #import "ArrayDataSourceDelegate.h"
 #import "Guide+Addendums.h"
+#import "dialogController.h"
+#import "Photo+Addendums.h"
+#import "TalkListAppDelegate.h"
 
-@interface GuideDetailViewController () <ArrayDataSourceDelegate, UITableViewDelegate>
+typedef NS_ENUM(NSInteger, dialogState) {
+    isPlaying,
+    isPaused,
+    isReset
+};
+
+@interface GuideDetailViewController () <ArrayDataSourceDelegate, UITableViewDelegate, dialogControllerDelegate>
+// View properties
 @property (weak, nonatomic) IBOutlet UITableView *guideTableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
+@property (weak, nonatomic) IBOutlet UIImageView *guidePicture;
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet UILabel *statusDisplay;
+@property (nonatomic, strong) NSArray *stateStrings;
+
+// Model properties
 @property (strong, nonatomic) ArrayDataSource *guideDetailVCDataSource;
-@property (weak, nonatomic) IBOutlet UIImageView *guideTitleImage;
+
+@property (strong, nonatomic) dialogController  *dialogController;
+@property dialogState currentState;
+
 @end
 
 @implementation GuideDetailViewController
 
 #pragma mark View lifecycle
+
+- (void)awakeFromNib
+{
+    // instantiate dialog controller now rather than waiting until the user presses the Play
+    // button as it takes 2 secs to initialize speech recognition model
+    if (!self.dialogController) {
+        self.dialogController = [[dialogController alloc] init];
+        if (self.dialogController) {
+            self.dialogController.dialogControlDelegate = self;
+        }
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -31,6 +63,20 @@
     
     self.guideTableView.dataSource = self.guideDetailVCDataSource;
     self.guideTableView.delegate = self;
+
+    // sign up for AVAudioSession Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(audioInterruption:)
+                                                 name:AVAudioSessionInterruptionNotification
+                                               object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(audioServicesReset:)
+                                                 name:AVAudioSessionMediaServicesWereResetNotification
+                                               object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(audioRouteChange:)
+                                                 name:AVAudioSessionRouteChangeNotification
+                                               object:[AVAudioSession sharedInstance]];
     
 }
 
@@ -38,7 +84,59 @@
 {
     [super viewWillAppear: animated];
     self.title = self.guide.title;
+    self.guidePicture.image = [UIImage imageWithData:self.guide.photo.thumbnail];
+    
+    self.currentState = isReset;
+    self.currentLine = 0;
+    if (self.guide) {
+        self.dialogController.guide = self.guide;
+    }
+    
+    
+    // Check microphone permissions
+    if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
+        [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+            if (granted) {
+                // enable the Play & Reset bar button items
+                [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    UIBarButtonItem *button = obj;
+                    button.enabled = YES;
+                }];
+            }
+            else {
+                // disable the Play & Reset button
+                [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    UIBarButtonItem *button = obj;
+                    if ( (button.tag == isPlaying) || (button.tag == isReset) ) {
+                        button.enabled = NO;
+                    }
+                }];
+                // Let the user know that they need to turn on the microphone in the system settings
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
+                                                                message:@"Talk Lists uses the microphone for voice recognition.  To use this feature you must allow microphone access in Settings > Privacy > Microphone"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }];
+    }
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // View is going away so pause the dialog
+    if (self.currentState == isPlaying) {
+        [self pauseButtonPressed:nil];
+    }
+    
+    // Remove self as observer for notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [super viewWillDisappear:animated];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -54,6 +152,221 @@
 {
     NSLog(@"row selected");
 }
+
+#pragma mark dialogControllerDelegate Methods
+
+- (void)dialogComplete
+{
+    NSLog(@"DIALOG OVER");
+    // Set the Pause button back to Play
+    [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIBarButtonItem *button = obj;
+        if (button.tag == isPaused) {
+            [self swapPlayPauseButtons];
+        }
+    }];
+    
+    // Enable the Edit Button
+ //   self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    // Disable the tap gesture
+ //   self.tapGestureRecognizer.enabled = NO;
+    
+    // update state
+    self.currentState = isReset;
+    
+}
+
+- (void)dialogStartedListening
+{
+    self.statusDisplay.text =  self.stateStrings[0];
+}
+
+- (void)dialogStoppedListening
+{
+    self.statusDisplay.text = @"";
+}
+
+
+- (void)swapPlayPauseButtons
+{
+    UIImage *playPauseImage = [self.playPauseButton imageForState:UIControlStateNormal];
+    if (playPauseImage == [UIImage imageNamed:@"play"]) {
+        // replace Play button with Pause button
+        [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal ];
+        // change action
+        [self.playPauseButton removeTarget:self
+                               action:@selector(playButtonPressed:)
+                     forControlEvents:UIControlEventTouchUpInside];
+        [self.playPauseButton addTarget:self
+                            action:@selector(pauseButtonPressed:)
+                  forControlEvents:UIControlEventTouchUpInside];
+    }
+    else {
+        // replace Pause button with Play button
+        [self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal ];
+        // change action
+        [self.playPauseButton removeTarget:self
+                               action:@selector(pauseButtonPressed:)
+                     forControlEvents:UIControlEventTouchUpInside];
+        [self.playPauseButton addTarget:self
+                            action:@selector(playButtonPressed:)
+                  forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)highlightCurrentLine:(int) lineNumber
+{
+    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:lineNumber inSection:0];
+   
+    // get app's customTint color
+  //  UIColor *customColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Tangarine"]];
+    UIColor *customColor = [UIColor blueColor];
+    [self setTextColor:customColor atIndexPath:selectedIndexPath];
+ }
+
+- (void)unhighlightCurrentLine:(int) lineNumber
+{
+    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:lineNumber inSection:0];
+    
+    // get app's customTint color
+    UIColor *customColor = [UIColor blackColor];
+    [self setTextColor:customColor atIndexPath:selectedIndexPath];
+}
+
+-(void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber
+{
+    UITableViewCell *currentCell = [self.guideTableView cellForRowAtIndexPath:lineNumber];
+    NSMutableAttributedString *cellAttributedText = [currentCell.textLabel.attributedText mutableCopy];
+    NSDictionary *highlightedTextAttributes;
+    NSRange highlightedRange;
+    if (lineNumber >= 0)  {
+        // HIGHLIGHT STROKE COLOR OF CURRENT LINE
+        if (highlightColor) {
+            highlightedTextAttributes  = @{NSForegroundColorAttributeName: highlightColor};
+            highlightedRange =  NSMakeRange(0, [cellAttributedText length]);
+        }
+    }
+    // APPLY ATTRIBUTES
+    if (highlightedTextAttributes) {
+        [cellAttributedText addAttributes:highlightedTextAttributes range:highlightedRange];
+    }
+    currentCell.textLabel.attributedText = [cellAttributedText copy];
+    
+}
+
+
+#pragma mark User Actions
+
+- (IBAction)playButtonPressed:(UIButton *)sender {
+    // toggle button to 'Pause'
+    [self swapPlayPauseButtons];
+    
+    // Disable the Edit button
+ //   self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    // enable the tap gesture recognizer
+ //   self.tapGestureRecognizer.enabled = YES;
+    
+    // Start the dialog
+    if (self.guide)
+    {
+        if (self.dialogController) {
+            if (self.currentState == isReset) {
+                [self.dialogController startDialog];
+            }
+            else if (self.currentState == isPaused) {
+                [self.dialogController resumeDialog];
+            }
+            self.currentState = isPlaying;
+        }
+    }
+
+}
+
+- (IBAction)pauseButtonPressed:(UIButton *)sender
+{
+    // toggle the button  to 'Play'
+    [self swapPlayPauseButtons];
+    
+    // Pause the dialog
+    if (self.dialogController) {
+        [self.dialogController pauseDialog];
+        self.currentState = isPaused;
+    }
+}
+
+- (IBAction)resetButtonPressed:(UIButton *)sender
+{
+        // Make sure Play/Pause button is showing Play
+        if (self.currentState == isPlaying) {
+            [self pauseButtonPressed:self.playPauseButton];
+        }
+        
+        // Stop the dialog
+        if (self.dialogController) {
+            [self.dialogController initializeDialog];
+        }
+        
+        // Enable the Edit button
+    //    self.navigationItem.rightBarButtonItem.enabled = YES;
+        
+        // DIABLE THE TAP GESTURE
+     //   self.tapGestureRecognizer.enabled = NO;
+        
+        self.currentState = isReset;
+
+}
+
+#pragma mark AVAudioSession Notifications
+
+- (void)audioInterruption: (NSNotification *)notification
+{
+    NSUInteger type = [[[notification userInfo] objectForKey:AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];
+    
+    if (type == AVAudioSessionInterruptionTypeBegan) {
+        NSLog(@"BEGAN INTERRUPTION, dialog state %d", (int)self.currentState);
+        if (self.currentState == isPlaying) {
+            [self pauseButtonPressed:self.playPauseButton];
+            // release the listener object
+            TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
+            [myApp killListeningController];
+        }
+    }
+    else if (type == AVAudioSessionInterruptionTypeEnded) {
+        NSLog(@"END INTERRUPTION, dialog state %d", (int)self.currentState);
+        //   if (self.currentState == isPaused) {
+        //       [self playButtonPressed:self.playButton];
+        //  }
+    }
+}
+
+-(void)audioServicesReset: (NSNotification *)notification
+{
+    NSLog(@"RECEIVED AUDIO SERVICES RESET NOTIFICATION");
+    TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
+    [myApp killListeningController];
+    
+    [self.dialogController recoverFromAudioResetNotification];
+}
+
+-(void)audioRouteChange: (NSNotification *)notification
+{
+    NSDictionary *dict = [notification userInfo];
+    AVAudioSessionRouteChangeReason changeReason = [[dict valueForKey: AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];
+    AVAudioSessionRouteDescription *route = [dict valueForKey:AVAudioSessionRouteChangePreviousRouteKey];
+    NSLog(@"RECEIVED AUDIO SERVICES ROUTE CHANGE NOTIFICATION %d, %@", (int)changeReason,route);
+    if (changeReason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
+        // pause dialog
+        
+    }
+    else if (changeReason == AVAudioSessionRouteChangeReasonNewDeviceAvailable) {
+        // put up alert for user to resume dialog or abort dialog
+        
+    }
+}
+
+
 
 
 #pragma mark - Navigation
@@ -71,6 +384,14 @@
 }
 
 #pragma mark initializers
+
+- (NSArray *)stateStrings
+{
+    if (!_stateStrings) {
+        _stateStrings =  @[@"Say \"Next\" or \"Repeat\"", @"Waiting to resume", @"Reset"];
+    }
+    return _stateStrings;
+}
 
 -(ArrayDataSource *)guideDetailVCDataSource
 {
@@ -91,6 +412,15 @@
          
     }
     return _guideDetailVCDataSource;
+}
+
+- (void)setCurrentLine:(NSNumber *)currentLine
+{
+    [self unhighlightCurrentLine:(int)[self.currentLine integerValue]];
+    _currentLine = currentLine;
+    if ([currentLine integerValue] >= 0) {
+        [self highlightCurrentLine:(int)[currentLine integerValue]];
+    }
 }
 
 @end

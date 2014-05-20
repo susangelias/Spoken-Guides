@@ -12,5 +12,6 @@
 @interface GuideDetailViewController : UIViewController
 
 @property (strong, nonatomic) Guide *guide;
+@property (nonatomic, strong) NSNumber *currentLine;
 
 @end

@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "ListeningController.h"
 
 @interface TalkListAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) ListeningController *listener;
+
+- (void)killListeningController;
+- (ListeningController *)listener;
+
 
 @end

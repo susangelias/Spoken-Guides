@@ -481,7 +481,7 @@
             </objects>
             <point key="canvasLocation" x="1893" y="126"/>
         </scene>
-        <!--Guide Detail View Controller - Yummy Stir Fry-->
+        <!--Guide Detail View Controller-->
         <scene sceneID="Gj0-nQ-DTf">
             <objects>
                 <viewController id="TFG-s8-OOc" customClass="GuideDetailViewController" sceneMemberID="viewController">
@@ -528,6 +528,9 @@
                                 <state key="normal" image="play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="TFG-s8-OOc" eventType="touchUpInside" id="M8a-L8-wka"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxY-1S-6Xu">
                                 <rect key="frame" x="20" y="76" width="82" height="70"/>
@@ -535,15 +538,28 @@
                                 <state key="normal" image="previous">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="TFG-s8-OOc" eventType="touchUpInside" id="dQx-lV-6Af"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmW-ze-elx">
+                                <rect key="frame" x="51" y="535" width="249" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Yummy Stir Fry" id="Tfc-aK-lmb"/>
+                    <navigationItem key="navigationItem" id="Tfc-aK-lmb"/>
                     <connections>
                         <outlet property="bottomToolbar" destination="WQ0-3O-EB7" id="fta-Qc-d0B"/>
+                        <outlet property="guidePicture" destination="2mT-cy-K2R" id="lIU-g3-WMI"/>
                         <outlet property="guideTableView" destination="XhQ-hB-Dkt" id="buM-6O-h8I"/>
-                        <outlet property="guideTitleImage" destination="2mT-cy-K2R" id="7aV-Qy-vaz"/>
+                        <outlet property="playPauseButton" destination="K27-ix-YDB" id="NR7-M1-LlH"/>
+                        <outlet property="resetButton" destination="TxY-1S-6Xu" id="PIR-lc-V1p"/>
+                        <outlet property="statusDisplay" destination="qmW-ze-elx" id="DlO-g9-rd1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iiP-UK-1hd" userLabel="First Responder" sceneMemberID="firstResponder"/>

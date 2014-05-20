@@ -11,6 +11,13 @@
 		C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C70191BCE62000254A8 /* UIImage+Resize.m */; };
 		C0072C7A191BD249000254A8 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C79191BD249000254A8 /* Step.m */; };
 		C0072C7F191BF30F000254A8 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C7E191BF30F000254A8 /* Photo.m */; };
+		C023021B192A5870006DEF7A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */; };
+		C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */; };
+		C0270120192A3B3000F954EA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C027011F192A3B3000F954EA /* AVFoundation.framework */; };
+		C0270122192A3B4300F954EA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0270121192A3B4300F954EA /* AudioToolbox.framework */; };
+		C0270133192A3E2700F954EA /* ListeningController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0270132192A3E2700F954EA /* ListeningController.m */; };
+		C0270137192A3E5000F954EA /* languageOpenEars.m in Sources */ = {isa = PBXBuildFile; fileRef = C0270136192A3E5000F954EA /* languageOpenEars.m */; };
+		C027013A192A3E7F00F954EA /* dialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0270139192A3E7F00F954EA /* dialogController.m */; };
 		C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */; };
 		C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAA9190EA0EC0092426E /* SpeakingController.m */; };
 		C02BEAAE190EA10E0092426E /* voice.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BEAAD190EA10E0092426E /* voice.m */; };
@@ -20,24 +27,21 @@
 		C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBAA19195F6D00F6A035 /* stepEntryView.m */; };
 		C02D55331917F95F006955E7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D55321917F95F006955E7 /* CoreData.framework */; };
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
-		C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B541911E41B00CC213B /* GuideMetaData.m */; };
-		C03D6B581911E60600CC213B /* GuideContents.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B571911E60600CC213B /* GuideContents.m */; };
 		C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */; };
 		C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85219180F6300212B5E /* Guide+Addendums.m */; };
 		C046D85619180F9300212B5E /* Step+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85519180F9300212B5E /* Step+Addendums.m */; };
 		C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85819180FB500212B5E /* Photo+Addendums.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
-		C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */; };
 		C06B50EB192434E0002EF96C /* fetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */; };
 		C06E4A40191EBE7800093160 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A3F191EBE7800093160 /* Guide.m */; };
 		C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
+		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
 		C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A41916AEDB00CD8114 /* stepCell.m */; };
 		C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
-		C0BE98D31913EE4600C2990E /* GuideContentsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98D21913EE4600C2990E /* GuideContentsTest.m */; };
 		C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */; };
 		C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
@@ -54,9 +58,10 @@
 		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
 		C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */; };
 		C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */; };
+		C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */; };
+		C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E70192A5A5900C4F35A /* Slt.framework */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
 		C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F532DE191178A20023CEF0 /* GuideCategories.m */; };
-		C0F9DED21912D30E0051CDAB /* StepClassic.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F9DED11912D30E0051CDAB /* StepClassic.m */; };
 		F05384D1F80548A7BDC6C99F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A39B4F7EF9E14A239DC702B6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -81,13 +86,23 @@
 		C0072C7D191BF30F000254A8 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = "Model - core data/Photo.h"; sourceTree = "<group>"; };
 		C0072C7E191BF30F000254A8 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = "Model - core data/Photo.m"; sourceTree = "<group>"; };
 		C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrayDataSourceDelegate.h; sourceTree = "<group>"; };
+		C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
+		C027011F192A3B3000F954EA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C0270121192A3B4300F954EA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C0270131192A3E2700F954EA /* ListeningController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeningController.h; sourceTree = "<group>"; };
+		C0270132192A3E2700F954EA /* ListeningController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeningController.m; sourceTree = "<group>"; };
+		C0270135192A3E5000F954EA /* languageOpenEars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = languageOpenEars.h; sourceTree = "<group>"; };
+		C0270136192A3E5000F954EA /* languageOpenEars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = languageOpenEars.m; sourceTree = "<group>"; };
+		C0270138192A3E7F00F954EA /* dialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dialogController.h; sourceTree = "<group>"; };
+		C0270139192A3E7F00F954EA /* dialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dialogController.m; sourceTree = "<group>"; };
+		C027013B192A47A600F954EA /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rejecto.framework; path = ../Rejecto/Rejecto.framework; sourceTree = "<group>"; };
 		C02BEAA4190E9F810092426E /* voiceSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voiceSettingsViewController.h; sourceTree = "<group>"; };
 		C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = voiceSettingsViewController.m; sourceTree = "<group>"; };
 		C02BEAA8190EA0EC0092426E /* SpeakingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakingController.h; sourceTree = "<group>"; };
 		C02BEAA9190EA0EC0092426E /* SpeakingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakingController.m; sourceTree = "<group>"; };
 		C02BEAAC190EA10E0092426E /* voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voice.h; sourceTree = "<group>"; };
 		C02BEAAD190EA10E0092426E /* voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = voice.m; sourceTree = "<group>"; };
-		C02BFB9D191817F500F6A035 /* StepClassic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepClassic.h; sourceTree = "<group>"; };
 		C02BFBA119190D7500F6A035 /* Guide+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Guide+Addendums.m"; sourceTree = "<group>"; };
 		C02BFBA419193D4300F6A035 /* titleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = titleView.h; sourceTree = "<group>"; };
 		C02BFBA519193D4300F6A035 /* titleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = titleView.m; sourceTree = "<group>"; };
@@ -98,10 +113,6 @@
 		C02D55321917F95F006955E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
-		C03D6B531911E41B00CC213B /* GuideMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideMetaData.h; sourceTree = "<group>"; };
-		C03D6B541911E41B00CC213B /* GuideMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideMetaData.m; sourceTree = "<group>"; };
-		C03D6B561911E60600CC213B /* GuideContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideContents.h; sourceTree = "<group>"; };
-		C03D6B571911E60600CC213B /* GuideContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideContents.m; sourceTree = "<group>"; };
 		C046D84319180B5800212B5E /* GuideModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuideModel.xcdatamodel; sourceTree = "<group>"; };
 		C046D85119180F6300212B5E /* Guide+Addendums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Guide+Addendums.h"; path = "Model - core data/Guide+Addendums.h"; sourceTree = "<group>"; };
 		C046D85219180F6300212B5E /* Guide+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Guide+Addendums.m"; path = "Model - core data/Guide+Addendums.m"; sourceTree = "<group>"; };
@@ -113,13 +124,14 @@
 		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
 		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
 		C047761F190853A20085833C /* NewGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewController.m; sourceTree = "<group>"; };
-		C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideMetaDataTest.m; sourceTree = "<group>"; };
 		C06B50E9192434E0002EF96C /* fetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchedResultsDataSource.h; sourceTree = "<group>"; };
 		C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fetchedResultsDataSource.m; sourceTree = "<group>"; };
 		C06E4A3E191EBE7800093160 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
 		C06E4A3F191EBE7800093160 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Guide.m; path = "Model - core data/Guide.m"; sourceTree = "<group>"; };
 		C06E4A41191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ALAssetsLibrary+CustomPhotoAlbum.h"; path = "Model - core data/ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAssetsLibrary+CustomPhotoAlbum.m"; path = "Model - core data/ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		C08B144C192A8D2C00E70FCF /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rejecto.framework; sourceTree = "<group>"; };
+		C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialogControllerDelegate.h; sourceTree = "<group>"; };
 		C0B0F2A31916AEDB00CD8114 /* stepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepCell.h; sourceTree = "<group>"; };
 		C0B0F2A41916AEDB00CD8114 /* stepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepCell.m; sourceTree = "<group>"; };
 		C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuperView.h"; sourceTree = "<group>"; };
@@ -134,7 +146,6 @@
 		C0BE98CF1913E8E200C2990E /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		C0BE98D01913E8E200C2990E /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		C0BE98D11913E8E200C2990E /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
-		C0BE98D21913EE4600C2990E /* GuideContentsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideContentsTest.m; sourceTree = "<group>"; };
 		C0DCB16E1905D9F400E29DBB /* Talk Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talk Lists.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0DCB1711905D9F400E29DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,11 +169,12 @@
 		C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatagoriesViewController.m; sourceTree = "<group>"; };
 		C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
 		C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
+		C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		C0E24E70192A5A5900C4F35A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addPhotoViewController.h; path = ../addPhotoViewController.h; sourceTree = "<group>"; };
 		C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addPhotoViewController.m; path = ../addPhotoViewController.m; sourceTree = "<group>"; };
 		C0F532DD191178A20023CEF0 /* GuideCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCategories.h; sourceTree = "<group>"; };
 		C0F532DE191178A20023CEF0 /* GuideCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCategories.m; sourceTree = "<group>"; };
-		C0F9DED11912D30E0051CDAB /* StepClassic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepClassic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,11 +182,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0270122192A3B4300F954EA /* AudioToolbox.framework in Frameworks */,
+				C0270120192A3B3000F954EA /* AVFoundation.framework in Frameworks */,
 				C0072C6E191BC474000254A8 /* AssetsLibrary.framework in Frameworks */,
 				C02D55331917F95F006955E7 /* CoreData.framework in Frameworks */,
 				C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */,
+				C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */,
 				C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */,
 				C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */,
+				C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */,
+				C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */,
 				F05384D1F80548A7BDC6C99F /* libPods.a in Frameworks */,
 				C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */,
 			);
@@ -194,9 +211,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0230218192A5870006DEF7A /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				C08B144C192A8D2C00E70FCF /* Rejecto.framework */,
+				C0E24E70192A5A5900C4F35A /* Slt.framework */,
+				C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */,
+				C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */,
+				C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */,
+			);
+			name = Framework;
+			path = ../Framework;
+			sourceTree = "<group>";
+		};
+		C0270130192A3E0C00F954EA /* Listening */ = {
+			isa = PBXGroup;
+			children = (
+				C0270134192A3E3900F954EA /* Model */,
+				C0270131192A3E2700F954EA /* ListeningController.h */,
+				C0270132192A3E2700F954EA /* ListeningController.m */,
+			);
+			name = Listening;
+			sourceTree = "<group>";
+		};
+		C0270134192A3E3900F954EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0270135192A3E5000F954EA /* languageOpenEars.h */,
+				C0270136192A3E5000F954EA /* languageOpenEars.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C02BEAA3190E9F2E0092426E /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
+				C0270130192A3E0C00F954EA /* Listening */,
 				C02BEAA7190EA0D20092426E /* Speaking */,
 				C02BEAA4190E9F810092426E /* voiceSettingsViewController.h */,
 				C02BEAA5190E9F810092426E /* voiceSettingsViewController.m */,
@@ -277,7 +327,6 @@
 			children = (
 				C02D5537191803F8006955E7 /* Model - Core Data */,
 				C0B0F2A21916AE0C00CD8114 /* View */,
-				C03D6B521911E3AF00CC213B /* Model - obsolete now */,
 				C0F532D9191168830023CEF0 /* Controllers */,
 				C02BEAA3190E9F2E0092426E /* Dialog */,
 			);
@@ -312,19 +361,6 @@
 				C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		C03D6B521911E3AF00CC213B /* Model - obsolete now */ = {
-			isa = PBXGroup;
-			children = (
-				C02BFB9D191817F500F6A035 /* StepClassic.h */,
-				C0F9DED11912D30E0051CDAB /* StepClassic.m */,
-				C03D6B561911E60600CC213B /* GuideContents.h */,
-				C03D6B571911E60600CC213B /* GuideContents.m */,
-				C03D6B531911E41B00CC213B /* GuideMetaData.h */,
-				C03D6B541911E41B00CC213B /* GuideMetaData.m */,
-			);
-			name = "Model - obsolete now";
 			sourceTree = "<group>";
 		};
 		C0B0F2A21916AE0C00CD8114 /* View */ = {
@@ -402,6 +438,9 @@
 		C0DCB1701905D9F400E29DBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C027013B192A47A600F954EA /* Rejecto.framework */,
+				C0270121192A3B4300F954EA /* AudioToolbox.framework */,
+				C027011F192A3B3000F954EA /* AVFoundation.framework */,
 				C0072C6D191BC474000254A8 /* AssetsLibrary.framework */,
 				C02D55321917F95F006955E7 /* CoreData.framework */,
 				C0DCB1711905D9F400E29DBB /* Foundation.framework */,
@@ -416,6 +455,7 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C0230218192A5870006DEF7A /* Framework */,
 				C0F532D6191167E40023CEF0 /* Browse */,
 				C036A97A190C28F000D1F251 /* View */,
 				C036A978190C283100D1F251 /* New Guide */,
@@ -443,8 +483,6 @@
 		C0DCB1991905D9F400E29DBB /* Talk ListsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C05F1E2B19143700005844D0 /* GuideMetaDataTest.m */,
-				C0BE98D21913EE4600C2990E /* GuideContentsTest.m */,
 				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
 				C02BFBA119190D7500F6A035 /* Guide+Addendums.m */,
 				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
@@ -494,6 +532,9 @@
 			children = (
 				C047761B190848250085833C /* GuideDetailViewController.h */,
 				C047761C190848250085833C /* GuideDetailViewController.m */,
+				C0270138192A3E7F00F954EA /* dialogController.h */,
+				C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */,
+				C0270139192A3E7F00F954EA /* dialogController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -601,6 +642,8 @@
 				C0DCB1881905D9F400E29DBB /* Main_iPad.storyboard in Resources */,
 				C0DCB18D1905D9F400E29DBB /* Images.xcassets in Resources */,
 				C0DCB1851905D9F400E29DBB /* Main_iPhone.storyboard in Resources */,
+				C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */,
+				C023021B192A5870006DEF7A /* AcousticModelEnglish.bundle in Resources */,
 				C0DCB17C1905D9F400E29DBB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,10 +696,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0270137192A3E5000F954EA /* languageOpenEars.m in Sources */,
 				C046D85619180F9300212B5E /* Step+Addendums.m in Sources */,
 				C06E4A40191EBE7800093160 /* Guide.m in Sources */,
-				C03D6B551911E41B00CC213B /* GuideMetaData.m in Sources */,
-				C0F9DED21912D30E0051CDAB /* StepClassic.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
 				C06B50EB192434E0002EF96C /* fetchedResultsDataSource.m in Sources */,
 				C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */,
@@ -664,9 +706,9 @@
 				C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */,
 				C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
-				C03D6B581911E60600CC213B /* GuideContents.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
 				C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */,
+				C027013A192A3E7F00F954EA /* dialogController.m in Sources */,
 				C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */,
 				C02BFBA619193D4300F6A035 /* titleView.m in Sources */,
 				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
@@ -682,6 +724,7 @@
 				C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */,
 				C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
+				C0270133192A3E2700F954EA /* ListeningController.m in Sources */,
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
 				C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
@@ -691,9 +734,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C05F1E2C19143700005844D0 /* GuideMetaDataTest.m in Sources */,
 				C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */,
-				C0BE98D31913EE4600C2990E /* GuideContentsTest.m in Sources */,
 				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -782,6 +823,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Talk Lists";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -820,6 +863,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Talk Lists";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -834,6 +879,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Talk\\ Lists",
+					/Users/susanelias/Documents/Developer/OpenEarsDistribution/Framework,
+					/Users/susanelias/Documents/Developer/Rejecto,
+					"$(PROJECT_DIR)/Framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
 				INFOPLIST_FILE = "Talk Lists/Talk Lists-Info.plist";
@@ -843,7 +895,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/usr/lib",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Talk Lists";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -855,6 +907,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Talk\\ Lists",
+					/Users/susanelias/Documents/Developer/OpenEarsDistribution/Framework,
+					/Users/susanelias/Documents/Developer/Rejecto,
+					"$(PROJECT_DIR)/Framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
 				INFOPLIST_FILE = "Talk Lists/Talk Lists-Info.plist";
@@ -864,7 +923,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/usr/lib",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Talk Lists";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

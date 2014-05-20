@@ -12,8 +12,9 @@
 #import "GuideCategories.h"
 #import "fetchedResultsDataSource.h"
 #import "Guide+Addendums.h"
+#import "Photo+Addendums.h"
 
-@interface CategoryTableViewController ()
+@interface CategoryTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
 
@@ -138,7 +139,9 @@
 {
     if (!_guideFetchResultsController) {
         void (^configureCell)(UITableViewCell *, Guide *) = ^(UITableViewCell *cell, Guide *fetchedGuide) {
-            cell.textLabel.text = fetchedGuide.title; };
+            cell.textLabel.text = fetchedGuide.title;
+            cell.imageView.image = [UIImage imageWithData:fetchedGuide.photo.thumbnail];
+        };
         NSString *searchString = self.guideCategory;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"classification == %@", searchString];
         

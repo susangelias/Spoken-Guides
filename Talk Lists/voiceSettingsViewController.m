@@ -47,9 +47,9 @@
     // load current settings from the model
     self.rateSlider.value = [self.myVoice.rate floatValue];
     self.pitchSlider.value = [self.myVoice.pitch floatValue];
-//    self.volumeSlider.value = [self.myVoice.volume floatValue];
     
     // setup the system volume slider
+    // NOTE:  ONLY DISPLAYS ON DEVICE, NOT ON SIMULATOR
     MPVolumeView *myVolumeView = [[MPVolumeView alloc] initWithFrame:self.MPVolumeViewParentView.bounds];
     [self.MPVolumeViewParentView addSubview:myVolumeView];
     
