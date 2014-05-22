@@ -12,7 +12,6 @@
 -(void)saveImage:(UIImage*)image toAlbum:(NSString*)albumName withCompletionBlock:(SaveImageCompletion)completionBlock
 {
     //write the image data to the assets library (camera roll)
-    __weak typeof (self) weakSelf = self;
     [self writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation
                        completionBlock:^(NSURL* assetURL, NSError* error) {
                            
@@ -23,7 +22,7 @@
                            }
                            
                            //add the asset to the custom photo album
-                           [weakSelf addAssetURL: assetURL
+                           [self addAssetURL: assetURL
                                      toAlbum:albumName
                          withCompletionBlock:completionBlock];
                            
@@ -34,7 +33,6 @@
 {
     __block BOOL albumWasFound = NO;
     __block ALAssetsLibraryAccessFailureBlock failBlock;
-    __weak typeof (self) weakSelf = self;
     //search all photo albums in the library
     [self enumerateGroupsWithTypes:ALAssetsGroupAlbum
                         usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -46,7 +44,7 @@
                                 albumWasFound = YES;
                                 
                                 //get a hold of the photo's asset instance
-                                [weakSelf assetForURL: assetURL
+                                [self assetForURL: assetURL
                                       resultBlock:^(ALAsset *asset) {
                                           
                                           //add photo to the target album
@@ -68,7 +66,7 @@
                                                       resultBlock:^(ALAssetsGroup *group) {
                                                           
                                                           //get the photo's instance
-                                                          [weakSelf assetForURL: assetURL
+                                                          [self assetForURL: assetURL
                                                                     resultBlock:^(ALAsset *asset) {
                                                                         
                                                                         //add photo to the newly created album

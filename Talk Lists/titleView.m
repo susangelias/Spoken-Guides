@@ -46,14 +46,15 @@
         [self.guideTitleDelegate titleEntered:textField.text];
         
         // Slide our text field view offscreen to the left
+        __weak   typeof (self) weakSelf = self;
         [UIView animateWithDuration:0.75
                               delay:0.1
                             options:UIViewAnimationOptionTransitionNone
                          animations:^{
-                             self.userEntryField.center = CGPointMake(self.userEntryField.center.x - 300, self.userEntryField.center.y);
+                             weakSelf.userEntryField.center = CGPointMake(self.userEntryField.center.x - 300, self.userEntryField.center.y);
                          }
                          completion:^(BOOL finished) {
-                             self.userEntryField.hidden = YES;
+                             weakSelf.userEntryField.hidden = YES;
                     }];
     }
 }

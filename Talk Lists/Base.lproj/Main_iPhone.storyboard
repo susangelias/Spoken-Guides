@@ -32,11 +32,11 @@
                                 <rect key="frame" x="58" y="433" width="205" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="+ NEW GUIDE">
+                                <state key="normal" title="Create">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Wgp-Gh-Wlk" kind="push" identifier="NewGuideSegue" id="KhV-zr-fQm"/>
+                                    <segue destination="xwC-uN-VeW" kind="push" identifier="CreateSegue" id="E4L-eP-JXa"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6x-Hd-Shj">
@@ -267,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjy-d8-Zn2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1416" y="817"/>
+            <point key="canvasLocation" x="2113" y="1501"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="Exr-EP-f1e">
@@ -348,7 +348,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2Z-HB-cQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YCG-6o-h6G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1409" y="1636"/>
+            <point key="canvasLocation" x="2721" y="1884"/>
         </scene>
         <!--Add Photo View Controller-->
         <scene sceneID="GvE-Px-tB0">
@@ -413,7 +413,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFy-tf-X2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="T6I-R6-vCH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="1635"/>
+            <point key="canvasLocation" x="2727" y="1167"/>
         </scene>
         <!--Category Table View Controller-->
         <scene sceneID="bjC-T5-oTy">
@@ -713,6 +713,39 @@
                 <exit id="nu4-EG-XP0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2684" y="133"/>
+        </scene>
+        <!--My Guides View Controller - My Guides-->
+        <scene sceneID="iHO-g8-QIG">
+            <objects>
+                <viewController id="xwC-uN-VeW" customClass="MyGuidesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6KN-WR-NFF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Evv-0T-Zdq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Q4-Wm-yGU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikn-uq-zoM">
+                                <rect key="frame" x="81" y="63" width="159" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Create New Guide">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Wgp-Gh-Wlk" kind="push" identifier="NewGuideSegue" id="Qs0-zU-jWE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Guides" id="KfN-NM-QxX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fBe-Yt-Ksi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="1501"/>
         </scene>
     </scenes>
     <resources>

@@ -51,8 +51,8 @@
     UIImage *selectedPhoto = info[UIImagePickerControllerEditedImage];
 
    __weak typeof (self) weakSelf = self;
-    [weakSelf.library saveImage:selectedPhoto
-                    toAlbum:weakSelf.albumName
+    [self.library saveImage:selectedPhoto
+                    toAlbum:self.albumName
         withCompletionBlock:^(NSURL *assetLibraryURL, NSError *error) {
             if (error != nil) {
                 NSLog(@"error saving photo to album: %@", error);
@@ -72,7 +72,7 @@
         // wait for imageView to render before attempting to display photo
         [UIView animateWithDuration:0.0
                          animations:^{
-                             [weakSelf.view addSubview:self.photoView];
+                             [weakSelf.view addSubview:weakSelf.photoView];
                              weakSelf.doneButton.hidden = NO;
                              weakSelf.redoButton.hidden = NO;
                           }

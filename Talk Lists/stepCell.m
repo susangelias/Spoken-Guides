@@ -100,7 +100,7 @@
     __block UIImageView *viewToEnlarge = [[UIImageView alloc]initWithFrame:adjustedFrame];
     __weak typeof (self) weakSelf = self;
     
-    viewToEnlarge.image = weakSelf.unzoomedCellImageView.image;
+    viewToEnlarge.image = self.unzoomedCellImageView.image;
     [myView addSubview:viewToEnlarge];
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -131,7 +131,7 @@
                           delay:0.0
                         options:UIViewAnimationOptionShowHideTransitionViews
                      animations:^{
-                         if (weakSelf.unzoomedCellImageView) {
+                         if (self.unzoomedCellImageView) {
                              enlargedView.bounds = self.unzoomedCellImageView.bounds;
                              enlargedView.center = self.touchPoint;
                          }

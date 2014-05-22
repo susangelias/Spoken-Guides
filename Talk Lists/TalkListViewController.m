@@ -7,7 +7,7 @@
 //
 
 #import "TalkListViewController.h"
-#import "NewGuideViewController.h"
+#import "MyGuidesViewController.h"
 #import "CatagoriesViewController.h"
 
 @interface TalkListViewController ()
@@ -40,17 +40,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"NewGuideSegue"] )
-    {
-        if ([[segue destinationViewController] isKindOfClass:[NewGuideViewController class]]) {
-            NewGuideViewController *destController = [segue destinationViewController];
-            destController.managedObjectContext = self.moc;
-        }
-    }
-    else if ([segue.identifier isEqualToString:@"BrowseSegue"] )
+    if ([segue.identifier isEqualToString:@"BrowseSegue"] )
     {
         if ([[segue destinationViewController] isKindOfClass:[CatagoriesViewController class]]) {
             CatagoriesViewController *destController = [segue destinationViewController];
+            destController.managedObjectContext = self.moc;
+        }
+    }    else if ([segue.identifier isEqualToString:@"CreateSegue"] )
+    {
+        if ([[segue destinationViewController] isKindOfClass:[MyGuidesViewController class]]) {
+            MyGuidesViewController *destController = [segue destinationViewController];
             destController.managedObjectContext = self.moc;
         }
     }

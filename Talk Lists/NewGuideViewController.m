@@ -15,7 +15,6 @@
 #import "titleView.h"
 #import "stepEntryViewDelegate.h"
 #import "stepEntryView.h"
-#import "Guide+Addendums.h"
 #import "Step+Addendums.h"
 #import "Photo+Addendums.h"
 
@@ -36,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
 // model properties
-@property (strong, nonatomic) Guide *guideInProgress;
 @property (strong, nonatomic) Step *stepInProgess;
 @property (strong, nonatomic) Photo *userPhoto;
 
@@ -240,25 +238,28 @@
     [self.guideTitle resignFirstResponder];
     [self.StepTextView resignFirstResponder];
   
-    // check if there is an unsaved instruction
-    if ( (self.StepTextView.hidden == NO) && (self.stepInstruction.textViewPlaceholder.hidden == YES) && (![self.StepTextView.text isEqualToString:@""]))
-    {
-        // save this last step
-        [self stepInstructionEntered:self.StepTextView.text];
-    }
-    else {
-        // discard last step
-        if (self.stepInProgess) {
-            [self.managedObjectContext deleteObject:self.stepInProgess];
-        }
-    }
-        // if the user has at least entered a title, put up the alert to save the guide in progress
+
+    // if the user has at least entered a title, put up the alert to save the guide in progress
     if (![self.guideTitle.text isEqualToString:@""]) {
         // check if title needs to be saved
         if (self.guideTitle.hidden == NO) {
             // this title needs to be saved
             [self titleEntered:self.guideTitle.text];
         }
+        
+        // check if there is an unsaved instruction
+        if ( (self.StepTextView.hidden == NO) && (self.stepInstruction.textViewPlaceholder.hidden == YES) && (![self.StepTextView.text isEqualToString:@""]))
+        {
+            // save this last step
+            [self stepInstructionEntered:self.StepTextView.text];
+        }
+        else {
+            // discard last step
+            if (self.stepInProgess) {
+                [self.managedObjectContext deleteObject:self.stepInProgess];
+            }
+        }
+
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
                                                         message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
                                                        delegate:self
@@ -267,7 +268,7 @@
         [alert show];
     }
     else {
-        // return to main screen
+        // otherwise simply return to main screen without saving anything because the user hasn't entered anythig
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
