@@ -46,6 +46,7 @@
     UITapGestureRecognizer *tapped;
  
     self.textLabel.text = stepToDisplay.instruction;
+    
     if (stepToDisplay.photo.thumbnail) {
         // Set the thumbnail as the displayed image for now but better resolution image will get swapped in in the completion block
         self.imageView.image = [UIImage imageWithData:stepToDisplay.photo.thumbnail];
@@ -54,9 +55,10 @@
         // for full screen display into our thumbnail shown in the table view so when the user taps it
         // and it expands to full screen it will not be blurry as it is if I use the thumbnail here
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        __weak typeof(self)weakSelf = self;
         [library getImageForAssetURL:[NSURL URLWithString:stepToDisplay.photo.assetLibraryURL]
                  withCompletionBlock:^(UIImage *image, NSError *error) {
-                     self.imageView.image = image;
+                     weakSelf.imageView.image = image;
         }];
         
         // Add Gesture Recognizer
@@ -96,8 +98,9 @@
     CGRect adjustedFrame = self.unzoomedCellImageView.frame;
     adjustedFrame.origin.y = self.touchPoint.y;
     __block UIImageView *viewToEnlarge = [[UIImageView alloc]initWithFrame:adjustedFrame];
+    __weak typeof (self) weakSelf = self;
     
-    viewToEnlarge.image = self.unzoomedCellImageView.image;
+    viewToEnlarge.image = weakSelf.unzoomedCellImageView.image;
     [myView addSubview:viewToEnlarge];
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -110,7 +113,7 @@
                      completion:^(BOOL finished) {
                          if (finished) {
                              // set tap gesture on enlarged photo view so that it can be shrunk back to original size
-                             UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargedImageTapped:)];
+                             UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc]initWithTarget:weakSelf action:@selector(enlargedImageTapped:)];
                              [viewToEnlarge addGestureRecognizer:tapped];
                              viewToEnlarge.userInteractionEnabled = YES;
                          }
@@ -123,11 +126,12 @@
     UITableView *guideTableView = nil;
     guideTableView = (UITableView *)[self.superview findSuperViewWithClass:[UITableView class]];
     
+    __weak typeof (self) weakSelf = self;
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionShowHideTransitionViews
                      animations:^{
-                         if (self.unzoomedCellImageView) {
+                         if (weakSelf.unzoomedCellImageView) {
                              enlargedView.bounds = self.unzoomedCellImageView.bounds;
                              enlargedView.center = self.touchPoint;
                          }
@@ -135,7 +139,7 @@
                      completion:^(BOOL finished) {
                          if (finished) {
                              // reenable tap gesture for the tableCellImageView
-                             self.unzoomedCellImageView.userInteractionEnabled = YES;
+                             weakSelf.unzoomedCellImageView.userInteractionEnabled = YES;
                              // cleanup
                              enlargedView.image = nil;
                              [enlargedView removeFromSuperview];

@@ -130,27 +130,27 @@
                                     <segue destination="eyq-P8-2bo" kind="push" id="TlT-Jk-oYL"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pepper Chef" translatesAutoresizingMaskIntoConstraints="NO" id="bAB-nj-ZiV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bAB-nj-ZiV">
                                 <rect key="frame" x="20" y="163" width="72" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Fitness 2" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-Ln-uOR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-Ln-uOR">
                                 <rect key="frame" x="20" y="244" width="72" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeGarden 512x539" translatesAutoresizingMaskIntoConstraints="NO" id="tDp-aq-uJb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tDp-aq-uJb">
                                 <rect key="frame" x="20" y="325" width="72" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="general" translatesAutoresizingMaskIntoConstraints="NO" id="DMf-ZQ-6T9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMf-ZQ-6T9">
                                 <rect key="frame" x="20" y="82" width="72" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Paintbrush" translatesAutoresizingMaskIntoConstraints="NO" id="l4l-Bc-7ef">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4l-Bc-7ef">
                                 <rect key="frame" x="20" y="404" width="72" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="automotive" translatesAutoresizingMaskIntoConstraints="NO" id="OzU-dp-Iio">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OzU-dp-Iio">
                                 <rect key="frame" x="20" y="486" width="72" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -716,14 +716,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Fitness 2" width="952" height="630"/>
-        <image name="Paintbrush" width="902" height="653"/>
-        <image name="Pepper Chef" width="778" height="778"/>
         <image name="Settings" width="25" height="25"/>
-        <image name="automotive" width="1169" height="828"/>
         <image name="cooking" width="414" height="412"/>
-        <image name="general" width="686" height="904"/>
-        <image name="homeGarden 512x539" width="256" height="269"/>
         <image name="play" width="64" height="64"/>
         <image name="previous" width="64" height="64"/>
     </resources>

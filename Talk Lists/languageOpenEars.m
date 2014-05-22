@@ -38,47 +38,38 @@ NSString * const gGO_BACK_COMMAND_KEY = @"goBackCommands";
 {
     if (!_lmGenerator) {
         _lmGenerator = [[LanguageModelGenerator alloc]init];
-    }
-
-    
-    // Create the language model
-    NSArray *commandArrays = [NSArray arrayWithArray:[self.commands allValues]];
-    NSMutableArray *spokenWordsToRecognize = [[NSMutableArray alloc] init];
-    [commandArrays enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSArray *commandArray = obj;
-       [commandArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-           NSString *command = obj;
-           [spokenWordsToRecognize addObject:command];
-       }];
-    }];
-    NSString *name = @"guideLanguage";
-    
-    NSError *err = [_lmGenerator generateRejectingLanguageModelFromArray:spokenWordsToRecognize
-                                                          withFilesNamed:name
-                                                  withOptionalExclusions:nil
-                                                         usingVowelsOnly:FALSE
-                                                              withWeight:[NSNumber numberWithFloat:kLANGUAGE_MODEL_WEIGHT]
-                                                  forAcousticModelAtPath:self.acousticModelPath];
-    if([err code] != noErr) {
-        NSLog(@"language generator %@", err);
-    }
-    [ _lmGenerator deliverRejectedSpeechInHypotheses:true];
-    
-    NSDictionary *languageGeneratorResults = nil;
-    
-
-	
-    if([err code] == noErr) {
+ 
+        // Create the language model
+        NSArray *commandArrays = [NSArray arrayWithArray:[self.commands allValues]];
+        NSMutableArray *spokenWordsToRecognize = [[NSMutableArray alloc] init];
+        for (NSArray *commandArray in commandArrays) {
+            [spokenWordsToRecognize addObject:[commandArray lastObject]];
+        }
+        NSString *name = @"guideLanguage";
         
-        languageGeneratorResults = [err userInfo];
-		
-        self.lmPath = [languageGeneratorResults objectForKey:@"LMPath"];
-        self.dicPath = [languageGeneratorResults objectForKey:@"DictionaryPath"];
-		
-    } else {
-        NSLog(@"Error: %@",[err localizedDescription]);
+        NSError *err = [_lmGenerator generateRejectingLanguageModelFromArray:[spokenWordsToRecognize copy]
+                                                              withFilesNamed:name
+                                                      withOptionalExclusions:nil
+                                                             usingVowelsOnly:FALSE
+                                                                  withWeight:[NSNumber numberWithFloat:kLANGUAGE_MODEL_WEIGHT]
+                                                      forAcousticModelAtPath:self.acousticModelPath];
+        if([err code] != noErr) {
+            NSLog(@"language generator %@", err);
+        }
+        [ _lmGenerator deliverRejectedSpeechInHypotheses:true];
+        
+        NSDictionary *languageGeneratorResults = nil;
+        if([err code] == noErr) {
+            
+            languageGeneratorResults = [err userInfo];
+            
+            self.lmPath = [languageGeneratorResults objectForKey:@"LMPath"];
+            self.dicPath = [languageGeneratorResults objectForKey:@"DictionaryPath"];
+            
+        } else {
+            NSLog(@"Error: %@",[err localizedDescription]);
+        }
     }
-
     return _lmGenerator;
 }
 

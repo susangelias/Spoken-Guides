@@ -178,7 +178,10 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
         }
     } else if (self.currentState == isPausedWhileListening ) {
         // TELL USER THAT WE'RE WAITING FOR A RESPONSE
-        [self.speaker speak:@"Resuming instructions, please say Next if you're ready for the next line, or, Repeat, if you want to hear the previous line."];
+      //  [self.speaker speak:@"Resuming instructions, please say Next if you're ready for the next line, or, Repeat, if you want to hear the previous line."];
+        // repeat the current line but let user know
+      //  [self.speaker speak:@"Resuming dialog"];
+        [self userHasSpoken:REPEAT];
     }
     self.currentState = isActivelySpeaking;
 }

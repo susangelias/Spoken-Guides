@@ -25,7 +25,8 @@
 {
     if (!_synthesisVoice)
     {
-        _synthesisVoice = [AVSpeechSynthesisVoice voiceWithLanguage:[[NSLocale preferredLanguages] objectAtIndex:0]];
+        NSString *preferredLanguage = [AVSpeechSynthesisVoice currentLanguageCode];
+        _synthesisVoice = [AVSpeechSynthesisVoice voiceWithLanguage:preferredLanguage];
     }
     return _synthesisVoice;
 }
@@ -35,7 +36,7 @@
     if (!_synthesizer) {
         _synthesizer = [[AVSpeechSynthesizer alloc] init];
     }
-    _synthesizer.delegate = self;
+   _synthesizer.delegate = self;
     return _synthesizer;
 }
 

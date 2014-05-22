@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) UIImage *photo;
 @property (strong, nonatomic) NSURL *assetLibraryURL;
-//@property (strong, nonatomic) ALAssetsGroup *assetGroup;
 @property (strong, nonatomic) NSString *albumName;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (strong, nonatomic) ALAssetsLibrary *library;

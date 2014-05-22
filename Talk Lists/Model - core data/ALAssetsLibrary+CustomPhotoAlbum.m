@@ -12,6 +12,7 @@
 -(void)saveImage:(UIImage*)image toAlbum:(NSString*)albumName withCompletionBlock:(SaveImageCompletion)completionBlock
 {
     //write the image data to the assets library (camera roll)
+    __weak typeof (self) weakSelf = self;
     [self writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation
                        completionBlock:^(NSURL* assetURL, NSError* error) {
                            
@@ -22,7 +23,7 @@
                            }
                            
                            //add the asset to the custom photo album
-                           [self addAssetURL: assetURL
+                           [weakSelf addAssetURL: assetURL
                                      toAlbum:albumName
                          withCompletionBlock:completionBlock];
                            
@@ -33,7 +34,7 @@
 {
     __block BOOL albumWasFound = NO;
     __block ALAssetsLibraryAccessFailureBlock failBlock;
-    
+    __weak typeof (self) weakSelf = self;
     //search all photo albums in the library
     [self enumerateGroupsWithTypes:ALAssetsGroupAlbum
                         usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -45,7 +46,7 @@
                                 albumWasFound = YES;
                                 
                                 //get a hold of the photo's asset instance
-                                [self assetForURL: assetURL
+                                [weakSelf assetForURL: assetURL
                                       resultBlock:^(ALAsset *asset) {
                                           
                                           //add photo to the target album
@@ -62,9 +63,6 @@
                             
                             if (group==nil && albumWasFound==NO) {
                                 //photo albums are over, target album does not exist, thus create it
-                                
-                                __weak ALAssetsLibrary* weakSelf = self;
-                                
                                 //create new assets album
                                 [self addAssetsGroupAlbumWithName:albumName
                                                       resultBlock:^(ALAssetsGroup *group) {

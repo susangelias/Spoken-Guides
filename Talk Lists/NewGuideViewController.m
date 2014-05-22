@@ -109,17 +109,17 @@
     
     // update user's onscreen instructions
     [self updateStepText];
-    
+    __weak  typeof (self) weakSelf = self;
     // Clear the photo image of the guide title - move to photoView class
     if (self.imageView.image) {
         [UIView animateWithDuration:0.5
                               delay:0.0
                             options:UIViewAnimationOptionTransitionFlipFromRight
                          animations:^{
-                             self.imageView.image = nil;
+                             weakSelf.imageView.image = nil;
                          }
                          completion:^(BOOL finished) {
-                             self.userPhoto = nil;// release pointer to current step's photo core data object which will force a new photo object to be created for the 1st step, if needed
+                             weakSelf.userPhoto = nil;// release pointer to current step's photo core data object which will force a new photo object to be created for the 1st step, if needed
 
                          }];
     }
@@ -155,14 +155,14 @@
 
     if (addPhotoVC.assetLibraryURL) {
         self.userPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
-   
+        __weak typeof (self) weakSelf = self;
         // Retreive the thumbnail of the photo so it can be displayed in the delegate method
         [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:self.userPhoto.assetLibraryURL]
                                 withCompletionBlock:^(UIImage *image, NSError *error) {
                                     // save thumbnail to model
-                                    self.userPhoto.thumbnail = UIImagePNGRepresentation(image);
+                                    weakSelf.userPhoto.thumbnail = UIImagePNGRepresentation(image);
                                     // display thumbail on this screen
-                                    self.imageView.image = image;
+                                    weakSelf.imageView.image = image;
                                 }];
     }
  
@@ -342,14 +342,14 @@
 }
 
 -(void)resetFirstResponder {
+    __weak typeof (self) weakSelf = self;
     if (self.StepTextView.hidden == NO) {
-        //   self.StepTextView.clearsOnBeginEditing = NO;
         [UIView animateWithDuration:0.0     // move to stepView class
                          animations:^{
-                             [self.view addSubview:self.StepTextView];
+                             [weakSelf.view addSubview:weakSelf.StepTextView];
                          }
                          completion:^(BOOL finished) {
-                             [self.StepTextView becomeFirstResponder];
+                             [weakSelf.StepTextView becomeFirstResponder];
                          }
          ];
     }
@@ -357,10 +357,10 @@
         self.guideTitle.clearsOnBeginEditing = NO;  // move to titleView class
         [UIView animateWithDuration:0.0
                          animations:^{
-                             [self.view addSubview:self.guideTitle];
+                             [weakSelf.view addSubview:weakSelf.guideTitle];
                          }
                          completion:^(BOOL finished) {
-                             [self.guideTitle becomeFirstResponder];
+                             [weakSelf.guideTitle becomeFirstResponder];
                          }
          ];
         

@@ -150,7 +150,20 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"row selected");
+    BOOL wasPlaying = NO;
+    if (self.currentState == isPlaying) {
+        [self pauseButtonPressed:nil];
+        wasPlaying = YES;
+    }
+    self.dialogController.currentLineIndex = (int)indexPath.row;
+    self.currentLine = [NSNumber numberWithInt:indexPath.row];
+    if (wasPlaying == YES) {
+        [self playButtonPressed:nil];
+    }
+    
+    // unselect the row since text color will change when row is spoken
+    UITableViewCell *selectedCell = [self.guideTableView cellForRowAtIndexPath:indexPath];
+    [selectedCell setSelected:NO animated:YES ];
 }
 
 #pragma mark dialogControllerDelegate Methods
@@ -169,10 +182,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Enable the Edit Button
  //   self.navigationItem.rightBarButtonItem.enabled = YES;
     
-    // Disable the tap gesture
- //   self.tapGestureRecognizer.enabled = NO;
-    
-    // update state
+     // update state
     self.currentState = isReset;
     
 }
@@ -265,9 +275,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Disable the Edit button
  //   self.navigationItem.rightBarButtonItem.enabled = NO;
     
-    // enable the tap gesture recognizer
- //   self.tapGestureRecognizer.enabled = YES;
-    
     // Start the dialog
     if (self.guide)
     {
@@ -310,10 +317,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
         
         // Enable the Edit button
     //    self.navigationItem.rightBarButtonItem.enabled = YES;
-        
-        // DIABLE THE TAP GESTURE
-     //   self.tapGestureRecognizer.enabled = NO;
-        
+    
         self.currentState = isReset;
 
 }
@@ -416,7 +420,10 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 - (void)setCurrentLine:(NSNumber *)currentLine
 {
-    [self unhighlightCurrentLine:(int)[self.currentLine integerValue]];
+    if ([_currentLine integerValue] >= 0) {
+        [self unhighlightCurrentLine:(int)[_currentLine integerValue]];
+    }
+
     _currentLine = currentLine;
     if ([currentLine integerValue] >= 0) {
         [self highlightCurrentLine:(int)[currentLine integerValue]];

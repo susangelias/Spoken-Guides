@@ -50,19 +50,21 @@
     // extract new image
     UIImage *selectedPhoto = info[UIImagePickerControllerEditedImage];
 
-    [self.library saveImage:selectedPhoto
-                    toAlbum:self.albumName
+   __weak typeof (self) weakSelf = self;
+    [weakSelf.library saveImage:selectedPhoto
+                    toAlbum:weakSelf.albumName
         withCompletionBlock:^(NSURL *assetLibraryURL, NSError *error) {
             if (error != nil) {
                 NSLog(@"error saving photo to album: %@", error);
             }
             else {
-                self.assetLibraryURL = assetLibraryURL;
+                weakSelf.assetLibraryURL = assetLibraryURL;
             }
         }];
     
     // dismiss view controller
-    [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
+   [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
+
 
     // Display image
     UIImage *resizedPhoto = [selectedPhoto resizeToSquareImage:selectedPhoto];
@@ -70,13 +72,13 @@
         // wait for imageView to render before attempting to display photo
         [UIView animateWithDuration:0.0
                          animations:^{
-                             [self.view addSubview:self.photoView];
-                             self.doneButton.hidden = NO;
-                             self.redoButton.hidden = NO;
+                             [weakSelf.view addSubview:self.photoView];
+                             weakSelf.doneButton.hidden = NO;
+                             weakSelf.redoButton.hidden = NO;
                           }
                          completion:^(BOOL finished) {
-                             self.photoView.image = resizedPhoto;
-                             self.photo = resizedPhoto;
+                             weakSelf.photoView.image = resizedPhoto;
+                             weakSelf.photo = resizedPhoto;
                          }
          ];
     }

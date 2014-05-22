@@ -18,7 +18,7 @@ typedef void(^configureCellBlock)(UITableViewCell *, id);
 @property (nonatomic, copy) configureCellBlock configureCell;
 @property (nonatomic) BOOL editingAllowed;
 @property (nonatomic) BOOL rearrangingAllowed;
-@property (nonatomic, strong) id <ArrayDataSourceDelegate> arrayDataSourceDelegate;
+@property (nonatomic, weak) id <ArrayDataSourceDelegate> arrayDataSourceDelegate;
 
 -(ArrayDataSource *)initWithItems:(NSArray *)initialItems
                      cellIDString:(NSString *)IDString
