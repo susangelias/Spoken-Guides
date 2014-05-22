@@ -248,18 +248,17 @@
         }
         
         // check if there is an unsaved instruction
-        if ( (self.StepTextView.hidden == NO) && (self.stepInstruction.textViewPlaceholder.hidden == YES) && (![self.StepTextView.text isEqualToString:@""]))
-        {
-            // save this last step
-            [self stepInstructionEntered:self.StepTextView.text];
-        }
-        else {
-            // discard last step
+        if ([self.stepInstruction.stepTextView.text isEqualToString:@""]) {
+            // discard last step since there is no text entered - this will dump any photo saved for this step as well
             if (self.stepInProgess) {
                 [self.managedObjectContext deleteObject:self.stepInProgess];
             }
         }
-
+        else // update the model with the latest view changes to the step instructions
+        {
+                self.stepInProgess.instruction = self.stepInstruction.stepTextView.text;
+        }
+  
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
                                                         message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
                                                        delegate:self
@@ -307,15 +306,13 @@
         if ([[segue destinationViewController] isKindOfClass:[previewViewController class]]) {
             previewViewController *destController = [segue destinationViewController];
             destController.guideToPreview = self.guideInProgress;
-            if (self.StepTextView.hidden == NO) {
-                // add in progress step to guide even of user has not hit the Next key yet
-              //  self.stepInProgess.instruction = self.StepTextView.text;
-            }
-            else if (self.guideTitle.hidden == NO) {
+            if (self.guideTitle.hidden == NO) {
                 // show title in progress in preview
                 destController.titleToPreview = self.guideTitle.text;
+            } else  {
+                // update in progress step to model even if user has not hit the Next key yet
+                self.stepInProgess.instruction = self.stepInstruction.stepTextView.text;
             }
-
         }
     }
     else if ([segue.identifier isEqualToString:@"addPhotoSegue"] ) {
