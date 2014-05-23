@@ -1,0 +1,214 @@
+TPods-MZAppearance
+v6
+r1
+cCheck dependencies
+cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a normal i386
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c00000000531E4ABA0000000000A90C10
+t1394494138
+s11078672
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c00000000531E4ABB0000000000649DB0
+t1394494139
+s6593968
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk
+c00000000534815EC0000000000000198
+t1397233132
+s408
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/SDKSettings.plist
+c00000000531E4AC400000000000003B4
+t1394494148
+s948
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/CoreServices/SystemVersion.plist
+c00000000531E4AC7000000000000019E
+t1394494151
+s414
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
+c00000000531E4AD60000000000000ADC
+t1394494166
+s2780
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o
+t1400868945
+s20092
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o
+t1400868945
+s7328
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o
+t1400868945
+s3476
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance.LinkFileList
+c00000000537F905000000000000001F3
+t1400868944
+s499
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch
+t1400868945
+s125012
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch
+t1400868945
+s122936
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a
+t1400868945
+s31536
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/MZAppearance.h
+c00000000537F903500000000000007A1
+t1400868917
+s1953
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m
+c00000000537F90350000000000000E50
+t1400868917
+s3664
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.h
+c00000000537F90350000000000000548
+t1400868917
+s1352
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m
+c00000000537F90350000000000000926
+t1400868917
+s2342
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-dummy.m
+c00000000537F9035000000000000008A
+t1400868917
+s138
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-prefix.pch
+c00000000537F9035000000000000004D
+t1400868917
+s77
+
+N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
+c00000000537F90350000000000000380
+t1400868917
+s896
+
+CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m
+r0
+
+CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m
+r0
+
+CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies7d40ec6ee42fb941^300eee6ee42fb941^---0#1#1#--18"Check dependencies36"96C1D1DC-7CB9-419E-BD69-104DD456D2A5-
+
+CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s422561745.089609
+e422561745.249917
+r1
+xCompileC
+x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o
+x/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/MZAppearance.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m279"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o MZAppearance/MZAppearance/MZAppearance.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilerea2017d1c72fb941^37fb3fd1c72fb941^---0#0#1#-19%DVTDocumentLocation2@103"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m0000000000000000^4336"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o MZAppearance/MZAppearance/MZAppearance.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -fobjc-arc -DOS_OBJECT_USE_OBJC=0 -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/MZAppearance.o36"063F8079-0D13-491C-AC4F-EE13DD5C9F9B-
+b8C9AC88A-B1F0-4995-A30D-916F100EE227
+
+CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s422561745.090155
+e422561745.238628
+r1
+xCompileC
+x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o
+x/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m289"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o MZAppearance/MZAppearance/NSInvocation+Copy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler6a4d17d1c72fb941^e7173dd1c72fb941^---0#0#1#-19%DVTDocumentLocation2@108"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m0000000000000000^4366"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o MZAppearance/MZAppearance/NSInvocation+Copy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -fobjc-arc -DOS_OBJECT_USE_OBJC=0 -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/NSInvocation+Copy.o36"7B24B2D2-FE68-4734-92DE-AA9CDC7FF544-
+b8C9AC88A-B1F0-4995-A30D-916F100EE227
+
+CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s422561745.090945
+e422561745.207857
+r1
+xCompileC
+x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o
+x/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-dummy.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-dummy.m
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection87"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-dummy.m275"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o Pods-MZAppearance-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilered6517d1c72fb941^3f3635d1c72fb941^---0#0#1#-19%DVTDocumentLocation2@88"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-MZAppearance-dummy.m0000000000000000^4316"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o Pods-MZAppearance-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance-dummy.o36"D7AA4FA6-168F-4E5A-8281-4456AFBD9395-
+b8C9AC88A-B1F0-4995-A30D-916F100EE227
+
+CLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a normal i386
+s422561745.250871
+e422561745.258401
+r1
+xLibtool
+x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a
+xnormal
+xi386
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection129"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a normal i386129"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a normal i3864c4f40d1c72fb941^5b2742d1c72fb941^---0#0#1#--1115"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a normal i386    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Objects-normal/i386/Pods-MZAppearance.LinkFileList -framework Foundation -framework QuartzCore -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a36"744EBD05-E6EC-4300-B4FA-B56ED7DC2492-
+b8C9AC88A-B1F0-4995-A30D-916F100EE227
+
+CProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s422561744.793545
+e422561745.088822
+r1
+xProcessPCH
+x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch
+xPods-MZAppearance-prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-prefix.pch
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection39"Precompile Pods-MZAppearance-prefix.pch283"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilere943cbd0c72fb941^12bf16d1c72fb941^---0#0#1#-19%DVTDocumentLocation2@91"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-MZAppearance-prefix.pch0000000000000000^4192"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -fobjc-arc -DOS_OBJECT_USE_OBJC=0 --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.dia -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.d -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-prefix.pch -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-czrsbfdirsmeopdfmeeafnebtivj/Pods-MZAppearance-prefix.pch.pch36"36B0E4FA-DE5F-430F-A8A4-1352EA658715-
+b8C9AC88A-B1F0-4995-A30D-916F100EE227
+
+CProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s422561744.794141
+e422561745.088673
+r1
+xProcessPCH
+x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch
+xPods-MZAppearance-prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-MZAppearance-prefix.pch
+d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection39"Precompile Pods-MZAppearance-prefix.pch283"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler6e6bcbd0c72fb941^abb316d1c72fb941^---0#0#1#-19%DVTDocumentLocation2@91"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-MZAppearance-prefix.pch0000000000000000^4158"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/Pods-MZAppearance-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-MZAppearance.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.dia -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.d -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-prefix.pch -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-gdbqyyxfzmkguhczbjhtltmpqyyw/Pods-MZAppearance-prefix.pch.pch36"93867BB5-6654-4749-A7EE-186E6D9E7C46-
+b8C9AC88A-B1F0-4995-A30D-916F100EE227
+
+CProcessPCH /Users/susanelias/Library/Developer/Xcode/DerivedData/Talk_Lists-enmazpptzerveicuxbbmfdcohjsc/Index/PrecompiledHeaders/Pods-MZAppearance-prefix-fnnukffrjzgclyewqqdmnwkvseiz_ast/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CProcessPCH /Users/susanelias/Library/Developer/Xcode/DerivedData/Talk_Lists-enmazpptzerveicuxbbmfdcohjsc/Index/PrecompiledHeaders/Pods-MZAppearance-prefix-hdgwquerwxswarcvpkrgwnnlelqd_ast/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
