@@ -33,6 +33,7 @@
 		C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85819180FB500212B5E /* Photo+Addendums.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
+		C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */; };
 		C06B50EB192434E0002EF96C /* fetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */; };
 		C06E4A40191EBE7800093160 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A3F191EBE7800093160 /* Guide.m */; };
 		C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
@@ -125,6 +126,8 @@
 		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
 		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
 		C047761F190853A20085833C /* NewGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewController.m; sourceTree = "<group>"; };
+		C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGuideViewController.h; sourceTree = "<group>"; };
+		C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewController.m; sourceTree = "<group>"; };
 		C06B50E9192434E0002EF96C /* fetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchedResultsDataSource.h; sourceTree = "<group>"; };
 		C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fetchedResultsDataSource.m; sourceTree = "<group>"; };
 		C06E4A3E191EBE7800093160 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				C0BC64B8190D85D6002F42D1 /* previewViewController.m */,
 				C047761E190853A20085833C /* NewGuideViewController.h */,
 				C047761F190853A20085833C /* NewGuideViewController.m */,
+				C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */,
+				C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */,
 				C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */,
 				C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */,
 				C0FC202A192E247D007213AB /* MyGuidesViewController.h */,
@@ -721,6 +726,7 @@
 				C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */,
 				C0072C7F191BF30F000254A8 /* Photo.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
+				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */,
 				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,

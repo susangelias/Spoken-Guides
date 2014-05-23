@@ -33,6 +33,7 @@
 {
     __block BOOL albumWasFound = NO;
     __block ALAssetsLibraryAccessFailureBlock failBlock;
+    __weak typeof (self) weakSelf = self;
     //search all photo albums in the library
     [self enumerateGroupsWithTypes:ALAssetsGroupAlbum
                         usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -44,7 +45,7 @@
                                 albumWasFound = YES;
                                 
                                 //get a hold of the photo's asset instance
-                                [self assetForURL: assetURL
+                                [weakSelf assetForURL: assetURL
                                       resultBlock:^(ALAsset *asset) {
                                           
                                           //add photo to the target album
@@ -66,7 +67,7 @@
                                                       resultBlock:^(ALAssetsGroup *group) {
                                                           
                                                           //get the photo's instance
-                                                          [self assetForURL: assetURL
+                                                          [weakSelf assetForURL: assetURL
                                                                     resultBlock:^(ALAsset *asset) {
                                                                         
                                                                         //add photo to the newly created album
