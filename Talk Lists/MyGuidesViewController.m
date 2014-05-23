@@ -80,6 +80,9 @@
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
+        case NSFetchedResultsChangeInsert:
+           [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
     }
 }
 
