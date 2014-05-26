@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol stepEntryViewDelegate <NSObject>
+@protocol stepViewDelegate <NSObject>
 
 @required
 

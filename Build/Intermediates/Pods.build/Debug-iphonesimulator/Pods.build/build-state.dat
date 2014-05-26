@@ -40,22 +40,22 @@ t1400868945
 s146
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a
-c00000000537F9051000000000000F140
-t1400868945
+c000000005380A542000000000000F140
+t1400939842
 s61760
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-MZAppearance.a
-c00000000537F90510000000000007B30
-t1400868945
+c000000005380A5420000000000007B30
+t1400939842
 s31536
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a
-c00000000537F9051000000000000AC48
-t1400868945
+c000000005380A542000000000000AC48
+t1400939842
 s44104
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods.a
-t1400868945
+t1400939842
 s140496
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
@@ -68,7 +68,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesdf8cfa6ee42fb941^3dd4fa6ee42fb941^---0#1#1#--18"Check dependencies36"9DB577CD-889B-4409-BAF1-06F621F74DEA-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesb81d96ef8f33b941^238596ef8f33b941^---0#1#1#--18"Check dependencies36"C8B1B318-F596-49BB-97B0-93E54AD30512-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods.build/Objects-normal/i386/Pods-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s422561745.542334
@@ -86,13 +86,13 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile
 b0CA5B8C8-EFC8-4C8B-B392-2C4829E62067
 
 CLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i386
-s422561745.640363
-e422561745.654081
+s422632642.466455
+e422632642.473568
 r1
 xLibtool
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods.a
 xnormal
 xi386
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection116"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i386116"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i3868604a4d1c72fb941^1d72a7d1c72fb941^---0#0#1#--1113"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i386    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods.build/Objects-normal/i386/Pods.LinkFileList -framework Foundation -lPods-BlurryModalSegue -lPods-MZAppearance -lPods-UIImage+BlurredFrame -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a36"73CE0FAC-E3EF-4378-BB53-46F7FED3D545-
-b0CA5B8C8-EFC8-4C8B-B392-2C4829E62067
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection116"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i386116"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i386217577c2dc30b941^de3c79c2dc30b941^---0#0#1#--1113"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a normal i386    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods.build/Objects-normal/i386/Pods.LinkFileList -framework Foundation -lPods-BlurryModalSegue -lPods-MZAppearance -lPods-UIImage+BlurredFrame -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods.a36"6137FE10-E0EA-4220-BC21-BEED350C29E2-
+b8849B81F-A5AA-490A-A7D8-4FDA85F7634D
 

@@ -257,5 +257,51 @@
     
 }
 
+-(void)testGetStepAtRank
+{
+    // create guide and add 4 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    Step *stepTest4 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest4.rank = [NSNumber numberWithInteger:4];
+    [guideInProgress addStepInGuideObject:stepTest4];
+
+    // retreive the step at rank = 2
+    Step *rankedStep = [guideInProgress stepForRank:2];
+    
+    // compare the results
+    XCTAssertEqual([rankedStep.rank intValue], 2, @"rank of retreived step must be equal to 2");
+}
+
+-(void)testGetStepAtIllegalRankFailsSilently
+{
+    // create guide and add 4 steps
+    Guide *guideInProgress = [Guide insertNewObjectInManagedObjectContext:self.moc];
+    Step *stepTest1 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest1.rank = [NSNumber numberWithInteger:1];
+    [guideInProgress addStepInGuideObject:stepTest1];
+    Step *stepTest2 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest2.rank = [NSNumber numberWithInteger:2];
+    [guideInProgress addStepInGuideObject:stepTest2];
+    Step *stepTest3 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest3.rank = [NSNumber numberWithInteger:3];
+    [guideInProgress addStepInGuideObject:stepTest3];
+    Step *stepTest4 =[Step insertNewObjectInManagedObjectContext:self.moc];
+    stepTest4.rank = [NSNumber numberWithInteger:4];
+    [guideInProgress addStepInGuideObject:stepTest4];
+    
+    // retreive the step at rank = 6
+    Step *rankedStep = [guideInProgress stepForRank:6];
+   
+    XCTAssertNil(rankedStep, @"ranked Step must be nil for illegal rank");
+}
 
 @end

@@ -13,7 +13,10 @@
 
 @property (nonatomic, weak) UITextField *userEntryField;
 @property (nonatomic, weak) id <titleViewDelegate> guideTitleDelegate;
+@property (nonatomic, strong) NSString *titleText;
 
--(titleView *)initWithTextField: (UITextField *)textField;
+-(titleView *)initWithTextField: (UITextField *)textField withText: (NSString *)textContent;
+-(void)showTitle;
+-(void)hideTitle;
 
 @end

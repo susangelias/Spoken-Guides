@@ -7,21 +7,45 @@
 //
 
 #import "titleView.h"
+#import "UITextField+SlideViews.h"
 
 @implementation titleView
 {
     BOOL returnKeyPressed;
 }
 
+-(void)showTitle
+{
+    BOOL editFlag;
+    if (self.titleText) {
+        editFlag = NO;
+    }
+    else {
+        editFlag = YES;
+    }
+    [self.userEntryField slideViewRightOnScreenWithText:self.titleText toEdit:editFlag];
+}
+
+-(void)hideTitle
+{
+    [self.userEntryField slideViewLeftOffScreen];
+}
+
 #pragma mark <UITextFieldDelegate>
 
--(titleView *)initWithTextField: (UITextField *)textField
+-(titleView *)initWithTextField: (UITextField *)textField withText: (NSString *)textContent
 {
     self = [super init];
     if (self) {
         self.userEntryField = textField;
         self.userEntryField.delegate = self;
-        [self.userEntryField becomeFirstResponder];
+        if (textContent) {
+            self.userEntryField.placeholder = @"";
+            self.userEntryField.text = textContent;
+        }
+        else {
+            [self.userEntryField becomeFirstResponder];
+        }
     }
     return self;
 }
@@ -44,18 +68,7 @@
     if (returnKeyPressed) {
         // Send entered text to delegate
         [self.guideTitleDelegate titleEntered:textField.text];
-        
-        // Slide our text field view offscreen to the left
-        __weak   typeof (self) weakSelf = self;
-        [UIView animateWithDuration:0.75
-                              delay:0.1
-                            options:UIViewAnimationOptionTransitionNone
-                         animations:^{
-                             weakSelf.userEntryField.center = CGPointMake(self.userEntryField.center.x - 300, self.userEntryField.center.y);
-                         }
-                         completion:^(BOOL finished) {
-                             weakSelf.userEntryField.hidden = YES;
-                    }];
+        [self.userEntryField slideViewLeftOffScreen];
     }
 }
 

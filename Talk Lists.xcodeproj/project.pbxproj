@@ -24,16 +24,18 @@
 		C02BFBA01918192700F6A035 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D55321917F95F006955E7 /* CoreData.framework */; };
 		C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBA119190D7500F6A035 /* Guide+Addendums.m */; };
 		C02BFBA619193D4300F6A035 /* titleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBA519193D4300F6A035 /* titleView.m */; };
-		C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBAA19195F6D00F6A035 /* stepEntryView.m */; };
+		C02BFBAB19195F6D00F6A035 /* stepView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02BFBAA19195F6D00F6A035 /* stepView.m */; };
 		C02D55331917F95F006955E7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02D55321917F95F006955E7 /* CoreData.framework */; };
+		C035E9A219310E0000DBBE4A /* UITextField+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C035E9A119310E0000DBBE4A /* UITextField+SlideViews.m */; };
+		C035E9A5193115B200DBBE4A /* UITextView+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */; };
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
 		C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */; };
 		C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85219180F6300212B5E /* Guide+Addendums.m */; };
 		C046D85619180F9300212B5E /* Step+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85519180F9300212B5E /* Step+Addendums.m */; };
 		C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85819180FB500212B5E /* Photo+Addendums.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
-		C0477620190853A20085833C /* NewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761F190853A20085833C /* NewGuideViewController.m */; };
 		C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */; };
+		C067BEBC192FDBB500996DF8 /* guideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C067BEBB192FDBB500996DF8 /* guideCell.m */; };
 		C06B50EB192434E0002EF96C /* fetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */; };
 		C06E4A40191EBE7800093160 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A3F191EBE7800093160 /* Guide.m */; };
 		C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
@@ -109,10 +111,14 @@
 		C02BFBA419193D4300F6A035 /* titleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = titleView.h; sourceTree = "<group>"; };
 		C02BFBA519193D4300F6A035 /* titleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = titleView.m; sourceTree = "<group>"; };
 		C02BFBA8191954C800F6A035 /* titleViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = titleViewDelegate.h; sourceTree = "<group>"; };
-		C02BFBA919195F6D00F6A035 /* stepEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepEntryView.h; sourceTree = "<group>"; };
-		C02BFBAA19195F6D00F6A035 /* stepEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepEntryView.m; sourceTree = "<group>"; };
+		C02BFBA919195F6D00F6A035 /* stepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepView.h; sourceTree = "<group>"; };
+		C02BFBAA19195F6D00F6A035 /* stepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepView.m; sourceTree = "<group>"; };
 		C02BFBAC19195FB400F6A035 /* stepEntryViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stepEntryViewDelegate.h; sourceTree = "<group>"; };
 		C02D55321917F95F006955E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C035E9A019310E0000DBBE4A /* UITextField+SlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+SlideViews.h"; sourceTree = "<group>"; };
+		C035E9A119310E0000DBBE4A /* UITextField+SlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+SlideViews.m"; sourceTree = "<group>"; };
+		C035E9A3193115B200DBBE4A /* UITextView+SlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+SlideViews.h"; sourceTree = "<group>"; };
+		C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+SlideViews.m"; sourceTree = "<group>"; };
 		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
 		C046D84319180B5800212B5E /* GuideModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuideModel.xcdatamodel; sourceTree = "<group>"; };
@@ -124,10 +130,10 @@
 		C046D85819180FB500212B5E /* Photo+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Photo+Addendums.m"; path = "Model - core data/Photo+Addendums.m"; sourceTree = "<group>"; };
 		C047761B190848250085833C /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideDetailViewController.h; path = ../GuideDetailViewController.h; sourceTree = "<group>"; };
 		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
-		C047761E190853A20085833C /* NewGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGuideViewController.h; sourceTree = "<group>"; };
-		C047761F190853A20085833C /* NewGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGuideViewController.m; sourceTree = "<group>"; };
 		C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGuideViewController.h; sourceTree = "<group>"; };
 		C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewController.m; sourceTree = "<group>"; };
+		C067BEBA192FDBB500996DF8 /* guideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideCell.h; sourceTree = "<group>"; };
+		C067BEBB192FDBB500996DF8 /* guideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guideCell.m; sourceTree = "<group>"; };
 		C06B50E9192434E0002EF96C /* fetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchedResultsDataSource.h; sourceTree = "<group>"; };
 		C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fetchedResultsDataSource.m; sourceTree = "<group>"; };
 		C06E4A3E191EBE7800093160 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Guide.h; path = "Model - core data/Guide.h"; sourceTree = "<group>"; };
@@ -282,12 +288,16 @@
 		C02BFBA719193D4C00F6A035 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C02BFBA919195F6D00F6A035 /* stepEntryView.h */,
-				C02BFBAA19195F6D00F6A035 /* stepEntryView.m */,
+				C02BFBA919195F6D00F6A035 /* stepView.h */,
+				C02BFBAA19195F6D00F6A035 /* stepView.m */,
 				C02BFBAC19195FB400F6A035 /* stepEntryViewDelegate.h */,
 				C02BFBA419193D4300F6A035 /* titleView.h */,
 				C02BFBA519193D4300F6A035 /* titleView.m */,
+				C035E9A3193115B200DBBE4A /* UITextView+SlideViews.h */,
+				C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */,
 				C02BFBA8191954C800F6A035 /* titleViewDelegate.h */,
+				C035E9A019310E0000DBBE4A /* UITextField+SlideViews.h */,
+				C035E9A119310E0000DBBE4A /* UITextField+SlideViews.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -320,8 +330,6 @@
 				C02BFBA719193D4C00F6A035 /* View */,
 				C0BC64B7190D85D6002F42D1 /* previewViewController.h */,
 				C0BC64B8190D85D6002F42D1 /* previewViewController.m */,
-				C047761E190853A20085833C /* NewGuideViewController.h */,
-				C047761F190853A20085833C /* NewGuideViewController.m */,
 				C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */,
 				C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */,
 				C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */,
@@ -382,6 +390,8 @@
 				C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */,
 				C0072C6F191BCE62000254A8 /* UIImage+Resize.h */,
 				C0072C70191BCE62000254A8 /* UIImage+Resize.m */,
+				C067BEBA192FDBB500996DF8 /* guideCell.h */,
+				C067BEBB192FDBB500996DF8 /* guideCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -707,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0270137192A3E5000F954EA /* languageOpenEars.m in Sources */,
+				C035E9A219310E0000DBBE4A /* UITextField+SlideViews.m in Sources */,
 				C046D85619180F9300212B5E /* Step+Addendums.m in Sources */,
 				C06E4A40191EBE7800093160 /* Guide.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
@@ -719,19 +730,20 @@
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
 				C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */,
+				C035E9A5193115B200DBBE4A /* UITextView+SlideViews.m in Sources */,
 				C027013A192A3E7F00F954EA /* dialogController.m in Sources */,
 				C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */,
 				C02BFBA619193D4300F6A035 /* titleView.m in Sources */,
 				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
-				C02BFBAB19195F6D00F6A035 /* stepEntryView.m in Sources */,
+				C02BFBAB19195F6D00F6A035 /* stepView.m in Sources */,
 				C0072C7F191BF30F000254A8 /* Photo.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
+				C067BEBC192FDBB500996DF8 /* guideCell.m in Sources */,
 				C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */,
 				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,
 				C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */,
-				C0477620190853A20085833C /* NewGuideViewController.m in Sources */,
 				C0072C7A191BD249000254A8 /* Step.m in Sources */,
 				C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */,
 				C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */,
@@ -801,10 +813,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -834,12 +843,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Talk Lists";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s,";
 			};
 			name = Debug;
 		};
@@ -847,10 +856,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -874,13 +880,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Talk Lists";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s,";
 			};
 			name = Release;
 		};
@@ -888,6 +894,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -916,6 +923,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

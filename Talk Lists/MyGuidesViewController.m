@@ -7,12 +7,13 @@
 //
 
 #import "MyGuidesViewController.h"
-#import "NewGuideViewController.h"
+#import "EditGuideViewController.h"
 #import "ArrayDataSource.h"
 #import "GuideCategories.h"
 #import "fetchedResultsDataSource.h"
 #import "Guide+Addendums.h"
 #import "Photo+Addendums.h"
+
 
 @interface MyGuidesViewController () <NSFetchedResultsControllerDelegate>
 
@@ -37,13 +38,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     NSError *error;
     [self.guideFetchResultsController performFetch:&error];
     if (error) {
         NSLog(@"Error fetching guides for a specific category: %@", error);
     }
-    
     self.myGuidesTableView.dataSource = self.guideFetchResultsController;
 }
 
@@ -83,6 +82,9 @@
         case NSFetchedResultsChangeInsert:
            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
+        case NSFetchedResultsChangeUpdate:
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
     }
 }
 
@@ -115,30 +117,33 @@
 {
     if ([segue.identifier isEqualToString:@"NewGuideSegue"] )
     {
-        if ([[segue destinationViewController] isKindOfClass:[NewGuideViewController class]]) {
-            NewGuideViewController *destController = [segue destinationViewController];
+        if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
+            EditGuideViewController *destController = [segue destinationViewController];
             destController.managedObjectContext = self.managedObjectContext;
+            destController.guideToEdit = nil;
         }
     }
-    /* else if ([segue.identifier isEqualToString:@"GuideDetailSegue"]) {
-        GuideDetailViewController *destVC = [segue destinationViewController];
-        if ([sender isKindOfClass:[UITableViewCell class]])
-        {
-            UITableViewCell *senderCell = sender;
-            NSUInteger indexOfGuideObject = [[self.guideFetchResultsController fetchedObjects] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                Guide *fetchedGuide = (Guide *)obj;
-                if ([fetchedGuide.title isEqualToString:senderCell.textLabel.text]) {
-                    *stop = YES;     // found guide matching title from the selected table cell
-                    return YES;
-                }
-                else {
-                    return NO;
-                }
-            }];
-            destVC.guide = (Guide *)[[self.guideFetchResultsController fetchedObjects] objectAtIndex:indexOfGuideObject];
+    else if ([segue.identifier isEqualToString:@"EditGuideSegue"]) {
+        if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
+            EditGuideViewController *destController = [segue destinationViewController];
+            destController.managedObjectContext = self.managedObjectContext;
+            if ([sender isKindOfClass:[UITableViewCell class]])
+            {
+                UITableViewCell *senderCell = sender;
+                NSUInteger indexOfGuideObject = [[self.guideFetchResultsController fetchedObjects] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                    Guide *fetchedGuide = (Guide *)obj;
+                    if ([fetchedGuide.title isEqualToString:senderCell.textLabel.text]) {
+                        *stop = YES;     // found guide matching title from the selected table cell
+                        return YES;
+                    }
+                    else {
+                        return NO;
+                    }
+                }];
+                destController.guideToEdit = (Guide *)[[self.guideFetchResultsController fetchedObjects] objectAtIndex:indexOfGuideObject];
+            }
         }
     }
-*/
 }
 
 #pragma mark Initializations
@@ -146,10 +151,13 @@
 -(fetchedResultsDataSource *)guideFetchResultsController
 {
     if (!_guideFetchResultsController) {
+
         void (^configureCell)(UITableViewCell *, Guide *) = ^(UITableViewCell *cell, Guide *fetchedGuide) {
             cell.textLabel.text = fetchedGuide.title;
             cell.imageView.image = [UIImage imageWithData:fetchedGuide.photo.thumbnail];
         };
+
+
 #warning will need to add a search predicate on the user ID
     //    NSString *searchString = self.guideCategory;
         NSPredicate *predicate = nil; //[NSPredicate predicateWithFormat:@"classification == %@", searchString];

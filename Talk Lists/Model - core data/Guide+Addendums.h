@@ -16,5 +16,6 @@
 -(NSArray *)sortedSteps;
 -(void)deleteStepAtIndex:(NSUInteger)index;
 -(void)moveStepFromNumber:(NSUInteger)fromIndex toNumber:(NSUInteger)toIndex;
+-(Step *)stepForRank:(NSUInteger)rank;
 
 @end

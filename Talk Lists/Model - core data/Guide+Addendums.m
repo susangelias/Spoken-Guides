@@ -35,8 +35,7 @@
 -(void)deleteStepAtIndex:(NSUInteger)index
 {
     // get step object
-    NSPredicate *rankPredicate = [NSPredicate predicateWithFormat:@"rank == %d", index];
-    Step *stepToBeDeleted = [self.stepInGuide filteredSetUsingPredicate:rankPredicate].anyObject;
+    Step *stepToBeDeleted = [self stepForRank:index];
     
     // remove step from core data
     if (stepToBeDeleted) {
@@ -90,6 +89,14 @@
         thisStep = rankedSteps[fromIndex-1];
         thisStep.rank = [NSNumber numberWithInt:toIndex];
     }
+}
+
+-(Step *)stepForRank:(NSUInteger)rank
+{
+    // get step object
+    NSPredicate *rankPredicate = [NSPredicate predicateWithFormat:@"rank == %d", rank];
+    Step *retrievedStep = [self.stepInGuide filteredSetUsingPredicate:rankPredicate].anyObject;
+    return retrievedStep;    
 }
 
 @end
