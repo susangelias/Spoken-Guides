@@ -108,7 +108,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies10e6ba413435b941^a1a0bc413435b941^---0#1#1#--18"Check dependencies36"EC437832-82F2-4989-85E2-F204B1943320-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies40a2f1da3c35b941^0c91f3da3c35b941^---0#1#1#--18"Check dependencies36"4471A586-7ACF-4A15-911B-2458C2B74868-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-UIImage+BlurredFrame.build/Objects-normal/armv7/Pods-UIImage+BlurredFrame-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s422633440.588100

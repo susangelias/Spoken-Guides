@@ -251,27 +251,29 @@
         [self titleEntered:self.guideTitle.text];
     }
     // save the most recent step instruction if there is any text entered
-    if (![self.stepInProgess.instruction isEqualToString:self.StepTextView.text]) {
+    if (![self.stepInProgess.instruction isEqualToString:self.stepEntryView.stepTextView.text]) {
         if ([self.stepEntryView.stepTextView.text isEqualToString:@""]) {
             // discard last step since there is no text entered - this will dump any photo saved for this step as well
             if (self.stepInProgess) {
                 [self.managedObjectContext deleteObject:self.stepInProgess];
             }
-            else // update the model with the latest view changes to the step instructions
-            {
-                self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
-            }
+        }
+        else // update the model with the latest view changes to the step instructions
+        {
+            self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
         }
     }
-
-    //  put up the alert to save any changes made to the guide
-    if (([self.guideToEdit.managedObjectContext hasChanges]) &&
-        (![[self.managedObjectContext insertedObjects] isEqualToSet:[self.managedObjectContext deletedObjects]]) )
-    {
     
     NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
     NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
     NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
+
+    //  put up the alert to save any changes made to the guide
+    NSUInteger insertedObjectCount = [[self.managedObjectContext insertedObjects] count];
+    if (([self.guideToEdit.managedObjectContext hasChanges]) &&
+        ( (![[self.managedObjectContext insertedObjects] isEqualToSet:[self.managedObjectContext deletedObjects]]) ||
+        (insertedObjectCount == 0)) )
+    {
      
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
                                                         message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
