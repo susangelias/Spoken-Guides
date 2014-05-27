@@ -45,7 +45,6 @@
 @implementation EditGuideViewController
 {
     int stepNumber;
-    BOOL modified;
 }
 
 
@@ -96,7 +95,6 @@
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
     
-    modified = NO;
     if (self.guideToEdit) {
         [self.managedObjectContext.undoManager beginUndoGrouping];
     }
@@ -115,8 +113,6 @@
 
 -(void)titleEntered:(NSString*)title
 {
-    modified = YES;
-    
     // if this is a new guide - create the guide object once a title has been entered
     if (!self.guideToEdit) {
         self.guideToEdit= [self createGuide];
@@ -138,7 +134,6 @@
     // save current instructions in model
     if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
         self.stepInProgess.instruction = instructionText;
-        modified = YES;
     }
     
     // update user's onscreen instructions
@@ -250,28 +245,34 @@
     [self.guideTitle resignFirstResponder];
     [self.StepTextView resignFirstResponder];
     
-    
-    //  put up the alert to save any changes made to the guide
-    if (modified == YES)
-    {
-        // check if there are unsaved changes to the title
-        if (self.guideTitle.hidden == NO) {
-            // this title needs to be saved
-            [self titleEntered:self.guideTitle.text];
-        }
-        
-        // check if there is an unsaved instruction
+    // save the most recent text view where the user has typed in text but not pressed the Next key
+    if (![self.guideToEdit.title isEqualToString:self.guideTitle.text]) {
+        // this title needs to be saved
+        [self titleEntered:self.guideTitle.text];
+    }
+    // save the most recent step instruction if there is any text entered
+    if (![self.stepInProgess.instruction isEqualToString:self.StepTextView.text]) {
         if ([self.stepEntryView.stepTextView.text isEqualToString:@""]) {
             // discard last step since there is no text entered - this will dump any photo saved for this step as well
             if (self.stepInProgess) {
                 [self.managedObjectContext deleteObject:self.stepInProgess];
             }
+            else // update the model with the latest view changes to the step instructions
+            {
+                self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
+            }
         }
-        else // update the model with the latest view changes to the step instructions
-        {
-            self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
-        }
-        
+    }
+
+    //  put up the alert to save any changes made to the guide
+    if (([self.guideToEdit.managedObjectContext hasChanges]) &&
+        (![[self.managedObjectContext insertedObjects] isEqualToSet:[self.managedObjectContext deletedObjects]]) )
+    {
+    
+    NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
+    NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
+    NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
+     
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
                                                         message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
                                                        delegate:self
@@ -287,7 +288,7 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ( (!buttonIndex == 0) && (self.guideToEdit) )
+     if ( (!buttonIndex == 0) && (self.guideToEdit) )
     {
         [self.managedObjectContext.undoManager endUndoGrouping];
         if (buttonIndex == 1) {
@@ -300,12 +301,14 @@
         }
         else if (buttonIndex == 2) {
             // undo any changes
-      //      NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
             if ([self.managedObjectContext.undoManager canUndo]) {
                 [self.managedObjectContext.undoManager undoNestedGroup];
-         //       NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
             }
         }
+        NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
+        NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
+        NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
+        
         // return to main screen
         [self.navigationController popViewControllerAnimated:YES];
     }
