@@ -27,6 +27,11 @@
     
     // Set up managed object context
     [self setupManagedObjectContext];
+    
+    // Set up the undo manager
+    if (self.moc) {
+        self.moc.undoManager = [[NSUndoManager alloc] init];
+    }
 }
 
 - (void)didReceiveMemoryWarning

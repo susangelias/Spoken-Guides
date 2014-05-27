@@ -45,7 +45,7 @@
 @implementation EditGuideViewController
 {
     int stepNumber;
-    
+    BOOL modified;
 }
 
 
@@ -95,6 +95,11 @@
     
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
+    
+    modified = NO;
+    if (self.guideToEdit) {
+        [self.managedObjectContext.undoManager beginUndoGrouping];
+    }
 }
 
 
@@ -110,38 +115,19 @@
 
 -(void)titleEntered:(NSString*)title
 {
+    modified = YES;
+    
     // if this is a new guide - create the guide object once a title has been entered
     if (!self.guideToEdit) {
         self.guideToEdit= [self createGuide];
+        [self.managedObjectContext.undoManager beginUndoGrouping];
     }
+    
     self.guideToEdit.title = title;
     self.navigationItem.title = title;
     
-
-    __weak  typeof (self) weakSelf = self;
-    // Clear the photo image of the guide title - move to photoView class
-    if (self.imageView.image) {
-        [UIView animateWithDuration:0.5
-                              delay:0.0
-                            options:UIViewAnimationOptionTransitionFlipFromRight
-                         animations:^{
-                             weakSelf.imageView.image = nil;
-                         }
-                         completion:^(BOOL finished) {
-                             weakSelf.userPhoto = nil;// release pointer to current step's photo core data object which will force a new photo object to be created for the 1st step, if needed
-                             
-                         }];
-    }
-    
-    // create the step entry objects
-    [self stepEntryView];
-    
-    // update user's onscreen instructions
-    stepNumber = 1;
-    [self updateStepText];
-    
-    // slide the step view on screen
-    [self.stepEntryView updateLeftStepEntryView:nil];
+     // move to the first step view
+    [self leftSwipe:self.leftSwipeGesture];
     
 }
 
@@ -150,11 +136,10 @@
 -(void) stepInstructionEntered: (NSString *)instructionText
 {
     // save current instructions in model
-    self.stepInProgess.instruction = instructionText;
-    
-    // release the current step as we are done with it
-    // this will allow the new step object to be created the first time it is referenced
-  //  self.stepInProgess = nil;
+    if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
+        self.stepInProgess.instruction = instructionText;
+        modified = YES;
+    }
     
     // update user's onscreen instructions
     stepNumber++;
@@ -267,7 +252,8 @@
     
     
     //  put up the alert to save any changes made to the guide
-    if (![self.guideTitle.text isEqualToString:@""]) {
+    if (modified == YES)
+    {
         // check if there are unsaved changes to the title
         if (self.guideTitle.hidden == NO) {
             // this title needs to be saved
@@ -303,6 +289,7 @@
 {
     if ( (!buttonIndex == 0) && (self.guideToEdit) )
     {
+        [self.managedObjectContext.undoManager endUndoGrouping];
         if (buttonIndex == 1) {
             // save guide to core data
             NSError *error;
@@ -311,7 +298,14 @@
                 NSLog(@"ERROR saving context: %@", error);
             }
         }
-        
+        else if (buttonIndex == 2) {
+            // undo any changes
+      //      NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
+            if ([self.managedObjectContext.undoManager canUndo]) {
+                [self.managedObjectContext.undoManager undoNestedGroup];
+         //       NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
+            }
+        }
         // return to main screen
         [self.navigationController popViewControllerAnimated:YES];
     }
