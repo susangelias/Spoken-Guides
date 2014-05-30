@@ -61,6 +61,7 @@
 		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
 		C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */; };
 		C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */; };
+		C0DE5A391938BFFA00909BD5 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = C0DE5A381938BFFA00909BD5 /* ReadMe.md */; };
 		C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */; };
 		C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E70192A5A5900C4F35A /* Slt.framework */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
@@ -179,6 +180,7 @@
 		C0DCB1AA1905E22100E29DBB /* CatagoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatagoriesViewController.m; sourceTree = "<group>"; };
 		C0DCB1AC1905F01900E29DBB /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
 		C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
+		C0DE5A381938BFFA00909BD5 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
 		C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		C0E24E70192A5A5900C4F35A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addPhotoViewController.h; path = ../addPhotoViewController.h; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
 				C0230218192A5870006DEF7A /* Framework */,
 				C0F532D6191167E40023CEF0 /* Browse */,
 				C036A97A190C28F000D1F251 /* View */,
@@ -664,6 +667,7 @@
 				C0DCB1851905D9F400E29DBB /* Main_iPhone.storyboard in Resources */,
 				C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */,
 				C023021B192A5870006DEF7A /* AcousticModelEnglish.bundle in Resources */,
+				C0DE5A391938BFFA00909BD5 /* ReadMe.md in Resources */,
 				C0DCB17C1905D9F400E29DBB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
