@@ -19,6 +19,7 @@
 @property (nonatomic, strong) languageOpenEars *languageModel;
 @property (nonatomic, strong) LanguageModelGenerator *lmGenerator;
 @property BOOL ignoreHeardSpeech;
+@property BOOL calibrationJustHappened;
 @property (nonatomic, strong) NSDate *start;        // for debugging
 
 @end
@@ -175,15 +176,28 @@
 }
 
 - (void) pocketsphinxDidCompleteCalibration {
+    /*
     if ([self isListening]) {
         [self suspendListening];
     }
+    else {
+        NSAssert(YES, @"listener = %@", self);
+    }
+     */
+    self.calibrationJustHappened = YES;
 	NSLog(@"Pocketsphinx calibration is complete.");
 }
 
 - (void) pocketsphinxDidStartListening {
 	NSLog(@"Pocketsphinx is now listening.  %f", [self.start timeIntervalSinceNow]);
     [self.delegate startedListening];
+    if (self.calibrationJustHappened == YES) {
+        self.calibrationJustHappened = NO;
+        // suspend listening immediately after calibration
+        if ([self isListening]) {
+            [self suspendListening];
+        }
+    }
 }
 
 - (void) pocketsphinxDidDetectSpeech {

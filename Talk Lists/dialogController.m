@@ -255,12 +255,17 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     [self.dialogControlDelegate dialogStoppedListening];
 }
 
+/*
 -(void)calibrationComplete
 {
     if ( (!self.currentState == isActivelyListening ) && ([self.listener isListening]) ) {
         [self.listener suspendListening];
     }
+    else {
+        NSAssert(YES, @"self.currentState = %d, self.listener isListening = %d", self.currentState, [self.listener isListening]);
+    }
 }
+*/
 
 #pragma mark textSpeechControllerDelegate Methods
 
