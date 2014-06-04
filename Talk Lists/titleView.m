@@ -56,6 +56,7 @@
     return YES;
 }
 
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     returnKeyPressed = YES;
@@ -67,7 +68,7 @@
 {
     if (returnKeyPressed) {
         // Send entered text to delegate
-        [self.guideTitleDelegate titleEntered:textField.text];
+        [self.guideTitleDelegate titleCompleted:textField.text];
         [self.userEntryField slideViewLeftOffScreen];
     }
 }

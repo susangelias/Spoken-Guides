@@ -12,7 +12,6 @@
 
 @required
 
--(void)titleEntered:(NSString*)title;
-
+-(void)titleCompleted:(NSString*)title;
 
 @end

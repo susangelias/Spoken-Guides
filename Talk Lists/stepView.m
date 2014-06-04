@@ -76,10 +76,11 @@
 {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
-        [self.stepEntryDelegate stepInstructionEntered:self.stepTextView.text];
+        [self.stepEntryDelegate stepInstructionEntryCompleted:self.stepTextView.text];
         return NO;
     }
     else {
+        [self.stepEntryDelegate stepInstructionTextChanged:self.stepTextView.text];
         return YES;
     }
 }

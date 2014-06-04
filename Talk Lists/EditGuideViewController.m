@@ -73,6 +73,7 @@
     self.textViewPlaceholder.hidden = YES;
     
     stepNumber = 0;
+    self.showSaveAlert = NO;
     
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
@@ -111,25 +112,43 @@
 
 #pragma mark <titleViewDelegate>
 
--(void)titleEntered:(NSString*)title
+-(void)titleCompleted:(NSString*)title
 {
-    // if this is a new guide - create the guide object once a title has been entered
-    if (!self.guideToEdit) {
-        self.guideToEdit= [self createGuide];
-        [self.managedObjectContext.undoManager beginUndoGrouping];
+
+    if (![title isEqualToString:@""]) {
+        // only create guide if the title string is not an empty string
+        // if this is a new guide - create the guide object once a title has been entered
+        if (!self.guideToEdit) {
+            self.guideToEdit= [self createGuide];
+            [self.managedObjectContext.undoManager beginUndoGrouping];
+        }
+        
+        self.guideToEdit.title = title;
+        self.navigationItem.title = title;
+        self.showSaveAlert = YES;
+   
+        // move to the first step view
+        [self leftSwipe:self.leftSwipeGesture];
     }
-    
-    self.guideToEdit.title = title;
-    self.navigationItem.title = title;
-    
-     // move to the first step view
-    [self leftSwipe:self.leftSwipeGesture];
-    
+
 }
 
 #pragma mark <stepEntryViewDelegate>
 
--(void) stepInstructionEntered: (NSString *)instructionText
+-(void) stepInstructionTextChanged: (NSString *)instructionText
+{
+    if (![instructionText isEqualToString:@""])
+    {
+        if (!self.stepInProgess) {
+            self.stepInProgess = [self createStep];
+        }
+        if (self.stepInProgess) {
+            self.stepInProgess.instruction = instructionText;
+        }
+    }
+}
+
+-(void) stepInstructionEntryCompleted: (NSString *)instructionText
 {
     // save current instructions in model
     if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
@@ -139,7 +158,7 @@
     // update user's onscreen instructions
     stepNumber++;
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
-    [self updateStepText];
+    [self showPlaceHolderText];
     
     // update the view
     [self.stepEntryView updateLeftStepEntryView:self.stepInProgess.instruction];
@@ -244,35 +263,20 @@
     
     [self.guideTitle resignFirstResponder];
     [self.StepTextView resignFirstResponder];
-    
+   
     // save the most recent text view where the user has typed in text but not pressed the Next key
     if (![self.guideToEdit.title isEqualToString:self.guideTitle.text]) {
         // this title needs to be saved
-        [self titleEntered:self.guideTitle.text];
+        [self titleCompleted:self.guideTitle.text];
     }
-    // save the most recent step instruction if there is any text entered
-    if (![self.stepInProgess.instruction isEqualToString:self.stepEntryView.stepTextView.text]) {
-        if ([self.stepEntryView.stepTextView.text isEqualToString:@""]) {
-            // discard last step since there is no text entered - this will dump any photo saved for this step as well
-            if (self.stepInProgess) {
-                [self.managedObjectContext deleteObject:self.stepInProgess];
-            }
-        }
-        else // update the model with the latest view changes to the step instructions
-        {
-            self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
-        }
-    }
+  
     
     NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
     NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
     NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
 
     //  put up the alert to save any changes made to the guide
-    NSUInteger insertedObjectCount = [[self.managedObjectContext insertedObjects] count];
-    if (([self.guideToEdit.managedObjectContext hasChanges]) &&
-        ( (![[self.managedObjectContext insertedObjects] isEqualToSet:[self.managedObjectContext deletedObjects]]) ||
-        (insertedObjectCount == 0)) )
+    if ([self.managedObjectContext hasChanges] == YES )
     {
      
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
@@ -366,9 +370,10 @@
     stepNumber += 1;
     // check if new step ?
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
-    if ([self.stepInProgess.rank intValue] == 0) {
+  //  if ([self.stepInProgess.rank intValue] == 0) {
+    if (!self.stepInProgess) {
         // no step found in guide for this step number so set up for a new step
-        [self updateStepText];
+        [self showPlaceHolderText];
         // disable left swipe until new step is entered
         sender.enabled = NO;
     }
@@ -407,13 +412,13 @@
 
 
 #pragma mark Helpers
--(void)updateStepText
+-(void)showPlaceHolderText
 {
 
     self.textViewPlaceholder.text = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
     
     // record the step number in the model
-    self.stepInProgess.rank = [NSNumber numberWithInteger:stepNumber];
+//    self.stepInProgess.rank = [NSNumber numberWithInteger:stepNumber];
 
 }
 
@@ -470,6 +475,7 @@
     return newGuide;
 }
 
+/*
 -(Step *)stepInProgess
 {
     if (!_stepInProgess) {
@@ -478,6 +484,16 @@
     }
     return _stepInProgess;
 }
+*/
+
+-(Step *)createStep
+{
+    Step *newStep = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
+    newStep.rank = [NSNumber numberWithInt:stepNumber];
+    [self.guideToEdit addStepInGuideObject:newStep];
+    return newStep;
+}
+
 
 -(Photo *)userPhoto
 {

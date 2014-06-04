@@ -40,6 +40,7 @@
 		C06E4A40191EBE7800093160 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A3F191EBE7800093160 /* Guide.m */; };
 		C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
+		C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */; };
 		C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A41916AEDB00CD8114 /* stepCell.m */; };
 		C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */; };
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
@@ -143,6 +144,7 @@
 		C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAssetsLibrary+CustomPhotoAlbum.m"; path = "Model - core data/ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		C08B144C192A8D2C00E70FCF /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rejecto.framework; sourceTree = "<group>"; };
 		C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialogControllerDelegate.h; sourceTree = "<group>"; };
+		C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewControllerTest.m; sourceTree = "<group>"; };
 		C0B0F2A31916AEDB00CD8114 /* stepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepCell.h; sourceTree = "<group>"; };
 		C0B0F2A41916AEDB00CD8114 /* stepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepCell.m; sourceTree = "<group>"; };
 		C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuperView.h"; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
 				C02BFBA119190D7500F6A035 /* Guide+Addendums.m */,
 				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
+				C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */,
 			);
 			path = "Talk ListsTests";
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 			files = (
 				C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */,
 				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
+				C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

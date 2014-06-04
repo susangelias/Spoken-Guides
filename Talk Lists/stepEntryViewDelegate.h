@@ -12,6 +12,7 @@
 
 @required
 
--(void) stepInstructionEntered: (NSString *)instructionText;
+-(void) stepInstructionEntryCompleted: (NSString *)instructionText;
+-(void) stepInstructionTextChanged: (NSString *)instructionText;
 
 @end
