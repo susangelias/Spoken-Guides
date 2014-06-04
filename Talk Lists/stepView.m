@@ -11,7 +11,6 @@
 #import "SZTextView.h"
 
 @implementation stepView
-//@synthesize textViewPlaceholder;
 
 -(stepView *)initWithPrimaryTextView: (SZTextView *)primaryTextView secondaryTextView: (SZTextView *) swapTextView
 {
@@ -42,8 +41,6 @@
         SZTextView *temp = self.stepTextView;
         weakSelf.stepTextView = self.swapTextView;
         weakSelf.swapTextView = temp;
-      //  weakSelf.textViewPlaceholder.hidden = !editFlag;
-     //   NSLog(@"hidden %d", weakSelf.textViewPlaceholder.hidden);
     };
 
     [self.stepTextView slideViewLeftOffScreen:nil];
@@ -72,7 +69,6 @@
 {
     [self.stepTextView slideViewRightOffScreen];
     [self.swapTextView slideViewRightOffScreen];
- //   self.textViewPlaceholder.hidden = YES;
     
 }
 
@@ -91,20 +87,6 @@
     }
 }
 
-/*
--(void)textViewDidBeginEditing:(UITextView *)textView {
-    // clear the placeholder text
-  //  self.textViewPlaceholder.hidden = YES;
-}
-*/
-/*
--(void)textViewDidChange:(UITextView *)textView
-{
-    if ([textView.text length] > 0) {
-        self.stepTextView.placeholder = @"";
-    }
-}
- */
 
 
 @end

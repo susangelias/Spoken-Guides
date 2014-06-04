@@ -15,7 +15,6 @@
 @property (nonatomic, weak) id <stepViewDelegate> stepEntryDelegate;
 @property (weak, nonatomic)  SZTextView *stepTextView;
 @property (weak, nonatomic)  SZTextView *swapTextView;
-@property (weak, nonatomic)  UILabel *textViewPlaceholder;
 
 -(stepView *)initWithPrimaryTextView: (SZTextView *)primaryTextView secondaryTextView: (SZTextView *) swapTextView;
 -(void)updateLeftStepEntryView: (NSString *)textContent;

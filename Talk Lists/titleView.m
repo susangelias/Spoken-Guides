@@ -40,10 +40,10 @@
         self.userEntryField = textField;
         self.userEntryField.delegate = self;
         if (textContent) {
-        //    self.userEntryField.placeholder = @"";
             self.userEntryField.text = textContent;
         }
         else {
+            self.userEntryField.placeholder = @"Enter Title Here";
             [self.userEntryField becomeFirstResponder];
         }
     }

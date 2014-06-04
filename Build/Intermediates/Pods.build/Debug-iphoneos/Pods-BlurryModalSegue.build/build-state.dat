@@ -141,8 +141,8 @@ t1400876554
 s90376
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods-BlurryModalSegue.a
-t1400940640
-s61456
+t1401901137
+s187580
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.h
 c00000000537F903400000000000002B3
@@ -175,9 +175,9 @@ t1401890036
 s77
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
-c00000000537F90350000000000000380
-t1400868917
-s896
+c00000000538F24F40000000000000441
+t1401890036
+s1089
 
 CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m
 r0
@@ -187,7 +187,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies6022c6d0873fb941^1cd0cad0873fb941^---0#1#1#--18"Check dependencies36"20D6C033-977F-43AD-9745-1273230DF7E9-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies34a066a9a93fb941^0bd066a9a93fb941^---0#1#1#--18"Check dependencies36"99472860-926C-4178-B96D-1EDED5F7100F-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-BlurryModalSegue.build/Objects-normal/arm64/BlurryModalSegue.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s423593937.480646

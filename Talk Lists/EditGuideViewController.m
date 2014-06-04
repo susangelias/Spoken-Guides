@@ -28,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet SZTextView *StepTextView;
 @property (strong, nonatomic) stepView *stepEntryView;
 @property (weak, nonatomic) IBOutlet SZTextView *swapTextView;
-@property (weak, nonatomic) IBOutlet UILabel *textViewPlaceholder;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
@@ -73,9 +72,6 @@
     // make sure step text views are hidden to start with
     self.StepTextView.hidden = YES;
     self.swapTextView.hidden = YES;
-//    self.textViewPlaceholder.hidden = YES;
-//    self.StepTextView.placeholder = @"";
- //   self.StepTextView.placeholder = @"";
     
     stepNumber = 0;
     self.showSaveAlert = NO;
@@ -106,6 +102,14 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    if (self.guideToEdit) {
+        NSLog(@"guideToEdit %@", self.guideToEdit);
+        self.imageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -125,7 +129,6 @@
         // if this is a new guide - create the guide object once a title has been entered
         if (!self.guideToEdit) {
             self.guideToEdit= [self createGuide];
-            [self.managedObjectContext.undoManager beginUndoGrouping];
         }
         
         self.guideToEdit.title = title;
@@ -183,15 +186,34 @@
     addPhotoViewController *addPhotoVC = (addPhotoViewController *)segue.sourceViewController;
     
     if (addPhotoVC.assetLibraryURL) {
-        self.userPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
+     //   self.userPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
         __weak typeof (self) weakSelf = self;
         // Retreive the thumbnail of the photo so it can be displayed in the delegate method
-        [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:self.userPhoto.assetLibraryURL]
+        [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:[addPhotoVC.assetLibraryURL absoluteString]]
                                 withCompletionBlock:^(UIImage *image, NSError *error) {
-                                    // save thumbnail to model
-                                    weakSelf.userPhoto.thumbnail = UIImagePNGRepresentation(image);
+                                    // Create a new photo object and save 
+                                    Photo *newPhoto = [self createPhoto];
+                                    newPhoto.thumbnail = UIImagePNGRepresentation(image);
+                                    newPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
+
+                                   // weakSelf.userPhoto.thumbnail = UIImagePNGRepresentation(image);
+                                    if (self.guideTitle.hidden == NO) {
+                                        // title view is showing so this photo belongs to the guide
+                                        if (!self.guideToEdit) {
+                                            // create guide if we don't have one yet
+                                            self.guideToEdit = [self createGuide];
+                                        }
+                                        self.guideToEdit.photo = newPhoto;
+                                        NSLog(@"self.guideToEdit %@", self.guideToEdit);
+                                    }
+                                    else {
+                                        // step view is showing so this photo belongs to the current step
+                                        self.stepInProgess.photo = newPhoto;
+                                    }
+                                    
                                     // display thumbail on this screen
                                     weakSelf.imageView.image = image;
+                                    
                                 }];
     }
     [self updatePhotoButtonText];
@@ -331,6 +353,9 @@
 // right swipe gesture will display either the title or an existing step but never a new step entry view
     // reactivate the left swipe gesture
     self.leftSwipeGesture.enabled = YES;
+ 
+    // clear any image that might be showing
+    self.imageView.image = nil;
 
     // get the model data
     stepNumber -= 1;
@@ -348,6 +373,7 @@
     // slide the new view in from the right
     if (stepNumber > 0) {
         [self.stepEntryView updateRightStepEntryView:self.stepInProgess.instruction];
+        self.imageView.image = [UIImage imageWithData:self.stepInProgess.photo.thumbnail];
     }
     else if (stepNumber == 0) {
         // slide the step view off to the left
@@ -356,6 +382,7 @@
         // show the title view
         self.guideTitleView.titleText = self.guideToEdit.title;
         [self.guideTitleView showTitle];
+        self.imageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
     }
 
 }
@@ -370,6 +397,8 @@
         // hide the title screen
         [self.guideTitleView hideTitle];
     }
+    // clear any image that might be showing
+    self.imageView.image = nil;
     
     // get the model data
     stepNumber += 1;
@@ -378,13 +407,13 @@
     if (!self.stepInProgess) {
         // no step found in guide for this step number so set up for a new step
         [self showPlaceHolderText];
-    //    [self.view bringSubviewToFront:self.textViewPlaceholder];
         // disable left swipe until new step is entered
         sender.enabled = NO;
     }
 
     // update view with new data
     [self.stepEntryView updateLeftStepEntryView:self.stepInProgess.instruction];
+    self.imageView.image = [UIImage imageWithData:self.stepInProgess.photo.thumbnail];
 
 }
 
@@ -420,13 +449,9 @@
 -(void)showPlaceHolderText
 {
 
- //   self.textViewPlaceholder.text = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
     self.swapTextView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
     self.StepTextView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
    
-    // record the step number in the model
-//    self.stepInProgess.rank = [NSNumber numberWithInteger:stepNumber];
-
 }
 
 -(void)resetFirstResponder {
@@ -473,6 +498,8 @@
 -(Guide *)createGuide
 {
         Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
+        [self.managedObjectContext.undoManager beginUndoGrouping];
+
         // set this guide's unique ID
 #warning add user's ID to the uniqueID string
         newGuide.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
@@ -482,16 +509,6 @@
     return newGuide;
 }
 
-/*
--(Step *)stepInProgess
-{
-    if (!_stepInProgess) {
-        _stepInProgess = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
-        [self.guideToEdit addStepInGuideObject:_stepInProgess];
-    }
-    return _stepInProgess;
-}
-*/
 
 -(Step *)createStep
 {
@@ -501,7 +518,13 @@
     return newStep;
 }
 
+-(Photo *)createPhoto
+{
+    Photo *newPhoto = [Photo insertNewObjectInManagedObjectContext:self.managedObjectContext];
+    return newPhoto;
+}
 
+/*
 -(Photo *)userPhoto
 {
     if (!_userPhoto) {
@@ -519,13 +542,12 @@
     }
     return _userPhoto;
 }
-
+*/
 -(stepView *)stepEntryView
 {
     if (!_stepEntryView ) {
         _stepEntryView = [[stepView alloc]initWithPrimaryTextView:self.StepTextView secondaryTextView: self.swapTextView];
         _stepEntryView.stepEntryDelegate = self;
-    //    _stepEntryView.textViewPlaceholder = self.textViewPlaceholder;
     }
     return _stepEntryView;
 }
