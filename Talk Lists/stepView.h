@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "stepEntryViewDelegate.h"
+#import "SZTextView.h"
 
 @interface stepView : NSObject <UITextViewDelegate>
 
 @property (nonatomic, weak) id <stepViewDelegate> stepEntryDelegate;
-@property (weak, nonatomic)  UITextView *stepTextView;
-@property (weak, nonatomic)  UITextView *swapTextView;
+@property (weak, nonatomic)  SZTextView *stepTextView;
+@property (weak, nonatomic)  SZTextView *swapTextView;
 @property (weak, nonatomic)  UILabel *textViewPlaceholder;
 
--(stepView *)initWithPrimaryTextView: (UITextView *)primaryTextView secondaryTextView: (UITextView *) swapTextView;
+-(stepView *)initWithPrimaryTextView: (SZTextView *)primaryTextView secondaryTextView: (SZTextView *) swapTextView;
 -(void)updateLeftStepEntryView: (NSString *)textContent;
 -(void)updateRightStepEntryView: (NSString *)textContent;
 -(void)hideStepEntryView;

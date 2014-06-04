@@ -17,6 +17,7 @@
 #import "stepView.h"
 #import "Step+Addendums.h"
 #import "Photo+Addendums.h"
+#import "SZTextView.h"
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepViewDelegate >
 
@@ -24,9 +25,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
 @property (strong, nonatomic) titleView *guideTitleView;
 
-@property (weak, nonatomic) IBOutlet UITextView *StepTextView;
+@property (weak, nonatomic) IBOutlet SZTextView *StepTextView;
 @property (strong, nonatomic) stepView *stepEntryView;
-@property (weak, nonatomic) IBOutlet UITextView *swapTextView;
+@property (weak, nonatomic) IBOutlet SZTextView *swapTextView;
 @property (weak, nonatomic) IBOutlet UILabel *textViewPlaceholder;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -45,6 +46,7 @@
 @implementation EditGuideViewController
 {
     int stepNumber;
+    SZTextView *TEMP;
 }
 
 
@@ -54,6 +56,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        TEMP = [[SZTextView alloc] init];
         
     }
     return self;
@@ -70,7 +73,9 @@
     // make sure step text views are hidden to start with
     self.StepTextView.hidden = YES;
     self.swapTextView.hidden = YES;
-    self.textViewPlaceholder.hidden = YES;
+//    self.textViewPlaceholder.hidden = YES;
+//    self.StepTextView.placeholder = @"";
+ //   self.StepTextView.placeholder = @"";
     
     stepNumber = 0;
     self.showSaveAlert = NO;
@@ -370,10 +375,10 @@
     stepNumber += 1;
     // check if new step ?
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
-  //  if ([self.stepInProgess.rank intValue] == 0) {
     if (!self.stepInProgess) {
         // no step found in guide for this step number so set up for a new step
         [self showPlaceHolderText];
+    //    [self.view bringSubviewToFront:self.textViewPlaceholder];
         // disable left swipe until new step is entered
         sender.enabled = NO;
     }
@@ -415,8 +420,10 @@
 -(void)showPlaceHolderText
 {
 
-    self.textViewPlaceholder.text = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
-    
+ //   self.textViewPlaceholder.text = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
+    self.swapTextView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
+    self.StepTextView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
+   
     // record the step number in the model
 //    self.stepInProgess.rank = [NSNumber numberWithInteger:stepNumber];
 
@@ -518,7 +525,7 @@
     if (!_stepEntryView ) {
         _stepEntryView = [[stepView alloc]initWithPrimaryTextView:self.StepTextView secondaryTextView: self.swapTextView];
         _stepEntryView.stepEntryDelegate = self;
-        _stepEntryView.textViewPlaceholder = self.textViewPlaceholder;
+    //    _stepEntryView.textViewPlaceholder = self.textViewPlaceholder;
     }
     return _stepEntryView;
 }

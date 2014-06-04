@@ -8,11 +8,12 @@
 
 #import "stepView.h"
 #import "UITextView+SlideViews.h"
+#import "SZTextView.h"
 
 @implementation stepView
 //@synthesize textViewPlaceholder;
 
--(stepView *)initWithPrimaryTextView: (UITextView *)primaryTextView secondaryTextView: (UITextView *) swapTextView
+-(stepView *)initWithPrimaryTextView: (SZTextView *)primaryTextView secondaryTextView: (SZTextView *) swapTextView
 {
     
     self = [super init];
@@ -33,12 +34,16 @@
         // no content so is a new step entry, set editflag to activate keyboard and display placeholder text
         editFlag = YES;
     }
+    else {
+        self.stepTextView.placeholder = @"";
+    }
     __weak  typeof (self) weakSelf = self;
     ChainAnimationBlock animationComplete = ^{
-        UITextView *temp = self.stepTextView;
+        SZTextView *temp = self.stepTextView;
         weakSelf.stepTextView = self.swapTextView;
         weakSelf.swapTextView = temp;
-        weakSelf.textViewPlaceholder.hidden = ~editFlag;
+      //  weakSelf.textViewPlaceholder.hidden = !editFlag;
+     //   NSLog(@"hidden %d", weakSelf.textViewPlaceholder.hidden);
     };
 
     [self.stepTextView slideViewLeftOffScreen:nil];
@@ -52,7 +57,7 @@
     // there is text content already so this is not a new step
     __weak  typeof (self) weakSelf = self;
     ChainAnimationBlock animationComplete = ^{
-        UITextView *temp = self.stepTextView;
+        SZTextView *temp = self.stepTextView;
         weakSelf.stepTextView = self.swapTextView;
         weakSelf.swapTextView = temp;
     };
@@ -67,6 +72,7 @@
 {
     [self.stepTextView slideViewRightOffScreen];
     [self.swapTextView slideViewRightOffScreen];
+ //   self.textViewPlaceholder.hidden = YES;
     
 }
 
@@ -85,16 +91,20 @@
     }
 }
 
-
+/*
 -(void)textViewDidBeginEditing:(UITextView *)textView {
     // clear the placeholder text
-    self.textViewPlaceholder.hidden = YES;
+  //  self.textViewPlaceholder.hidden = YES;
 }
-
+*/
+/*
 -(void)textViewDidChange:(UITextView *)textView
 {
-    self.textViewPlaceholder.hidden = ([textView.text length] > 0);
+    if ([textView.text length] > 0) {
+        self.stepTextView.placeholder = @"";
+    }
 }
+ */
 
 
 @end

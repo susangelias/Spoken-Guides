@@ -692,27 +692,28 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Step" translatesAutoresizingMaskIntoConstraints="NO" id="1eA-zE-DKG">
-                                <rect key="frame" x="20" y="126" width="280" height="105"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Swap" translatesAutoresizingMaskIntoConstraints="NO" id="9W5-gc-eBQ">
-                                <rect key="frame" x="20" y="126" width="280" height="105"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
-                            </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="LFJ-ta-1U6">
                                 <rect key="frame" x="49" y="135" width="222" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Step" translatesAutoresizingMaskIntoConstraints="NO" id="1eA-zE-DKG" customClass="SZTextView">
+                                <rect key="frame" x="20" y="126" width="280" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Swap" translatesAutoresizingMaskIntoConstraints="NO" id="9W5-gc-eBQ" customClass="SZTextView">
+                                <rect key="frame" x="20" y="126" width="280" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSi-6z-YgJ">
                                 <rect key="frame" x="246" y="231" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -765,7 +766,7 @@
                         <barButtonItem key="leftBarButtonItem" title="&lt; Done" id="oSw-fa-kwy"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="StepTextView" destination="1eA-zE-DKG" id="OsR-2L-JqJ"/>
+                        <outlet property="StepTextView" destination="1eA-zE-DKG" id="7aw-yn-Sul"/>
                         <outlet property="addPhotoButton" destination="mMv-zb-UC4" id="y1g-ub-DRm"/>
                         <outlet property="categoryLabel" destination="KSv-Qi-coj" id="qRQ-NC-YFc"/>
                         <outlet property="guideTitle" destination="XH5-sn-9Uz" id="erE-eh-jBw"/>
@@ -773,7 +774,7 @@
                         <outlet property="leftSwipeGesture" destination="K7a-L9-JEV" id="yQ3-vo-eIi"/>
                         <outlet property="previewButton" destination="gSi-6z-YgJ" id="rzd-uY-jCl"/>
                         <outlet property="rightSwipeGesture" destination="5Iq-8U-bB0" id="6Hn-nt-i7j"/>
-                        <outlet property="swapTextView" destination="9W5-gc-eBQ" id="JiW-8i-7rB"/>
+                        <outlet property="swapTextView" destination="9W5-gc-eBQ" id="RFA-To-F8d"/>
                         <outlet property="textViewPlaceholder" destination="LFJ-ta-1U6" id="WRN-g6-7sa"/>
                     </connections>
                 </viewController>

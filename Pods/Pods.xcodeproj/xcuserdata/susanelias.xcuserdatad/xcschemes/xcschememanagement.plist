@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SZTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UIImage+BlurredFrame.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>56E097A2814340BDB881CBE6</key>
+		<key>21099C63B93C469F87626058</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>628BACADEA654641AA999B07</key>
+		<key>8012C3699DD646A4B8C06DE9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7412AB3AF3CD4C0EACF3DB61</key>
+		<key>A9C0C0E731F24B728557EFD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>89445663920F4C71BF93FB74</key>
+		<key>F1BEDF039C5D46BCA554B01D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC31F77467534E729B4E10C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

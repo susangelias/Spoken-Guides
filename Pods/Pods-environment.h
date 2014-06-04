@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_MZAppearance 1
 #define COCOAPODS_VERSION_PATCH_MZAppearance 3
 
+// SZTextView
+#define COCOAPODS_POD_AVAILABLE_SZTextView
+#define COCOAPODS_VERSION_MAJOR_SZTextView 1
+#define COCOAPODS_VERSION_MINOR_SZTextView 1
+#define COCOAPODS_VERSION_PATCH_SZTextView 1
+
 // UIImage+BlurredFrame
 #define COCOAPODS_POD_AVAILABLE_UIImage_BlurredFrame
 #define COCOAPODS_VERSION_MAJOR_UIImage_BlurredFrame 0
