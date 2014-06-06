@@ -15,7 +15,7 @@
     // Slide our text field view offscreen to the left
     __weak   typeof (self) weakSelf = self;
     [UIView animateWithDuration:0.50
-                          delay:0
+                          delay:0.00
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
                          weakSelf.center = CGPointMake(weakSelf.center.x - 300, weakSelf.center.y);
@@ -28,7 +28,7 @@
                      }];
 }
 
--(void)slideViewRightOnScreenWithText:(NSString *)textContent toEdit:(bool)edit
+-(void)slideViewLeftOnScreenWithText:(NSString *)textContent toEdit:(bool)edit
 {
     // Slide our text field view onscreen from the right
     // set starting point center off screen to the left
@@ -47,6 +47,16 @@
                              [self becomeFirstResponder];
                          }
                      }];
+}
+
+-(void)showTitle:(NSString *)textContent toEdit:(bool)edit
+{
+    // Show title with no animation
+    self.text = textContent;
+    self.hidden = NO;
+    if (edit == YES) {
+        [self becomeFirstResponder];
+    }
 }
 
 @end

@@ -11,6 +11,7 @@
 @interface UITextField (SlideViews)
 
 -(void)slideViewLeftOffScreen;
--(void)slideViewRightOnScreenWithText:(NSString *)textContent toEdit:(bool)edit;
+-(void)slideViewLeftOnScreenWithText:(NSString *)textContent toEdit:(bool)edit;
+-(void)showTitle:(NSString *)textContent toEdit:(bool)edit;
 
 @end

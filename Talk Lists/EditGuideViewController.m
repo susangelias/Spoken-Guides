@@ -24,12 +24,13 @@
 // view properties
 @property (weak, nonatomic) IBOutlet UITextField *guideTitle;
 @property (strong, nonatomic) titleView *guideTitleView;
+@property (weak, nonatomic) IBOutlet UIImageView *guideImageView;
 
 @property (weak, nonatomic) IBOutlet SZTextView *StepTextView;
 @property (strong, nonatomic) stepView *stepEntryView;
 @property (weak, nonatomic) IBOutlet SZTextView *swapTextView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *stepImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *swapImageView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *previewButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -66,20 +67,25 @@
     [super viewDidLoad];
     
     // Set up guide title entry view
-    self.guideTitleView = [[titleView alloc] initWithTextField:self.guideTitle withText:self.guideToEdit.title];
+    self.guideTitleView = [[titleView alloc] initWithTextField:self.guideTitle
+                                                 withImageView:self.guideImageView];
     self.guideTitleView.guideTitleDelegate = self;
     
+    // set up the guide's photo if there is one
+//    [self.guideTitle addSubview:self.guideImageView];
+//    self.guideImageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
+   
     // make sure step text views are hidden to start with
     self.StepTextView.hidden = YES;
     self.swapTextView.hidden = YES;
+    self.swapImageView.hidden = YES;
+    self.stepImageView.hidden = YES;
     
     stepNumber = 0;
     self.showSaveAlert = NO;
     
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
-    // display photo if there is one
-    self.imageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
 
     // make sure a camera or photo library is available before enabling the Add Photo button
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ] ||
@@ -88,7 +94,6 @@
     {
         self.addPhotoButton.enabled = YES;
         self.addPhotoButton.hidden = NO;
-        [self updatePhotoButtonText];
     }
     else {
         self.addPhotoButton.hidden = YES;
@@ -100,15 +105,16 @@
     if (self.guideToEdit) {
         [self.managedObjectContext.undoManager beginUndoGrouping];
     }
+    
+    // create the stepEntryView here so that it gets laid out correctly
+    [self stepEntryView];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    if (self.guideToEdit) {
-        NSLog(@"guideToEdit %@", self.guideToEdit);
-        self.imageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
-    }
+    [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
+                         withPhoto:[UIImage imageWithData:self.guideToEdit.photo.thumbnail]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,9 +156,9 @@
         if (!self.stepInProgess) {
             self.stepInProgess = [self createStep];
         }
-        if (self.stepInProgess) {
+      /*  if (self.stepInProgess) {
             self.stepInProgess.instruction = instructionText;
-        }
+        } */
     }
 }
 
@@ -168,11 +174,14 @@
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
     [self showPlaceHolderText];
     
+    // clear any images
+    self.stepImageView.image = nil;
+    self.swapImageView.image = nil;
     // update the view
-    [self.stepEntryView updateLeftStepEntryView:self.stepInProgess.instruction];
+    [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
+                                      withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
     
     // clear the photo image
-    self.imageView.image = nil;
     self.userPhoto = nil;   // release pointer to current step's photo core data object which will force a new photo object to be created when the user take's or chooses another photo
     
     // make sure right swipe is active again
@@ -196,7 +205,6 @@
                                     newPhoto.thumbnail = UIImagePNGRepresentation(image);
                                     newPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
 
-                                   // weakSelf.userPhoto.thumbnail = UIImagePNGRepresentation(image);
                                     if (self.guideTitle.hidden == NO) {
                                         // title view is showing so this photo belongs to the guide
                                         if (!self.guideToEdit) {
@@ -212,11 +220,15 @@
                                     }
                                     
                                     // display thumbail on this screen
-                                    weakSelf.imageView.image = image;
-                                    
+                                    if (self.guideTitle.hidden == YES) {
+                                        weakSelf.stepImageView.image = image;
+                                        weakSelf.swapImageView.image = image;
+                                    }
+                                    else {
+                                        weakSelf.guideImageView.image = image;
+                                    }
                                 }];
     }
-    [self updatePhotoButtonText];
     // resume editing of step text
     [self resetFirstResponder];
     
@@ -227,7 +239,6 @@
     // resume editing of step text
     [self resetFirstResponder];
 }
-
 
 
 
@@ -293,6 +304,9 @@
    
     // save the most recent text view where the user has typed in text but not pressed the Next key
     if (![self.guideToEdit.title isEqualToString:self.guideTitle.text]) {
+        if (!self.guideToEdit) {
+            self.guideToEdit = [self createGuide];
+        }
         // this title needs to be saved
         [self titleCompleted:self.guideTitle.text];
     }
@@ -353,10 +367,19 @@
 // right swipe gesture will display either the title or an existing step but never a new step entry view
     // reactivate the left swipe gesture
     self.leftSwipeGesture.enabled = YES;
+/*
+    // save any changes to the step text
+    if (self.guideTitle.hidden == NO) {
+        [self.guideTitle resignFirstResponder];
+    }
+    else {
+        [self.StepTextView resignFirstResponder];
+    }*/
+    NSLog(@"right swipe text %@", self.StepTextView.text);
+    NSLog(@"right swipe text 2 %@", self.stepEntryView.stepTextView.text);
+    // Save any final changes to the text into the model
+    self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
  
-    // clear any image that might be showing
-    self.imageView.image = nil;
-
     // get the model data
     stepNumber -= 1;
     if (stepNumber >= 1) {
@@ -372,33 +395,36 @@
     
     // slide the new view in from the right
     if (stepNumber > 0) {
-        [self.stepEntryView updateRightStepEntryView:self.stepInProgess.instruction];
-        self.imageView.image = [UIImage imageWithData:self.stepInProgess.photo.thumbnail];
+        [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
+                                           withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
     }
     else if (stepNumber == 0) {
         // slide the step view off to the left
         [self.stepEntryView hideStepEntryView];
         
         // show the title view
-        self.guideTitleView.titleText = self.guideToEdit.title;
-        [self.guideTitleView showTitle];
-        self.imageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
+        [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
+                                     withPhoto:[UIImage imageWithData:self.guideToEdit.photo.thumbnail]];
     }
-
 }
 
 - (IBAction)leftSwipe:(UISwipeGestureRecognizer *)sender {
 // left swipe gesture will display a current step with data or a new step entry view
     // reactivate right swipe gesture
     self.rightSwipeGesture.enabled = YES;
+   // [self resignFirstResponder];
     
-    // slide the title view off to the left
+     // slide the title view off to the left
     if (stepNumber == 0) {
         // hide the title screen
-        [self.guideTitleView hideTitle];
+        [self.guideTitleView hideTitleView];
+        // save any changes to the title text
+   //     self.guideToEdit.title = self.guideTitle.text;
     }
-    // clear any image that might be showing
-    self.imageView.image = nil;
+    else {
+        // Save any final changes to the text into the model
+    //    self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
+    }
     
     // get the model data
     stepNumber += 1;
@@ -409,12 +435,14 @@
         [self showPlaceHolderText];
         // disable left swipe until new step is entered
         sender.enabled = NO;
+        // clear any images
+        self.stepImageView.image = nil;
+        self.swapImageView.image = nil;
     }
 
     // update view with new data
-    [self.stepEntryView updateLeftStepEntryView:self.stepInProgess.instruction];
-    self.imageView.image = [UIImage imageWithData:self.stepInProgess.photo.thumbnail];
-
+    [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
+                                      withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
 }
 
 #pragma mark Navigation
@@ -481,17 +509,6 @@
     
 }
 
--(void)updatePhotoButtonText
-{
-    // change the 'Add Photo' button to 'ChangePhoto' if there is a photo
-    if (self.imageView.image) {
-        self.addPhotoButton.titleLabel.text = @"Change Photo";
-    }
-    else {
-        self.addPhotoButton.titleLabel.text = @"Add Photo";
-    }
-}
-
 
 #pragma mark Initializations
 
@@ -524,29 +541,13 @@
     return newPhoto;
 }
 
-/*
--(Photo *)userPhoto
-{
-    if (!_userPhoto) {
-        _userPhoto = [Photo insertNewObjectInManagedObjectContext:self.managedObjectContext];
-        // if the guideTitle view is not hidden then this photo belongs to the guide
-        if (self.guideTitle.hidden == NO) {
-            self.guideToEdit.photo = _userPhoto;
-        }
-        else
-            // else photo belongs to the current step
-        {
-            self.stepInProgess.photo = _userPhoto;
-        }
-        
-    }
-    return _userPhoto;
-}
-*/
 -(stepView *)stepEntryView
 {
     if (!_stepEntryView ) {
-        _stepEntryView = [[stepView alloc]initWithPrimaryTextView:self.StepTextView secondaryTextView: self.swapTextView];
+        _stepEntryView = [[stepView alloc]initWithPrimaryTextView:self.StepTextView
+                                                secondaryTextView: self.swapTextView
+                                             withPrimaryImageView:self.stepImageView
+                                           withSecondaryImageView:self.swapImageView];
         _stepEntryView.stepEntryDelegate = self;
     }
     return _stepEntryView;

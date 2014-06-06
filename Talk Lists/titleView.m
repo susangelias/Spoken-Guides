@@ -8,44 +8,57 @@
 
 #import "titleView.h"
 #import "UITextField+SlideViews.h"
+#import "UIImageView+SlideViews.h"
 
 @implementation titleView
 {
     BOOL returnKeyPressed;
 }
 
--(void)showTitle
+-(void)updateRightSwipeTitleEntryView: (NSString *)textContent withPhoto:(UIImage *)photo
+{
+    // slide the title view on screen from the left
+     [self.titleTextField slideViewLeftOnScreenWithText:textContent toEdit:NO];
+    if (photo) {
+        [self.titleImageView slideViewFromLeftOnScreenWithPhoto:photo
+                                        withCompletionBlock:nil];
+    }
+}
+
+-(void)updateStaticTitleEntryView: (NSString *)textContent withPhoto:(UIImage *)photo
 {
     BOOL editFlag;
-    if (self.titleText) {
+    if (textContent) {
         editFlag = NO;
     }
     else {
         editFlag = YES;
+        self.titleTextField.placeholder = @"Enter Title Here";
+        [self.titleTextField becomeFirstResponder];
     }
-    [self.userEntryField slideViewRightOnScreenWithText:self.titleText toEdit:editFlag];
+    [self.titleTextField showTitle:textContent toEdit:editFlag];
+    if (photo) {
+        self.titleImageView.image = photo;
+    }
 }
 
--(void)hideTitle
+
+-(void)hideTitleView
 {
-    [self.userEntryField slideViewLeftOffScreen];
+    [self.titleTextField slideViewLeftOffScreen];
+    [self.titleImageView slideViewToLeftOffScreen:nil];
 }
 
 #pragma mark <UITextFieldDelegate>
 
--(titleView *)initWithTextField: (UITextField *)textField withText: (NSString *)textContent
+-(titleView *)initWithTextField: (UITextField *)textField
+                  withImageView: (UIImageView *)imageView
 {
     self = [super init];
     if (self) {
-        self.userEntryField = textField;
-        self.userEntryField.delegate = self;
-        if (textContent) {
-            self.userEntryField.text = textContent;
-        }
-        else {
-            self.userEntryField.placeholder = @"Enter Title Here";
-            [self.userEntryField becomeFirstResponder];
-        }
+        self.titleTextField = textField;
+        self.titleTextField.delegate = self;
+        self.titleImageView = imageView;
     }
     return self;
 }
@@ -69,7 +82,7 @@
     if (returnKeyPressed) {
         // Send entered text to delegate
         [self.guideTitleDelegate titleCompleted:textField.text];
-        [self.userEntryField slideViewLeftOffScreen];
+        [self.titleTextField slideViewLeftOffScreen];
     }
 }
 

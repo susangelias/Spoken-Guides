@@ -65,6 +65,7 @@
 		C0DE5A391938BFFA00909BD5 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = C0DE5A381938BFFA00909BD5 /* ReadMe.md */; };
 		C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */; };
 		C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E70192A5A5900C4F35A /* Slt.framework */; };
+		C0E9A1411941F1FD001C65DE /* UIImageView+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E9A1401941F1FD001C65DE /* UIImageView+SlideViews.m */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
 		C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F532DE191178A20023CEF0 /* GuideCategories.m */; };
 		C0FC202C192E247D007213AB /* MyGuidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0FC202B192E247D007213AB /* MyGuidesViewController.m */; };
@@ -185,6 +186,8 @@
 		C0DE5A381938BFFA00909BD5 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
 		C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		C0E24E70192A5A5900C4F35A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		C0E9A13F1941F1FD001C65DE /* UIImageView+SlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SlideViews.h"; sourceTree = "<group>"; };
+		C0E9A1401941F1FD001C65DE /* UIImageView+SlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SlideViews.m"; sourceTree = "<group>"; };
 		C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addPhotoViewController.h; path = ../addPhotoViewController.h; sourceTree = "<group>"; };
 		C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addPhotoViewController.m; path = ../addPhotoViewController.m; sourceTree = "<group>"; };
 		C0F532DD191178A20023CEF0 /* GuideCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCategories.h; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 		C02BFBA719193D4C00F6A035 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0E9A13F1941F1FD001C65DE /* UIImageView+SlideViews.h */,
+				C0E9A1401941F1FD001C65DE /* UIImageView+SlideViews.m */,
 				C02BFBA919195F6D00F6A035 /* stepView.h */,
 				C02BFBAA19195F6D00F6A035 /* stepView.m */,
 				C02BFBAC19195FB400F6A035 /* stepEntryViewDelegate.h */,
@@ -736,6 +741,7 @@
 				C0FC202C192E247D007213AB /* MyGuidesViewController.m in Sources */,
 				C0DCB1AB1905E22100E29DBB /* CatagoriesViewController.m in Sources */,
 				C0DCB18B1905D9F400E29DBB /* TalkListViewController.m in Sources */,
+				C0E9A1411941F1FD001C65DE /* UIImageView+SlideViews.m in Sources */,
 				C0B0F2A51916AEDB00CD8114 /* stepCell.m in Sources */,
 				C035E9A5193115B200DBBE4A /* UITextView+SlideViews.m in Sources */,
 				C027013A192A3E7F00F954EA /* dialogController.m in Sources */,

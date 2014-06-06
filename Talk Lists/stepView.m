@@ -7,12 +7,16 @@
 //
 
 #import "stepView.h"
-#import "UITextView+SlideViews.h"
+
 #import "SZTextView.h"
+#import "UIImageView+SlideViews.h"
 
 @implementation stepView
 
--(stepView *)initWithPrimaryTextView: (SZTextView *)primaryTextView secondaryTextView: (SZTextView *) swapTextView
+-(stepView *)initWithPrimaryTextView: (SZTextView *) primaryTextView
+                   secondaryTextView: (SZTextView *) swapTextView
+                withPrimaryImageView: (UIImageView *) primaryImageView
+              withSecondaryImageView: (UIImageView *) secondaryImageView
 {
     
     self = [super init];
@@ -20,13 +24,18 @@
     {
         self.stepTextView = primaryTextView;
         self.swapTextView = swapTextView;
+        self.stepImageView = primaryImageView;
+        self.swapImageView = secondaryImageView;
+        self.stepImageView.hidden = NO;
+        self.swapImageView.hidden = NO;
         self.stepTextView.delegate = self;
         self.swapTextView.delegate = self;
+
     }
     return self;
 }
 
--(void)updateLeftStepEntryView: (NSString *)textContent
+-(void)updateLeftSwipeStepEntryView: (NSString *)textContent withPhoto: (UIImage *)photo
 {
     BOOL editFlag = NO;
     if (!textContent) {
@@ -38,18 +47,27 @@
     }
     __weak  typeof (self) weakSelf = self;
     ChainAnimationBlock animationComplete = ^{
-        SZTextView *temp = self.stepTextView;
+        SZTextView *tempTextView = self.stepTextView;
         weakSelf.stepTextView = self.swapTextView;
-        weakSelf.swapTextView = temp;
+        weakSelf.swapTextView = tempTextView;
+        UIImageView *tempImageView = self.stepImageView;
+        weakSelf.stepImageView = self.swapImageView;
+        weakSelf.swapImageView = tempImageView;
     };
 
-    [self.stepTextView slideViewLeftOffScreen:nil];
-    [weakSelf.swapTextView slideViewLeftOnScreenWithText:textContent
+    [self.stepTextView slideViewToLeftOffScreen:nil];
+    [self.stepImageView slideViewToLeftOffScreen:nil];
+
+    if (photo) {
+        [self.swapImageView slideViewFromRightOnScreenWithPhoto:photo
+                                       withCompletionBlock:nil];
+    }
+    [self.swapTextView slideViewFromRightOnScreenWithText:textContent
                                                   toEdit:editFlag
                                      withCompletionBlock:animationComplete];
 }
 
--(void)updateRightStepEntryView: (NSString *)textContent
+-(void)updateRightSwipeStepEntryView: (NSString *)textContent withPhoto: (UIImage *)photo
 {
     // there is text content already so this is not a new step
     __weak  typeof (self) weakSelf = self;
@@ -57,19 +75,29 @@
         SZTextView *temp = self.stepTextView;
         weakSelf.stepTextView = self.swapTextView;
         weakSelf.swapTextView = temp;
+        UIImageView *tempImageView = self.stepImageView;
+        weakSelf.stepImageView = self.swapImageView;
+        weakSelf.swapImageView = tempImageView;
     };
 
-    [self.stepTextView slideViewRightOffScreen];
-    [self.swapTextView slideViewRightOnScreenWithText:textContent
+    [self.stepTextView slideViewToRightOffScreen];
+    [self.stepImageView slideViewToRightOffScreen:nil];
+
+    if (photo) {
+        [self.swapImageView slideViewFromLeftOnScreenWithPhoto:photo
+                                        withCompletionBlock:nil];
+    }
+    [self.swapTextView slideViewFromLeftOnScreenWithText:textContent
                                                toEdit:NO
                                   withCompletionBlock:animationComplete];
 }
 
 -(void)hideStepEntryView
 {
-    [self.stepTextView slideViewRightOffScreen];
-    [self.swapTextView slideViewRightOffScreen];
-    
+    [self.stepTextView slideViewToRightOffScreen];
+    [self.swapTextView slideViewToRightOffScreen];
+    [self.stepImageView slideViewToRightOffScreen:nil];
+    [self.swapImageView slideViewToRightOffScreen:nil];
 }
 
 #pragma mark    <UITextViewDelegate>
@@ -82,11 +110,10 @@
         return NO;
     }
     else {
+        // need to pass range and replacement text to delegate
         [self.stepEntryDelegate stepInstructionTextChanged:self.stepTextView.text];
         return YES;
     }
 }
-
-
 
 @end

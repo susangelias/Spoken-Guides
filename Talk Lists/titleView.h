@@ -11,12 +11,15 @@
 
 @interface titleView : NSObject <UITextFieldDelegate>
 
-@property (nonatomic, weak) UITextField *userEntryField;
+@property (nonatomic, weak) UITextField *titleTextField;
+@property (nonatomic, weak) UIImageView *titleImageView;
 @property (nonatomic, weak) id <titleViewDelegate> guideTitleDelegate;
-@property (nonatomic, strong) NSString *titleText;
+//@property (nonatomic, strong) NSString *titleText;
 
--(titleView *)initWithTextField: (UITextField *)textField withText: (NSString *)textContent;
--(void)showTitle;
--(void)hideTitle;
+-(titleView *)initWithTextField: (UITextField *)textField
+                  withImageView: (UIImageView *)imageView;
+-(void)updateRightSwipeTitleEntryView: (NSString *)textContent withPhoto:(UIImage *)photo;
+-(void)updateStaticTitleEntryView:(NSString *)textContent withPhoto: (UIImage *)photoImage;
+-(void)hideTitleView;
 
 @end

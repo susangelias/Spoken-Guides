@@ -12,14 +12,14 @@ typedef void (^ ChainAnimationBlock)(void);
 
 @interface UITextView (SlideViews)
 
--(void)slideViewLeftOffScreen:(ChainAnimationBlock)completionBlock;
--(void)slideViewRightOnScreenWithText:(NSString *)textContent
+-(void)slideViewToLeftOffScreen:(ChainAnimationBlock)completionBlock;
+-(void)slideViewFromLeftOnScreenWithText:(NSString *)textContent
                                toEdit:(bool)edit
                   withCompletionBlock:(ChainAnimationBlock)completionBlock;
 
--(void)slideViewLeftOnScreenWithText:(NSString *)textContent
+-(void)slideViewFromRightOnScreenWithText:(NSString *)textContent
                               toEdit:(BOOL)edit
                 withCompletionBlock:(ChainAnimationBlock)completionBlock;
--(void)slideViewRightOffScreen;
+-(void)slideViewToRightOffScreen;
 
 @end

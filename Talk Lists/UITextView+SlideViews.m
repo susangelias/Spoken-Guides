@@ -11,7 +11,7 @@
 @implementation UITextView (SlideViews)
 
 
--(void)slideViewLeftOffScreen:(ChainAnimationBlock)completionBlock
+-(void)slideViewToLeftOffScreen:(ChainAnimationBlock)completionBlock
 {
     __weak typeof (self) weakSelf = self;
     [UIView animateWithDuration:0.50
@@ -32,7 +32,7 @@
     
 }
 
--(void)slideViewRightOnScreenWithText:(NSString *)textContent
+-(void)slideViewFromLeftOnScreenWithText:(NSString *)textContent
                                toEdit:(bool)edit
                   withCompletionBlock:(ChainAnimationBlock)completionBlock
 {
@@ -58,7 +58,7 @@
                      }];
 }
 
--(void)slideViewLeftOnScreenWithText:(NSString *)textContent
+-(void)slideViewFromRightOnScreenWithText:(NSString *)textContent
                               toEdit:(BOOL)edit
                  withCompletionBlock:(ChainAnimationBlock)completionBlock
 {
@@ -73,6 +73,7 @@
                          weakSelf.hidden = NO;
                          weakSelf.text = textContent;
                          weakSelf.center = CGPointMake(self.center.x - 300, self.center.y);
+                   //      [weakSelf bringSubviewToFront:[weakSelf viewWithTag:100]];
                      }
                      completion:^(BOOL finished) {
                          if (edit == YES) {
@@ -84,7 +85,7 @@
                      }];
 }
 
--(void)slideViewRightOffScreen
+-(void)slideViewToRightOffScreen
 {
     __weak typeof (self) weakSelf = self;
 
