@@ -304,9 +304,6 @@
    
     // save the most recent text view where the user has typed in text but not pressed the Next key
     if (![self.guideToEdit.title isEqualToString:self.guideTitle.text]) {
-        if (!self.guideToEdit) {
-            self.guideToEdit = [self createGuide];
-        }
         // this title needs to be saved
         [self titleCompleted:self.guideTitle.text];
     }
@@ -514,8 +511,8 @@
 
 -(Guide *)createGuide
 {
-        Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
         [self.managedObjectContext.undoManager beginUndoGrouping];
+        Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
 
         // set this guide's unique ID
 #warning add user's ID to the uniqueID string

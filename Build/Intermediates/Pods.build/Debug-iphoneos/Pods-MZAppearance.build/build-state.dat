@@ -189,7 +189,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciese71993814c42b941^ddb293814c42b941^---0#1#1#--18"Check dependencies36"DC6EB7A3-B7A6-4F9D-9673-E5F5E0A9D6C7-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesc74b93a55442b941^bdac95a55442b941^---0#1#1#--18"Check dependencies36"9E334164-74B3-48A2-9414-338FED92F08A-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/arm64/MZAppearance.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s423772458.378868
