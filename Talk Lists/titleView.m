@@ -27,16 +27,14 @@
 
 -(void)updateStaticTitleEntryView: (NSString *)textContent withPhoto:(UIImage *)photo
 {
-    BOOL editFlag;
+    self.titleTextField.hidden = NO;
     if (textContent) {
-        editFlag = NO;
+        self.titleTextField.text = textContent;
     }
     else {
-        editFlag = YES;
         self.titleTextField.placeholder = @"Enter Title Here";
         [self.titleTextField becomeFirstResponder];
     }
-    [self.titleTextField showTitle:textContent toEdit:editFlag];
     if (photo) {
         self.titleImageView.image = photo;
     }

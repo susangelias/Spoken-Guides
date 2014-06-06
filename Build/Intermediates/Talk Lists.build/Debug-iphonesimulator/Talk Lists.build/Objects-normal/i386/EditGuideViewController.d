@@ -12,6 +12,7 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/titleView.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/stepEntryViewDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/stepView.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UITextView+SlideViews.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Step+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h

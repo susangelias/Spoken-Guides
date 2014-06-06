@@ -12,8 +12,6 @@ typedef void (^ ChainAnimationBlock)(void);
 
 @interface UIImageView (SlideViews)
 
--(void)retractViewVertically:(ChainAnimationBlock)completionBlock;
--(void)deployViewVertically: (UIImage *)imageContent;
 -(void)slideViewToLeftOffScreen: (ChainAnimationBlock) completionBlock;
 -(void)slideViewFromLeftOnScreenWithPhoto:(UIImage *)photoImage
                       withCompletionBlock:(ChainAnimationBlock)completionBlock;

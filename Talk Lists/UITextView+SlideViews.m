@@ -18,13 +18,13 @@
                           delay:0
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
-                         weakSelf.center = CGPointMake(self.center.x - 300, self.center.y);
+                         weakSelf.center = CGPointMake(weakSelf.center.x - 300, weakSelf.center.y);
                       }
                      completion:^(BOOL finished) {
                          weakSelf.hidden = YES;
                          // reset view to center of screen so that it is in a known position for
                          // subsequent moves (home position)
-                         weakSelf.center = CGPointMake(self.center.x + 300, self.center.y);
+                         weakSelf.center = CGPointMake(weakSelf.center.x + 300, weakSelf.center.y);
                          if (completionBlock) {
                              completionBlock();
                          }
@@ -46,7 +46,7 @@
                      animations:^{
                          weakSelf.hidden = NO;
                         weakSelf.text = textContent;
-                         weakSelf.center = CGPointMake(self.center.x + 300, self.center.y);
+                         weakSelf.center = CGPointMake(weakSelf.center.x + 300, weakSelf.center.y);
                      }
                      completion:^(BOOL finished) {
                          if (edit == YES) {
@@ -72,8 +72,7 @@
                      animations:^{
                          weakSelf.hidden = NO;
                          weakSelf.text = textContent;
-                         weakSelf.center = CGPointMake(self.center.x - 300, self.center.y);
-                   //      [weakSelf bringSubviewToFront:[weakSelf viewWithTag:100]];
+                         weakSelf.center = CGPointMake(weakSelf.center.x - 300, weakSelf.center.y);
                      }
                      completion:^(BOOL finished) {
                          if (edit == YES) {
@@ -88,18 +87,17 @@
 -(void)slideViewToRightOffScreen
 {
     __weak typeof (self) weakSelf = self;
-
     [UIView animateWithDuration:0.50
                           delay:0
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
-                         weakSelf.center = CGPointMake(self.center.x + 300, self.center.y);
+                         weakSelf.center = CGPointMake(weakSelf.center.x + 300, weakSelf.center.y);
                      }
                      completion:^(BOOL finished) {
                          weakSelf.hidden = YES;
                          // reset view to center of screen so that it is in a known position for
                          // subsequent moves (home position)
-                         weakSelf.center = CGPointMake(self.center.x - 300, self.center.y);
+                         weakSelf.center = CGPointMake(weakSelf.center.x - 300, weakSelf.center.y);
                      }];
     
 }

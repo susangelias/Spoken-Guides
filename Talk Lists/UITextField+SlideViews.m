@@ -44,19 +44,10 @@
                      }
                      completion:^(BOOL finished) {
                          if (edit == YES) {
-                             [self becomeFirstResponder];
+                             [weakSelf becomeFirstResponder];
                          }
                      }];
 }
 
--(void)showTitle:(NSString *)textContent toEdit:(bool)edit
-{
-    // Show title with no animation
-    self.text = textContent;
-    self.hidden = NO;
-    if (edit == YES) {
-        [self becomeFirstResponder];
-    }
-}
 
 @end

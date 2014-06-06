@@ -114,8 +114,10 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
-                         withPhoto:[UIImage imageWithData:self.guideToEdit.photo.thumbnail]];
+    if (stepNumber == 0) {
+        [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
+                                              withPhoto:[UIImage imageWithData:self.guideToEdit.photo.thumbnail]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -204,28 +206,28 @@
         [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:[addPhotoVC.assetLibraryURL absoluteString]]
                                 withCompletionBlock:^(UIImage *image, NSError *error) {
                                     // Create a new photo object and save 
-                                    Photo *newPhoto = [self createPhoto];
+                                    Photo *newPhoto = [weakSelf createPhoto];
                                     newPhoto.thumbnail = UIImagePNGRepresentation(image);
                                     newPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
 
-                                    if (self.guideTitle.hidden == NO) {
+                                    if (weakSelf.guideTitle.hidden == NO) {
                                         // title view is showing so this photo belongs to the guide
-                                        if (!self.guideToEdit) {
+                                        if (!weakSelf.guideToEdit) {
                                             // create guide if we don't have one yet
-                                            self.guideToEdit = [self createGuide];
+                                            weakSelf.guideToEdit = [weakSelf createGuide];
                                         }
-                                        self.guideToEdit.photo = newPhoto;
-                                        NSLog(@"self.guideToEdit %@", self.guideToEdit);
+                                        weakSelf.guideToEdit.photo = newPhoto;
                                     }
                                     else {
                                         // step view is showing so this photo belongs to the current step
-                                        self.stepInProgess.photo = newPhoto;
+                                        weakSelf.stepInProgess.photo = newPhoto;
                                     }
                                     
                                     // display thumbail on this screen
-                                    if (self.guideTitle.hidden == YES) {
+                                    if (weakSelf.guideTitle.hidden == YES) {
                                         weakSelf.stepImageView.image = image;
-                                        weakSelf.swapImageView.image = image;
+                                        weakSelf.stepImageView.hidden = NO;
+                                     //   weakSelf.swapImageView.image = image;
                                     }
                                     else {
                                         weakSelf.guideImageView.image = image;
@@ -233,7 +235,7 @@
                                 }];
     }
     // resume editing of step text
-    [self resetFirstResponder];
+ //   [self resetFirstResponder];
     
 }
 
@@ -400,18 +402,11 @@
 // left swipe gesture will display a current step with data or a new step entry view
     // reactivate right swipe gesture
     self.rightSwipeGesture.enabled = YES;
-   // [self resignFirstResponder];
     
      // slide the title view off to the left
     if (stepNumber == 0) {
         // hide the title screen
         [self.guideTitleView hideTitleView];
-        // save any changes to the title text
-   //     self.guideToEdit.title = self.guideTitle.text;
-    }
-    else {
-        // Save any final changes to the text into the model
-    //    self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
     }
     
     // get the model data
@@ -438,6 +433,7 @@
     UIView *touchedView = [self.view hitTest:touchPoint
                                    withEvent:nil];
     if (( ![touchedView isEqual:self.stepEntryView.stepTextView]) ||
+        (![touchedView isEqual:self.stepEntryView.swapTextView]) ||
         (![touchedView isEqual:self.guideTitle]) ) {
         [self.stepEntryView.stepTextView resignFirstResponder];
         [self.guideTitle resignFirstResponder];
