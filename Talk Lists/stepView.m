@@ -116,4 +116,9 @@
     }
 }
 
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    [self.stepEntryDelegate stepInstructionEditingEnded:textView.text];
+}
+
 @end

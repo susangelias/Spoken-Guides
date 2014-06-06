@@ -14,5 +14,6 @@
 
 -(void) stepInstructionEntryCompleted: (NSString *)instructionText;
 -(void) stepInstructionTextChanged: (NSString *)instructionText;
+-(void) stepInstructionEditingEnded: (NSString *)instructionText;
 
 @end

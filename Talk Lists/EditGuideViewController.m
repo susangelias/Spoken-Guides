@@ -82,7 +82,7 @@
     self.stepImageView.hidden = YES;
     
     stepNumber = 0;
-    self.showSaveAlert = NO;
+  //  self.showSaveAlert = NO;
     
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
@@ -139,7 +139,7 @@
         
         self.guideToEdit.title = title;
         self.navigationItem.title = title;
-        self.showSaveAlert = YES;
+      //  self.showSaveAlert = YES;
    
         // move to the first step view
         [self leftSwipe:self.leftSwipeGesture];
@@ -156,18 +156,20 @@
         if (!self.stepInProgess) {
             self.stepInProgess = [self createStep];
         }
-      /*  if (self.stepInProgess) {
-            self.stepInProgess.instruction = instructionText;
-        } */
     }
 }
 
--(void) stepInstructionEntryCompleted: (NSString *)instructionText
+-(void) stepInstructionEditingEnded: (NSString *)instructionText
 {
     // save current instructions in model
     if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
         self.stepInProgess.instruction = instructionText;
     }
+}
+
+-(void) stepInstructionEntryCompleted: (NSString *)instructionText
+{
+    [self stepInstructionEditingEnded:instructionText];
     
     // update user's onscreen instructions
     stepNumber++;
@@ -297,17 +299,14 @@
 
 #pragma  mark Done Button Actions
 
-- (IBAction)doneButtonPressed:(UIButton *)sender {
+- (IBAction)doneButtonPressed:(UIButton *)sender
+{
     
-    [self.guideTitle resignFirstResponder];
-    [self.StepTextView resignFirstResponder];
-   
     // save the most recent text view where the user has typed in text but not pressed the Next key
     if (![self.guideToEdit.title isEqualToString:self.guideTitle.text]) {
-        // this title needs to be saved
-        [self titleCompleted:self.guideTitle.text];
+        // this title needs to be saved to model
+        self.guideToEdit.title = self.guideTitle.text;
     }
-  
     
     NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
     NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
