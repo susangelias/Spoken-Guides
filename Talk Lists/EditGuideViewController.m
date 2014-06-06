@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipeGesture;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipeGesture;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 
 // model properties
 @property (strong, nonatomic) Step *stepInProgess;
@@ -297,7 +298,7 @@
     
 }
 
-#pragma  mark Done Button Actions
+#pragma  mark User Actions
 
 - (IBAction)doneButtonPressed:(UIButton *)sender
 {
@@ -363,16 +364,7 @@
 // right swipe gesture will display either the title or an existing step but never a new step entry view
     // reactivate the left swipe gesture
     self.leftSwipeGesture.enabled = YES;
-/*
-    // save any changes to the step text
-    if (self.guideTitle.hidden == NO) {
-        [self.guideTitle resignFirstResponder];
-    }
-    else {
-        [self.StepTextView resignFirstResponder];
-    }*/
-    NSLog(@"right swipe text %@", self.StepTextView.text);
-    NSLog(@"right swipe text 2 %@", self.stepEntryView.stepTextView.text);
+
     // Save any final changes to the text into the model
     self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
  
@@ -440,6 +432,18 @@
     [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
                                       withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
 }
+
+- (IBAction)tapped:(UITapGestureRecognizer *)sender {
+    CGPoint touchPoint = [sender locationInView:self.view];
+    UIView *touchedView = [self.view hitTest:touchPoint
+                                   withEvent:nil];
+    if (( ![touchedView isEqual:self.stepEntryView.stepTextView]) ||
+        (![touchedView isEqual:self.guideTitle]) ) {
+        [self.stepEntryView.stepTextView resignFirstResponder];
+        [self.guideTitle resignFirstResponder];
+    }
+}
+
 
 #pragma mark Navigation
 
