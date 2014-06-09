@@ -18,6 +18,7 @@
 #import "Step+Addendums.h"
 #import "Photo+Addendums.h"
 #import "SZTextView.h"
+#import "UIImage+Resize.h"
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepViewDelegate >
 
@@ -40,7 +41,6 @@
 
 // model properties
 @property (strong, nonatomic) Step *stepInProgess;
-@property (strong, nonatomic) Photo *userPhoto;
 
 @end
 
@@ -72,10 +72,6 @@
                                                  withImageView:self.guideImageView];
     self.guideTitleView.guideTitleDelegate = self;
     
-    // set up the guide's photo if there is one
-//    [self.guideTitle addSubview:self.guideImageView];
-//    self.guideImageView.image = [UIImage imageWithData:self.guideToEdit.photo.thumbnail];
-   
     // make sure step text views are hidden to start with
     self.StepTextView.hidden = YES;
     self.swapTextView.hidden = YES;
@@ -83,7 +79,6 @@
     self.stepImageView.hidden = YES;
     
     stepNumber = 0;
-  //  self.showSaveAlert = NO;
     
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
@@ -114,10 +109,16 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    if (stepNumber == 0) {
-        [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
-                                              withPhoto:[UIImage imageWithData:self.guideToEdit.photo.thumbnail]];
-    }
+
+    BOOL titleAnimated = NO;
+    [self showTitle:titleAnimated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.guideToEdit = nil;
+ //   self.stepInProgess = nil;
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -173,24 +174,9 @@
 -(void) stepInstructionEntryCompleted: (NSString *)instructionText
 {
     [self stepInstructionEditingEnded:instructionText];
-    
-    // update user's onscreen instructions
-    stepNumber++;
-    self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
-    [self showPlaceHolderText];
-    
-    // clear any images
-    self.stepImageView.image = nil;
-    self.swapImageView.image = nil;
-    // update the view
-    [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
-                                      withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
-    
-    // clear the photo image
-    self.userPhoto = nil;   // release pointer to current step's photo core data object which will force a new photo object to be created when the user take's or chooses another photo
-    
-    // make sure right swipe is active again
-    self.rightSwipeGesture.enabled = YES;
+
+    // move on to the next step
+    [self leftSwipe:self.leftSwipeGesture];
 }
 
 #pragma mark Add Photo unwind segues
@@ -200,14 +186,14 @@
     addPhotoViewController *addPhotoVC = (addPhotoViewController *)segue.sourceViewController;
     
     if (addPhotoVC.assetLibraryURL) {
-     //   self.userPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
         __weak typeof (self) weakSelf = self;
-        // Retreive the thumbnail of the photo so it can be displayed in the delegate method
+        // create a photo object for the new photo and add it to either the guide or a step
+        // then display it on screen
         [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:[addPhotoVC.assetLibraryURL absoluteString]]
-                                withCompletionBlock:^(UIImage *image, NSError *error) {
+                                withCompletionBlock:^(UIImage *thumbnailImage, NSError *error) {
                                     // Create a new photo object and save 
                                     Photo *newPhoto = [weakSelf createPhoto];
-                                    newPhoto.thumbnail = UIImagePNGRepresentation(image);
+                                    newPhoto.thumbnail = UIImagePNGRepresentation(thumbnailImage);
                                     newPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
 
                                     if (weakSelf.guideTitle.hidden == NO) {
@@ -223,19 +209,26 @@
                                         weakSelf.stepInProgess.photo = newPhoto;
                                     }
                                     
-                                    // display thumbail on this screen
+                                    // update the screen display with the new photo
                                     if (weakSelf.guideTitle.hidden == YES) {
-                                        weakSelf.stepImageView.image = image;
-                                        weakSelf.stepImageView.hidden = NO;
-                                     //   weakSelf.swapImageView.image = image;
+                                        // update the step image view
+                                          __block UIImage *photoImage;
+                                        [newPhoto retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
+                                            if (success) {
+                                                photoImage = [response objectForKey:@"photoImage"];
+                                            }
+                                            weakSelf.stepImageView.image = photoImage;
+                                        }];
+
                                     }
                                     else {
-                                        weakSelf.guideImageView.image = image;
+                                      //  weakSelf.guideImageView.image = thumbnailImage;
+                                        BOOL titleAnimation = NO;
+                                        [weakSelf showTitle:titleAnimation];
                                     }
                                 }];
     }
-    // resume editing of step text
- //   [self resetFirstResponder];
+
     
 }
 
@@ -314,6 +307,7 @@
     NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
     NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
     NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
+    NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
 
     //  put up the alert to save any changes made to the guide
     if ([self.managedObjectContext hasChanges] == YES )
@@ -339,11 +333,18 @@
         [self.managedObjectContext.undoManager endUndoGrouping];
         if (buttonIndex == 1) {
             // save guide to core data
-            NSError *error;
-            [self.managedObjectContext save:&error];
-            if (error) {
-                NSLog(@"ERROR saving context: %@", error);
-            }
+            [self.managedObjectContext performBlock:^{
+                  NSError *error;
+                [self.managedObjectContext save:&error];
+                if (error) {
+                    NSLog(@"ERROR saving context: %@", error);
+                }
+                [self.managedObjectContext performBlock:^{
+                    for (NSManagedObject *mo in self.managedObjectContext.registeredObjects) {
+                        [self.managedObjectContext refreshObject:mo mergeChanges:NO];
+                    }
+                }];
+            }];
         }
         else if (buttonIndex == 2) {
             // undo any changes
@@ -354,6 +355,7 @@
         NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
         NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
         NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
+        NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
         
         // return to main screen
         [self.navigationController popViewControllerAnimated:YES];
@@ -385,16 +387,29 @@
     
     // slide the new view in from the right
     if (stepNumber > 0) {
-        [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
-                                           withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
+        // step is found so retreive photo
+        if (self.stepInProgess.photo) {
+            __block UIImage *photoImage;
+            [self.stepInProgess.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
+                if (success) {
+                    photoImage = [response objectForKey:@"photoImage"];
+                }
+                [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
+                                                       withPhoto:photoImage];
+            }];
+        }
+        else {
+            [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
+                                                   withPhoto:nil];
+        }
     }
     else if (stepNumber == 0) {
         // slide the step view off to the left
         [self.stepEntryView hideStepEntryView];
         
         // show the title view
-        [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
-                                     withPhoto:[UIImage imageWithData:self.guideToEdit.photo.thumbnail]];
+        BOOL titleAnimated = YES;
+        [self showTitle:titleAnimated];
     }
 }
 
@@ -421,11 +436,27 @@
         // clear any images
         self.stepImageView.image = nil;
         self.swapImageView.image = nil;
+        [self.stepEntryView updateLeftSwipeStepEntryView:nil
+                                               withPhoto:nil];
     }
-
-    // update view with new data
-    [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
-                                      withPhoto:[UIImage imageWithData:self.stepInProgess.photo.thumbnail]];
+    else {
+        // step is found so retreive photo
+        if (self.stepInProgess.photo) {
+            __block UIImage *photoImage;
+            [self.stepInProgess.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
+                if (success) {
+                    photoImage = [response objectForKey:@"photoImage"];
+                }
+                [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
+                                                      withPhoto:photoImage];
+            }];
+        }
+        else {
+            [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
+                                                   withPhoto:nil];
+        }
+     
+    }
 }
 
 - (IBAction)tapped:(UITapGestureRecognizer *)sender {
@@ -470,6 +501,39 @@
 
 
 #pragma mark Helpers
+
+-(void)showTitle:(BOOL)animated
+{
+    if (stepNumber == 0) {
+        __block UIImage *photoImage;
+        if (self.guideToEdit.photo) {
+            [self.guideToEdit.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
+                if (success) {
+                    photoImage = [response objectForKey:@"photoImage"];
+                }
+                if (animated) {
+                      [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
+                                                   withPhoto:photoImage];
+                }
+                else {
+                    [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
+                                                          withPhoto:photoImage];
+                }
+            }];
+        }
+        else {
+            if (animated) {
+                [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
+                                                          withPhoto:nil];
+            }
+            else {
+                [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
+                                                  withPhoto:nil];
+            }
+        }
+    }
+}
+
 -(void)showPlaceHolderText
 {
 

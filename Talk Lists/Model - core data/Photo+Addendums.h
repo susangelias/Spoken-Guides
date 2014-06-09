@@ -8,11 +8,13 @@
 
 #import "Photo.h"
 
-
+typedef void (^ASCompletionBlock)(BOOL success, NSDictionary *response, NSError *error);
 @interface Photo (Addendums)
 
 +(NSString *)entityName;
 +(instancetype)insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc;
 
+-(void)retrieveImageWithCompletionBlock:(ASCompletionBlock)callback;
+-(void)retreiveThumbNailWithCompletionBlock:(ASCompletionBlock)callback;
 
 @end
