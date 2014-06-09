@@ -66,17 +66,6 @@
     XCTAssertNotNil(self.editGuideVC.guideToEdit, @"guide object must be created if a title has been entered");
 }
 
--(void)testShowSaveAlertIsFalseIfThereIsNoGuideObject
-{
-    XCTAssertEqual(self.editGuideVC.showSaveAlert, NO,@"showSaveAlert should be NO");
-}
-
--(void)testShowSaveAlertIsTrueIfThereIsAGuideObject
-{
-    [self.editGuideVC titleCompleted:@"some title"];
-    XCTAssertEqual(self.editGuideVC.showSaveAlert, YES,@"showSaveAlert should be YES");
-}
-
 -(void)testGuideIsNotCreatedIfTitleIsEmptyString
 {
     [self.editGuideVC titleCompleted:@""];
