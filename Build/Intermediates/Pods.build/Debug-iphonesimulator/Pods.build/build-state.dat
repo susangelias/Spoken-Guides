@@ -80,8 +80,8 @@ t1402094981
 s45776
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods.a
-t1402007636
-s381936
+t1402094981
+s383608
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
 c00000000538F24F40000000000000070
@@ -93,7 +93,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies981718057d42b941^cc9a18057d42b941^---0#1#1#--18"Check dependencies36"9DE6FFAC-46EA-4FFE-9979-B4C86DA1777D-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies164bb97a4f43b941^876bb97a4f43b941^---0#1#1#--18"Check dependencies36"38598C7C-31B1-484D-93DC-F35FB9A29183-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods.build/Objects-normal/i386/Pods-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s423593269.796975

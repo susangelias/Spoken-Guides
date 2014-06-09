@@ -6,4 +6,5 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UIView+SuperView.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/ALAssetsLibrary+CustomPhotoAlbum.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/ALAssetsLibrary+CustomPhotoAlbum.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UIImage+Resize.h

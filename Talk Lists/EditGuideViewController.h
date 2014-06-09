@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Guide *guideToEdit;
-//@property BOOL showSaveAlert;
 
 -(void)titleCompleted:(NSString *)title;
 - (IBAction)doneButtonPressed:(UIButton *)sender;

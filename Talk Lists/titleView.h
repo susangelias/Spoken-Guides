@@ -14,7 +14,6 @@
 @property (nonatomic, weak) UITextField *titleTextField;
 @property (nonatomic, weak) UIImageView *titleImageView;
 @property (nonatomic, weak) id <titleViewDelegate> guideTitleDelegate;
-//@property (nonatomic, strong) NSString *titleText;
 
 -(titleView *)initWithTextField: (UITextField *)textField
                   withImageView: (UIImageView *)imageView;

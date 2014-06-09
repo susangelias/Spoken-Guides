@@ -12,6 +12,7 @@
 -(void)saveImage:(UIImage*)image toAlbum:(NSString*)albumName withCompletionBlock:(SaveImageCompletion)completionBlock
 {
     //write the image data to the assets library (camera roll)
+    __weak typeof (self) weakSelf = self;
     [self writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation
                        completionBlock:^(NSURL* assetURL, NSError* error) {
                            
@@ -22,7 +23,7 @@
                            }
                            
                            //add the asset to the custom photo album
-                           [self addAssetURL: assetURL
+                           [weakSelf addAssetURL: assetURL
                                      toAlbum:albumName
                          withCompletionBlock:completionBlock];
                            
@@ -63,7 +64,7 @@
                             if (group==nil && albumWasFound==NO) {
                                 //photo albums are over, target album does not exist, thus create it
                                 //create new assets album
-                                [self addAssetsGroupAlbumWithName:albumName
+                                [weakSelf addAssetsGroupAlbumWithName:albumName
                                                       resultBlock:^(ALAssetsGroup *group) {
                                                           
                                                           //get the photo's instance
