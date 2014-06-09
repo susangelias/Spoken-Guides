@@ -10,10 +10,10 @@
 
 @implementation UIImage (Resize)
 
--(UIImage *)resizeToSquareImage:(UIImage *)originalPhoto
+-(UIImage *)resizeToSquareImage
 {
     UIImage *resizedImage;
-    CGImageRef coreGraphicsImage = originalPhoto.CGImage;
+    CGImageRef coreGraphicsImage = self.CGImage;
     CGFloat height = CGImageGetHeight(coreGraphicsImage);
     CGFloat width = CGImageGetWidth(coreGraphicsImage);
     CGRect crop;
@@ -33,7 +33,7 @@
     // scale down image to smaller size and make sure it is oriented the way the picture was taken
     resizedImage = [UIImage imageWithCGImage:croppedImage
                                        scale:MAX(crop.size.height/512, 1.0)
-                                 orientation:originalPhoto.imageOrientation];
+                                 orientation:self.imageOrientation];
     
     // release core graphics images as ARC does not do this for us
     CGImageRelease(croppedImage);

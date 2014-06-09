@@ -67,7 +67,7 @@
 
 
     // Display image
-    UIImage *resizedPhoto = [selectedPhoto resizeToSquareImage:selectedPhoto];
+    UIImage *resizedPhoto = [selectedPhoto resizeToSquareImage];
     if (resizedPhoto ) {
         // wait for imageView to render before attempting to display photo
         [UIView animateWithDuration:0.0

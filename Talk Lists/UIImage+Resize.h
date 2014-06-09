@@ -10,6 +10,6 @@
 
 @interface UIImage (Resize)
 
--(UIImage *)resizeToSquareImage:(UIImage *)originalPhoto;
+-(UIImage *)resizeToSquareImage;
 
 @end
