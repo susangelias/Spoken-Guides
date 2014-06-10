@@ -66,21 +66,42 @@
 
 
 #pragma mark User Actions
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
+
+- (IBAction)EditButtonPressed:(UIBarButtonItem *)sender {
     [self.tableView setEditing:YES
-                      animated:YES];
+                              animated:YES];
     sender.title = @"Done";
     sender.action = @selector(DoneButtonPressed:);
+    
+    [self.managedObjectContext.undoManager beginUndoGrouping];
 }
 
 -(IBAction)DoneButtonPressed:(UIBarButtonItem *)sender
 {
     [self.tableView setEditing:NO
-                      animated:YES];
+                              animated:YES];
     sender.title = @"Edit";
-    sender.action = @selector(editButtonPressed:);
+    sender.action = @selector(EditButtonPressed:);
+    
+    [self.managedObjectContext.undoManager endUndoGrouping];
+    // save any changes to core data
+    [self.managedObjectContext performBlock:^{
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"ERROR saving context: %@", error);
+        }
+    }];
+    // break any retain cycles between the managed objects before leaving this view controller
+    __weak typeof (self) weakSelf = self;
+    [self.managedObjectContext performBlock:^{
+        for (NSManagedObject *mo in weakSelf.managedObjectContext.registeredObjects) {
+            [weakSelf.managedObjectContext refreshObject:mo mergeChanges:NO];
+        }
+    }];
+    [self.managedObjectContext.undoManager removeAllActions];
+    
 }
-
 
 #pragma mark NSFetchedResultsController delegate methods
 

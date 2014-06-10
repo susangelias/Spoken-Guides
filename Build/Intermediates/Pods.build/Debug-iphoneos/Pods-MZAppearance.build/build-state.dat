@@ -8,8 +8,6 @@ cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediate
 cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-ckglghrdrdgapxfzrffudorebbro/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-benvxgjscvnueqalewljpuaiuiyk/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-dvzudkpdpgreemgwfyaalydfuvyp/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-hgokjgtpqwrrbkgiwwocjqznswqb/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.analyzer
-cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-MZAppearance-prefix-bjyxviwpzfihpghfhyxtiyhsbazc/Pods-MZAppearance-prefix.pch.pch Pods-MZAppearance-prefix.pch normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.analyzer
 cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/armv7/MZAppearance.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/armv7/NSInvocation+Copy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/armv7/Pods-MZAppearance-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
@@ -19,9 +17,6 @@ cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/
 cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/arm64/MZAppearance.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/arm64/NSInvocation+Copy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/arm64/Pods-MZAppearance-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cAnalyze /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m
-cAnalyze /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/NSInvocation+Copy.m
-cAnalyze /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-MZAppearance-dummy.m
 cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/armv7/libPods-MZAppearance.a normal armv7
 cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/armv7s/libPods-MZAppearance.a normal armv7s
 cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/arm64/libPods-MZAppearance.a normal arm64
@@ -241,7 +236,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies1e18f8491c45b941^33c11c4a1c45b941^---0#1#1#--18"Check dependencies36"D2E2993B-B3C0-4E54-9ACC-146E6C9782F7-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies0a6a606a9446b941^d34c776a9446b941^---0#1#1#--18"Check dependencies36"34E97F4B-5A80-424C-BE95-1F6EE2A52973-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-MZAppearance.build/Objects-normal/arm64/MZAppearance.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/MZAppearance/MZAppearance/MZAppearance.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s423772458.378868

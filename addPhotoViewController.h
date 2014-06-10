@@ -12,9 +12,8 @@
 
 @interface addPhotoViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate >
 
-@property (strong, nonatomic) UIImage *photo;
 @property (strong, nonatomic) NSURL *assetLibraryURL;
-@property (strong, nonatomic) NSString *albumName;
+@property (weak, nonatomic) NSString *albumName;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (strong, nonatomic) ALAssetsLibrary *library;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;

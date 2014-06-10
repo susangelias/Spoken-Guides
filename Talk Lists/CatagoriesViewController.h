@@ -10,6 +10,6 @@
 
 @interface CatagoriesViewController : UIViewController
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 @end

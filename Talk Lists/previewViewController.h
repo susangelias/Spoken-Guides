@@ -12,9 +12,8 @@
 
 @interface previewViewController : UIViewController
 
-@property (nonatomic, strong) Guide *guideToPreview;
-@property (nonatomic, strong) NSString *titleToPreview;
-@property (nonatomic, strong) Step *stepToPreview;
+@property (nonatomic, weak) Guide *guideToPreview;
+@property (nonatomic, weak) NSString *titleToPreview;
 
 @end
 

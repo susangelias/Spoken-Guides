@@ -30,7 +30,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
-    if (!self.photo) {
+    if (!self.photoView.image) {
         [self choosePhotoSource];
     }
 }
@@ -78,7 +78,6 @@
                           }
                          completion:^(BOOL finished) {
                              weakSelf.photoView.image = resizedPhoto;
-                             weakSelf.photo = resizedPhoto;
                          }
          ];
     }
@@ -158,7 +157,6 @@
 
 - (IBAction)redoPhoto:(UIButton *)sender {
     self.photoView.image = nil;
-    self.photo = nil;
     self.doneButton.hidden = YES;
     self.redoButton.hidden = YES;
     [self choosePhotoSource];

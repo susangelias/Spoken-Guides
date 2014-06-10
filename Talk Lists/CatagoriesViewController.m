@@ -63,10 +63,8 @@
         CategoryTableViewController *dvc = [segue destinationViewController];
         if ([sender isKindOfClass:[UIButton class]]) {
             UIButton *pressedButton = sender;
-       //     GuideCategories *guideCats = [[GuideCategories alloc] init];
-        //    dvc.guideCategory = [guideCats valueForKey:pressedButton.titleLabel.text];
-            dvc.guideCategory = pressedButton.titleLabel.text;
-            dvc.title = pressedButton.titleLabel.text;
+            dvc.guideCategory = [NSString stringWithString:pressedButton.titleLabel.text];
+            dvc.title = [NSString stringWithString:pressedButton.titleLabel.text];
             dvc.managedObjectContext = self.managedObjectContext;
             if (self.LocalAllSegmentControl.selectedSegmentIndex == 0) {
                 // 0 = All

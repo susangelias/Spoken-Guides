@@ -48,12 +48,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    // save any changes to core data
-    NSError *error;
-    [self.managedObjectContext save:&error];
-    if (error) {
-        NSLog(@"ERROR saving context: %@", error);
-    }
+    [super viewWillDisappear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +97,8 @@
                       animated:YES];
     sender.title = @"Done";
     sender.action = @selector(DoneButtonPressed:);
+    
+    [self.managedObjectContext.undoManager beginUndoGrouping];
 }
 
 -(IBAction)DoneButtonPressed:(UIBarButtonItem *)sender
@@ -109,6 +107,25 @@
                       animated:YES];
     sender.title = @"Edit";
     sender.action = @selector(EditButtonPressed:);
+    
+    [self.managedObjectContext.undoManager endUndoGrouping];
+    // save any changes to core data
+    [self.managedObjectContext performBlock:^{
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"ERROR saving context: %@", error);
+        }
+    }];
+    // break any retain cycles between the managed objects before leaving this view controller
+    __weak typeof (self) weakSelf = self;
+    [self.managedObjectContext performBlock:^{
+        for (NSManagedObject *mo in weakSelf.managedObjectContext.registeredObjects) {
+            [weakSelf.managedObjectContext refreshObject:mo mergeChanges:NO];
+        }
+    }];
+    [self.managedObjectContext.undoManager removeAllActions];
+
 }
 
 #pragma mark - Navigation

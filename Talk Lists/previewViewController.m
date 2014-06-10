@@ -89,21 +89,13 @@
     if (!_guideStepsDataSource) {
         
         // set up the block that will fill each tableViewCell
-#warning Step object being retained
-        void (^configureCell)(stepCell *, id)  = ^(stepCell *cell, Step *guideStep) {
+        void (^configureCell)(stepCell *,  id)  = ^(stepCell *cell,  Step *guideStep) {
             [cell configureStepCell:guideStep];
-           //cell.textLabel.text = guideStep.instruction;   // causing retain cycle as well, weak qualifier in ArrayDataSource didn't help
-            // if I comment out the configure code all together the retain cycle goes away - see stepCell.m code
-
         };
         
         // get the guide steps from our working copy of the new guide in progress
         NSMutableArray *previewSteps = [[self.guideToPreview sortedSteps] mutableCopy];
-        // add the current inprogress step if there is one
-        if (self.stepToPreview) {
-            [previewSteps addObject:self.stepToPreview];
-        }
-        _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:previewSteps
+         _guideStepsDataSource = [[ArrayDataSource alloc] initWithItems:previewSteps
                                                           cellIDString:@"stepCell"
                                                     configureCellBlock:configureCell];
         _guideStepsDataSource.arrayDataSourceDelegate = self;

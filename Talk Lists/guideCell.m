@@ -35,16 +35,7 @@
     }
 }
 
-/*
-#pragma mark Photo_AddendumsDelegate
 
-
--(void)imageRetrieved:(UIImage *)image
-{
-    self.imageView.image = image;
-}
-
-*/
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
