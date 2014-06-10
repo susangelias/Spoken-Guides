@@ -114,12 +114,6 @@
     [self showTitle:titleAnimated];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    self.guideToEdit = nil;
- //   self.stepInProgess = nil;
-    [super viewWillDisappear:animated];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -143,7 +137,6 @@
         
         self.guideToEdit.title = title;
         self.navigationItem.title = title;
-      //  self.showSaveAlert = YES;
    
         // move to the first step view
         [self leftSwipe:self.leftSwipeGesture];
@@ -202,31 +195,42 @@
                                             // create guide if we don't have one yet
                                             weakSelf.guideToEdit = [weakSelf createGuide];
                                         }
+                                        if (weakSelf.guideToEdit.photo) {
+                                            // need to remove previous photo object
+#warning remove photo from library ???
+                                            [weakSelf.managedObjectContext deleteObject:weakSelf.guideToEdit.photo];
+                                        }
                                         weakSelf.guideToEdit.photo = newPhoto;
                                     }
                                     else {
                                         // step view is showing so this photo belongs to the current step
+                                        if (weakSelf.stepInProgess.photo) {
+                                            // need to remove previous photo object
+#warning remove photo from library ???
+                                            [weakSelf.managedObjectContext deleteObject:weakSelf.stepInProgess.photo];
+                                        }
                                         weakSelf.stepInProgess.photo = newPhoto;
                                     }
                                     
-                                    // update the screen display with the new photo
-                                    if (weakSelf.guideTitle.hidden == YES) {
-                                        // update the step image view
+                                    // update the screen display with the full image, not the thumbnail
                                           __block UIImage *photoImage;
                                         [newPhoto retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
                                             if (success) {
                                                 photoImage = [response objectForKey:@"photoImage"];
                                             }
-                                            weakSelf.stepImageView.image = photoImage;
+                                            if (weakSelf.guideTitle.hidden == YES) {
+                                                // update the step image view
+                                                weakSelf.stepImageView.image = photoImage;
+                                                weakSelf.stepImageView.hidden = NO;
+                                            }
+                                            else {
+                                                // update the guide image view
+                                                weakSelf.guideImageView.image = photoImage;
+                                                weakSelf.guideImageView.hidden = NO;
+                                            }
                                         }];
 
-                                    }
-                                    else {
-                                      //  weakSelf.guideImageView.image = thumbnailImage;
-                                        BOOL titleAnimation = NO;
-                                        [weakSelf showTitle:titleAnimation];
-                                    }
-                                }];
+                                 }];
     }
 
     
@@ -307,7 +311,7 @@
     NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
     NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
     NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
-    NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
+ //   NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
 
     //  put up the alert to save any changes made to the guide
     if ([self.managedObjectContext hasChanges] == YES )
@@ -332,30 +336,36 @@
     {
         [self.managedObjectContext.undoManager endUndoGrouping];
         if (buttonIndex == 1) {
-            // save guide to core data
+            // SAVE: save guide to core data
             [self.managedObjectContext performBlock:^{
                   NSError *error;
                 [self.managedObjectContext save:&error];
                 if (error) {
                     NSLog(@"ERROR saving context: %@", error);
                 }
-                [self.managedObjectContext performBlock:^{
-                    for (NSManagedObject *mo in self.managedObjectContext.registeredObjects) {
-                        [self.managedObjectContext refreshObject:mo mergeChanges:NO];
-                    }
-                }];
             }];
         }
         else if (buttonIndex == 2) {
-            // undo any changes
+            // DISCARD:  undo any changes
             if ([self.managedObjectContext.undoManager canUndo]) {
                 [self.managedObjectContext.undoManager undoNestedGroup];
-            }
+                }
         }
+          
+        // break any retain cycles between the managed objects before leaving this view controller
+        __weak typeof (self) weakSelf = self;
+        [self.managedObjectContext performBlock:^{
+            for (NSManagedObject *mo in weakSelf.managedObjectContext.registeredObjects) {
+                [weakSelf.managedObjectContext refreshObject:mo mergeChanges:NO];
+            }
+        }];
+        /* From the core data programming guide:  "The undo manager associated with a context keeps strong references to any changed managed objects. By default, in OS X the context’s undo manager keeps an unlimited undo/redo stack. To limit your application's memory footprint, you should make sure that you scrub (using removeAllActions) the context’s undo stack as and when appropriate. */
+        [self.managedObjectContext.undoManager removeAllActions];
+        
         NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
         NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
         NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
-        NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
+    //    NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
         
         // return to main screen
         [self.navigationController popViewControllerAnimated:YES];

@@ -11,7 +11,7 @@
 
 @interface EditGuideViewController : UIViewController
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Guide *guideToEdit;
 
 -(void)titleCompleted:(NSString *)title;
