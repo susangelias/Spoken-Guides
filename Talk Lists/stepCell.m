@@ -10,6 +10,7 @@
 #import "UIView+SuperView.h"
 #import "Photo+Addendums.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "UIImage+Resize.h"
 
 @interface stepCell()
 
@@ -44,13 +45,15 @@
 -(void)configureStepCell: (Step *)stepToDisplay
 {
     UITapGestureRecognizer *tapped;
- 
-    self.textLabel.text = stepToDisplay.instruction;
-    
+
+    if (stepToDisplay.instruction) {
+        self.textLabel.text = [NSString stringWithString:stepToDisplay.instruction];
+    }
+
     if (stepToDisplay.photo.thumbnail) {
         // Set the thumbnail as the displayed image for now but better resolution image will get swapped in in the completion block
         self.imageView.image = [UIImage imageWithData:stepToDisplay.photo.thumbnail];
-        
+
         // Retrieve the photo so it can be displayed in the delegate method - this puts an image suitable
         // for full screen display into our thumbnail shown in the table view so when the user taps it
         // and it expands to full screen it will not be blurry as it is if I use the thumbnail here
@@ -58,10 +61,10 @@
         __weak typeof(self)weakSelf = self;
         [library getImageForAssetURL:[NSURL URLWithString:stepToDisplay.photo.assetLibraryURL]
                  withCompletionBlock:^(UIImage *image, NSError *error) {
-                     weakSelf.imageView.image = image;
+                     weakSelf.imageView.image = [image resizeToSquareImage];
         }];
-        
-        // Add Gesture Recognizer
+
+    // Add Gesture Recognizer
         tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellImageTapped:)];
         tapped.numberOfTapsRequired = 1;
         [self.imageView addGestureRecognizer:tapped];
@@ -71,8 +74,9 @@
         self.imageView.image = nil;
         [self.imageView removeGestureRecognizer:tapped];
     }
-
 }
+
+
 #pragma mark cell image enlargement management
 
 - (void)cellImageTapped:(UITapGestureRecognizer *)gesture
@@ -148,6 +152,7 @@
                      }];
 }
 
+/*
 #pragma mark Photo_AddendumsDelegate
 
 
@@ -155,6 +160,6 @@
 {
     self.imageView.image = image;
 }
-
+*/
 
 @end
