@@ -129,13 +129,7 @@
 {
 
     if (![title isEqualToString:@""]) {
-        // only create guide if the title string is not an empty string
-        // if this is a new guide - create the guide object once a title has been entered
-        if (!self.guideToEdit) {
-            self.guideToEdit= [self createGuide];
-        }
-        
-        self.guideToEdit.title = title;
+        [self saveTitleToModel:title];
         self.navigationItem.title = title;
    
         // move to the first step view
@@ -146,21 +140,27 @@
 
 #pragma mark <stepEntryViewDelegate>
 
--(void) stepInstructionTextChanged: (NSString *)instructionText
+-(void) stepInstructionTextChanged: (NSRange)range withReplacementText:(NSString *)replacementInstructionText
 {
-    if (![instructionText isEqualToString:@""])
-    {
         if (!self.stepInProgess) {
             self.stepInProgess = [self createStep];
         }
-    }
+        // replace text in model
+        if (self.stepInProgess)
+        {
+            NSString * currentInstruction = self.stepInProgess.instruction;
+            if (self.stepInProgess.instruction) {
+                self.stepInProgess.instruction = [currentInstruction stringByReplacingCharactersInRange:range
+                                                                    withString:replacementInstructionText];
+            }
+        }
 }
 
 -(void) stepInstructionEditingEnded: (NSString *)instructionText
 {
     // save current instructions in model
     if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
-        self.stepInProgess.instruction = instructionText;
+        self.stepInProgess.instruction = [NSString stringWithString:instructionText];
     }
 }
 
@@ -301,17 +301,16 @@
 
 - (IBAction)doneButtonPressed:(UIButton *)sender
 {
-    
     // save the most recent text view where the user has typed in text but not pressed the Next key
     if (![self.guideToEdit.title isEqualToString:self.guideTitle.text]) {
         // this title needs to be saved to model
-        self.guideToEdit.title = self.guideTitle.text;
+        [self saveTitleToModel:self.guideTitle.text];
     }
     
     NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
     NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
     NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
- //   NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
+    NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
 
     //  put up the alert to save any changes made to the guide
     if ([self.managedObjectContext hasChanges] == YES )
@@ -350,6 +349,8 @@
             if ([self.managedObjectContext.undoManager canUndo]) {
                 [self.managedObjectContext.undoManager undoNestedGroup];
                 }
+            // refresh view from model for the step that is displayed
+             self.StepTextView.text = self.swapTextView.text = self.stepInProgess.instruction;
         }
           
         // break any retain cycles between the managed objects before leaving this view controller
@@ -365,7 +366,7 @@
         NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
         NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
         NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
-    //    NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
+        NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
         
         // return to main screen
         [self.navigationController popViewControllerAnimated:YES];
@@ -380,7 +381,7 @@
     self.leftSwipeGesture.enabled = YES;
 
     // Save any final changes to the text into the model
-    self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
+    self.stepInProgess.instruction = [NSString stringWithString:self.stepEntryView.stepTextView.text];
  
     // get the model data
     stepNumber -= 1;
@@ -429,6 +430,12 @@
     self.rightSwipeGesture.enabled = YES;
     
      // slide the title view off to the left
+    if ( (!self.guideToEdit) && (![self.guideTitle.text isEqualToString:@""]) )
+    {
+        // user entered a title then left swiped instead of pressing the Next key
+        // so make sure title is saved to the guide
+        [self saveTitleToModel:self.guideTitle.text];
+    }
     if (stepNumber == 0) {
         // hide the title screen
         [self.guideTitleView hideTitleView];
@@ -496,7 +503,7 @@
                 destController.titleToPreview = self.guideTitle.text;
             } else  {
                 // update in progress step to model even if user has not hit the Next key yet
-                self.stepInProgess.instruction = self.stepEntryView.stepTextView.text;
+                self.stepInProgess.instruction = [NSString stringWithString:self.stepEntryView.stepTextView.text];
             }
         }
     }
@@ -511,6 +518,16 @@
 
 
 #pragma mark Helpers
+
+-(void)saveTitleToModel:(NSString *)title
+{
+    // if this is a new guide - create the guide object once a title has been entered
+    if (!self.guideToEdit) {
+        self.guideToEdit= [self createGuide];
+    }
+    
+    self.guideToEdit.title = title;
+}
 
 -(void)showTitle:(BOOL)animated
 {
@@ -602,6 +619,7 @@
     Step *newStep = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
     newStep.rank = [NSNumber numberWithInt:stepNumber];
     [self.guideToEdit addStepInGuideObject:newStep];
+    newStep.instruction = @"";
     return newStep;
 }
 

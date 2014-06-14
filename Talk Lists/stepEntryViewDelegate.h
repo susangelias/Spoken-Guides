@@ -13,7 +13,7 @@
 @required
 
 -(void) stepInstructionEntryCompleted: (NSString *)instructionText;
--(void) stepInstructionTextChanged: (NSString *)instructionText;
+-(void) stepInstructionTextChanged: (NSRange)range withReplacementText: (NSString *)instructionText;
 -(void) stepInstructionEditingEnded: (NSString *)instructionText;
 
 @end

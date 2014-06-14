@@ -247,7 +247,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2Z-HB-cQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YCG-6o-h6G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2721" y="1884"/>
+            <point key="canvasLocation" x="2775" y="1524"/>
         </scene>
         <!--Add Photo View Controller-->
         <scene sceneID="GvE-Px-tB0">
@@ -312,7 +312,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFy-tf-X2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="T6I-R6-vCH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2727" y="1167"/>
+            <point key="canvasLocation" x="2761" y="837"/>
         </scene>
         <!--Category Table View Controller-->
         <scene sceneID="bjC-T5-oTy">
@@ -671,7 +671,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBe-Yt-Ksi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="1501"/>
+            <point key="canvasLocation" x="1451" y="907"/>
         </scene>
         <!--Edit Guide View Controller - Edit Guide-->
         <scene sceneID="5Ui-tw-Uja">
@@ -802,7 +802,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2169" y="1501"/>
+            <point key="canvasLocation" x="1935" y="907"/>
         </scene>
     </scenes>
     <resources>

@@ -75,14 +75,14 @@
 -(void)testStepIsNotCreatedIfNoTextHasBeenEnteredIntoStepView
 {
     [self.editGuideVC titleCompleted:@"some title"];
-    [self.editGuideVC stepInstructionTextChanged:@""];
     XCTAssertEqual([self.editGuideVC.guideToEdit.stepInGuide count], 0,  @"there should be no steps in the guide");
 }
 
 -(void)testStepIsCreatedWhenTextEntered
 {
     [self.editGuideVC titleCompleted:@"some title"];
-    [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
+    NSString *replacementString = @"some step instruction";
+    [self.editGuideVC stepInstructionEntryCompleted:replacementString];
     XCTAssertEqual([self.editGuideVC.guideToEdit.stepInGuide count], 1, @"there should be 1 step in the guide");
 }
 
@@ -101,7 +101,9 @@
 -(void)testNoChangesRecordedIfTitleOrStepNotChanged
 {
     [self.editGuideVC titleCompleted: @"some title"];
-    [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
+    [self.editGuideVC stepInstructionTextChanged:NSMakeRange(0, 21) withReplacementText:@"some step instruction"];
+
+  //  [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
     NSError *error;
     [self.moc save:&error];
     XCTAssertEqual([self.moc hasChanges], NO, @"there should be no changes to the managed object");
@@ -111,7 +113,9 @@
 -(void)testChangesRecordedIfTitleChanged
 {
     [self.editGuideVC titleCompleted: @"some title"];
-    [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
+    [self.editGuideVC stepInstructionTextChanged:NSMakeRange(0, 21) withReplacementText:@"some step instruction"];
+
+//    [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
     NSError *error;
     [self.moc save:&error];
     XCTAssertEqual([self.moc hasChanges], NO, @"there should be no changes to the managed object");
@@ -124,7 +128,9 @@
 -(void)testChangesRecordedIfStepChanged
 {
     [self.editGuideVC titleCompleted: @"some title"];
-    [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
+    [self.editGuideVC stepInstructionTextChanged:NSMakeRange(0, 21) withReplacementText:@"some step instruction"];
+
+//    [self.editGuideVC stepInstructionTextChanged:@"some step instruction"];
     NSError *error;
     [self.moc save:&error];
     XCTAssertEqual([self.moc hasChanges], NO, @"there should be no changes to the managed object");

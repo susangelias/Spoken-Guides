@@ -54,14 +54,17 @@
         weakSelf.stepImageView = self.swapImageView;
         weakSelf.swapImageView = tempImageView;
     };
+    ChainAnimationBlock imageAnimationComplete = ^{
+        UIImageView *tempImageView = self.stepImageView;
+        weakSelf.stepImageView = self.swapImageView;
+        weakSelf.swapImageView = tempImageView;
+    };
 
     [self.stepTextView slideViewToLeftOffScreen:nil];
     [self.stepImageView slideViewToLeftOffScreen:nil];
 
-    if (photo) {
-        [self.swapImageView slideViewFromRightOnScreenWithPhoto:photo
+    [self.swapImageView slideViewFromRightOnScreenWithPhoto:photo
                                        withCompletionBlock:nil];
-    }
     [self.swapTextView slideViewFromRightOnScreenWithText:textContent
                                                   toEdit:editFlag
                                      withCompletionBlock:animationComplete];
@@ -111,7 +114,9 @@
     }
     else {
         // need to pass range and replacement text to delegate
-        [self.stepEntryDelegate stepInstructionTextChanged:self.stepTextView.text];
+        [self.stepEntryDelegate stepInstructionTextChanged:range
+                                       withReplacementText:text];
+     //    [self.stepEntryDelegate stepInstructionTextChanged:self.stepTextView.text];
         return YES;
     }
 }

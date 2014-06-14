@@ -17,7 +17,7 @@
 -(void)titleCompleted:(NSString *)title;
 - (IBAction)doneButtonPressed:(UIButton *)sender;
 -(void) stepInstructionEntryCompleted: (NSString *)instructionText;
--(void) stepInstructionTextChanged: (NSString *)instructionText;
+-(void) stepInstructionTextChanged: (NSRange)range withReplacementText: (NSString *)instructionText;
 -(void) stepInstructionEditingEnded: (NSString *)instructionText;
 
 @end
