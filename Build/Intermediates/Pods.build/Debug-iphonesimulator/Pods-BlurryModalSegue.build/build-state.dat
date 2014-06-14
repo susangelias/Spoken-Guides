@@ -157,7 +157,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesba68b87a4f43b941^8996b87a4f43b941^---0#1#1#--18"Check dependencies36"C71F332C-12C2-49E7-8B53-450953D32086-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesd503a23cb147b941^a22aa23cb147b941^---0#1#1#--18"Check dependencies36"D0F8945C-6512-4427-8925-71D8054132DE-
 
 CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s423593681.566101

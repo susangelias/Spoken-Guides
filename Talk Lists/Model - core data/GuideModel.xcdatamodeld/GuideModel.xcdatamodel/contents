@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Guide" representedClassName="Guide" syncable="YES">
         <attribute name="classification" attributeType="String" syncable="YES"/>
         <attribute name="creationDate" attributeType="Date" syncable="YES"/>
@@ -11,8 +11,8 @@
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="assetLibraryURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="photoDelegate" optional="YES" transient="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="belongsToGuide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guide" inverseName="photo" inverseEntity="Guide" syncable="YES"/>
         <relationship name="belongsToStep" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Step" inverseName="photo" inverseEntity="Step" syncable="YES"/>

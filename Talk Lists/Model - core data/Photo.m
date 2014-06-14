@@ -2,7 +2,7 @@
 //  Photo.m
 //  Talk Lists
 //
-//  Created by Susan Elias on 5/8/14.
+//  Created by Susan Elias on 6/10/14.
 //  Copyright (c) 2014 GriffTech. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 @dynamic assetLibraryURL;
 @dynamic image;
 @dynamic thumbnail;
-@dynamic photoDelegate;
+@dynamic fileURL;
 @dynamic belongsToGuide;
 @dynamic belongsToStep;
 

@@ -15,4 +15,5 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UITextView+SlideViews.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Step+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo+Addendums.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UIImage+Resize.h
