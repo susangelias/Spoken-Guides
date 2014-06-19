@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "fetchedResultsDataSourceDelegate.h"
 
 typedef void(^configureCellBlock)(UITableViewCell *, id);
 
@@ -16,6 +17,9 @@ typedef void(^configureCellBlock)(UITableViewCell *, id);
 @property (nonatomic, strong) NSString *cellIdentifier;
 @property (nonatomic, strong) NSPredicate *searchPredicate;
 @property (nonatomic, strong) NSArray *filteredObjects;
+@property (nonatomic, weak) id <fetchedResultsDataSourceDelegate> fetchedResultsDataSourceDelegate;
+@property (nonatomic) BOOL rearrangingAllowed;
+@property (nonatomic) BOOL editingAllowed;
 
 -(NSFetchedResultsController *)initWithEntity: (NSString *)entityName
                      withManagedObjectContext:(NSManagedObjectContext *)moc

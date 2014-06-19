@@ -96,4 +96,17 @@
     }
 }
 
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    [self.fetchedResultsDataSourceDelegate movedRowFrom:fromIndexPath.row To:toIndexPath.row];  // let the view controller know a row is moving
+}
+
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return self.rearrangingAllowed;
+}
+
 @end
