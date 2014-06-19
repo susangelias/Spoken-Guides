@@ -10,12 +10,16 @@
 #import "BlurryModalSegue.h"
 #import "stepCell.h"
 #import "Step.h"
-#import "ArrayDataSource.h"
-#import "ArrayDataSourceDelegate.h"
+#import "fetchedResultsDataSource.h"
+#import "fetchedResultsDataSourceDelegate.h"
+//#import "ArrayDataSourceDelegate.h"
 #import "Guide+Addendums.h"
 #import "dialogController.h"
 #import "Photo+Addendums.h"
 #import "TalkListAppDelegate.h"
+#import "EditGuideViewController.h"
+#import "ShareController.h"
+
 
 typedef NS_ENUM(NSInteger, dialogState) {
     isPlaying,
@@ -23,7 +27,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     isReset
 };
 
-@interface GuideDetailViewController () <ArrayDataSourceDelegate, UITableViewDelegate, dialogControllerDelegate>
+@interface GuideDetailViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, dialogControllerDelegate, fetchedResultsDataSourceDelegate >
 // View properties
 @property (weak, nonatomic) IBOutlet UITableView *guideTableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
@@ -34,7 +38,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 @property (nonatomic, strong) NSArray *stateStrings;
 
 // Model properties
-@property (strong, nonatomic) ArrayDataSource *guideDetailVCDataSource;
+@property (strong, nonatomic) fetchedResultsDataSource *guideDetailVCDataSource;
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
@@ -61,6 +65,11 @@ typedef NS_ENUM(NSInteger, dialogState) {
 {
     [super viewDidLoad];
     
+    NSError *error;
+    [self.guideDetailVCDataSource performFetch:&error];
+    if (error) {
+        NSLog(@"Error fetching steps for guide: %@", error);
+    }
     self.guideTableView.dataSource = self.guideDetailVCDataSource;
     self.guideTableView.delegate = self;
 
@@ -78,6 +87,13 @@ typedef NS_ENUM(NSInteger, dialogState) {
                                                  name:AVAudioSessionRouteChangeNotification
                                                object:[AVAudioSession sharedInstance]];
     
+    // add the share button to the nav toolbar
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                               target:self
+                                                                                               action:@selector(shareButtonPressed:)];
+    NSMutableArray *mutableBarButtonItems = [self.navigationItem.rightBarButtonItems mutableCopy];
+    [mutableBarButtonItems addObject:shareButton];
+    self.navigationItem.rightBarButtonItems = [mutableBarButtonItems copy];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -146,6 +162,51 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark NSFetchedResultsController delegate methods
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.guideTableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.guideTableView;
+    
+    switch(type) {
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.guideTableView endUpdates];
+}
+
+#pragma mark fetchedResultsDataSourceDelegate
+
+-(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
+{
+    [self.guide moveStepFromNumber:fromIndex+1 toNumber:toIndex+1];
+    
+    // turn off editing mode automatically after a row is moved
+    [self.guideTableView setEditing:NO animated:YES];
+    
+    // erase the dialog controller's list of steps and let it rebuild them
+    self.dialogController.instructions = nil;
+}
+
+
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,6 +226,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     UITableViewCell *selectedCell = [self.guideTableView cellForRowAtIndexPath:indexPath];
     [selectedCell setSelected:NO animated:YES ];
 }
+
 
 #pragma mark dialogControllerDelegate Methods
 
@@ -322,6 +384,21 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 }
 
+- (IBAction)longPressGestureRecognized:(id)sender
+{
+    
+    self.guideDetailVCDataSource.rearrangingAllowed = YES;
+  //  self.guideStepsDataSource.editingAllowed = YES;
+    [self.guideTableView setEditing:YES
+                          animated:YES];
+}
+
+- (IBAction)shareButtonPressed:(UIBarButtonItem *)sender
+{
+    ShareController *shareControl = [[ShareController alloc]init];
+    [shareControl shareGuide:self.guide];
+}
+
 #pragma mark AVAudioSession Notifications
 
 - (void)audioInterruption: (NSNotification *)notification
@@ -385,6 +462,12 @@ typedef NS_ENUM(NSInteger, dialogState) {
         bms.backingImageSaturationDeltaFactor = @(.45);
         bms.backingImageTintColor = [[UIColor greenColor] colorWithAlphaComponent:.1];
     }
+    else if ([[segue destinationViewController  ]isKindOfClass:[EditGuideViewController class]])
+    {
+        EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
+        destController.managedObjectContext = self.guide.managedObjectContext;
+        destController.guideToEdit = self.guide;
+    }
 }
 
 #pragma mark initializers
@@ -397,6 +480,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     return _stateStrings;
 }
 
+/*
 -(ArrayDataSource *)guideDetailVCDataSource
 {
     if (!_guideDetailVCDataSource) {
@@ -415,6 +499,32 @@ typedef NS_ENUM(NSInteger, dialogState) {
         
          
     }
+    return _guideDetailVCDataSource;
+}
+*/
+
+-(fetchedResultsDataSource *)guideDetailVCDataSource
+{
+    if (!_guideDetailVCDataSource) {
+        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, Step *guideStep) {
+            if ([cell isKindOfClass:[stepCell class]]) {
+                stepCell *thisStepCell = (stepCell *)cell;
+                [thisStepCell configureStepCell:guideStep];
+            }
+        };
+            
+     //   NSString *searchString = self.guide;
+       // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToGuide == %@", searchString];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToGuide == %@", self.guide];
+        _guideDetailVCDataSource = [[fetchedResultsDataSource alloc] initWithEntity:@"Step"
+                                                               withManagedObjectContext:self.guide.managedObjectContext
+                                                                            withSortKey:@"rank"
+                                                                    withCellIndentifier:@"stepCell"
+                                                                    withSearchPredicate:predicate
+                                                                     withConfigureBlock:configureCell];
+    }
+    _guideDetailVCDataSource.delegate = self;
+    _guideDetailVCDataSource.fetchedResultsDataSourceDelegate = self;
     return _guideDetailVCDataSource;
 }
 

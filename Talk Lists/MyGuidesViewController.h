@@ -10,6 +10,6 @@
 
 @interface MyGuidesViewController : UIViewController
 
-@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

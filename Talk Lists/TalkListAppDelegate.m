@@ -7,12 +7,17 @@
 //
 
 #import "TalkListAppDelegate.h"
+#import <Parse/Parse.h>
+#import "PFGuide.h"
 
 @implementation TalkListAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [PFGuide registerSubclass];
+    [Parse setApplicationId:@"XS8vaAZaunsYpf2lyR1NNnCCPtkVd9WdqJRWAdVJ"
+                  clientKey:@"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr"];
     return YES;
 }
 							

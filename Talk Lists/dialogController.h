@@ -18,7 +18,7 @@
 @property (nonatomic, weak) id <dialogControllerDelegate> dialogControlDelegate;
 @property (nonatomic) int currentLineIndex;
 @property (nonatomic, strong) Guide *guide;
-
+@property (nonatomic, strong) NSArray *instructions;
 
 - (void)startDialog;
 - (void)pauseDialog;

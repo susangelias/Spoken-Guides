@@ -19,6 +19,7 @@
 #import "Photo+Addendums.h"
 #import "SZTextView.h"
 #import "UIImage+Resize.h"
+#import "ShareController.h"
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepViewDelegate >
 
@@ -297,6 +298,7 @@
     
 }
 
+
 #pragma  mark User Actions
 
 - (IBAction)doneButtonPressed:(UIButton *)sender
@@ -343,6 +345,11 @@
                     NSLog(@"ERROR saving context: %@", error);
                 }
             }];
+            // UPDATE: if guide has already been published, update it with changes
+            if (![self.guideToEdit.uniqueID hasPrefix:@"Talk Notes"]) {
+                ShareController *shareControl = [[ShareController alloc]init];
+                [shareControl shareGuide:self.guideToEdit];
+            }
         }
         else if (buttonIndex == 2) {
             // DISCARD:  undo any changes

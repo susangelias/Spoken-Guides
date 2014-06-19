@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 @property (nonatomic, strong) NSString *nextLine;
 @property (nonatomic, strong) NSString *heardText;  // for debuggin on iPad only
 @property dialogControllerState currentState;
-@property (nonatomic, strong) NSArray *instructions;
+
 
 @end
 

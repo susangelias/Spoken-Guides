@@ -8,18 +8,21 @@
 
 #import "MyGuidesViewController.h"
 #import "EditGuideViewController.h"
+#import "GuideDetailViewController.h"
 #import "ArrayDataSource.h"
 #import "GuideCategories.h"
 #import "fetchedResultsDataSource.h"
 #import "Guide+Addendums.h"
 #import "Photo+Addendums.h"
+#import "ShareController.h"
 
 
 @interface MyGuidesViewController () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myGuidesTableView;
 @property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
-
+@property (strong, nonatomic) NSManagedObjectModel *mom;
+@property (strong, nonatomic) NSURL *storeURL;
 @end
 
 @implementation MyGuidesViewController
@@ -38,6 +41,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Set up managed object context
+    [self setupManagedObjectContext];
+    
+    // Set up the undo manager
+    if (self.managedObjectContext) {
+        self.managedObjectContext.undoManager = [[NSUndoManager alloc] init];
+    }
+    
     NSError *error;
     [self.guideFetchResultsController performFetch:&error];
     if (error) {
@@ -74,6 +86,12 @@
     switch(type) {
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if ([anObject isKindOfClass:[Guide class]]) {
+                // delete object from backend
+                Guide *deletedGuide = (Guide *)anObject;
+                ShareController *shareControl = [[ShareController alloc]init];
+                [shareControl deleteGuide:deletedGuide];
+            }
             break;
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -128,6 +146,7 @@
 
 }
 
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -135,15 +154,15 @@
     if ([segue.identifier isEqualToString:@"NewGuideSegue"] )
     {
         if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
-            EditGuideViewController *destController = [segue destinationViewController];
+            EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
             destController.managedObjectContext = self.managedObjectContext;
             destController.guideToEdit = nil;
         }
     }
-    else if ([segue.identifier isEqualToString:@"EditGuideSegue"]) {
-        if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
-            EditGuideViewController *destController = [segue destinationViewController];
-            destController.managedObjectContext = self.managedObjectContext;
+    // Pass the selected object to the edit view controller.
+    else if ([segue.identifier isEqualToString:@"GuideDetailSegue"]) {
+        if ([[segue destinationViewController ] isKindOfClass:[GuideDetailViewController class]]) {
+            GuideDetailViewController *destVC = (GuideDetailViewController *)[segue destinationViewController ];
             if ([sender isKindOfClass:[UITableViewCell class]])
             {
                 UITableViewCell *senderCell = sender;
@@ -157,13 +176,53 @@
                         return NO;
                     }
                 }];
-                destController.guideToEdit = (Guide *)[[self.guideFetchResultsController fetchedObjects] objectAtIndex:indexOfGuideObject];
+                destVC.guide = (Guide *)[[self.guideFetchResultsController fetchedObjects] objectAtIndex:indexOfGuideObject];
+                Guide *debugGuide = destVC.guide;
+                NSLog(@"debugGuide %@", debugGuide);
             }
         }
     }
 }
 
 #pragma mark Initializations
+
+-(void)setupManagedObjectContext
+{
+    self.managedObjectContext =
+    [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    self.managedObjectContext.persistentStoreCoordinator =
+    [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel: self.mom];
+    NSError *error;
+    [self.managedObjectContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                      configuration:nil
+                                                                URL:self.storeURL
+                                                            options:nil
+                                                              error:&error];
+    if (error) {
+        NSLog(@"error:  %@", error);
+    }
+    self.managedObjectContext.undoManager = nil;     // set to nil until such time as undo Manager is needed
+}
+
+-(NSManagedObjectModel *)mom
+{
+    if (!_mom) {
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"GuideModel" withExtension:@"momd"];
+        _mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    }
+    return _mom;
+}
+
+-(NSURL *)storeURL
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    if (!_storeURL) {
+        _storeURL = [NSURL fileURLWithPath:[basePath stringByAppendingFormat:@"/Talk Lists.sqlite"]];
+    }
+    return  _storeURL;
+}
+
 
 -(fetchedResultsDataSource *)guideFetchResultsController
 {
