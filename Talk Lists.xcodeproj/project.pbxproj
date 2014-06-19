@@ -28,6 +28,9 @@
 		C035E9A219310E0000DBBE4A /* UITextField+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C035E9A119310E0000DBBE4A /* UITextField+SlideViews.m */; };
 		C035E9A5193115B200DBBE4A /* UITextView+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */; };
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
+		C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B72E194F7B5300DE2B08 /* PFGuide.m */; };
+		C045B732194FE31300DE2B08 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B731194FE31300DE2B08 /* ShareController.m */; };
+		C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B733194FF0F800DE2B08 /* ShareControllerTest.m */; };
 		C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C046D84219180B5800212B5E /* GuideModel.xcdatamodeld */; };
 		C046D85319180F6300212B5E /* Guide+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85219180F6300212B5E /* Guide+Addendums.m */; };
 		C046D85619180F9300212B5E /* Step+Addendums.m in Sources */ = {isa = PBXBuildFile; fileRef = C046D85519180F9300212B5E /* Step+Addendums.m */; };
@@ -90,6 +93,7 @@
 		C0072C70191BCE62000254A8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		C0072C78191BD249000254A8 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Step.h; path = "Model - core data/Step.h"; sourceTree = "<group>"; };
 		C0072C79191BD249000254A8 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Step.m; path = "Model - core data/Step.m"; sourceTree = "<group>"; };
+		C016BFEB194D331400FE5B45 /* fetchedResultsDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fetchedResultsDataSourceDelegate.h; sourceTree = "<group>"; };
 		C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrayDataSourceDelegate.h; sourceTree = "<group>"; };
 		C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
@@ -122,6 +126,11 @@
 		C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+SlideViews.m"; sourceTree = "<group>"; };
 		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
+		C045B72D194F7B5300DE2B08 /* PFGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGuide.h; sourceTree = "<group>"; };
+		C045B72E194F7B5300DE2B08 /* PFGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGuide.m; sourceTree = "<group>"; };
+		C045B730194FE31300DE2B08 /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
+		C045B731194FE31300DE2B08 /* ShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareController.m; sourceTree = "<group>"; };
+		C045B733194FF0F800DE2B08 /* ShareControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareControllerTest.m; sourceTree = "<group>"; };
 		C046D84319180B5800212B5E /* GuideModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GuideModel.xcdatamodel; sourceTree = "<group>"; };
 		C046D85119180F6300212B5E /* Guide+Addendums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Guide+Addendums.h"; path = "Model - core data/Guide+Addendums.h"; sourceTree = "<group>"; };
 		C046D85219180F6300212B5E /* Guide+Addendums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Guide+Addendums.m"; path = "Model - core data/Guide+Addendums.m"; sourceTree = "<group>"; };
@@ -231,6 +240,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C016BFEA194D0EF200FE5B45 /* Obsolete - unused */ = {
+			isa = PBXGroup;
+			children = (
+				C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */,
+				C03D6B4C1911832A00CC213B /* ArrayDataSource.h */,
+				C03D6B4D1911832A00CC213B /* ArrayDataSource.m */,
+				C0DCB1891905D9F400E29DBB /* TalkListViewController.h */,
+				C0DCB18A1905D9F400E29DBB /* TalkListViewController.m */,
+				C0BC64B7190D85D6002F42D1 /* previewViewController.h */,
+				C0BC64B8190D85D6002F42D1 /* previewViewController.m */,
+				C0F532DB19116A480023CEF0 /* Controllers */,
+				C03D6B4B1911828A00CC213B /* Controllers */,
+			);
+			name = "Obsolete - unused";
+			sourceTree = "<group>";
+		};
 		C0230218192A5870006DEF7A /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,8 +363,6 @@
 			isa = PBXGroup;
 			children = (
 				C02BFBA719193D4C00F6A035 /* View */,
-				C0BC64B7190D85D6002F42D1 /* previewViewController.h */,
-				C0BC64B8190D85D6002F42D1 /* previewViewController.m */,
 				C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */,
 				C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */,
 				C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */,
@@ -353,6 +376,7 @@
 		C036A979190C28CA00D1F251 /* Guide Detail */ = {
 			isa = PBXGroup;
 			children = (
+				C045B72C194F7B1E00DE2B08 /* Model - PFObjects */,
 				C02D5537191803F8006955E7 /* Model - Core Data */,
 				C0B0F2A21916AE0C00CD8114 /* View */,
 				C0F532D9191168830023CEF0 /* Controllers */,
@@ -373,9 +397,7 @@
 		C03D6B4A1911827200CC213B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C01AA4001913105E00693BC4 /* ArrayDataSourceDelegate.h */,
-				C03D6B4C1911832A00CC213B /* ArrayDataSource.h */,
-				C03D6B4D1911832A00CC213B /* ArrayDataSource.m */,
+				C016BFEB194D331400FE5B45 /* fetchedResultsDataSourceDelegate.h */,
 				C06B50E9192434E0002EF96C /* fetchedResultsDataSource.h */,
 				C06B50EA192434E0002EF96C /* fetchedResultsDataSource.m */,
 			);
@@ -389,6 +411,15 @@
 				C0DCB1AD1905F01900E29DBB /* CategoryTableViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C045B72C194F7B1E00DE2B08 /* Model - PFObjects */ = {
+			isa = PBXGroup;
+			children = (
+				C045B72D194F7B5300DE2B08 /* PFGuide.h */,
+				C045B72E194F7B5300DE2B08 /* PFGuide.m */,
+			);
+			name = "Model - PFObjects";
 			sourceTree = "<group>";
 		};
 		C0B0F2A21916AE0C00CD8114 /* View */ = {
@@ -485,6 +516,7 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C016BFEA194D0EF200FE5B45 /* Obsolete - unused */,
 				C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */,
 				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
 				C0230218192A5870006DEF7A /* Framework */,
@@ -493,8 +525,6 @@
 				C036A978190C283100D1F251 /* New Guide */,
 				C0DCB1801905D9F400E29DBB /* TalkListAppDelegate.h */,
 				C0DCB1811905D9F400E29DBB /* TalkListAppDelegate.m */,
-				C0DCB1891905D9F400E29DBB /* TalkListViewController.h */,
-				C0DCB18A1905D9F400E29DBB /* TalkListViewController.m */,
 				C0DCB18C1905D9F400E29DBB /* Images.xcassets */,
 				C0DCB1781905D9F400E29DBB /* Supporting Files */,
 			);
@@ -517,8 +547,9 @@
 			children = (
 				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
 				C02BFBA119190D7500F6A035 /* Guide+Addendums.m */,
-				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
 				C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */,
+				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
+				C045B733194FF0F800DE2B08 /* ShareControllerTest.m */,
 			);
 			path = "Talk ListsTests";
 			sourceTree = "<group>";
@@ -545,7 +576,6 @@
 		C0F532D71911681A0023CEF0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				C0F532DB19116A480023CEF0 /* Controllers */,
 				C0F532DA19116A390023CEF0 /* Model */,
 			);
 			name = Categories;
@@ -554,7 +584,6 @@
 		C0F532D81911684D0023CEF0 /* Specific Category */ = {
 			isa = PBXGroup;
 			children = (
-				C03D6B4B1911828A00CC213B /* Controllers */,
 				C03D6B4A1911827200CC213B /* Model */,
 			);
 			name = "Specific Category";
@@ -565,6 +594,8 @@
 			children = (
 				C047761B190848250085833C /* GuideDetailViewController.h */,
 				C047761C190848250085833C /* GuideDetailViewController.m */,
+				C045B730194FE31300DE2B08 /* ShareController.h */,
+				C045B731194FE31300DE2B08 /* ShareController.m */,
 				C0270138192A3E7F00F954EA /* dialogController.h */,
 				C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */,
 				C0270139192A3E7F00F954EA /* dialogController.m */,
@@ -758,6 +789,7 @@
 				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
 				C02BFBAB19195F6D00F6A035 /* stepView.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
+				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C067BEBC192FDBB500996DF8 /* guideCell.m in Sources */,
@@ -765,6 +797,7 @@
 				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,
 				C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */,
 				C0072C7A191BD249000254A8 /* Step.m in Sources */,
+				C045B732194FE31300DE2B08 /* ShareController.m in Sources */,
 				C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */,
 				C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
@@ -781,6 +814,7 @@
 				C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */,
 				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
 				C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */,
+				C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

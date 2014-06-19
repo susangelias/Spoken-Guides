@@ -7,6 +7,7 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ArrayDataSourceDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/GuideCategories.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/fetchedResultsDataSource.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/fetchedResultsDataSourceDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Guide+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h

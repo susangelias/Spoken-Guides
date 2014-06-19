@@ -1,5 +1,6 @@
 platform:ios,'7.0'
 pod 'BlurryModalSegue'
 pod 'SZTextView', '~> 1.1'
+pod 'Parse', '~> 1.2'
 xcodeproj 'Talk Lists'
 workspace 'Talk Lists'
