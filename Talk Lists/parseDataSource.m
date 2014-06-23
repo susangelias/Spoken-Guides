@@ -27,6 +27,9 @@
         [self.query whereKey:matchKey equalTo:matchString];
         
         [self.query orderByAscending:sortKey];
+        
+        self.query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        
         /*
         __weak typeof(self) weakSelf = self;
         [self.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

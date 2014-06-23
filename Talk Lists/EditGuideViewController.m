@@ -338,7 +338,7 @@
     {
      
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
-                                                        message:@"Do you want to save your guide ?\n(You can choose to publish it later from the Browse screen.)"
+                                                        message:@"Do you want to save your guide ?"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Save",@"Discard Changes", nil];
@@ -362,21 +362,26 @@
                 if (succeeded) {
                     self.guideToEdit.uniqueID = self.guideToEdit.objectId;
                     // save all the steps to back end
-                    [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                        PFStep *stepToSave = (PFStep *)obj;
-                        stepToSave.belongsToGuide = self.guideToEdit.objectId;
-                        [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            if (succeeded) {
-                                [self.guideToEdit.steps arrayByAddingObject:stepToSave.objectId];
-                            }
-                            if (error) {
-                                NSLog(@"error publishing step %@", error);
-                            }
-                            if (idx+1 == [self.steps count]) {
-                                [self.navigationController popViewControllerAnimated:YES];
-                            }
+                    if ([self.steps count ] > 0) {
+                        [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                            PFStep *stepToSave = (PFStep *)obj;
+                            stepToSave.belongsToGuide = self.guideToEdit.objectId;
+                            [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                if (succeeded) {
+                                    [self.guideToEdit.steps arrayByAddingObject:stepToSave.objectId];
+                                }
+                                if (error) {
+                                    NSLog(@"error publishing step %@", error);
+                                }
+                                if (idx+1 == [self.steps count]) {
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                }
+                            }];
                         }];
-                    }];
+                    }
+                    else {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
                 }
                 if (error) {
                     NSLog(@"error publishing guide %@", error);
@@ -436,13 +441,14 @@
     self.leftSwipeGesture.enabled = YES;
 
     // Save any final changes to the text into the model
-    self.stepInProgess.instruction = [NSString stringWithString:self.stepEntryView.stepTextView.text];
- 
+    if (![self.stepEntryView.stepTextView.text isEqualToString:self.stepInProgess.instruction]) {
+        self.stepInProgess.instruction = [NSString stringWithString:self.stepEntryView.stepTextView.text];
+    }
     // get the model data
     stepNumber -= 1;
     if (stepNumber >= 1) {
         // retreive the step from the model
-  //      self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
+        self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
     }
     else if (stepNumber == 0)
     {

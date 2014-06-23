@@ -48,5 +48,4 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo+Addendums.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/TalkListAppDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/EditGuideViewController.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ShareController.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/EditGuideViewController.h

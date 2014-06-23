@@ -19,7 +19,6 @@
 #import "Photo+Addendums.h"
 #import "TalkListAppDelegate.h"
 #import "EditGuideViewController.h"
-#import "ShareController.h"
 #import "PFStep.h"
 
 
@@ -86,15 +85,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
                                              selector:@selector(audioRouteChange:)
                                                  name:AVAudioSessionRouteChangeNotification
                                                object:[AVAudioSession sharedInstance]];
-  /*
-    // add the share button to the nav toolbar
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                                               target:self
-                                                                                               action:@selector(shareButtonPressed:)];
-    NSMutableArray *mutableBarButtonItems = [self.navigationItem.rightBarButtonItems mutableCopy];
-    [mutableBarButtonItems addObject:shareButton];
-    self.navigationItem.rightBarButtonItems = [mutableBarButtonItems copy];
-   */
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,11 +93,9 @@ typedef NS_ENUM(NSInteger, dialogState) {
     [super viewWillAppear: animated];
     
     [self.guideDetailVCDataSource refreshQuery];
-  //  [self.guideTableView reloadData];
     
     self.title = self.guide.title;
    // self.guidePicture.image = [UIImage imageWithData:self.guide.photo.thumbnail];
- //   [self.guideTableView reloadData];
     
     self.currentState = isReset;
     self.currentLine = 0;
@@ -375,16 +364,11 @@ typedef NS_ENUM(NSInteger, dialogState) {
 {
     
     self.guideDetailVCDataSource.rearrangingAllowed = YES;
-  //  self.guideStepsDataSource.editingAllowed = YES;
     [self.guideTableView setEditing:YES
                           animated:YES];
 }
 
-- (IBAction)shareButtonPressed:(UIBarButtonItem *)sender
-{
-    ShareController *shareControl = [[ShareController alloc]init];
-    [shareControl shareGuide:self.guide];
-}
+
 
 #pragma mark AVAudioSession Notifications
 
@@ -537,6 +521,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
                                                                   withCellIndentifier:@"stepCell"
                                                                    configureCellBlock:configureCell];
         _guideDetailVCDataSource.parseDataSourceDelegate = self;
+        _guideDetailVCDataSource.editingAllowed = YES;
     }
     return _guideDetailVCDataSource;
 }

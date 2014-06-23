@@ -30,7 +30,6 @@
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
 		C0443FAD1955D229006ADA60 /* PFGuideTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FAC1955D229006ADA60 /* PFGuideTest.m */; };
 		C0443FB019570FA4006ADA60 /* parseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FAF19570FA4006ADA60 /* parseDataSource.m */; };
-		C0443FB41957C338006ADA60 /* FBMissingSymbols.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FB31957C338006ADA60 /* FBMissingSymbols.m */; };
 		C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B72E194F7B5300DE2B08 /* PFGuide.m */; };
 		C045B732194FE31300DE2B08 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B731194FE31300DE2B08 /* ShareController.m */; };
 		C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B733194FF0F800DE2B08 /* ShareControllerTest.m */; };
@@ -134,7 +133,6 @@
 		C0443FAE19570FA4006ADA60 /* parseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseDataSource.h; sourceTree = "<group>"; };
 		C0443FAF19570FA4006ADA60 /* parseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseDataSource.m; sourceTree = "<group>"; };
 		C0443FB11957154D006ADA60 /* parseDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parseDataSourceDelegate.h; sourceTree = "<group>"; };
-		C0443FB31957C338006ADA60 /* FBMissingSymbols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMissingSymbols.m; sourceTree = "<group>"; };
 		C045B72D194F7B5300DE2B08 /* PFGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGuide.h; sourceTree = "<group>"; };
 		C045B72E194F7B5300DE2B08 /* PFGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGuide.m; sourceTree = "<group>"; };
 		C045B730194FE31300DE2B08 /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
@@ -532,7 +530,6 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
-				C0443FB31957C338006ADA60 /* FBMissingSymbols.m */,
 				C016BFEA194D0EF200FE5B45 /* Obsolete - unused */,
 				C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */,
 				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
@@ -808,7 +805,6 @@
 				C02BFBAB19195F6D00F6A035 /* stepView.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
-				C0443FB41957C338006ADA60 /* FBMissingSymbols.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C067BEBC192FDBB500996DF8 /* guideCell.m in Sources */,
@@ -971,7 +967,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -992,6 +988,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/usr/lib",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Talk Lists";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1002,7 +999,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1023,6 +1020,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/usr/lib",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Talk Lists";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
