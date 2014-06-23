@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Guide.h"
+#import <Parse/Parse.h>
+#import "PFGuide.h"
 
 @interface GuideDetailViewController : UIViewController
 
-@property (weak, nonatomic) Guide *guide;
+@property (weak, nonatomic) PFGuide *guide;
 @property (nonatomic, strong) NSNumber *currentLine;
 
 @end

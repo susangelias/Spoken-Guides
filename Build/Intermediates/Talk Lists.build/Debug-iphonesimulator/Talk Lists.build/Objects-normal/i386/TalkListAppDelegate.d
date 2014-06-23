@@ -34,4 +34,4 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PF_Twitter.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PFFacebookUtils.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFGuide.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Guide.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFStep.h

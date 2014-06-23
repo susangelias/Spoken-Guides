@@ -9,15 +9,22 @@
 #import "TalkListAppDelegate.h"
 #import <Parse/Parse.h>
 #import "PFGuide.h"
+#import "PFStep.h"
 
 @implementation TalkListAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // Set up required items for Parse backend
     [PFGuide registerSubclass];
+    [PFStep registerSubclass];
     [Parse setApplicationId:@"XS8vaAZaunsYpf2lyR1NNnCCPtkVd9WdqJRWAdVJ"
                   clientKey:@"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr"];
+    
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
     return YES;
 }
 							

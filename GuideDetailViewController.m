@@ -10,15 +10,17 @@
 #import "BlurryModalSegue.h"
 #import "stepCell.h"
 #import "Step.h"
-#import "fetchedResultsDataSource.h"
-#import "fetchedResultsDataSourceDelegate.h"
-//#import "ArrayDataSourceDelegate.h"
+//#import "fetchedResultsDataSource.h"
+//#import "fetchedResultsDataSourceDelegate.h"
+#import "parseDataSource.h"
+#import "parseDataSourceDelegate.h"
 #import "Guide+Addendums.h"
 #import "dialogController.h"
 #import "Photo+Addendums.h"
 #import "TalkListAppDelegate.h"
 #import "EditGuideViewController.h"
 #import "ShareController.h"
+#import "PFStep.h"
 
 
 typedef NS_ENUM(NSInteger, dialogState) {
@@ -27,7 +29,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     isReset
 };
 
-@interface GuideDetailViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, dialogControllerDelegate, fetchedResultsDataSourceDelegate >
+@interface GuideDetailViewController () <parseDataSourceDelegate, UITableViewDelegate, dialogControllerDelegate >
 // View properties
 @property (weak, nonatomic) IBOutlet UITableView *guideTableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
@@ -38,7 +40,9 @@ typedef NS_ENUM(NSInteger, dialogState) {
 @property (nonatomic, strong) NSArray *stateStrings;
 
 // Model properties
-@property (strong, nonatomic) fetchedResultsDataSource *guideDetailVCDataSource;
+//@property (strong, nonatomic) fetchedResultsDataSource *guideDetailVCDataSource;
+
+@property (strong, nonatomic) parseDataSource *guideDetailVCDataSource;
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
@@ -61,15 +65,11 @@ typedef NS_ENUM(NSInteger, dialogState) {
     }
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSError *error;
-    [self.guideDetailVCDataSource performFetch:&error];
-    if (error) {
-        NSLog(@"Error fetching steps for guide: %@", error);
-    }
+
     self.guideTableView.dataSource = self.guideDetailVCDataSource;
     self.guideTableView.delegate = self;
 
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
                                              selector:@selector(audioRouteChange:)
                                                  name:AVAudioSessionRouteChangeNotification
                                                object:[AVAudioSession sharedInstance]];
-    
+  /*
     // add the share button to the nav toolbar
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                                                target:self
@@ -94,13 +94,19 @@ typedef NS_ENUM(NSInteger, dialogState) {
     NSMutableArray *mutableBarButtonItems = [self.navigationItem.rightBarButtonItems mutableCopy];
     [mutableBarButtonItems addObject:shareButton];
     self.navigationItem.rightBarButtonItems = [mutableBarButtonItems copy];
+   */
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    
+    [self.guideDetailVCDataSource refreshQuery];
+  //  [self.guideTableView reloadData];
+    
     self.title = self.guide.title;
-    self.guidePicture.image = [UIImage imageWithData:self.guide.photo.thumbnail];
+   // self.guidePicture.image = [UIImage imageWithData:self.guide.photo.thumbnail];
+ //   [self.guideTableView reloadData];
     
     self.currentState = isReset;
     self.currentLine = 0;
@@ -139,6 +145,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     }
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     // View is going away so pause the dialog
@@ -162,38 +169,18 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark NSFetchedResultsController delegate methods
+#pragma mark - parseDataSourceDelegate methods
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    [self.guideTableView beginUpdates];
+-(void)queryComplete
+{
+    self.guide.stepsInGuide = [self.guideDetailVCDataSource.queryResults copy];
+    [self.guideTableView reloadData];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = self.guideTableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-    }
+-(void)deletedRowAtIndex:(NSUInteger)index
+{
+  //  [self.guideTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [self.guideTableView endUpdates];
-}
-
-#pragma mark fetchedResultsDataSourceDelegate
 
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
 {
@@ -465,8 +452,9 @@ typedef NS_ENUM(NSInteger, dialogState) {
     else if ([[segue destinationViewController  ]isKindOfClass:[EditGuideViewController class]])
     {
         EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
-        destController.managedObjectContext = self.guide.managedObjectContext;
+ //       destController.managedObjectContext = self.guide.managedObjectContext;
         destController.guideToEdit = self.guide;
+        destController.steps = [self.guideDetailVCDataSource.queryResults mutableCopy];
     }
 }
 
@@ -503,6 +491,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 }
 */
 
+/*
 -(fetchedResultsDataSource *)guideDetailVCDataSource
 {
     if (!_guideDetailVCDataSource) {
@@ -516,6 +505,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
      //   NSString *searchString = self.guide;
        // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToGuide == %@", searchString];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToGuide == %@", self.guide];
+ 
         _guideDetailVCDataSource = [[fetchedResultsDataSource alloc] initWithEntity:@"Step"
                                                                withManagedObjectContext:self.guide.managedObjectContext
                                                                             withSortKey:@"rank"
@@ -525,6 +515,29 @@ typedef NS_ENUM(NSInteger, dialogState) {
     }
     _guideDetailVCDataSource.delegate = self;
     _guideDetailVCDataSource.fetchedResultsDataSourceDelegate = self;
+    return _guideDetailVCDataSource;
+}
+*/
+
+-(parseDataSource *)guideDetailVCDataSource
+{
+    if (!_guideDetailVCDataSource) {
+        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, PFStep *guideStep) {
+            if ([cell isKindOfClass:[stepCell class]]) {
+                stepCell *thisStepCell = (stepCell *)cell;
+                [thisStepCell configureStepCell:guideStep];
+            }
+        };
+        
+
+        _guideDetailVCDataSource = [[parseDataSource alloc] initWithPFObjectClassName:@"PFStep"
+                                                                          withSortKey:@"rank"
+                                                                         withMatchKey:@"belongsToGuide"
+                                                                      WithMatchString:self.guide.objectId
+                                                                  withCellIndentifier:@"stepCell"
+                                                                   configureCellBlock:configureCell];
+        _guideDetailVCDataSource.parseDataSourceDelegate = self;
+    }
     return _guideDetailVCDataSource;
 }
 

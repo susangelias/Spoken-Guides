@@ -28,6 +28,9 @@
 		C035E9A219310E0000DBBE4A /* UITextField+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C035E9A119310E0000DBBE4A /* UITextField+SlideViews.m */; };
 		C035E9A5193115B200DBBE4A /* UITextView+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */; };
 		C03D6B4E1911832A00CC213B /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D6B4D1911832A00CC213B /* ArrayDataSource.m */; };
+		C0443FAD1955D229006ADA60 /* PFGuideTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FAC1955D229006ADA60 /* PFGuideTest.m */; };
+		C0443FB019570FA4006ADA60 /* parseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FAF19570FA4006ADA60 /* parseDataSource.m */; };
+		C0443FB41957C338006ADA60 /* FBMissingSymbols.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FB31957C338006ADA60 /* FBMissingSymbols.m */; };
 		C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B72E194F7B5300DE2B08 /* PFGuide.m */; };
 		C045B732194FE31300DE2B08 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B731194FE31300DE2B08 /* ShareController.m */; };
 		C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B733194FF0F800DE2B08 /* ShareControllerTest.m */; };
@@ -69,6 +72,7 @@
 		C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */; };
 		C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E70192A5A5900C4F35A /* Slt.framework */; };
 		C0E9A1411941F1FD001C65DE /* UIImageView+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E9A1401941F1FD001C65DE /* UIImageView+SlideViews.m */; };
+		C0ECA732195507D000EF98AA /* PFStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C0ECA731195507D000EF98AA /* PFStep.m */; };
 		C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */; };
 		C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F532DE191178A20023CEF0 /* GuideCategories.m */; };
 		C0FC202C192E247D007213AB /* MyGuidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0FC202B192E247D007213AB /* MyGuidesViewController.m */; };
@@ -126,6 +130,11 @@
 		C035E9A4193115B200DBBE4A /* UITextView+SlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+SlideViews.m"; sourceTree = "<group>"; };
 		C03D6B4C1911832A00CC213B /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		C03D6B4D1911832A00CC213B /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
+		C0443FAC1955D229006ADA60 /* PFGuideTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGuideTest.m; sourceTree = "<group>"; };
+		C0443FAE19570FA4006ADA60 /* parseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseDataSource.h; sourceTree = "<group>"; };
+		C0443FAF19570FA4006ADA60 /* parseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseDataSource.m; sourceTree = "<group>"; };
+		C0443FB11957154D006ADA60 /* parseDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parseDataSourceDelegate.h; sourceTree = "<group>"; };
+		C0443FB31957C338006ADA60 /* FBMissingSymbols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMissingSymbols.m; sourceTree = "<group>"; };
 		C045B72D194F7B5300DE2B08 /* PFGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGuide.h; sourceTree = "<group>"; };
 		C045B72E194F7B5300DE2B08 /* PFGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGuide.m; sourceTree = "<group>"; };
 		C045B730194FE31300DE2B08 /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
@@ -198,6 +207,8 @@
 		C0E9A13F1941F1FD001C65DE /* UIImageView+SlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SlideViews.h"; sourceTree = "<group>"; };
 		C0E9A1401941F1FD001C65DE /* UIImageView+SlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SlideViews.m"; sourceTree = "<group>"; };
 		C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Talk Lists.entitlements"; sourceTree = "<group>"; };
+		C0ECA730195507D000EF98AA /* PFStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFStep.h; sourceTree = "<group>"; };
+		C0ECA731195507D000EF98AA /* PFStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFStep.m; sourceTree = "<group>"; };
 		C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addPhotoViewController.h; path = ../addPhotoViewController.h; sourceTree = "<group>"; };
 		C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addPhotoViewController.m; path = ../addPhotoViewController.m; sourceTree = "<group>"; };
 		C0F532DD191178A20023CEF0 /* GuideCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCategories.h; sourceTree = "<group>"; };
@@ -416,6 +427,11 @@
 		C045B72C194F7B1E00DE2B08 /* Model - PFObjects */ = {
 			isa = PBXGroup;
 			children = (
+				C0443FAE19570FA4006ADA60 /* parseDataSource.h */,
+				C0443FAF19570FA4006ADA60 /* parseDataSource.m */,
+				C0443FB11957154D006ADA60 /* parseDataSourceDelegate.h */,
+				C0ECA730195507D000EF98AA /* PFStep.h */,
+				C0ECA731195507D000EF98AA /* PFStep.m */,
 				C045B72D194F7B5300DE2B08 /* PFGuide.h */,
 				C045B72E194F7B5300DE2B08 /* PFGuide.m */,
 			);
@@ -516,6 +532,7 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C0443FB31957C338006ADA60 /* FBMissingSymbols.m */,
 				C016BFEA194D0EF200FE5B45 /* Obsolete - unused */,
 				C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */,
 				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
@@ -547,6 +564,7 @@
 			children = (
 				C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */,
 				C02BFBA119190D7500F6A035 /* Guide+Addendums.m */,
+				C0443FAC1955D229006ADA60 /* PFGuideTest.m */,
 				C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */,
 				C0DCB19A1905D9F400E29DBB /* Supporting Files */,
 				C045B733194FF0F800DE2B08 /* ShareControllerTest.m */,
@@ -790,15 +808,18 @@
 				C02BFBAB19195F6D00F6A035 /* stepView.m in Sources */,
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
+				C0443FB41957C338006ADA60 /* FBMissingSymbols.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C067BEBC192FDBB500996DF8 /* guideCell.m in Sources */,
+				C0ECA732195507D000EF98AA /* PFStep.m in Sources */,
 				C0DCB1AE1905F01900E29DBB /* CategoryTableViewController.m in Sources */,
 				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,
 				C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */,
 				C0072C7A191BD249000254A8 /* Step.m in Sources */,
 				C045B732194FE31300DE2B08 /* ShareController.m in Sources */,
 				C046D84419180B5800212B5E /* GuideModel.xcdatamodeld in Sources */,
+				C0443FB019570FA4006ADA60 /* parseDataSource.m in Sources */,
 				C046D85919180FB500212B5E /* Photo+Addendums.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
 				C0270133192A3E2700F954EA /* ListeningController.m in Sources */,
@@ -812,6 +833,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C02BFBA219190D7500F6A035 /* Guide+Addendums.m in Sources */,
+				C0443FAD1955D229006ADA60 /* PFGuideTest.m in Sources */,
 				C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */,
 				C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */,
 				C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */,
@@ -1015,6 +1037,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/Framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
@@ -1026,12 +1049,26 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/usr/include/**",
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/Parse\"",
 				);
 				INFOPLIST_FILE = "Talk ListsTests/Talk ListsTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_CFLAGS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Parse\"",
+					"-isystem",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Parse,
+				);
+				POD_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1053,12 +1090,21 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/usr/include/**",
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/Parse\"",
 				);
 				INFOPLIST_FILE = "Talk ListsTests/Talk ListsTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_CFLAGS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Parse\"",
+					"-isystem",
+				);
+				POD_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

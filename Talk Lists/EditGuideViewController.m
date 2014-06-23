@@ -19,7 +19,11 @@
 #import "Photo+Addendums.h"
 #import "SZTextView.h"
 #import "UIImage+Resize.h"
-#import "ShareController.h"
+//#import "ShareController.h"
+#import "PFGuide.h"
+#import "PFStep.h"
+
+#import <Parse/Parse.h>
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepViewDelegate >
 
@@ -41,7 +45,8 @@
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 
 // model properties
-@property (strong, nonatomic) Step *stepInProgess;
+@property (strong, nonatomic) PFStep *stepInProgess;
+
 
 @end
 
@@ -168,7 +173,7 @@
 -(void) stepInstructionEntryCompleted: (NSString *)instructionText
 {
     [self stepInstructionEditingEnded:instructionText];
-
+    
     // move on to the next step
     [self leftSwipe:self.leftSwipeGesture];
 }
@@ -315,7 +320,21 @@
     NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
 
     //  put up the alert to save any changes made to the guide
-    if ([self.managedObjectContext hasChanges] == YES )
+//    if ([self.managedObjectContext hasChanges] == YES )
+    __block BOOL isDirty = NO;
+    if ([self.guideToEdit isDirty]) {
+        isDirty = YES;
+    }
+    else {
+        [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            PFStep *step = (PFStep *)obj;
+            if ([step isDirty]) {
+                isDirty = YES;
+                *stop = YES;
+            }
+        }];
+    }
+    if (isDirty)
     {
      
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
@@ -335,8 +354,35 @@
 {
      if ( (!buttonIndex == 0) && (self.guideToEdit) )
     {
-        [self.managedObjectContext.undoManager endUndoGrouping];
+     //   [self.managedObjectContext.undoManager endUndoGrouping];
+        __weak typeof(self) weakSelf = self;
         if (buttonIndex == 1) {
+            // SAVE: save guide to Parse backend
+            [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    self.guideToEdit.uniqueID = self.guideToEdit.objectId;
+                    // save all the steps to back end
+                    [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                        PFStep *stepToSave = (PFStep *)obj;
+                        stepToSave.belongsToGuide = self.guideToEdit.objectId;
+                        [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (succeeded) {
+                                [self.guideToEdit.steps arrayByAddingObject:stepToSave.objectId];
+                            }
+                            if (error) {
+                                NSLog(@"error publishing step %@", error);
+                            }
+                            if (idx+1 == [self.steps count]) {
+                                [self.navigationController popViewControllerAnimated:YES];
+                            }
+                        }];
+                    }];
+                }
+                if (error) {
+                    NSLog(@"error publishing guide %@", error);
+                }
+            }];
+            /*
             // SAVE: save guide to core data
             [self.managedObjectContext performBlock:^{
                   NSError *error;
@@ -344,12 +390,12 @@
                 if (error) {
                     NSLog(@"ERROR saving context: %@", error);
                 }
-            }];
+            }]; */
             // UPDATE: if guide has already been published, update it with changes
-            if (![self.guideToEdit.uniqueID hasPrefix:@"Talk Notes"]) {
-                ShareController *shareControl = [[ShareController alloc]init];
-                [shareControl shareGuide:self.guideToEdit];
-            }
+         //   if (![self.guideToEdit.uniqueID hasPrefix:@"Talk Notes"]) {
+          //      ShareController *shareControl = [[ShareController alloc]init];
+          //      [shareControl shareGuide:self.guideToEdit];
+          //  }
         }
         else if (buttonIndex == 2) {
             // DISCARD:  undo any changes
@@ -358,10 +404,12 @@
                 }
             // refresh view from model for the step that is displayed
              self.StepTextView.text = self.swapTextView.text = self.stepInProgess.instruction;
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
           
         // break any retain cycles between the managed objects before leaving this view controller
-        __weak typeof (self) weakSelf = self;
+      //  __weak typeof (self) weakSelf = self;
         [self.managedObjectContext performBlock:^{
             for (NSManagedObject *mo in weakSelf.managedObjectContext.registeredObjects) {
                 [weakSelf.managedObjectContext refreshObject:mo mergeChanges:NO];
@@ -376,7 +424,7 @@
         NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
         
         // return to main screen
-        [self.navigationController popViewControllerAnimated:YES];
+    //    [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -394,7 +442,7 @@
     stepNumber -= 1;
     if (stepNumber >= 1) {
         // retreive the step from the model
-        self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
+  //      self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
     }
     else if (stepNumber == 0)
     {
@@ -408,13 +456,14 @@
         // step is found so retreive photo
         if (self.stepInProgess.photo) {
             __block UIImage *photoImage;
+            /*
             [self.stepInProgess.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
                 if (success) {
                     photoImage = [response objectForKey:@"photoImage"];
                 }
                 [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
                                                        withPhoto:photoImage];
-            }];
+            }]; */
         }
         else {
             [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
@@ -467,13 +516,14 @@
         // step is found so retreive photo
         if (self.stepInProgess.photo) {
             __block UIImage *photoImage;
+            /*
             [self.stepInProgess.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
                 if (success) {
                     photoImage = [response objectForKey:@"photoImage"];
                 }
                 [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
                                                       withPhoto:photoImage];
-            }];
+            }]; */
         }
         else {
             [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
@@ -541,6 +591,7 @@
     if (stepNumber == 0) {
         __block UIImage *photoImage;
         if (self.guideToEdit.photo) {
+            /*
             [self.guideToEdit.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
                 if (success) {
                     photoImage = [response objectForKey:@"photoImage"];
@@ -554,6 +605,7 @@
                                                           withPhoto:photoImage];
                 }
             }];
+             */
         }
         else {
             if (animated) {
@@ -606,27 +658,36 @@
 
 #pragma mark Initializations
 
--(Guide *)createGuide
+//-(Guide *)createGuide
+-(PFGuide *)createGuide
 {
-        [self.managedObjectContext.undoManager beginUndoGrouping];
-        Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
+ //       [self.managedObjectContext.undoManager beginUndoGrouping];
+   //     Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
 
+        PFGuide *newGuide = [PFGuide object];
+    
         // set this guide's unique ID
 #warning add user's ID to the uniqueID string
         newGuide.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
         GuideCategories *cats = [[GuideCategories alloc] init];
         newGuide.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
         newGuide.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
+     
+
     return newGuide;
 }
 
 
--(Step *)createStep
+//-(Step *)createStep
+-(PFStep *)createStep
 {
-    Step *newStep = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
+//    Step *newStep = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
+    PFStep *newStep = [PFStep object];
+
     newStep.rank = [NSNumber numberWithInt:stepNumber];
-    [self.guideToEdit addStepInGuideObject:newStep];
     newStep.instruction = @"";
+    [self.steps addObject:newStep];
+    [self.guideToEdit incrementKey:@"numberOfSteps"];
     return newStep;
 }
 
@@ -648,4 +709,10 @@
     return _stepEntryView;
 }
 
+-(NSMutableArray *)steps{
+    if (!_steps) {
+        _steps = [[NSMutableArray alloc] init];
+    }
+    return _steps;
+}
 @end

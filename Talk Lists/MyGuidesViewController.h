@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface MyGuidesViewController : UIViewController
+//@interface MyGuidesViewController : UIViewController
+@interface MyGuidesViewController : PFQueryTableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

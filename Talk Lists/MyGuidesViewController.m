@@ -15,25 +15,42 @@
 #import "Guide+Addendums.h"
 #import "Photo+Addendums.h"
 #import "ShareController.h"
+#import "PFGuide.h"
 
 
-@interface MyGuidesViewController () <NSFetchedResultsControllerDelegate>
+@interface MyGuidesViewController ()// <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myGuidesTableView;
-@property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
+//@property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
 @property (strong, nonatomic) NSManagedObjectModel *mom;
 @property (strong, nonatomic) NSURL *storeURL;
+@property (weak, nonatomic) IBOutlet UIButton *createNewGuideButton;
+
 @end
 
 @implementation MyGuidesViewController
 
 #pragma mark view life cycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        // Class name to query on
+        self.parseClassName = @"PFGuide";
+        
+        // The key of the PFObject to display  the labelofthe default cell style
+        self.textKey = @"title";
+  
+        // Whether the built-in pull-to-refresh is enabled
+        self.pullToRefreshEnabled = YES;
+        
+        // Whether the built-in pagination is enabled
+        self.paginationEnabled = YES;
+        
+        // The number of objects to show per page
+        self.objectsPerPage = 8;
+      
     }
     return self;
 }
@@ -41,7 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+   
     // Set up managed object context
     [self setupManagedObjectContext];
     
@@ -49,14 +66,35 @@
     if (self.managedObjectContext) {
         self.managedObjectContext.undoManager = [[NSUndoManager alloc] init];
     }
-    
+ /*
     NSError *error;
     [self.guideFetchResultsController performFetch:&error];
     if (error) {
         NSLog(@"Error fetching guides for a specific category: %@", error);
     }
-    self.myGuidesTableView.dataSource = self.guideFetchResultsController;
+   self.myGuidesTableView.dataSource = self.guideFetchResultsController;
+  */
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGRect frame = self.createNewGuideButton.frame;
+    frame.origin.y = scrollView.contentOffset.y + self.tableView.frame.size.height - self.createNewGuideButton.frame.size.height;
+    self.createNewGuideButton.frame = frame;
+    
+    [self.view bringSubviewToFront:self.createNewGuideButton];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [super loadObjects];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -71,6 +109,67 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Parse
+
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    // This method is called every time objects are loaded from Parse via the PFQuery
+}
+
+- (void)objectsWillLoad {
+    [super objectsWillLoad];
+    
+    // This method is called before a PFQuery is fired to get more objects
+}
+
+
+// Override to customize what kind of query to perform on the class. The default is to query for
+// all objects ordered by createdAt descending.
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    if ([self.objects count] == 0) {
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    }
+    
+    [query orderByAscending:@"priority"];
+    
+    return query;
+}
+
+
+// Override to customize the look of a cell representing an object. The default is to display
+// a UITableViewCellStyleDefault style cell with the label being the first key in the object.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *CellIdentifier = @"myGuideCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell
+    if ([object isKindOfClass:[PFGuide class]]) {
+        PFGuide *guideToDisplay = (PFGuide *)object;
+        cell.textLabel.text = guideToDisplay.title;
+        //cell.imageView.image = [UIImage imageWithData:fetchedGuide.photo.thumbnail];
+    }
+    return cell;
+}
+
+
+/*
+ // Override if you need to change the ordering of objects in the table.
+ - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
+ return [objects objectAtIndex:indexPath.row];
+ }
+ */
+
+/*
 #pragma mark NSFetchedResultsController delegate methods
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -107,11 +206,13 @@
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
     [self.myGuidesTableView endUpdates];
 }
-
+*/
 #pragma mark User Actions
 
 - (IBAction)EditButtonPressed:(UIBarButtonItem *)sender {
-    [self.myGuidesTableView setEditing:YES
+   // [self.myGuidesTableView setEditing:YES
+   //                   animated:YES];
+    [self.tableView setEditing:YES
                       animated:YES];
     sender.title = @"Done";
     sender.action = @selector(DoneButtonPressed:);
@@ -121,8 +222,10 @@
 
 -(IBAction)DoneButtonPressed:(UIBarButtonItem *)sender
 {
-    [self.myGuidesTableView setEditing:NO
-                      animated:YES];
+ //   [self.myGuidesTableView setEditing:NO
+ //                     animated:YES];
+    [self.tableView setEditing:NO
+                              animated:YES];
     sender.title = @"Edit";
     sender.action = @selector(EditButtonPressed:);
     
@@ -146,6 +249,37 @@
 
 }
 
+#pragma mark - Table view data source
+
+
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+
+
+
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+         // Delete the row from the data source
+         PFGuide *guideToDelete = (PFGuide *)[self.objects objectAtIndex:indexPath.row];
+         [guideToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+             if (succeeded) {
+                 // Delete row from tableview
+                 [self loadObjects];
+              }
+         }];
+      }
+     else if (editingStyle == UITableViewCellEditingStyleInsert) {
+         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+ }
+
+
 
 #pragma mark - Navigation
 
@@ -157,31 +291,17 @@
             EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
             destController.managedObjectContext = self.managedObjectContext;
             destController.guideToEdit = nil;
+            destController.steps = nil;
         }
     }
     // Pass the selected object to the edit view controller.
     else if ([segue.identifier isEqualToString:@"GuideDetailSegue"]) {
         if ([[segue destinationViewController ] isKindOfClass:[GuideDetailViewController class]]) {
             GuideDetailViewController *destVC = (GuideDetailViewController *)[segue destinationViewController ];
-            if ([sender isKindOfClass:[UITableViewCell class]])
-            {
-                UITableViewCell *senderCell = sender;
-                NSUInteger indexOfGuideObject = [[self.guideFetchResultsController fetchedObjects] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                    Guide *fetchedGuide = (Guide *)obj;
-                    if ([fetchedGuide.title isEqualToString:senderCell.textLabel.text]) {
-                        *stop = YES;     // found guide matching title from the selected table cell
-                        return YES;
-                    }
-                    else {
-                        return NO;
-                    }
-                }];
-                destVC.guide = (Guide *)[[self.guideFetchResultsController fetchedObjects] objectAtIndex:indexOfGuideObject];
-                Guide *debugGuide = destVC.guide;
-                NSLog(@"debugGuide %@", debugGuide);
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            destVC.guide = (PFGuide *)[self.objects objectAtIndex:indexPath.row];
             }
         }
-    }
 }
 
 #pragma mark Initializations
@@ -222,7 +342,7 @@
     }
     return  _storeURL;
 }
-
+/*
 
 -(fetchedResultsDataSource *)guideFetchResultsController
 {
@@ -248,5 +368,5 @@
     _guideFetchResultsController.delegate = self;
     return _guideFetchResultsController;
 }
-
+*/
 @end

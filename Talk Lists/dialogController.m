@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 @implementation dialogController
 
--(void)setGuide:(Guide *)guide
+-(void)setGuide:(PFGuide *)guide
 {
     _guide = guide;
     
@@ -123,7 +123,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 - (void)startDialog
 {
-    if (self.currentLineIndex < [self.guide.stepInGuide count])     {
+    if (self.currentLineIndex < [self.guide.stepsInGuide count])     {
         [self speakLine];
     }
     else {
@@ -173,7 +173,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 -(void)resumeDialog {
     if (self.currentState == isPausedWhileSpeaking) {
         // REPEAT THE INTERUPTED LINE
-        if (self.currentLineIndex < [self.guide.stepInGuide count])   {
+        if (self.currentLineIndex < [self.guide.stepsInGuide count])   {
             [self userHasSpoken:REPEAT];
         }
     } else if (self.currentState == isPausedWhileListening ) {
@@ -201,11 +201,11 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
         if (command == PROCEED) {
             // SPEAK THE NEXT LINE
             self.currentLineIndex++;
-            if (self.currentLineIndex < [self.guide.stepInGuide count])     {
+            if (self.currentLineIndex < [self.guide.stepsInGuide count])     {
                 [self speakLine];
             }
             // ALREADY SPOKE LAST LINE OF INSTRUCTIONS - LET THE USER KNOW THIS
-            else if (self.currentLineIndex == [self.guide.stepInGuide count]) {
+            else if (self.currentLineIndex == [self.guide.stepsInGuide count]) {
                 [self.speaker speak:@"End of instructions"];
                 self.currentLineIndex++;
                 self.currentState = isInactive;
@@ -271,7 +271,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 - (void)appHasFinishedSpeaking
 {
-    if ( (self.currentLineIndex < [self.guide.stepInGuide count]) && (self.currentState == isActivelySpeaking) ) {
+    if ( (self.currentLineIndex < [self.guide.stepsInGuide count]) && (self.currentState == isActivelySpeaking) ) {
         // listen for next command from user
         if ([self.listener isSuspended]) {
             [self.listener resumeListening];

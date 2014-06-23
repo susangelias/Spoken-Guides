@@ -8,16 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "Guide+Addendums.h"
+//#import "Guide+Addendums.h"
 #import "ListeningController.h"
 #import "SpeakingController.h"
 #import "dialogControllerDelegate.h"
+#import "PFGuide.h"
 
 @interface dialogController : NSObject <ListeningControllerDelegate, SpeakingControllerDelegate >
 
 @property (nonatomic, weak) id <dialogControllerDelegate> dialogControlDelegate;
 @property (nonatomic) int currentLineIndex;
-@property (nonatomic, strong) Guide *guide;
+@property (nonatomic, strong) PFGuide *guide;
 @property (nonatomic, strong) NSArray *instructions;
 
 - (void)startDialog;
