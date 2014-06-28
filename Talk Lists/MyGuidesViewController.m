@@ -267,6 +267,15 @@
      if (editingStyle == UITableViewCellEditingStyleDelete) {
          // Delete the row from the data source
          PFGuide *guideToDelete = (PFGuide *)[self.objects objectAtIndex:indexPath.row];
+         PFRelation *guideSteps = guideToDelete.pfSteps;
+         PFQuery *query = [guideSteps query];
+         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+             NSArray *stepsToDelete = objects;
+             [stepsToDelete enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                 PFStep *stepToDelete = obj;
+                 [stepToDelete deleteEventually];
+             }];
+         }];
          [guideToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
              if (succeeded) {
                  // Delete row from tableview

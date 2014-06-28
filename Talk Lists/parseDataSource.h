@@ -25,7 +25,7 @@ typedef void(^configureCellBlock)(UITableViewCell *, id);
 -(parseDataSource *)initWithPFObjectClassName:(NSString *)PFObjectClassName
                                   withSortKey: (NSString *)sortKey
                                  withMatchKey: (NSString *)matchKey
-                              WithMatchString:(NSString *)matchString
+                                 withPFObject: (id)parentObject
                           withCellIndentifier: (NSString *)cellID
                            configureCellBlock:configCellBlock;
 

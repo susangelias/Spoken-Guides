@@ -365,18 +365,25 @@
                     if ([self.steps count ] > 0) {
                         [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                             PFStep *stepToSave = (PFStep *)obj;
-                            stepToSave.belongsToGuide = self.guideToEdit.objectId;
-                            [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                if (succeeded) {
-                                    [self.guideToEdit.steps arrayByAddingObject:stepToSave.objectId];
-                                }
-                                if (error) {
-                                    NSLog(@"error publishing step %@", error);
-                                }
-                                if (idx+1 == [self.steps count]) {
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                }
-                            }];
+                            if ([stepToSave isDirty]) {
+                                stepToSave.belongsToGuide = self.guideToEdit;
+                                [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                    if (succeeded) {
+                                        [self.guideToEdit.pfSteps addObject:stepToSave];
+                                        [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                            if (idx+1 == [self.steps count]) {
+                                                [self.navigationController popViewControllerAnimated:YES];
+                                            }
+                                        }];
+                                    }
+                                    if (error) {
+                                        NSLog(@"error publishing step %@", error);
+                                    }
+                                }];
+                            }
+                            else if (idx+1 == [self.steps count]) {
+                                [self.navigationController popViewControllerAnimated:YES];   
+                            }
                         }];
                     }
                     else {
@@ -670,15 +677,14 @@
  //       [self.managedObjectContext.undoManager beginUndoGrouping];
    //     Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
 
-        PFGuide *newGuide = [PFGuide object];
+    PFGuide *newGuide = [PFGuide object];
     
-        // set this guide's unique ID
+    // set this guide's unique ID
 #warning add user's ID to the uniqueID string
-        newGuide.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
-        GuideCategories *cats = [[GuideCategories alloc] init];
-        newGuide.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
-        newGuide.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
-     
+    newGuide.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
+    GuideCategories *cats = [[GuideCategories alloc] init];
+    newGuide.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
+    newGuide.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
 
     return newGuide;
 }
@@ -693,7 +699,7 @@
     newStep.rank = [NSNumber numberWithInt:stepNumber];
     newStep.instruction = @"";
     [self.steps addObject:newStep];
-    [self.guideToEdit incrementKey:@"numberOfSteps"];
+   // [self.guideToEdit incrementKey:@"numberOfSteps"];
     return newStep;
 }
 

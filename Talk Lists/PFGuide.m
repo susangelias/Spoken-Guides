@@ -11,8 +11,6 @@
 
 @interface PFGuide()
 
-//@property (nonatomic, strong) NSArray *stepsInGuide;
-
 @end
 
 @implementation PFGuide
@@ -22,48 +20,41 @@
 @dynamic modifiedDate;
 @dynamic title;
 @dynamic uniqueID;
+@dynamic pfSteps;
 @dynamic photo;
-@dynamic steps;
-@dynamic numberOfSteps;
 
-@synthesize  stepsInGuide = _stepsInGuide;
+@synthesize  rankedStepsInGuide = _rankedStepsInGuide;
 
 + (NSString *)parseClassName {
     return @"PFGuide";
 }
 
 
--(NSArray *)sortedSteps
-{
-    NSSortDescriptor *rankSort = [NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES];
-    NSArray *sorted;
-    if (rankSort) {
-        sorted = [self.stepsInGuide sortedArrayUsingDescriptors:@[rankSort]];
-    }
-    return sorted;
-}
-
 -(void)deleteStepAtIndex:(NSUInteger)index
 {
     // get step object
-    PFStep *stepToBeDeleted = [self stepForRank:index];
+    PFStep *stepToBeDeleted = [self stepForRank:index+1];
+
+    // remove step from parse back end
+    __weak typeof(self) weakSelf = self;
+    [stepToBeDeleted deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // update rank for remaining steps
+            [weakSelf.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                PFStep *thisStep = (PFStep *)obj;
+                int thisStepRank = [thisStep.rank intValue];
+                if (thisStepRank > index) {
+                    thisStepRank -= 1;
+                    thisStep.rank = [NSNumber numberWithInt:thisStepRank];
+                    [thisStep saveInBackground];
+                }
+            }];
+        }
+    }];
     
-    // remove step from core data
-    /*
-    if (stepToBeDeleted) {
-        [self removeStepInGuideObject:stepToBeDeleted];
-        
-        // update rank for remaining steps
-        [self.stepsInGuide enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-            PFStep *thisStep = (PFStep *)obj;
-            int thisStepRank = [thisStep.rank intValue];
-            if (thisStepRank > index) {
-                thisStepRank -= 1;
-                thisStep.rank = [NSNumber numberWithInt:thisStepRank];
-            }
-        }];
-    }
-     */
+    // remove step from local array of steps in guide
+    [self.rankedStepsInGuide removeObject:stepToBeDeleted];
+
 }
 
 
@@ -73,7 +64,7 @@
     PFStep *thisStep;
     
     // get array of steps sorted by rank
-    NSMutableArray *rankedSteps = [[self sortedSteps] mutableCopy];
+    NSMutableArray *rankedSteps = [self.rankedStepsInGuide mutableCopy];
     
     // verify range of indexes
     if ( (fromIndex > [rankedSteps count]) || (toIndex > [rankedSteps count]) ) {
@@ -83,11 +74,13 @@
     if (fromIndex > toIndex) {
         thisStep = rankedSteps[fromIndex-1];
         thisStep.rank  = [NSNumber numberWithInt:toIndex];
+        [thisStep saveInBackground];
         // re-rank all the steps inbetween
         for (int i = toIndex-1; i < fromIndex-1; i++) {
             thisStep = rankedSteps[i];
             newRank = [thisStep.rank intValue];
             thisStep.rank = [NSNumber numberWithInt:newRank + 1];
+            [thisStep saveInBackground];
         }
         
     }
@@ -97,10 +90,12 @@
             thisStep = rankedSteps[i];
             newRank = [thisStep.rank intValue];
             thisStep.rank = [NSNumber numberWithInt:newRank - 1];
+            [thisStep saveInBackground];
         }
         // update the inserted step's rank
         thisStep = rankedSteps[fromIndex-1];
         thisStep.rank = [NSNumber numberWithInt:toIndex];
+        [thisStep saveInBackground];
     }
 }
 
@@ -108,7 +103,7 @@
 {
     // get step object with rank
     __block PFStep *retrievedStep;
-    [self.stepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [self.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         PFStep *step = (PFStep *)obj;
         if (step.rank == [NSNumber numberWithInt:rank]) {
             *stop = YES;
@@ -120,17 +115,17 @@
 
 #pragma mark initializers
 
--(NSArray *)stepsInGuide
+-(NSMutableArray *)rankedStepsInGuide
 {
-    if (!_stepsInGuide) {
-        _stepsInGuide = [[NSArray alloc] init];
+    if (!_rankedStepsInGuide) {
+        _rankedStepsInGuide = [[NSMutableArray alloc] init];
     }
-    return _stepsInGuide;
+    return _rankedStepsInGuide;
 }
 
--(void)setStepsInGuide:(NSArray *)stepsInGuide
+-(void)setStepsInGuide:(NSMutableArray *)rankedStepsInGuide
 {
-    _stepsInGuide = stepsInGuide;
+    _rankedStepsInGuide = rankedStepsInGuide;
 }
 
 @end

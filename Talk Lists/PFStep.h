@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSString * instruction;
 @property (nonatomic, retain) NSNumber * rank;
-@property (nonatomic, retain) NSString *belongsToGuide;
+@property (nonatomic, retain) id belongsToGuide;        // object stored here will be a PFGuide
 //@property (nonatomic, retain) Photo *photo;
 @property (nonatomic, retain) NSData *photo;
 

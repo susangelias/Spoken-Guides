@@ -19,15 +19,12 @@
 @property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * uniqueID;
+@property (nonatomic, retain, readonly) PFRelation *pfSteps;
 //@property (nonatomic, retain) Photo *photo;
 @property (nonatomic, retain) NSData *photo;
-@property (nonatomic, retain) NSArray *steps;
-@property (nonatomic, retain) NSNumber *numberOfSteps;
 
+@property (nonatomic, strong) NSMutableArray *rankedStepsInGuide;
 
-@property (nonatomic, strong) NSArray *stepsInGuide;
-
--(NSArray *)sortedSteps;
 -(void)deleteStepAtIndex:(NSUInteger)index;
 -(void)moveStepFromNumber:(NSUInteger)fromIndex toNumber:(NSUInteger)toIndex;
 -(PFStep *)stepForRank:(NSUInteger)rank;

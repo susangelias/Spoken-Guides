@@ -162,13 +162,14 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 -(void)queryComplete
 {
-    self.guide.stepsInGuide = [self.guideDetailVCDataSource.queryResults copy];
+    self.guide.rankedStepsInGuide = [self.guideDetailVCDataSource.queryResults mutableCopy];
     [self.guideTableView reloadData];
 }
 
 -(void)deletedRowAtIndex:(NSUInteger)index
 {
-  //  [self.guideTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    // remove row from model
+    [self.guide deleteStepAtIndex:index];
 }
 
 -(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
@@ -516,8 +517,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
         _guideDetailVCDataSource = [[parseDataSource alloc] initWithPFObjectClassName:@"PFStep"
                                                                           withSortKey:@"rank"
-                                                                         withMatchKey:@"belongsToGuide"
-                                                                      WithMatchString:self.guide.objectId
+                                                                         withMatchKey:@"pfSteps"
+                                                                         withPFObject:self.guide
                                                                   withCellIndentifier:@"stepCell"
                                                                    configureCellBlock:configureCell];
         _guideDetailVCDataSource.parseDataSourceDelegate = self;

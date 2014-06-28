@@ -8,39 +8,28 @@
 
 
 #import "parseDataSource.h"
+#import "PFGuide.h"
 
 @implementation parseDataSource
 
 -(parseDataSource *)initWithPFObjectClassName:(NSString *)PFObjectClassName
                                   withSortKey:(NSString *)sortKey
                                 withMatchKey:(NSString *)matchKey
-                              WithMatchString:(NSString *)matchString
+                                 withPFObject:(id)parentObject
                           withCellIndentifier:(NSString *)cellID
                            configureCellBlock:(id)configCellBlock
 {
     self = [super init];
     if (self) {
-        // create and configure a PFQuery on the given class name
-        self.query = [PFQuery queryWithClassName:PFObjectClassName];
+          
+        if ([parentObject isKindOfClass:[PFGuide class]]) {
+            PFGuide *guide = (PFGuide *)parentObject;
+            PFRelation *relation = [guide relationForKey:matchKey];
+            self.query = [relation query];
+            [self.query orderByAscending:sortKey];
+            self.query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        }
         
-         // Follow relationship
-        [self.query whereKey:matchKey equalTo:matchString];
-        
-        [self.query orderByAscending:sortKey];
-        
-        self.query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-        
-        /*
-        __weak typeof(self) weakSelf = self;
-        [self.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                weakSelf.queryResults = [objects copy];
-                [weakSelf.parseDataSourceDelegate queryComplete];
-            }
-        }];
-         */
-      //  [self refreshQuery];
-
         self.cellIdentifier = cellID;
         self.configureCell = configCellBlock;
     }
@@ -52,10 +41,10 @@
     __weak typeof(self) weakSelf = self;
     [self.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            weakSelf.queryResults = [objects copy];
+            weakSelf.queryResults = [objects mutableCopy];
             [weakSelf.parseDataSourceDelegate queryComplete];
         }
-    }];
+    }]; 
 }
 
 #pragma mark - Table view data source
@@ -101,8 +90,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.parseDataSourceDelegate deletedRowAtIndex:indexPath.row];       // let the view controller know a row will be deleted
         [self.queryResults removeObjectAtIndex:indexPath.row];
+        [self.parseDataSourceDelegate deletedRowAtIndex:indexPath.row];       // let the view controller know a row is being deleted
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

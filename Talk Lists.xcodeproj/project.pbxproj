@@ -51,6 +51,7 @@
 		C0BC64B9190D85D6002F42D1 /* previewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC64B8190D85D6002F42D1 /* previewViewController.m */; };
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
+		C0D898B31959BCBF00ED251C /* PFPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D898B21959BCBF00ED251C /* PFPhoto.m */; };
 		C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */; };
 		C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
@@ -176,6 +177,8 @@
 		C0BE98CF1913E8E200C2990E /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		C0BE98D01913E8E200C2990E /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		C0BE98D11913E8E200C2990E /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		C0D898B11959BCBF00ED251C /* PFPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFPhoto.h; sourceTree = "<group>"; };
+		C0D898B21959BCBF00ED251C /* PFPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFPhoto.m; sourceTree = "<group>"; };
 		C0DCB16E1905D9F400E29DBB /* Talk Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talk Lists.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0DCB1711905D9F400E29DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -432,6 +435,8 @@
 				C0ECA731195507D000EF98AA /* PFStep.m */,
 				C045B72D194F7B5300DE2B08 /* PFGuide.h */,
 				C045B72E194F7B5300DE2B08 /* PFGuide.m */,
+				C0D898B11959BCBF00ED251C /* PFPhoto.h */,
+				C0D898B21959BCBF00ED251C /* PFPhoto.m */,
 			);
 			name = "Model - PFObjects";
 			sourceTree = "<group>";
@@ -785,6 +790,7 @@
 				C035E9A219310E0000DBBE4A /* UITextField+SlideViews.m in Sources */,
 				C046D85619180F9300212B5E /* Step+Addendums.m in Sources */,
 				C06E4A40191EBE7800093160 /* Guide.m in Sources */,
+				C0D898B31959BCBF00ED251C /* PFPhoto.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
 				C06B50EB192434E0002EF96C /* fetchedResultsDataSource.m in Sources */,
 				C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */,
