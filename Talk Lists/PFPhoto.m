@@ -7,14 +7,15 @@
 //
 
 #import "PFPhoto.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation PFPhoto
 
-@dynamic imageData;
-@dynamic thumbnailData;
-@dynamic belongsToObject;
+@dynamic image;
+@dynamic thumbnail;
 
 + (NSString *)parseClassName {
-    return @"PFPhoto";
+    return NSStringFromClass([self class]);
 }
+
 @end

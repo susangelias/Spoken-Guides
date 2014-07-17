@@ -8,13 +8,12 @@
 
 #import <Parse/Parse.h>
 
-@interface PFPhoto : PFObject
+@interface PFPhoto : PFObject  <PFSubclassing>
 
 + (NSString *)parseClassName;
 
 //@property (nonatomic, retain) NSString * assetLibraryURL;
-@property (nonatomic, retain) PFFile * imageData;
-@property (nonatomic, retain) PFFile * thumbnailData;
-@property (nonatomic, retain) NSString *belongsToObject;
+@property (nonatomic, retain) PFFile * image;
+@property (nonatomic, retain) PFFile * thumbnail;
 
 @end

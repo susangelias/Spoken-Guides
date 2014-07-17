@@ -8,21 +8,19 @@
 
 #import "EditGuideViewController.h"
 #import "addPhotoViewController.h"
-#import "previewViewController.h"
+//#import "previewViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "GuideCategories.h"
 #import "titleViewDelegate.h"
 #import "titleView.h"
 #import "stepEntryViewDelegate.h"
 #import "stepView.h"
-#import "Step+Addendums.h"
-#import "Photo+Addendums.h"
+//#import "Step+Addendums.h"
+//#import "Photo+Addendums.h"
 #import "SZTextView.h"
 #import "UIImage+Resize.h"
-//#import "ShareController.h"
 #import "PFGuide.h"
 #import "PFStep.h"
-
 #import <Parse/Parse.h>
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, titleViewDelegate, stepViewDelegate >
@@ -38,7 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *stepImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *swapImageView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
-@property (weak, nonatomic) IBOutlet UIButton *previewButton;
+//@property (weak, nonatomic) IBOutlet UIButton *previewButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipeGesture;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipeGesture;
@@ -46,7 +44,7 @@
 
 // model properties
 @property (strong, nonatomic) PFStep *stepInProgess;
-
+@property BOOL isChanged;
 
 @end
 
@@ -104,12 +102,11 @@
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
     
-    if (self.guideToEdit) {
-        [self.managedObjectContext.undoManager beginUndoGrouping];
-    }
-    
     // create the stepEntryView here so that it gets laid out correctly
     [self stepEntryView];
+    
+    self.isChanged = NO;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -167,6 +164,15 @@
     // save current instructions in model
     if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
         self.stepInProgess.instruction = [NSString stringWithString:instructionText];
+        // save to parse
+        __weak typeof(self) weakSelf = self;
+        [self.stepInProgess saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [weakSelf.guideToEdit addObject:weakSelf.stepInProgess
+                                         forKey:@"pfSteps"];
+                weakSelf.isChanged = YES;
+            }
+        }];
     }
 }
 
@@ -183,62 +189,64 @@
 - (IBAction)photoAdded:(UIStoryboardSegue *)segue
 {
     addPhotoViewController *addPhotoVC = (addPhotoViewController *)segue.sourceViewController;
+ 
+    if (addPhotoVC.selectedPhoto) {
+        // convert image to NSData
+        NSData *imageData = UIImagePNGRepresentation(addPhotoVC.selectedPhoto);
+        // then convert to PFFile for storing in Parse backend
+        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
     
-    if (addPhotoVC.assetLibraryURL) {
-        __weak typeof (self) weakSelf = self;
-        // create a photo object for the new photo and add it to either the guide or a step
-        // then display it on screen
-        [addPhotoVC.library getThumbNailForAssetURL:[NSURL URLWithString:[addPhotoVC.assetLibraryURL absoluteString]]
-                                withCompletionBlock:^(UIImage *thumbnailImage, NSError *error) {
-                                    // Create a new photo object and save 
-                                    Photo *newPhoto = [weakSelf createPhoto];
-                                    newPhoto.thumbnail = UIImagePNGRepresentation(thumbnailImage);
-                                    newPhoto.assetLibraryURL = [addPhotoVC.assetLibraryURL absoluteString];
+        PFFile *thumbnailFile = nil;
+        if (addPhotoVC.selectedThumbnail) {
+            // convert thumbnail to NSData
+            NSData *thumbNailData = UIImagePNGRepresentation(addPhotoVC.selectedThumbnail);
+            // then convert to PFFile for storing in Parse backend
+            thumbnailFile = [PFFile fileWithName:@"thumbnail.png" data:thumbNailData];
+        }
+        
+        // associate photo  with a guide or step object
+        if (self.guideTitle.hidden == NO) {
+            // title view is showing so this photo belongs to the guide
+            if (!self.guideToEdit) {
+                // create guide if we don't have one yet
+                self.guideToEdit = [self createGuide];
+            }
+            if (self.guideToEdit.image) {
+                // need to remove previous photo object
+              //  WITH PARSE THIS HAS TO BE DONE THROUGH THE REST API
+            }
+            self.guideToEdit.image = imageFile;
+            self.guideToEdit.thumbnail = thumbnailFile;
+            [self.guideToEdit saveInBackground];
+            self.isChanged = YES;
+            }
+        else {
+            // step view is showing so this photo belongs to the current step
+            if (self.stepInProgess.image) {
+                // need to remove previous photo object
+                //  WITH PARSE THIS HAS TO BE DONE THROUGH THE REST API
+            }
+            self.stepInProgess.image = imageFile;
+            self.stepInProgess.thumbnail = thumbnailFile;
+            [self.stepInProgess saveInBackground];
+            self.isChanged = YES;
+        }
+        
+        // update the screen display with the full image, not the thumbnail
+        if (self.guideTitle.hidden == YES) {
+            // update the step image view
+            self.stepImageView.image = addPhotoVC.selectedPhoto;
+            self.stepImageView.hidden = NO;
+        }
+        else {
+            // update the guide image view
+            self.guideImageView.image = addPhotoVC.selectedPhoto;
+            self.guideImageView.hidden = NO;
+        }
 
-                                    if (weakSelf.guideTitle.hidden == NO) {
-                                        // title view is showing so this photo belongs to the guide
-                                        if (!weakSelf.guideToEdit) {
-                                            // create guide if we don't have one yet
-                                            weakSelf.guideToEdit = [weakSelf createGuide];
-                                        }
-                                        if (weakSelf.guideToEdit.photo) {
-                                            // need to remove previous photo object
-#warning remove photo from library ???
-                                            [weakSelf.managedObjectContext deleteObject:weakSelf.guideToEdit.photo];
-                                        }
-                                        weakSelf.guideToEdit.photo = newPhoto;
-                                    }
-                                    else {
-                                        // step view is showing so this photo belongs to the current step
-                                        if (weakSelf.stepInProgess.photo) {
-                                            // need to remove previous photo object
-#warning remove photo from library ???
-                                            [weakSelf.managedObjectContext deleteObject:weakSelf.stepInProgess.photo];
-                                        }
-                                        weakSelf.stepInProgess.photo = newPhoto;
-                                    }
-                                    
-                                    // update the screen display with the full image, not the thumbnail
-                                          __block UIImage *photoImage;
-                                        [newPhoto retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
-                                            if (success) {
-                                                photoImage = [response objectForKey:@"photoImage"];
-                                            }
-                                            if (weakSelf.guideTitle.hidden == YES) {
-                                                // update the step image view
-                                                weakSelf.stepImageView.image = photoImage;
-                                                weakSelf.stepImageView.hidden = NO;
-                                            }
-                                            else {
-                                                // update the guide image view
-                                                weakSelf.guideImageView.image = photoImage;
-                                                weakSelf.guideImageView.hidden = NO;
-                                            }
-                                        }];
-
-                                 }];
-    }
-
+      }
+    addPhotoVC.selectedPhoto = nil;
+    addPhotoVC.selectedThumbnail = nil;
     
 }
 
@@ -250,13 +258,6 @@
 
 
 
-#pragma mark Preview unwind segue
-
-- (IBAction)finishedPreview:(UIStoryboardSegue *)segue
-{
-    // finished looking at the preview
-    [self resetFirstResponder];
-}
 
 #pragma mark Set Category Button
 
@@ -314,42 +315,46 @@
         [self saveTitleToModel:self.guideTitle.text];
     }
     
-    NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
-    NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
-    NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
-    NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
 
     //  put up the alert to save any changes made to the guide
-//    if ([self.managedObjectContext hasChanges] == YES )
-    __block BOOL isDirty = NO;
+  //  __block BOOL isDirty = NO;
     if ([self.guideToEdit isDirty]) {
-        isDirty = YES;
+        self.isChanged = YES;
+        [self.guideToEdit saveInBackground];
     }
     else {
-        [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.guideToEdit.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             PFStep *step = (PFStep *)obj;
             if ([step isDirty]) {
-                isDirty = YES;
+                self.isChanged = YES;
                 *stop = YES;
+                [step saveInBackground];
             }
         }];
     }
-    if (isDirty)
+
+    if (self.isChanged)
     {
-     
+        [self.editGuideDelegate guideObjectWasChanged];
+    }
+    /*
+    
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
                                                         message:@"Do you want to save your guide ?"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Save",@"Discard Changes", nil];
         [alert show];
+     
+        
     }
-    else {
+    else { */
         // otherwise simply return to main screen without saving anything because the user hasn't entered anythig
         [self.navigationController popViewControllerAnimated:YES];
-    }
+  //  }
 }
 
+/*
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
      if ( (!buttonIndex == 0) && (self.guideToEdit) )
@@ -360,19 +365,19 @@
             // SAVE: save guide to Parse backend
             [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    self.guideToEdit.uniqueID = self.guideToEdit.objectId;
+                    weakSelf.guideToEdit.uniqueID = weakSelf.guideToEdit.objectId;
                     // save all the steps to back end
-                    if ([self.steps count ] > 0) {
-                        [self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    if ([weakSelf.guideToEdit.rankedStepsInGuide count ] > 0) {
+                        [self.guideToEdit.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                             PFStep *stepToSave = (PFStep *)obj;
                             if ([stepToSave isDirty]) {
-                                stepToSave.belongsToGuide = self.guideToEdit;
                                 [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                     if (succeeded) {
-                                        [self.guideToEdit.pfSteps addObject:stepToSave];
-                                        [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                            if (idx+1 == [self.steps count]) {
-                                                [self.navigationController popViewControllerAnimated:YES];
+                                        [weakSelf.guideToEdit.pfSteps addObject:stepToSave];
+                                        [weakSelf.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                            if (idx+1 == [weakSelf.guideToEdit.rankedStepsInGuide count]) {
+                                                [self.editGuideDelegate guideObjectWasChanged];
+                                                [weakSelf.navigationController popViewControllerAnimated:YES];
                                             }
                                         }];
                                     }
@@ -381,64 +386,66 @@
                                     }
                                 }];
                             }
-                            else if (idx+1 == [self.steps count]) {
-                                [self.navigationController popViewControllerAnimated:YES];   
+                            else if (idx+1 == [weakSelf.guideToEdit.rankedStepsInGuide count]) {
+                                [self.editGuideDelegate guideObjectWasChanged];
+                                [weakSelf.navigationController popViewControllerAnimated:YES];
                             }
                         }];
                     }
                     else {
-                        [self.navigationController popViewControllerAnimated:YES];
+                        [self.editGuideDelegate guideObjectWasChanged];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
                     }
                 }
                 if (error) {
                     NSLog(@"error publishing guide %@", error);
                 }
             }];
-            /*
-            // SAVE: save guide to core data
-            [self.managedObjectContext performBlock:^{
-                  NSError *error;
-                [self.managedObjectContext save:&error];
-                if (error) {
-                    NSLog(@"ERROR saving context: %@", error);
-                }
-            }]; */
-            // UPDATE: if guide has already been published, update it with changes
-         //   if (![self.guideToEdit.uniqueID hasPrefix:@"Talk Notes"]) {
-          //      ShareController *shareControl = [[ShareController alloc]init];
-          //      [shareControl shareGuide:self.guideToEdit];
-          //  }
-        }
+          }
         else if (buttonIndex == 2) {
             // DISCARD:  undo any changes
-            if ([self.managedObjectContext.undoManager canUndo]) {
-                [self.managedObjectContext.undoManager undoNestedGroup];
-                }
             // refresh view from model for the step that is displayed
              self.StepTextView.text = self.swapTextView.text = self.stepInProgess.instruction;
-            
             [self.navigationController popViewControllerAnimated:YES];
         }
           
-        // break any retain cycles between the managed objects before leaving this view controller
-      //  __weak typeof (self) weakSelf = self;
-        [self.managedObjectContext performBlock:^{
-            for (NSManagedObject *mo in weakSelf.managedObjectContext.registeredObjects) {
-                [weakSelf.managedObjectContext refreshObject:mo mergeChanges:NO];
-            }
-        }];
-        /* From the core data programming guide:  "The undo manager associated with a context keeps strong references to any changed managed objects. By default, in OS X the context’s undo manager keeps an unlimited undo/redo stack. To limit your application's memory footprint, you should make sure that you scrub (using removeAllActions) the context’s undo stack as and when appropriate. */
-        [self.managedObjectContext.undoManager removeAllActions];
-        
-        NSLog(@"inserted objects %@", [self.managedObjectContext insertedObjects]);
-        NSLog(@"deleted objects %@", [self.managedObjectContext deletedObjects]);
-        NSLog(@"has changes %hhd", [self.managedObjectContext hasChanges]);
-        NSLog(@"registered objects %@", [self.managedObjectContext registeredObjects]);
-        
-        // return to main screen
-    //    [self.navigationController popViewControllerAnimated:YES];
-    }
+     }
 }
+ */
+/*
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ( (!buttonIndex == 0) && (self.guideToEdit) )
+    {
+        __weak typeof(self) weakSelf = self;
+        if (buttonIndex == 1) {
+            // SAVE:
+            // First save all the steps
+            [self.guideToEdit.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                PFStep *stepToSave = (PFStep *)obj;
+                if ([stepToSave isDirty]) {
+                    [stepToSave saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        [weakSelf.guideToEdit.pfSteps addObject:stepToSave];
+                    }];
+                }
+            }];
+
+            // Next, save the guide to Parse backend
+            [self.guideToEdit saveInBackground];
+            
+            // Notify parent controller that guide has changed
+            [self.editGuideDelegate guideObjectWasChanged];
+        }
+        else if (buttonIndex == 2) {
+            // DISCARD:  undo any changes
+            // refresh view from model for the step that is displayed
+            self.StepTextView.text = self.swapTextView.text = self.stepInProgess.instruction;
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+*/
 
 #pragma swipe gestures
 
@@ -467,16 +474,17 @@
     // slide the new view in from the right
     if (stepNumber > 0) {
         // step is found so retreive photo
-        if (self.stepInProgess.photo) {
-            __block UIImage *photoImage;
-            /*
-            [self.stepInProgess.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
-                if (success) {
-                    photoImage = [response objectForKey:@"photoImage"];
-                }
-                [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
-                                                       withPhoto:photoImage];
-            }]; */
+        if (self.stepInProgess.image) {
+            PFImageView *imageView = [[PFImageView alloc] init];
+         //   imageView.image = [UIImage imageNamed:@"..."];        // placeholder image
+            imageView.file = (PFFile *)self.stepInProgess.image;  // remote image
+            
+           // [imageView loadInBackground];
+            __weak typeof (self) weakSelf = self;
+            [imageView loadInBackground:^(UIImage *image, NSError *error) {
+                [weakSelf.stepEntryView updateRightSwipeStepEntryView:weakSelf.stepInProgess.instruction
+                                                            withPhoto:image];
+            }];
         }
         else {
             [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
@@ -527,17 +535,18 @@
     }
     else {
         // step is found so retreive photo
-        if (self.stepInProgess.photo) {
-            __block UIImage *photoImage;
-            /*
-            [self.stepInProgess.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
-                if (success) {
-                    photoImage = [response objectForKey:@"photoImage"];
-                }
-                [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
-                                                      withPhoto:photoImage];
-            }]; */
-        }
+        if (self.stepInProgess.image) {
+            PFImageView *imageView = [[PFImageView alloc] init];
+            //   imageView.image = [UIImage imageNamed:@"..."];        // placeholder image
+            imageView.file = (PFFile *)self.stepInProgess.image;  // remote image
+            
+            // [imageView loadInBackground];
+            __weak typeof (self) weakSelf = self;
+            [imageView loadInBackground:^(UIImage *image, NSError *error) {
+                [weakSelf.stepEntryView updateLeftSwipeStepEntryView:weakSelf.stepInProgess.instruction
+                                                           withPhoto:image];
+            }];
+           }
         else {
             [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
                                                    withPhoto:nil];
@@ -563,24 +572,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"previewSegue"] )
-    {
-        if ([[segue destinationViewController] isKindOfClass:[previewViewController class]]) {
-            previewViewController *destController = [segue destinationViewController];
-            destController.guideToPreview = self.guideToEdit;
-            if (self.guideTitle.hidden == NO) {
-                // show title in progress in preview
-                destController.titleToPreview = self.guideTitle.text;
-            } else  {
-                // update in progress step to model even if user has not hit the Next key yet
-                self.stepInProgess.instruction = [NSString stringWithString:self.stepEntryView.stepTextView.text];
-            }
-        }
-    }
-    else if ([segue.identifier isEqualToString:@"addPhotoSegue"] ) {
+
+    if ([segue.identifier isEqualToString:@"addPhotoSegue"] ) {
         if ([[segue destinationViewController] isKindOfClass:[addPhotoViewController class]]) {
-            addPhotoViewController *destController = [segue destinationViewController];
-            destController.albumName = self.guideToEdit.uniqueID;
+         //   addPhotoViewController *destController = [segue destinationViewController];
+        //    destController.albumName = self.guideToEdit.uniqueID;
         }
         
     }
@@ -597,29 +593,27 @@
     }
     
     self.guideToEdit.title = title;
+    [self.guideToEdit saveInBackground];    // save to Parse backend
 }
 
 -(void)showTitle:(BOOL)animated
 {
     if (stepNumber == 0) {
-        __block UIImage *photoImage;
-        if (self.guideToEdit.photo) {
-            /*
-            [self.guideToEdit.photo retrieveImageWithCompletionBlock:^(BOOL success, NSDictionary *response, NSError *error) {
-                if (success) {
-                    photoImage = [response objectForKey:@"photoImage"];
-                }
+        if (self.guideToEdit.image) {
+            PFImageView *guideImageView = [[PFImageView alloc] init];
+            guideImageView.file = self.guideToEdit.image;
+            __weak typeof (self) weakSelf = self;
+            [guideImageView loadInBackground:^(UIImage *image, NSError *error) {
                 if (animated) {
-                      [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
-                                                   withPhoto:photoImage];
+                    [weakSelf.guideTitleView updateRightSwipeTitleEntryView:weakSelf.guideToEdit.title
+                                                              withPhoto:image];
                 }
                 else {
-                    [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
-                                                          withPhoto:photoImage];
+                    [weakSelf.guideTitleView updateStaticTitleEntryView:weakSelf.guideToEdit.title
+                                                          withPhoto:image];
                 }
             }];
-             */
-        }
+         }
         else {
             if (animated) {
                 [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
@@ -671,11 +665,8 @@
 
 #pragma mark Initializations
 
-//-(Guide *)createGuide
 -(PFGuide *)createGuide
 {
- //       [self.managedObjectContext.undoManager beginUndoGrouping];
-   //     Guide *newGuide = [Guide insertNewObjectInManagedObjectContext:self.managedObjectContext];
 
     PFGuide *newGuide = [PFGuide object];
     
@@ -690,24 +681,17 @@
 }
 
 
-//-(Step *)createStep
 -(PFStep *)createStep
 {
-//    Step *newStep = [Step insertNewObjectInManagedObjectContext:self.managedObjectContext];
     PFStep *newStep = [PFStep object];
 
     newStep.rank = [NSNumber numberWithInt:stepNumber];
     newStep.instruction = @"";
-    [self.steps addObject:newStep];
-   // [self.guideToEdit incrementKey:@"numberOfSteps"];
+    [self.guideToEdit.rankedStepsInGuide addObject:newStep];
     return newStep;
 }
 
--(Photo *)createPhoto
-{
-    Photo *newPhoto = [Photo insertNewObjectInManagedObjectContext:self.managedObjectContext];
-    return newPhoto;
-}
+
 
 -(stepView *)stepEntryView
 {
@@ -721,10 +705,5 @@
     return _stepEntryView;
 }
 
--(NSMutableArray *)steps{
-    if (!_steps) {
-        _steps = [[NSMutableArray alloc] init];
-    }
-    return _steps;
-}
+
 @end

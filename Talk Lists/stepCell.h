@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Step+Addendums.h"
+#import "PFStep.h"
 
-@interface stepCell : UITableViewCell
+@interface stepCell : PFTableViewCell
 
--(void)configureStepCell: (Step *)stepToDisplay;
+-(void)configureStepCell: (PFStep *)stepToDisplay;
 
 @end

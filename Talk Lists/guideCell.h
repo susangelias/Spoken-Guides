@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Guide+Addendums.h"
+#import "PFGuide.h"
 
-@interface guideCell : UITableViewCell
+@interface guideCell : PFTableViewCell
 
-
--(void)configureGuideCell: (Guide *)guideToDisplay;
 
 @end

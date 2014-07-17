@@ -54,11 +54,12 @@
         weakSelf.stepImageView = self.swapImageView;
         weakSelf.swapImageView = tempImageView;
     };
+    /*
     ChainAnimationBlock imageAnimationComplete = ^{
         UIImageView *tempImageView = self.stepImageView;
         weakSelf.stepImageView = self.swapImageView;
         weakSelf.swapImageView = tempImageView;
-    };
+    }; */
 
     [self.stepTextView slideViewToLeftOffScreen:nil];
     [self.stepImageView slideViewToLeftOffScreen:nil];

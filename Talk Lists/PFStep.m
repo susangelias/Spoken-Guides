@@ -13,11 +13,11 @@
 
 @dynamic instruction;
 @dynamic rank;
-@dynamic belongsToGuide;
-@dynamic photo;
+@dynamic image;
+@dynamic thumbnail;
 
 + (NSString *)parseClassName {
-    return @"PFStep";
+    return NSStringFromClass([self class]);
 }
 
 @end

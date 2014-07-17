@@ -8,18 +8,13 @@
 
 #import "GuideDetailViewController.h"
 #import "BlurryModalSegue.h"
-#import "stepCell.h"
-#import "Step.h"
-//#import "fetchedResultsDataSource.h"
-//#import "fetchedResultsDataSourceDelegate.h"
-#import "parseDataSource.h"
-#import "parseDataSourceDelegate.h"
-#import "Guide+Addendums.h"
 #import "dialogController.h"
-#import "Photo+Addendums.h"
 #import "TalkListAppDelegate.h"
 #import "EditGuideViewController.h"
+#import "EditGuideViewControllerDelegate.h"
 #import "PFStep.h"
+#import "GuideQueryTableViewController.h"
+#import "GuideQueryTableViewControllerDelegate.h"
 
 
 typedef NS_ENUM(NSInteger, dialogState) {
@@ -28,20 +23,16 @@ typedef NS_ENUM(NSInteger, dialogState) {
     isReset
 };
 
-@interface GuideDetailViewController () <parseDataSourceDelegate, UITableViewDelegate, dialogControllerDelegate >
+@interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate>
+
 // View properties
 @property (weak, nonatomic) IBOutlet UITableView *guideTableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
-@property (weak, nonatomic) IBOutlet UIImageView *guidePicture;
+@property (weak, nonatomic) IBOutlet PFImageView *guidePicture;
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusDisplay;
 @property (nonatomic, strong) NSArray *stateStrings;
-
-// Model properties
-//@property (strong, nonatomic) fetchedResultsDataSource *guideDetailVCDataSource;
-
-@property (strong, nonatomic) parseDataSource *guideDetailVCDataSource;
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
@@ -54,6 +45,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     // instantiate dialog controller now rather than waiting until the user presses the Play
     // button as it takes 2 secs to initialize speech recognition model
     if (!self.dialogController) {
@@ -68,9 +61,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.guideTableView.dataSource = self.guideDetailVCDataSource;
-    self.guideTableView.delegate = self;
 
     // sign up for AVAudioSession Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -92,10 +82,12 @@ typedef NS_ENUM(NSInteger, dialogState) {
 {
     [super viewWillAppear: animated];
     
-    [self.guideDetailVCDataSource refreshQuery];
-    
     self.title = self.guide.title;
-   // self.guidePicture.image = [UIImage imageWithData:self.guide.photo.thumbnail];
+    if (self.guide.image) {
+        self.guidePicture.file = self.guide.image;
+        self.guidePicture.image = [UIImage imageNamed:@"image.png"];
+        [self.guidePicture loadInBackground];
+    }
     
     self.currentState = isReset;
     self.currentLine = 0;
@@ -158,46 +150,26 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - parseDataSourceDelegate methods
 
--(void)queryComplete
-{
-    self.guide.rankedStepsInGuide = [self.guideDetailVCDataSource.queryResults mutableCopy];
-    [self.guideTableView reloadData];
-}
+#pragma mark GuideQueryTableViewControllerDelegate
 
--(void)deletedRowAtIndex:(NSUInteger)index
-{
-    // remove row from model
-    [self.guide deleteStepAtIndex:index];
-}
-
--(void)movedRowFrom:(NSUInteger)fromIndex To:(NSUInteger) toIndex
-{
-    [self.guide moveStepFromNumber:fromIndex+1 toNumber:toIndex+1];
-    
-    // turn off editing mode automatically after a row is moved
-    [self.guideTableView setEditing:NO animated:YES];
-    
-    // erase the dialog controller's list of steps and let it rebuild them
-    self.dialogController.instructions = nil;
-}
-
-
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)rowSelectedAtIndex:(int)index
 {
     BOOL wasPlaying = NO;
     if (self.currentState == isPlaying) {
         [self pauseButtonPressed:nil];
         wasPlaying = YES;
     }
-    self.dialogController.currentLineIndex = (int)indexPath.row;
-    self.currentLine = [NSNumber numberWithInt:indexPath.row];
+    self.dialogController.currentLineIndex = index;
+    self.currentLine = [NSNumber numberWithInt:index];
     if (wasPlaying == YES) {
         [self playButtonPressed:nil];
     }
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     // unselect the row since text color will change when row is spoken
     UITableViewCell *selectedCell = [self.guideTableView cellForRowAtIndexPath:indexPath];
@@ -239,6 +211,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 - (void)swapPlayPauseButtons
 {
+    
     UIImage *playPauseImage = [self.playPauseButton imageForState:UIControlStateNormal];
     if (playPauseImage == [UIImage imageNamed:@"play"]) {
         // replace Play button with Pause button
@@ -262,6 +235,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
                             action:@selector(playButtonPressed:)
                   forControlEvents:UIControlEventTouchUpInside];
     }
+     
 }
 
 - (void)highlightCurrentLine:(int) lineNumber
@@ -276,35 +250,36 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 - (void)unhighlightCurrentLine:(int) lineNumber
 {
-    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:lineNumber inSection:0];
-    
-    // get app's customTint color
-    UIColor *customColor = [UIColor blackColor];
-    [self setTextColor:customColor atIndexPath:selectedIndexPath];
+     // Pass this through to child controller
+    GuideQueryTableViewController *childController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    if ([childController respondsToSelector:@selector(unhighlightCurrentLine:)]) {
+        [childController unhighlightCurrentLine:lineNumber];
+    }
 }
 
 -(void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber
 {
-    UITableViewCell *currentCell = [self.guideTableView cellForRowAtIndexPath:lineNumber];
-    NSMutableAttributedString *cellAttributedText = [currentCell.textLabel.attributedText mutableCopy];
-    NSDictionary *highlightedTextAttributes;
-    NSRange highlightedRange;
-    if (lineNumber >= 0)  {
-        // HIGHLIGHT STROKE COLOR OF CURRENT LINE
-        if (highlightColor) {
-            highlightedTextAttributes  = @{NSForegroundColorAttributeName: highlightColor};
-            highlightedRange =  NSMakeRange(0, [cellAttributedText length]);
-        }
+
+    // Pass this through to child controller
+    GuideQueryTableViewController *childController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    if ([childController respondsToSelector:@selector(setTextColor:atIndexPath:)]) {
+        [childController setTextColor:highlightColor atIndexPath:lineNumber];
     }
-    // APPLY ATTRIBUTES
-    if (highlightedTextAttributes) {
-        [cellAttributedText addAttributes:highlightedTextAttributes range:highlightedRange];
-    }
-    currentCell.textLabel.attributedText = [cellAttributedText copy];
-    
 }
 
+#pragma mark EditGuideViewControllerDelegate
 
+-(void)guideObjectWasChanged
+{
+    // if guide title or guide image was changed, update here and pass on update to the guide list controller
+    if (![self.title isEqualToString:self.guide.title] || (![self.guidePicture.file isEqual:self.guide.image])) {
+        [self.editGuideDelegate guideObjectWasChanged];
+    }
+    
+    // if guide steps changed, pass on update to our child Controller
+    GuideQueryTableViewController *stepTableViewController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    [stepTableViewController loadObjects];
+}
 #pragma mark User Actions
 
 - (IBAction)playButtonPressed:(UIButton *)sender {
@@ -359,14 +334,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
     
         self.currentState = isReset;
 
-}
-
-- (IBAction)longPressGestureRecognized:(id)sender
-{
-    
-    self.guideDetailVCDataSource.rearrangingAllowed = YES;
-    [self.guideTableView setEditing:YES
-                          animated:YES];
 }
 
 
@@ -437,9 +404,13 @@ typedef NS_ENUM(NSInteger, dialogState) {
     else if ([[segue destinationViewController  ]isKindOfClass:[EditGuideViewController class]])
     {
         EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
- //       destController.managedObjectContext = self.guide.managedObjectContext;
         destController.guideToEdit = self.guide;
-        destController.steps = [self.guideDetailVCDataSource.queryResults mutableCopy];
+        destController.editGuideDelegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"guideDetailTableViewSegue"]) {
+        GuideQueryTableViewController *destinationVC = (GuideQueryTableViewController *)[segue destinationViewController];
+        destinationVC.guide = self.guide;
+        destinationVC.parentDelegate = self;
     }
 }
 
@@ -451,80 +422,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
         _stateStrings =  @[@"Say \"Next\" or \"Repeat\"", @"Waiting to resume", @"Reset"];
     }
     return _stateStrings;
-}
-
-/*
--(ArrayDataSource *)guideDetailVCDataSource
-{
-    if (!_guideDetailVCDataSource) {
-        // set up the block that will fill each tableViewCell
-        void (^configureCell)(stepCell *, id) = ^(stepCell *cell, Step *guideStep) {
-            [cell configureStepCell:guideStep];
-        };
-        
-        // get the guide steps from our working copy of the new guide in progress
-        NSMutableArray *guideSteps = [[self.guide sortedSteps] mutableCopy];
-  
-        _guideDetailVCDataSource = [[ArrayDataSource alloc] initWithItems:guideSteps
-                                                          cellIDString:@"stepCell"
-                                                    configureCellBlock:configureCell];
-        _guideDetailVCDataSource.arrayDataSourceDelegate = self;
-        
-         
-    }
-    return _guideDetailVCDataSource;
-}
-*/
-
-/*
--(fetchedResultsDataSource *)guideDetailVCDataSource
-{
-    if (!_guideDetailVCDataSource) {
-        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, Step *guideStep) {
-            if ([cell isKindOfClass:[stepCell class]]) {
-                stepCell *thisStepCell = (stepCell *)cell;
-                [thisStepCell configureStepCell:guideStep];
-            }
-        };
-            
-     //   NSString *searchString = self.guide;
-       // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToGuide == %@", searchString];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"belongsToGuide == %@", self.guide];
- 
-        _guideDetailVCDataSource = [[fetchedResultsDataSource alloc] initWithEntity:@"Step"
-                                                               withManagedObjectContext:self.guide.managedObjectContext
-                                                                            withSortKey:@"rank"
-                                                                    withCellIndentifier:@"stepCell"
-                                                                    withSearchPredicate:predicate
-                                                                     withConfigureBlock:configureCell];
-    }
-    _guideDetailVCDataSource.delegate = self;
-    _guideDetailVCDataSource.fetchedResultsDataSourceDelegate = self;
-    return _guideDetailVCDataSource;
-}
-*/
-
--(parseDataSource *)guideDetailVCDataSource
-{
-    if (!_guideDetailVCDataSource) {
-        void (^configureCell)(UITableViewCell *, id) = ^(UITableViewCell *cell, PFStep *guideStep) {
-            if ([cell isKindOfClass:[stepCell class]]) {
-                stepCell *thisStepCell = (stepCell *)cell;
-                [thisStepCell configureStepCell:guideStep];
-            }
-        };
-        
-
-        _guideDetailVCDataSource = [[parseDataSource alloc] initWithPFObjectClassName:@"PFStep"
-                                                                          withSortKey:@"rank"
-                                                                         withMatchKey:@"pfSteps"
-                                                                         withPFObject:self.guide
-                                                                  withCellIndentifier:@"stepCell"
-                                                                   configureCellBlock:configureCell];
-        _guideDetailVCDataSource.parseDataSourceDelegate = self;
-        _guideDetailVCDataSource.editingAllowed = YES;
-    }
-    return _guideDetailVCDataSource;
 }
 
 - (void)setCurrentLine:(NSNumber *)currentLine

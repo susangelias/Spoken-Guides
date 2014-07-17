@@ -34,6 +34,7 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PFFacebookUtils.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFGuide.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFStep.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFPhotoOwner.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ArrayDataSource.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ArrayDataSourceDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/GuideCategories.h \

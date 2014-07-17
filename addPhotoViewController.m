@@ -11,13 +11,14 @@
 #import "UIImage+Resize.h"
 
 
-@implementation addPhotoViewController
 
+
+@implementation addPhotoViewController 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.library = [[ALAssetsLibrary alloc] init];
+ //   self.library = [[ALAssetsLibrary alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -35,6 +36,8 @@
     }
 }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -48,28 +51,21 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // extract new image
-    UIImage *selectedPhoto = info[UIImagePickerControllerEditedImage];
-
-   __weak typeof (self) weakSelf = self;
-    [self.library saveImage:selectedPhoto
-                    toAlbum:self.albumName
-        withCompletionBlock:^(NSURL *assetLibraryURL, NSError *error) {
-            if (error != nil) {
-                NSLog(@"error saving photo to album: %@", error);
-            }
-            else {
-                weakSelf.assetLibraryURL = assetLibraryURL;
-            }
-        }];
+    UIImage *rawPhoto = [info[UIImagePickerControllerEditedImage] resizeToSquareImage];
+    // resize to a square image for this app
+    self.selectedPhoto = [rawPhoto resizeToSquareImage];
+    // scale image to thumbnail size
+    self.selectedThumbnail = [UIImage imageWithImage:self.selectedPhoto scaledToSize:CGSizeMake(69.0, 69.0) ];
     
     // dismiss view controller
    [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
 
+ 
 
     // Display image
-    UIImage *resizedPhoto = [selectedPhoto resizeToSquareImage];
-    if (resizedPhoto ) {
+    if (self.selectedPhoto ) {
         // wait for imageView to render before attempting to display photo
+        __weak typeof (self) weakSelf = self;
         [UIView animateWithDuration:0.0
                          animations:^{
                              [weakSelf.view addSubview:weakSelf.photoView];
@@ -77,11 +73,13 @@
                              weakSelf.redoButton.hidden = NO;
                           }
                          completion:^(BOOL finished) {
-                             weakSelf.photoView.image = resizedPhoto;
+                             weakSelf.photoView.image = self.selectedPhoto;
                          }
          ];
     }
-    
+  // NSLog(@"IMAGE %f x %f ", self.selectedPhoto.size.width, self.selectedPhoto.size.height);
+   // NSLog(@"Thumbnail %f x %f ", self.selectedThumbnail.size.width, self.selectedThumbnail.size.height);
+
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -123,6 +121,8 @@
     }
     return [sources copy];
 }
+
+
 
 #pragma mark UIActionSheetDelegate
 

@@ -32,16 +32,9 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PF_Twitter.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PFFacebookUtils.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/EditGuideViewController.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Guide+Addendums.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Guide.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFGuide.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFStep.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/EditGuideViewControllerDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/../GuideDetailViewController.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ArrayDataSource.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ArrayDataSourceDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/GuideCategories.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/fetchedResultsDataSource.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/fetchedResultsDataSourceDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo+Addendums.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Photo.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ShareController.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/guideCell.h

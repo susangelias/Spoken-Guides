@@ -7,15 +7,21 @@
 //
 
 #import "guideCell.h"
-#import "Photo+Addendums.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 
 @implementation guideCell
 
--(void)configureGuideCell: (Guide *)guideToDisplay
+/*
+-(void)configureGuideCell: (PFGuide *)guideToDisplay
 {
     self.textLabel.text = guideToDisplay.title;
-    
+
+    if (guideToDisplay.image) {
+        // Set the thumbnail as the displayed image for now but better resolution image will get swapped in in the completion block
+        self.imageView.file = guideToDisplay.thumbnail;
+        self.imageView.image = [UIImage imageNamed:@"image.png"];
+    }
+     
     if (guideToDisplay.photo.thumbnail) {
         // Set the thumbnail as the displayed image for now but better resolution image will get swapped in in the completion block
         self.imageView.image = [UIImage imageWithData:guideToDisplay.photo.thumbnail];
@@ -35,14 +41,26 @@
     }
 }
 
-
+*/
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
+}
+
+
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    // Position and size the image view
+    float y = (78.0 - 69.0)/2.0;
+    self.imageView.frame = CGRectMake(y,y,69,69);
+
 }
 
 - (void)awakeFromNib

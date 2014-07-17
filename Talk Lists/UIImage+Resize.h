@@ -10,6 +10,8 @@
 
 @interface UIImage (Resize)
 
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
+
 -(UIImage *)resizeToSquareImage;
 
 @end

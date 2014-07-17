@@ -42,6 +42,4 @@ dependencies: \
   /Users/susanelias/Documents/Developer/OpenEarsDistribution/Framework/OpenEars.framework/Headers/AcousticModel.h \
   /Users/susanelias/Documents/Developer/Rejecto/Rejecto.framework/Headers/LanguageModelGenerator+Rejecto.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/voice.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/TalkListAppDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Step+Addendums.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/Step.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/TalkListAppDelegate.h

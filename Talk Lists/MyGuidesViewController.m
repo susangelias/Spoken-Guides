@@ -9,22 +9,18 @@
 #import "MyGuidesViewController.h"
 #import "EditGuideViewController.h"
 #import "GuideDetailViewController.h"
-#import "ArrayDataSource.h"
 #import "GuideCategories.h"
-#import "fetchedResultsDataSource.h"
-#import "Guide+Addendums.h"
-#import "Photo+Addendums.h"
-#import "ShareController.h"
 #import "PFGuide.h"
+#import "guideCell.h"
+#import "EditGuideViewControllerDelegate.h"
 
 
-@interface MyGuidesViewController ()// <NSFetchedResultsControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *myGuidesTableView;
-//@property (strong, nonatomic) fetchedResultsDataSource *guideFetchResultsController;
-@property (strong, nonatomic) NSManagedObjectModel *mom;
-@property (strong, nonatomic) NSURL *storeURL;
+@interface MyGuidesViewController () < EditGuideViewControllerDelegate >
+
+//@property (weak, nonatomic) IBOutlet UITableView *myGuidesTableView;
 @property (weak, nonatomic) IBOutlet UIButton *createNewGuideButton;
+//@property (weak, nonatomic) IBOutlet guideCell *customTableViewCell;
 
 @end
 
@@ -40,7 +36,9 @@
         self.parseClassName = @"PFGuide";
         
         // The key of the PFObject to display  the labelofthe default cell style
-        self.textKey = @"title";
+   //     self.textKey = @"title";
+   //     self.imageKey = @"thumbnail";
+       // self.placeholderImage = [UIImage imageNamed:@"image.png"];
   
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -59,21 +57,6 @@
 {
     [super viewDidLoad];
    
-    // Set up managed object context
-    [self setupManagedObjectContext];
-    
-    // Set up the undo manager
-    if (self.managedObjectContext) {
-        self.managedObjectContext.undoManager = [[NSUndoManager alloc] init];
-    }
- /*
-    NSError *error;
-    [self.guideFetchResultsController performFetch:&error];
-    if (error) {
-        NSLog(@"Error fetching guides for a specific category: %@", error);
-    }
-   self.myGuidesTableView.dataSource = self.guideFetchResultsController;
-  */
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -87,7 +70,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [super loadObjects];
+    /*
+     The problem was my loadObjects method was causing some strange behaviour behind the scenes. The error is now gone but the main reason I had this method in my viewWillAppear was so that when I returned to main tab from another the main list of people would refresh. I've solved this problem using notification centre but would prefer to use delegation and have a new question I'm about to post. –  LondonGuy Mar 12 at 12:13
+     */
+ //   [super loadObjects];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -99,7 +85,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,6 +92,7 @@
     [super didReceiveMemoryWarning];
     NSLog(@"didReceiveMemoryWarning %s", __PRETTY_FUNCTION__);
     // Dispose of any resources that can be recreated.
+    [self.queryForTable clearCachedResult];
 }
 
 
@@ -135,29 +121,71 @@
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
+    else {
+        query.cachePolicy = kPFCachePolicyNetworkOnly;
+    }
     
     [query orderByDescending:@"modifiedDate"];
     
     return query;
 }
 
+#pragma mark UITableViewDelegate
+
+/*
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    guideCell *customCell = (guideCell *)cell;
+    customCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [customCell.imageView sizeToFit];
+    
+   // CGRect newFrame = cell.imageView.frame;
+  //  if (newFrame.size.width > 90) newFrame.size.width = 90;
+   // cell.imageView.frame = newFrame;
+}
+*/
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 78;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GuideDetailViewController *destinationController = [[GuideDetailViewController alloc] init];
+    UIStoryboardSegue *segue = [[UIStoryboardSegue alloc]initWithIdentifier:@"GuideDetailSegue"
+                                                                     source:self
+                                                                destination:destinationController];
+    [self performSegueWithIdentifier:@"GuideDetailSegue" sender:segue];
+}
+
 
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
+// UNABLE TO GET THIS CODE TO DISPLAY THE IMAGE
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"myGuideCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    guideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[guideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+     //   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"guideCell" owner:self options:nil];
+     //   cell = [nib objectAtIndex:0];
     }
+
     
     // Configure the cell
     if ([object isKindOfClass:[PFGuide class]]) {
         PFGuide *guideToDisplay = (PFGuide *)object;
         cell.textLabel.text = guideToDisplay.title;
-        //cell.imageView.image = [UIImage imageWithData:fetchedGuide.photo.thumbnail];
-    }
+        if (guideToDisplay.thumbnail) {
+         //   PFFile *thumbnailFile = guideToDisplay.thumbnail;
+            cell.imageView.image = [UIImage imageNamed:@"image.png"];
+            cell.imageView.file = [guideToDisplay objectForKey:@"thumbnail"];
+            }
+        }
+
+    
     return cell;
 }
 
@@ -168,85 +196,23 @@
  return [objects objectAtIndex:indexPath.row];
  }
  */
-
-/*
-#pragma mark NSFetchedResultsController delegate methods
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    [self.myGuidesTableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = self.myGuidesTableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            if ([anObject isKindOfClass:[Guide class]]) {
-                // delete object from backend
-                Guide *deletedGuide = (Guide *)anObject;
-                ShareController *shareControl = [[ShareController alloc]init];
-                [shareControl deleteGuide:deletedGuide];
-            }
-            break;
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [self.myGuidesTableView endUpdates];
-}
-*/
 #pragma mark User Actions
 
 - (IBAction)EditButtonPressed:(UIBarButtonItem *)sender {
-   // [self.myGuidesTableView setEditing:YES
-   //                   animated:YES];
     [self.tableView setEditing:YES
                       animated:YES];
     sender.title = @"Done";
     sender.action = @selector(DoneButtonPressed:);
     
-    [self.managedObjectContext.undoManager beginUndoGrouping];
 }
 
 -(IBAction)DoneButtonPressed:(UIBarButtonItem *)sender
 {
- //   [self.myGuidesTableView setEditing:NO
- //                     animated:YES];
     [self.tableView setEditing:NO
                               animated:YES];
     sender.title = @"Edit";
     sender.action = @selector(EditButtonPressed:);
     
-    [self.managedObjectContext.undoManager endUndoGrouping];
-    // save any changes to core data
-    [self.managedObjectContext performBlock:^{
-        NSError *error;
-        [self.managedObjectContext save:&error];
-        if (error) {
-            NSLog(@"ERROR saving context: %@", error);
-        }
-    }];
-    // break any retain cycles between the managed objects before leaving this view controller
-    __weak typeof (self) weakSelf = self;
-    [self.managedObjectContext performBlock:^{
-        for (NSManagedObject *mo in weakSelf.managedObjectContext.registeredObjects) {
-            [weakSelf.managedObjectContext refreshObject:mo mergeChanges:NO];
-        }
-    }];
-    [self.managedObjectContext.undoManager removeAllActions];
-
 }
 
 #pragma mark - Table view data source
@@ -288,7 +254,12 @@
      }
  }
 
+#pragma mark - EditGuideViewControllerDelegate
 
+-(void)guideObjectWasChanged
+{
+    [self loadObjects];
+}
 
 #pragma mark - Navigation
 
@@ -298,9 +269,8 @@
     {
         if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
             EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
-            destController.managedObjectContext = self.managedObjectContext;
             destController.guideToEdit = nil;
-            destController.steps = nil;
+            destController.editGuideDelegate = self;
         }
     }
     // Pass the selected object to the edit view controller.
@@ -309,73 +279,13 @@
             GuideDetailViewController *destVC = (GuideDetailViewController *)[segue destinationViewController ];
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             destVC.guide = (PFGuide *)[self.objects objectAtIndex:indexPath.row];
+            destVC.editGuideDelegate = self;
             }
         }
 }
 
+
+
 #pragma mark Initializations
 
--(void)setupManagedObjectContext
-{
-    self.managedObjectContext =
-    [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    self.managedObjectContext.persistentStoreCoordinator =
-    [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel: self.mom];
-    NSError *error;
-    [self.managedObjectContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                      configuration:nil
-                                                                URL:self.storeURL
-                                                            options:nil
-                                                              error:&error];
-    if (error) {
-        NSLog(@"error:  %@", error);
-    }
-    self.managedObjectContext.undoManager = nil;     // set to nil until such time as undo Manager is needed
-}
-
--(NSManagedObjectModel *)mom
-{
-    if (!_mom) {
-        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"GuideModel" withExtension:@"momd"];
-        _mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    }
-    return _mom;
-}
-
--(NSURL *)storeURL
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    if (!_storeURL) {
-        _storeURL = [NSURL fileURLWithPath:[basePath stringByAppendingFormat:@"/Talk Lists.sqlite"]];
-    }
-    return  _storeURL;
-}
-/*
-
--(fetchedResultsDataSource *)guideFetchResultsController
-{
-    if (!_guideFetchResultsController) {
-
-        void (^configureCell)(UITableViewCell *, Guide *) = ^(UITableViewCell *cell, Guide *fetchedGuide) {
-            cell.textLabel.text = fetchedGuide.title;
-            cell.imageView.image = [UIImage imageWithData:fetchedGuide.photo.thumbnail];
-        };
-
-
-#warning will need to add a search predicate on the user ID
-    //    NSString *searchString = self.guideCategory;
-        NSPredicate *predicate = nil; //[NSPredicate predicateWithFormat:@"classification == %@", searchString];
-        
-        _guideFetchResultsController = [[fetchedResultsDataSource alloc] initWithEntity:@"Guide"
-                                                               withManagedObjectContext:self.managedObjectContext
-                                                                            withSortKey:@"classification"
-                                                                    withCellIndentifier:@"myGuideCell"
-                                                                    withSearchPredicate:predicate
-                                                                     withConfigureBlock:configureCell];
-    }
-    _guideFetchResultsController.delegate = self;
-    return _guideFetchResultsController;
-}
-*/
 @end

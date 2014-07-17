@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Guide+Addendums.h"
+//#import "Guide+Addendums.h"
 #import "PFGuide.h"
+#import "EditGuideViewControllerDelegate.h"
 
 @interface EditGuideViewController : UIViewController
 
-@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
-//@property (strong, nonatomic) Guide *guideToEdit;
 @property (strong, nonatomic) PFGuide *guideToEdit;
-@property (strong, nonatomic) NSMutableArray *steps;
+@property (weak, nonatomic) id <EditGuideViewControllerDelegate> editGuideDelegate;
 
 -(void)titleCompleted:(NSString *)title;
 - (IBAction)doneButtonPressed:(UIButton *)sender;

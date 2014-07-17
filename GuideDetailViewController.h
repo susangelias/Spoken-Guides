@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "PFGuide.h"
+#import "EditGuideViewControllerDelegate.h"
 
 @interface GuideDetailViewController : UIViewController
 
 @property (weak, nonatomic) PFGuide *guide;
 @property (nonatomic, strong) NSNumber *currentLine;
+@property (weak, nonatomic) id <EditGuideViewControllerDelegate> editGuideDelegate;
 
 @end

@@ -21,16 +21,17 @@
 @dynamic title;
 @dynamic uniqueID;
 @dynamic pfSteps;
-@dynamic photo;
+@dynamic image;
+@dynamic thumbnail;
 
 @synthesize  rankedStepsInGuide = _rankedStepsInGuide;
 
 + (NSString *)parseClassName {
-    return @"PFGuide";
+    return NSStringFromClass([self class]);
 }
 
 
--(void)deleteStepAtIndex:(NSUInteger)index
+-(void)deleteStepAtIndex:(NSUInteger)index withCompletionBlock:(deleteCompleteBlock)completionBlock
 {
     // get step object
     PFStep *stepToBeDeleted = [self stepForRank:index+1];
@@ -39,6 +40,10 @@
     __weak typeof(self) weakSelf = self;
     [stepToBeDeleted deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            // remove step from local array of steps in guide
+            [weakSelf.rankedStepsInGuide removeObject:stepToBeDeleted];
+            
+            if ([weakSelf.rankedStepsInGuide count] > 0) {
             // update rank for remaining steps
             [weakSelf.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 PFStep *thisStep = (PFStep *)obj;
@@ -46,14 +51,27 @@
                 if (thisStepRank > index) {
                     thisStepRank -= 1;
                     thisStep.rank = [NSNumber numberWithInt:thisStepRank];
-                    [thisStep saveInBackground];
+                    [thisStep saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (idx+1 == [weakSelf.rankedStepsInGuide count]) {
+                            // have finished re-ranking steps
+                            completionBlock();
+                        }
+                    }];
+                }
+                else if (idx+1 == [weakSelf.rankedStepsInGuide count]) {
+                    // last step was deleted so no re-ranking is required
+                    completionBlock();
                 }
             }];
+            }
+            else {
+                // all the steps have been deleted
+                completionBlock();
+            }
         }
     }];
     
-    // remove step from local array of steps in guide
-    [self.rankedStepsInGuide removeObject:stepToBeDeleted];
+
 
 }
 
@@ -99,7 +117,7 @@
     }
 }
 
--(PFStep *)stepForRank:(NSUInteger)rank
+ -(PFStep *)stepForRank:(NSUInteger)rank
 {
     // get step object with rank
     __block PFStep *retrievedStep;
@@ -112,6 +130,8 @@
     }];
     return retrievedStep;
 }
+
+
 
 #pragma mark initializers
 

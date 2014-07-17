@@ -8,7 +8,7 @@
 
 #import "stepCell.h"
 #import "UIView+SuperView.h"
-#import "Photo+Addendums.h"
+//#import "Photo+Addendums.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "UIImage+Resize.h"
 
@@ -42,7 +42,7 @@
     // Configure the view for the selected state
 }
 
--(void)configureStepCell: (Step *)stepToDisplay
+-(void)configureStepCell: (PFStep *)stepToDisplay
 {
     UITapGestureRecognizer *tapped;
 
@@ -50,19 +50,29 @@
         self.textLabel.text = [NSString stringWithString:stepToDisplay.instruction];
     }
 
-    if (stepToDisplay.photo.thumbnail) {
+  //  if (stepToDisplay.photo.thumbnail) {
+    if (stepToDisplay.image) {
         // Set the thumbnail as the displayed image for now but better resolution image will get swapped in in the completion block
-        self.imageView.image = [UIImage imageWithData:stepToDisplay.photo.thumbnail];
+        /*
+        [stepToDisplay getThumbnailInBackgroundWithBlock:^(UIImage *retrieveImage) {
+            self.imageView.image = retrieveImage;
+        }];
+         */
+        self.imageView.file = stepToDisplay.thumbnail;
+        self.imageView.image = [UIImage imageNamed:@"image.png"];
+      //  self.imageView.image = [UIImage imageWithData:stepToDisplay.photo.thumbnail];
 
         // Retrieve the photo so it can be displayed in the delegate method - this puts an image suitable
         // for full screen display into our thumbnail shown in the table view so when the user taps it
         // and it expands to full screen it will not be blurry as it is if I use the thumbnail here
+        /*
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         __weak typeof(self)weakSelf = self;
         [library getImageForAssetURL:[NSURL URLWithString:stepToDisplay.photo.assetLibraryURL]
                  withCompletionBlock:^(UIImage *image, NSError *error) {
                      weakSelf.imageView.image = [image resizeToSquareImage];
         }];
+         */
 
     // Add Gesture Recognizer
         tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellImageTapped:)];

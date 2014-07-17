@@ -10,7 +10,7 @@
 #import "languageOpenEars.h"
 #import "voice.h"
 #import "TalkListAppDelegate.h"
-#import "Step+Addendums.h"
+#import "PFStep.h"
 
 typedef NS_ENUM(NSInteger, dialogControllerState) {
     isPausedWhileSpeaking,
@@ -50,31 +50,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     [self initializeDialog];
 }
 
--(NSArray *)instructions
-{
-    if (!_instructions) {
-        if (self.guide) {
-            __block NSMutableArray *mutableInstructions = [[NSMutableArray alloc] init];
-   //         [[self.guide sortedSteps] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [self.guide.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                if (obj) {
-                    Step *step = (Step *)obj;
-                    if (step.instruction) {
-                        [mutableInstructions addObject:step.instruction];
-                    }
-                }
-                else {
-                    *stop = YES;     // object should never be nil but if it is abort enumeration
-                }
-            }];
-            _instructions = [mutableInstructions copy];
-        }
-        else {
-            NSLog(@"Error:  no guide set %s", __PRETTY_FUNCTION__);
-        }
-    }
-    return _instructions;
-}
+
 
 -(ListeningController *)listener
 {
@@ -103,8 +79,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     self.currentState = isActivelySpeaking;
     
     // Speak a line
-    if (self.instructions) {
-        self.nextLine = [self.instructions objectAtIndex:self.currentLineIndex];
+    if (self.guide.rankedStepsInGuide) {
+        PFStep *step = [self.guide.rankedStepsInGuide objectAtIndex:self.currentLineIndex];
+        self.nextLine = step.instruction;
     }
     // Let the Guide Detail VC know the current line so that it can highlight it
     [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
