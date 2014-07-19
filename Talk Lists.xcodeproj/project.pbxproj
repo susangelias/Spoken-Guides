@@ -184,7 +184,7 @@
 		C0DCB1931905D9F400E29DBB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C0DCB19B1905D9F400E29DBB /* Talk ListsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Talk ListsTests-Info.plist"; sourceTree = "<group>"; };
 		C0DCB19D1905D9F400E29DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C0DE5A381938BFFA00909BD5 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
+		C0DE5A381938BFFA00909BD5 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReadMe.md; path = "Talk Lists/ReadMe.md"; sourceTree = "<group>"; };
 		C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		C0E24E70192A5A5900C4F35A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		C0E9A13F1941F1FD001C65DE /* UIImageView+SlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SlideViews.h"; sourceTree = "<group>"; };
@@ -448,6 +448,7 @@
 		C0DCB1651905D9F400E29DBB = {
 			isa = PBXGroup;
 			children = (
+				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
 				C0DCB1771905D9F400E29DBB /* Talk Lists */,
 				C0DCB1991905D9F400E29DBB /* Talk ListsTests */,
 				C0BE98C51913E87F00C2990E /* usr */,
@@ -487,7 +488,6 @@
 			isa = PBXGroup;
 			children = (
 				C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */,
-				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
 				C0230218192A5870006DEF7A /* Framework */,
 				C0F532D6191167E40023CEF0 /* Browse */,
 				C036A97A190C28F000D1F251 /* View */,
