@@ -12,6 +12,6 @@
 
 @required
 
--(void)guideObjectWasChanged;
+-(void)guideObjectWasChanged:(UIImage *)changedImage;
 
 @end

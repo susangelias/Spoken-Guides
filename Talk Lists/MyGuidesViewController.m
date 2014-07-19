@@ -73,7 +73,7 @@
     /*
      The problem was my loadObjects method was causing some strange behaviour behind the scenes. The error is now gone but the main reason I had this method in my viewWillAppear was so that when I returned to main tab from another the main list of people would refresh. I've solved this problem using notification centre but would prefer to use delegation and have a new question I'm about to post. –  LondonGuy Mar 12 at 12:13
      */
- //   [super loadObjects];
+  //  [super loadObjects];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -161,10 +161,9 @@
 
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
-// UNABLE TO GET THIS CODE TO DISPLAY THE IMAGE
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"myGuideCell";
+    static NSString *CellIdentifier = @"guideCell";
     
     guideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -256,8 +255,10 @@
 
 #pragma mark - EditGuideViewControllerDelegate
 
--(void)guideObjectWasChanged
+-(void)guideObjectWasChanged:(UIImage *)changedImage
 {
+    // this loadObjects gets called too soon and the changedImage has not finished uploading yet
+    // changed image is a 300 x 300 image and I want a thumbnail on this page
     [self loadObjects];
 }
 

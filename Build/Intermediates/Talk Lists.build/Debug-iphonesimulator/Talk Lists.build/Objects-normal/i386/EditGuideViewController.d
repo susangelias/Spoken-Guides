@@ -34,11 +34,10 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PFFacebookUtils.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFStep.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/EditGuideViewControllerDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/../addPhotoViewController.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/GuideCategories.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/titleViewDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/titleView.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/stepEntryViewDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/stepView.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UITextView+SlideViews.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UIImage+Resize.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UIImage+Resize.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryContainerViewController.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryDelegate.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryViewController.h

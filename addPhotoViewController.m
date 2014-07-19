@@ -36,6 +36,10 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -54,15 +58,11 @@
     UIImage *rawPhoto = [info[UIImagePickerControllerEditedImage] resizeToSquareImage];
     // resize to a square image for this app
     self.selectedPhoto = [rawPhoto resizeToSquareImage];
-    // scale image to thumbnail size
-    self.selectedThumbnail = [UIImage imageWithImage:self.selectedPhoto scaledToSize:CGSizeMake(69.0, 69.0) ];
     
     // dismiss view controller
-   [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
+    [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
 
- 
-
-    // Display image
+     // Display image
     if (self.selectedPhoto ) {
         // wait for imageView to render before attempting to display photo
         __weak typeof (self) weakSelf = self;
@@ -73,10 +73,11 @@
                              weakSelf.redoButton.hidden = NO;
                           }
                          completion:^(BOOL finished) {
-                             weakSelf.photoView.image = self.selectedPhoto;
+                             weakSelf.photoView.image = weakSelf.selectedPhoto;
                          }
          ];
     }
+    
   // NSLog(@"IMAGE %f x %f ", self.selectedPhoto.size.width, self.selectedPhoto.size.height);
    // NSLog(@"Thumbnail %f x %f ", self.selectedThumbnail.size.width, self.selectedThumbnail.size.height);
 

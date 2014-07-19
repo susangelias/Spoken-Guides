@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "PFGuide.h"
 #import "GuideQueryTableViewControllerDelegate.h"
+#import "guideCell.h"
 
 @interface GuideQueryTableViewController : PFQueryTableViewController
 

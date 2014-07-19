@@ -21,8 +21,8 @@
         self.parseClassName = @"PFStep";
         
         // The key of the PFObject to display  the labelofthe default cell style
-        self.textKey = @"instruction";
-        self.imageKey = @"thumbnail";
+   //     self.textKey = @"instruction";
+   //     self.imageKey = @"thumbnail";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -141,6 +141,33 @@
 
 
 #pragma mark UITableViewDelegate
+// Override to customize the look of a cell representing an object. The default is to display
+// a UITableViewCellStyleDefault style cell with the label being the first key in the object.
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *CellIdentifier = @"guideCell";
+    
+    guideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[guideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        //   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"guideCell" owner:self options:nil];
+        //   cell = [nib objectAtIndex:0];
+    }
+    
+    
+    // Configure the cell
+    if ([object isKindOfClass:[PFGuide class]]) {
+        PFStep *stepToDisplay = (PFStep *)object;
+        cell.textLabel.text = stepToDisplay.instruction;
+        if (stepToDisplay.thumbnail) {
+            cell.imageView.image = [UIImage imageNamed:@"image.png"];
+            cell.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
+        }
+    }
+    
+    
+    return cell;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

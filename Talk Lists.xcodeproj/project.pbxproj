@@ -11,6 +11,7 @@
 		C0072C6E191BC474000254A8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0072C6D191BC474000254A8 /* AssetsLibrary.framework */; };
 		C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C70191BCE62000254A8 /* UIImage+Resize.m */; };
 		C0072C7A191BD249000254A8 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C79191BD249000254A8 /* Step.m */; };
+		C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0195A601979484800EB01B7 /* DataEntryContainerViewController.m */; };
 		C023021B192A5870006DEF7A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */; };
 		C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */; };
 		C0270120192A3B3000F954EA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C027011F192A3B3000F954EA /* AVFoundation.framework */; };
@@ -46,6 +47,8 @@
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
 		C0D68CF7197749C700CF5EB3 /* guideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D68CF6197749C700CF5EB3 /* guideCell.xib */; };
+		C0D863A519783E7100CC68EF /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D863A419783E7100CC68EF /* DataEntryViewController.m */; };
+		C0D863AE1978AFC800CC68EF /* emptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D863AD1978AFC800CC68EF /* emptySegue.m */; };
 		C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1741905D9F400E29DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */; };
 		C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
@@ -91,6 +94,9 @@
 		C0072C70191BCE62000254A8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		C0072C78191BD249000254A8 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Step.h; path = "Model - core data/Step.h"; sourceTree = "<group>"; };
 		C0072C79191BD249000254A8 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Step.m; path = "Model - core data/Step.m"; sourceTree = "<group>"; };
+		C0195A5F1979484800EB01B7 /* DataEntryContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryContainerViewController.h; sourceTree = "<group>"; };
+		C0195A601979484800EB01B7 /* DataEntryContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryContainerViewController.m; sourceTree = "<group>"; };
+		C0195A62197952AD00EB01B7 /* DataEntryDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataEntryDelegate.h; sourceTree = "<group>"; };
 		C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		C027011F192A3B3000F954EA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +163,10 @@
 		C0BE98D01913E8E200C2990E /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		C0BE98D11913E8E200C2990E /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		C0D68CF6197749C700CF5EB3 /* guideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = guideCell.xib; sourceTree = "<group>"; };
+		C0D863A319783E7100CC68EF /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
+		C0D863A419783E7100CC68EF /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
+		C0D863AC1978AFC800CC68EF /* emptySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emptySegue.h; sourceTree = "<group>"; };
+		C0D863AD1978AFC800CC68EF /* emptySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = emptySegue.m; sourceTree = "<group>"; };
 		C0DCB16E1905D9F400E29DBB /* Talk Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talk Lists.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0DCB1711905D9F400E29DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0DCB1731905D9F400E29DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -333,6 +343,11 @@
 			isa = PBXGroup;
 			children = (
 				C02BFBA719193D4C00F6A035 /* View */,
+				C0195A5F1979484800EB01B7 /* DataEntryContainerViewController.h */,
+				C0195A62197952AD00EB01B7 /* DataEntryDelegate.h */,
+				C0195A601979484800EB01B7 /* DataEntryContainerViewController.m */,
+				C0D863A319783E7100CC68EF /* DataEntryViewController.h */,
+				C0D863A419783E7100CC68EF /* DataEntryViewController.m */,
 				C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */,
 				C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */,
 				C051A7EC1975BC5C00E5424C /* EditGuideViewControllerDelegate.h */,
@@ -361,6 +376,8 @@
 			children = (
 				C0DCB1861905D9F400E29DBB /* Main_iPad.storyboard */,
 				C0DCB1831905D9F400E29DBB /* Main_iPhone.storyboard */,
+				C0D863AC1978AFC800CC68EF /* emptySegue.h */,
+				C0D863AD1978AFC800CC68EF /* emptySegue.m */,
 				C0D68CF6197749C700CF5EB3 /* guideCell.xib */,
 			);
 			name = View;
@@ -717,6 +734,7 @@
 				C06E4A40191EBE7800093160 /* Guide.m in Sources */,
 				C02BEAAE190EA10E0092426E /* voice.m in Sources */,
 				C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */,
+				C0D863AE1978AFC800CC68EF /* emptySegue.m in Sources */,
 				C02BEAA6190E9F810092426E /* voiceSettingsViewController.m in Sources */,
 				C0FC202C192E247D007213AB /* MyGuidesViewController.m in Sources */,
 				C080B7F51947379D0092BC91 /* Photo.m in Sources */,
@@ -731,6 +749,7 @@
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
+				C0D863A519783E7100CC68EF /* DataEntryViewController.m in Sources */,
 				C0EFE28919771E4900553820 /* guideCell.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
 				C0ECA732195507D000EF98AA /* PFStep.m in Sources */,
@@ -742,6 +761,7 @@
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
 				C0270133192A3E2700F954EA /* ListeningController.m in Sources */,
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
+				C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */,
 				C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

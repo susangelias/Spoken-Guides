@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 @interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate>
 
 // View properties
-@property (weak, nonatomic) IBOutlet UITableView *guideTableView;
+//@property (weak, nonatomic) IBOutlet UITableView *guideTableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
 @property (weak, nonatomic) IBOutlet PFImageView *guidePicture;
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
@@ -85,7 +85,9 @@ typedef NS_ENUM(NSInteger, dialogState) {
     self.title = self.guide.title;
     if (self.guide.image) {
         self.guidePicture.file = self.guide.image;
-        self.guidePicture.image = [UIImage imageNamed:@"image.png"];
+        if (!self.guidePicture.image) {
+            self.guidePicture.image = [UIImage imageNamed:@"image.png"];
+        }
         [self.guidePicture loadInBackground];
     }
     
@@ -137,6 +139,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Remove self as observer for notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+ //   self.guidePicture.image = nil;
+    
     [super viewWillDisappear:animated];
 }
 
@@ -172,8 +176,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
 {
     
     // unselect the row since text color will change when row is spoken
-    UITableViewCell *selectedCell = [self.guideTableView cellForRowAtIndexPath:indexPath];
-    [selectedCell setSelected:NO animated:YES ];
+ //   UITableViewCell *selectedCell = [self.guideTableView cellForRowAtIndexPath:indexPath];
+  //  [selectedCell setSelected:NO animated:YES ];
 }
 
 
@@ -269,12 +273,13 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 #pragma mark EditGuideViewControllerDelegate
 
--(void)guideObjectWasChanged
+-(void)guideObjectWasChanged:(UIImage *)changedImage
 {
     // if guide title or guide image was changed, update here and pass on update to the guide list controller
-    if (![self.title isEqualToString:self.guide.title] || (![self.guidePicture.file isEqual:self.guide.image])) {
-        [self.editGuideDelegate guideObjectWasChanged];
+    if (changedImage) {
+        self.guidePicture.image = changedImage;
     }
+    [self.editGuideDelegate guideObjectWasChanged:nil];
     
     // if guide steps changed, pass on update to our child Controller
     GuideQueryTableViewController *stepTableViewController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
@@ -405,6 +410,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     {
         EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
         destController.guideToEdit = self.guide;
+        destController.downloadedGuideImage = self.guidePicture.image;
         destController.editGuideDelegate = self;
     }
     else if ([segue.identifier isEqualToString:@"guideDetailTableViewSegue"]) {
