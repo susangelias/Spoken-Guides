@@ -8,6 +8,14 @@
 
 #import <Parse/Parse.h>
 
+#pragma mark - Guide Constants for SpokenGuideCache
+// Class key
+extern NSString *const kPFStepClassKey;
+
+// keys
+extern NSString *const kPFStepChangedImage;
+extern NSString *const kPFStepChangedThumbnail;
+
 @interface PFStep : PFObject <PFSubclassing>
 
 + (NSString *)parseClassName;

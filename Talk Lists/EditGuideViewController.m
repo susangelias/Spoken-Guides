@@ -7,38 +7,20 @@
 //
 
 #import "EditGuideViewController.h"
-//#import "addPhotoViewController.h"
-//#import "previewViewController.h"
-//#import <MobileCoreServices/MobileCoreServices.h>
 #import "GuideCategories.h"
 #import "titleViewDelegate.h"
-//#import "titleView.h"
 #import "stepEntryViewDelegate.h"
-//#import "stepView.h"
-//#import "Step+Addendums.h"
-//#import "Photo+Addendums.h"
-//#import "SZTextView.h"
 #import "UIImage+Resize.h"
 #import "PFGuide.h"
 #import "PFStep.h"
 #import <Parse/Parse.h>
 #import "DataEntryContainerViewController.h"
 #import "DataEntryDelegate.h"
+#import "SpokenGuideCache.h"
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, DataEntryDelegate >
 
 // view properties
-//@property (weak, nonatomic) IBOutlet UITextField *guideTitle;
-//@property (strong, nonatomic) titleView *guideTitleView;
-//@property (weak, nonatomic) IBOutlet UIImageView *guideImageView;
-
-//@property (weak, nonatomic) IBOutlet SZTextView *StepTextView;
-//@property (strong, nonatomic) stepView *stepEntryView;
-//@property (weak, nonatomic) IBOutlet SZTextView *swapTextView;
-//@property (weak, nonatomic) IBOutlet UIImageView *stepImageView;
-//@property (weak, nonatomic) IBOutlet UIImageView *swapImageView;
-//@property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
-//@property (weak, nonatomic) IBOutlet UIButton *previewButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipeGesture;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipeGesture;
@@ -47,7 +29,7 @@
 
 // model properties
 @property (strong, nonatomic) PFStep *stepInProgess;
-@property BOOL isChanged;
+@property BOOL advanceView;
 
 @end
 
@@ -77,7 +59,7 @@
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
     
-    self.isChanged = NO;
+    self.advanceView = YES;
 
 }
 
@@ -85,9 +67,7 @@
     
     [super viewWillAppear:animated];
 
-    BOOL titleAnimated = NO;
-    [self showTitle:titleAnimated];
-}
+ }
 
 
 - (void)didReceiveMemoryWarning
@@ -103,129 +83,188 @@
 -(void)entryTextChanged:(NSString *)textEntry
 {
     __weak typeof(self) weakSelf = self;
-
+    NSLog(@"entryTextChanged");
     // User has entered or changed text data
     if (stepNumber == 0) {
             // changed the guide title
+        if (!self.guideToEdit) {
+            self.guideToEdit = [self createGuide];
+        }
+        if (![textEntry isEqualToString:self.guideToEdit.title]) {
             self.guideToEdit.title = textEntry;
+            
+            // notify delegate that text has changed
+            if ([self.editGuideDelegate respondsToSelector:@selector(changedGuideUploading)]) {
+                [self.editGuideDelegate changedGuideUploading];
+            }
+            
             [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    [weakSelf.editGuideDelegate guideObjectWasChanged:nil];
+                    NSLog(@"guide uploaded due to title change");
+                    if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedGuideFinishedUpload)]) {
+                        [weakSelf.editGuideDelegate changedGuideFinishedUpload];
+                    }
                 }
                 if (error) {
                     NSLog(@"error uploading guide to Parse");
                 }
             }];
+        }
     }
     else {
         // changed step instruction
-        self.stepInProgess.instruction = textEntry;
-        [self.stepInProgess saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [weakSelf.editGuideDelegate guideObjectWasChanged:nil];
+        if (!self.stepInProgess) {
+            self.stepInProgess = [self createStep];
+            // make sure left swipe is enabled
+            [self.leftSwipeGesture setEnabled:YES];
+            NSLog(@"created step");
+        }
+        NSLog(@"TEXTENTRY %@ vs Instruction %@", textEntry, self.stepInProgess.instruction);
+        if (![textEntry isEqualToString:self.stepInProgess.instruction]) {
+            self.stepInProgess.instruction = textEntry;
+            
+            // add step to the cache
+            [[SpokenGuideCache sharedCache] setAttributesForPFStep:self.stepInProgess
+                                                      changedImage:nil
+                                                  changedThumbnail:nil];
+            // notify delegate that text has changed
+            if ([self.editGuideDelegate respondsToSelector:@selector(changedStepUploading)]) {
+                [self.editGuideDelegate changedStepUploading];
             }
-            if (error) {
-                NSLog(@"error uploading step to Parse");
-            }
-        }];
+            
+            // Start the upload
+            __block PFStep *stepToBeUploaded = self.stepInProgess;
+            [stepToBeUploaded saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    PFRelation *relation = [weakSelf.guideToEdit relationForKey:@"pfSteps"];
+                    [relation addObject:stepToBeUploaded];
+                    [weakSelf.guideToEdit saveInBackground];
+                    if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedStepFinishedUpload)]) {
+                        [weakSelf.editGuideDelegate changedStepFinishedUpload];
+                    }
+                }
+                if (error) {
+                    NSLog(@"error uploading step to Parse");
+                }
+            }];
+        }
     }
-    
+//    if (self.advanceView == YES) {
+        // move to next data entry view
+ //       [self leftSwipe:self.leftSwipeGesture];
+ //   }
 }
 
 -(void)entryImageChanged:(UIImage *)imageEntry
 {
     // User has added or changed image
-    if (stepNumber == 0) {
-        // changed guide image
-        // convert image to NSData
-        NSData *imageData = UIImagePNGRepresentation(imageEntry);
-        // then convert to PFFile for storing in Parse backend
-        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-        
-        // scale image to thumbnail size
-        UIImage *thumbnail = [UIImage imageWithImage:imageEntry
-                                        scaledToSize:CGSizeMake(69.0, 69.0)];
-        // convert thumbnail to NSData
-        NSData *thumbNailData = UIImagePNGRepresentation(thumbnail);
-        // then convert to PFFile for storing in Parse backend
-         PFFile *thumbnailFile = [PFFile fileWithName:@"thumbnail.png" data:thumbNailData];
-        
-        // save PFFile's to guide
-        self.guideToEdit.image = imageFile;
-        self.guideToEdit.thumbnail = thumbnailFile;
-        [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-             if (error) {
-                NSLog(@"error uploading guide to Parse");
-            }
-        }];
-        
-        // notify delegate of change and pass along image
-        [self.editGuideDelegate guideObjectWasChanged:imageEntry];
-
-   }
-}
-
-/*
-#pragma mark <titleViewDelegate>
-
--(void)titleCompleted:(NSString*)title
-{
-
-    if (![title isEqualToString:@""]) {
-        [self saveTitleToModel:title];
-        self.navigationItem.title = title;
-   
-        // move to the first step view
-        [self leftSwipe:self.leftSwipeGesture];
-    }
-
-}
-
-#pragma mark <stepEntryViewDelegate>
-
--(void) stepInstructionTextChanged: (NSRange)range withReplacementText:(NSString *)replacementInstructionText
-{
-        if (!self.stepInProgess) {
-            self.stepInProgess = [self createStep];
-        }
-        // replace text in model
-        if (self.stepInProgess)
-        {
-            NSString * currentInstruction = self.stepInProgess.instruction;
-            if (self.stepInProgess.instruction) {
-                self.stepInProgess.instruction = [currentInstruction stringByReplacingCharactersInRange:range
-                                withString:replacementInstructionText];
-            }
-        }
-}
-
--(void) stepInstructionEditingEnded: (NSString *)instructionText
-{
-    // save current instructions in model
-    NSLog(@"%@", self.stepInProgess.instruction);
-  //  if (![self.stepInProgess.instruction isEqualToString:instructionText]) {
-        self.stepInProgess.instruction = [NSString stringWithString:instructionText];
-        // save to parse
-        __weak typeof(self) weakSelf = self;
-        [self.stepInProgess saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [weakSelf.guideToEdit addObject:weakSelf.stepInProgess
-                                         forKey:@"pfSteps"];
-                weakSelf.isChanged = YES;
-            }
-        }];
-   // }
-}
-
--(void) stepInstructionEntryCompleted: (NSString *)instructionText
-{
-    [self stepInstructionEditingEnded:instructionText];
+    // Save a local copy until the upload is finished
     
-    // move on to the next step
-    [self leftSwipe:self.leftSwipeGesture];
-}
+    // convert image to NSData
+    NSData *imageData = UIImagePNGRepresentation(imageEntry);
+    // then convert to PFFile for storing in Parse backend
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    
+    // scale image to thumbnail size
+    UIImage *thumbnail = [UIImage imageWithImage:imageEntry
+                                    scaledToSize:CGSizeMake(69.0, 69.0)];
+    // convert thumbnail to NSData
+    NSData *thumbNailData = UIImagePNGRepresentation(thumbnail);
+    // then convert to PFFile for storing in Parse backend
+    PFFile *thumbnailFile = [PFFile fileWithName:@"thumbnail.png" data:thumbNailData];
 
-*/
+
+    // upload the image files
+    __weak typeof(self) _weakSelf = self;
+    __block PFGuide *changedGuide;
+    __block PFStep *changedStep;
+    if (stepNumber == 0) {
+        changedGuide = self.guideToEdit;
+        changedStep = nil;
+        // save updated images to cache
+        NSMutableDictionary *guideAttributes = [[[SpokenGuideCache sharedCache] objectForKey:self.guideToEdit.objectId] mutableCopy];
+        if (guideAttributes) {
+            NSLog(@"guideAttributes %@", guideAttributes);
+            [guideAttributes setValue:imageEntry forKey:kPFGuideChangedImage];
+            [guideAttributes setValue:thumbnail forKey:kPFGuideChangedThumbnail];
+            [[SpokenGuideCache sharedCache] setObject:[guideAttributes copy] forKey:self.guideToEdit.objectId];
+        }
+
+        // notify delegate that guide has changed
+        if ([self.editGuideDelegate respondsToSelector:@selector(changedGuideUploading)]) {
+            [self.editGuideDelegate changedGuideUploading];
+        }
+    }
+    else {
+        changedStep = self.stepInProgess;
+        changedGuide = nil;
+        // save updated images to cache
+        NSMutableDictionary *stepAttributes = [[[SpokenGuideCache sharedCache] objectForKey:self.stepInProgess.objectId] mutableCopy];
+        if (stepAttributes) {
+        //    NSLog(@"stepAttributes %@", stepAttributes);
+            [stepAttributes setValue:imageEntry forKey:kPFStepChangedImage];
+            [stepAttributes setValue:thumbnail forKey:kPFStepChangedThumbnail];
+            [[SpokenGuideCache sharedCache] setObject:[stepAttributes copy] forKey:self.stepInProgess.objectId];
+        }
+        
+        // notify delegate of change
+        [self.editGuideDelegate changedStepUploading];
+    }
+   // NSLog(@"starting image upload %@", imageFile);
+
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded )
+        {
+            if ( (changedGuide && [changedGuide.objectId isEqual:_weakSelf.guideToEdit.objectId])
+                || (changedStep && [changedStep.objectId isEqual:_weakSelf.stepInProgess.objectId]) ) {
+                // let the view know to update with the image
+                [_weakSelf.containerViewController.currentDataEntryVC imageLoaded:imageEntry];
+            }
+
+          //  NSLog(@"imageFile uploaded");
+            [thumbnailFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@"thumbnailFile uploaded");
+                    
+                    // save PFFile's to guide
+                    if (changedGuide) {
+                        changedGuide.image = imageFile;
+                        changedGuide.thumbnail = thumbnailFile;
+                        [changedGuide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (succeeded) {
+                                [_weakSelf.editGuideDelegate changedGuideFinishedUpload];
+                            }
+                           // NSLog(@"guide updated after image upload %@:  called delegate with change notice here", changedGuide);
+                            if (error) {
+                                NSLog(@"error uploading guide to Parse");
+                            }
+                        }];
+                    }
+                    else {
+                        changedStep.image = imageFile;
+                        changedStep.thumbnail = thumbnailFile;
+                        [changedStep saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                         //   int index = [changedStep.rank intValue]-1;
+                            if (succeeded) {
+                                [_weakSelf.editGuideDelegate changedStepFinishedUpload];
+                            }
+                          //  NSLog(@"STEP updated after image upload %@", changedStep);
+                           //  [_weakSelf.guideToEdit.rankedStepsInGuide replaceObjectAtIndex:index withObject:changedStep];
+                            if (error) {
+                                NSLog(@"error uploading guide to Parse");
+                            }
+                        }];
+                    }
+                }
+            } progressBlock:^(int percentDone) {
+            //    NSLog(@"uploading percent done = %d", percentDone);
+            }];
+        }
+    } progressBlock:^(int percentDone) {
+     //   NSLog(@"uploading percent done = %d", percentDone);
+    }];
+ }
+
 
 #pragma mark Set Category Button
 
@@ -277,43 +316,8 @@
 
 - (IBAction)doneButtonPressed:(UIButton *)sender
 {
- 
-    //  put up the alert to save any changes made to the guide
-  //  __block BOOL isDirty = NO;
-    if ([self.guideToEdit isDirty]) {
-        self.isChanged = YES;
-        [self.guideToEdit saveInBackground];
-    }
-    else {
-        [self.guideToEdit.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            PFStep *step = (PFStep *)obj;
-            if ([step isDirty]) {
-                self.isChanged = YES;
-                *stop = YES;
-                [step saveInBackground];
-            }
-        }];
-    }
-
-    if (self.isChanged)
-    {
-        [self.editGuideDelegate guideObjectWasChanged:nil];
-    }
-    /*
-    
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Finish Guide"
-                                                        message:@"Do you want to save your guide ?"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save",@"Discard Changes", nil];
-        [alert show];
-     
-        
-    }
-    else { */
-        // otherwise simply return to main screen without saving anything because the user hasn't entered anythig
-        [self.navigationController popViewControllerAnimated:YES];
-  //  }
+ //   self.advanceView = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -324,118 +328,120 @@
 - (IBAction)rightSwipe:(UISwipeGestureRecognizer *)sender {
 // right swipe gesture will display either the title or an existing step but never a new step entry view
     // reactivate the left swipe gesture
+    NSLog(@"RIGHT SWIPE");
     self.leftSwipeGesture.enabled = YES;
 
-    // Save any final changes to the text into the model
- //   if (![self.stepEntryView.stepTextView.text isEqualToString:self.stepInProgess.instruction]) {
- //       self.stepInProgess.instruction = [NSString stringWithString:self.stepEntryView.stepTextView.text];
- //   }
+    // about to leave the current view so make sure any changes are saved
+    dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.update", NULL);
+    dispatch_sync(updateQ, ^{
+    //    self.advanceView = NO;
+        [self.containerViewController.currentDataEntryVC viewAboutToChange];
+    });
+    
     // get the model data
     stepNumber -= 1;
     if (stepNumber >= 1) {
         // retreive the step from the model
         self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
+        if (self.stepInProgess) {
+            [self setContainerWithStep:self.stepInProgess];
+        }
+        else {
+            NSLog(@"ERROR finding step in guide");
+        }
     }
     else if (stepNumber == 0)
     {
         // retreive the guide
-        // stepNumber cannot go negative so
-        // disable rightSwipe
+        if (self.guideToEdit) {
+        //    self.containerViewController.entryText = self.guideToEdit.title;
+            // check the cache for changes
+            NSDictionary *guideAttributes = [[SpokenGuideCache sharedCache] objectForKey:self.guideToEdit.objectId];
+            if (guideAttributes) {
+                self.containerViewController.entryText = self.guideToEdit.title;
+                UIImage *changedImage = [guideAttributes objectForKey:kPFGuideChangedImage];
+                if (changedImage ) {
+                    self.containerViewController.entryImage = changedImage;
+                }
+                else if (self.guideToEdit.image) {
+                    self.containerViewController.entryImage = [UIImage imageNamed:@"image.png"];
+                    [self.guideToEdit.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                        [self.containerViewController.currentDataEntryVC imageLoaded:[UIImage imageWithData:data]];
+                    }];
+                }
+                else {
+                    self.containerViewController.entryImage = nil;
+                }
+            }
+        }
+        // stepNumber cannot go negative so disable rightSwipe
         sender.enabled = NO;
     }
     
     // slide the new view in from the right
     [self.containerViewController swapViewControllers];
-    /*
-    if (stepNumber > 0) {
-        // step is found so retreive photo
-        if (self.stepInProgess.image) {
-            PFImageView *imageView = [[PFImageView alloc] init];
-         //   imageView.image = [UIImage imageNamed:@"..."];        // placeholder image
-            imageView.file = (PFFile *)self.stepInProgess.image;  // remote image
-            
-           // [imageView loadInBackground];
-            __weak typeof (self) weakSelf = self;
-            [imageView loadInBackground:^(UIImage *image, NSError *error) {
-                [weakSelf.stepEntryView updateRightSwipeStepEntryView:weakSelf.stepInProgess.instruction
-                                                            withPhoto:image];
-            }];
-        }
-        else {
-            [self.stepEntryView updateRightSwipeStepEntryView:self.stepInProgess.instruction
-                                                   withPhoto:nil];
-        }
-    }
-    else if (stepNumber == 0) {
-        // slide the step view off to the left
-        [self.stepEntryView hideStepEntryView];
-        
-        // show the title view
-        BOOL titleAnimated = YES;
-        [self showTitle:titleAnimated];
-    }
-     */
 }
 
 - (IBAction)leftSwipe:(UISwipeGestureRecognizer *)sender {
 // left swipe gesture will display a current step with data or a new step entry view
     // reactivate right swipe gesture
+    NSLog(@"LEFT SWIPE");
     self.rightSwipeGesture.enabled = YES;
-    
-     // slide the title view off to the left
-    /*
-    if ( (!self.guideToEdit) && (![self.guideTitle.text isEqualToString:@""]) )
-    {
-        // user entered a title then left swiped instead of pressing the Next key
-        // so make sure title is saved to the guide
-        [self saveTitleToModel:self.guideTitle.text];
-    }
-    if (stepNumber == 0) {
-        // hide the title screen
-        [self.guideTitleView hideTitleView];
-    }
-    */
-    
+ 
+    // about to leave the current view so make sure any changes are saved
+    dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.update", NULL);
+    dispatch_sync(updateQ, ^{
+     //   self.advanceView = NO;
+        [self.containerViewController.currentDataEntryVC viewAboutToChange];
+    });
+
     // get the model data
     stepNumber += 1;
     // check if new step ?
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
     if (!self.stepInProgess) {
-        // no step found in guide for this step number so set up for a new step
-      //  [self showPlaceHolderText];
         // disable left swipe until new step is entered
         sender.enabled = NO;
-        // clear any images
-        /*
-        self.stepImageView.image = nil;
-        self.swapImageView.image = nil;
-        [self.stepEntryView updateLeftSwipeStepEntryView:nil
-                                               withPhoto:nil];
-        */
+     }
+    // set up view with step data
+    [self setContainerWithStep:self.stepInProgess];
+    self.containerViewController.dataEntryDelegate = self;
+    [self.containerViewController swapViewControllers];
+
+}
+
+-(void)setContainerWithStep:(PFStep *)step
+{
+    if (step) {
+     //   self.containerViewController.entryText = step.instruction;
+        // check the cache for changes
+        NSDictionary *stepAttributes = [[SpokenGuideCache sharedCache] objectForKey:step.objectId];
+        if (stepAttributes) {
+            PFStep *cachedStep = [stepAttributes objectForKey:kPFStepClassKey];
+            self.containerViewController.entryText = cachedStep.instruction;
+            UIImage *changedImage = [stepAttributes objectForKey:kPFStepChangedImage];
+            if (changedImage ) {
+                self.containerViewController.entryImage = changedImage;
+            }
+
+        else if (step.image) {
+            self.containerViewController.entryImage = [UIImage imageNamed:@"image.png"];    // load the placeholder while the image is downloading
+            [step.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                self.containerViewController.entryImage = [UIImage imageWithData:data];     // downloaded image put into containerViewController for data enty view controller to retreive
+                [self.containerViewController.currentDataEntryVC imageLoaded:[UIImage imageWithData:data]];     // let data entry controller know that the image is ready
+                }];
+            }
+        }
+        else {
+            self.containerViewController.entryImage = nil;
+        }
+        self.containerViewController.entryNumber = [self.stepInProgess.rank intValue];
+    }
+    else {
+        // Set up view for new step
         self.containerViewController.entryText = nil;
         self.containerViewController.entryImage = nil;
         self.containerViewController.entryNumber = stepNumber;
-        self.containerViewController.dataEntryDelegate = self;
-
-        [self.containerViewController swapViewControllers];
-    }
-    else {
-        // step is found so retreive photo
-        if (self.stepInProgess.image) {
-            PFImageView *imageView = [[PFImageView alloc] init];
-            //   imageView.image = [UIImage imageNamed:@"..."];        // placeholder image
-            imageView.file = (PFFile *)self.stepInProgess.image;  // remote image
-            __weak typeof (self) weakSelf = self;
-            [imageView loadInBackground:^(UIImage *image, NSError *error) {
-           //     [weakSelf.stepEntryView updateLeftSwipeStepEntryView:weakSelf.stepInProgess.instruction
-           //                                                withPhoto:image];
-            }];
-           }
-        else {
-        //    [self.stepEntryView updateLeftSwipeStepEntryView:self.stepInProgess.instruction
-        //                                          withPhoto:nil];
-        }
-     
     }
 }
 
@@ -471,87 +477,6 @@
 
 #pragma mark Helpers
 
--(void)saveTitleToModel:(NSString *)title
-{
-    // if this is a new guide - create the guide object once a title has been entered
-    if (!self.guideToEdit) {
-        self.guideToEdit= [self createGuide];
-    }
-    
-    self.guideToEdit.title = title;
-    [self.guideToEdit saveInBackground];    // save to Parse backend
-}
-
--(void)showTitle:(BOOL)animated
-{
-    if (stepNumber == 0) {
-        /*
-        if (self.guideToEdit.image) {
-            PFImageView *guideImageView = [[PFImageView alloc] init];
-            guideImageView.file = self.guideToEdit.image;
-            __weak typeof (self) weakSelf = self;
-            [guideImageView loadInBackground:^(UIImage *image, NSError *error) {
-                if (animated) {
-                    [weakSelf.guideTitleView updateRightSwipeTitleEntryView:weakSelf.guideToEdit.title
-                                                              withPhoto:image];
-                }
-                else {
-                    [weakSelf.guideTitleView updateStaticTitleEntryView:weakSelf.guideToEdit.title
-                                                          withPhoto:image];
-                }
-            }];
-         }
-        else {
-            if (animated) {
-                [self.guideTitleView updateRightSwipeTitleEntryView:self.guideToEdit.title
-                                                          withPhoto:nil];
-            }
-            else {
-                [self.guideTitleView updateStaticTitleEntryView:self.guideToEdit.title
-                                                  withPhoto:nil];
-            }
-        } */
-    }
-}
-
-    /*
--(void)showPlaceHolderText
-{
-
-    self.swapTextView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
-    self.StepTextView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", stepNumber];
-   
-}
-     */
-
-    /*
--(void)resetFirstResponder {
-    __weak typeof (self) weakSelf = self;
-    if (self.StepTextView.hidden == NO) {
-        [UIView animateWithDuration:0.0     // move to stepView class
-                         animations:^{
-                             [weakSelf.view addSubview:weakSelf.StepTextView];
-                         }
-                         completion:^(BOOL finished) {
-                             [weakSelf.StepTextView becomeFirstResponder];
-                         }
-         ];
-    }
-    else if (self.guideTitle.hidden == NO) {
-        self.guideTitle.clearsOnBeginEditing = NO;  // move to titleView class
-        [UIView animateWithDuration:0.0
-                         animations:^{
-                             [weakSelf.view addSubview:weakSelf.guideTitle];
-                         }
-                         completion:^(BOOL finished) {
-                             [weakSelf.guideTitle becomeFirstResponder];
-                         }
-         ];
-        
-    }
-    
-}
-*/
 
 #pragma mark Initializations
 
@@ -561,12 +486,13 @@
     PFGuide *newGuide = [PFGuide object];
     
     // set this guide's unique ID
-#warning add user's ID to the uniqueID string
-    newGuide.uniqueID = [NSString stringWithFormat:@"Talk Notes %d", rand()];
     GuideCategories *cats = [[GuideCategories alloc] init];
     newGuide.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
-    newGuide.creationDate = [NSDate dateWithTimeIntervalSinceNow:0];
-
+    
+    // add new guide to cache
+    [[SpokenGuideCache sharedCache] setAttributesForPFGuide:newGuide
+                                               changedImage:nil
+                                           changedThumbnail:nil];
     return newGuide;
 }
 
@@ -576,8 +502,13 @@
     PFStep *newStep = [PFStep object];
 
     newStep.rank = [NSNumber numberWithInt:stepNumber];
-    newStep.instruction = @"";
+   // newStep.instruction = @"";
     [self.guideToEdit.rankedStepsInGuide addObject:newStep];
+    
+    // add new step to cache
+    [[SpokenGuideCache sharedCache] setAttributesForPFStep:newStep
+                                              changedImage:nil
+                                          changedThumbnail:nil];
     return newStep;
 }
 

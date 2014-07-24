@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PFGuide.h"
+#import "PFStep.h"
 
 @protocol EditGuideViewControllerDelegate <NSObject>
 
-@required
+@optional
 
--(void)guideObjectWasChanged:(UIImage *)changedImage;
+//-(void)guideWasChanged:(PFGuide *)guideObject guideImage: (UIImage *)changedImage guideThumbnail: (UIImage *)changedThumbnail;
+-(void) changedGuideUploading;
+-(void) changedGuideFinishedUpload;
+-(void) changedStepUploading;
+-(void) changedStepFinishedUpload;
+//-(void)stepWasChanged:(PFStep *)guideObject stepImage: (UIImage *)changedImage stepThumbnail: (UIImage *)changedThumbnail;
 
 @end

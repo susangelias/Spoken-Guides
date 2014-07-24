@@ -18,4 +18,7 @@
 @property int entryNumber;
 @property (weak, nonatomic) id <DataEntryDelegate> dataEntryDelegate;
 
+-(void)imageLoaded:(UIImage *)downloadedImage;
+-(void)viewAboutToChange;
+
 @end

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet SZTextView *textEntryView;
 @property (weak, nonatomic) IBOutlet PFImageView *imageDisplayView;
-
+@property BOOL textHasChanged;
 @end
 
 @implementation DataEntryViewController
@@ -58,16 +58,46 @@
         self.textEntryView.text = self.entryText;
     }
     else {
-        // show the placeholder text
-        self.textEntryView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", self.entryNumber];
+        // show the placeholder text and set the capitalization style
+        if (self.entryNumber > 0) {
+            // set placeholder test for a new step
+            self.textEntryView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", self.entryNumber];
+            self.textEntryView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+        }
+        else {
+            // show placeholder text for guide title
+            self.textEntryView.placeholder = [NSString stringWithFormat:@"Enter guide title here"];
+            self.textEntryView.autocapitalizationType = UITextAutocapitalizationTypeWords;
+        }
     }
-    self.imageDisplayView.image = self.entryImage;
+    if (self.entryImage) {
+        self.imageDisplayView.image = self.entryImage;
+    }
+    else {
+        self.imageDisplayView.image = nil;
+    }
+    
+    self.textHasChanged = NO;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)imageLoaded:(UIImage *)downloadedImage
+{
+    if (downloadedImage) {
+        self.imageDisplayView.image = downloadedImage;
+        self.entryImage = downloadedImage;
+    }
+}
+
+-(void)viewAboutToChange
+{
+    [self textViewDidEndEditing:self.textEntryView];
 }
 
 #pragma mark Add Photo unwind segues
@@ -96,22 +126,20 @@
 {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
-       // [self.stepEntryDelegate stepInstructionEntryCompleted:self.stepTextView.text];
         return NO;
     }
     else {
-        // need to pass range and replacement text to delegate
-     //   [self.stepEntryDelegate stepInstructionTextChanged:range
-      //                                 withReplacementText:text];
-        //    [self.stepEntryDelegate stepInstructionTextChanged:self.stepTextView.text];
+        self.textHasChanged = YES;
         return YES;
     }
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-  //  [self.stepEntryDelegate stepInstructionEditingEnded:textView.text];
-    [self.dataEntryDelegate entryTextChanged:textView.text];
+    if (self.textHasChanged) {
+        self.textHasChanged = NO;
+        [self.dataEntryDelegate entryTextChanged:textView.text];
+    }
 }
 
 

@@ -16,6 +16,7 @@
 
 @interface DataEntryContainerViewController : UIViewController
 
+@property (weak, nonatomic) DataEntryViewController *currentDataEntryVC;
 @property (weak, nonatomic)  NSString *entryText;
 @property (weak, nonatomic) UIImage *entryImage;
 @property int entryNumber;

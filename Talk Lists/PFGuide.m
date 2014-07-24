@@ -9,6 +9,14 @@
 #import "PFGuide.h"
 #import <Parse/PFObject+Subclass.h>
 
+// Class key
+NSString *const kPFGuideClassKey = @"PFGuide";
+
+#pragma mark - Cached PFGuide Attributes
+// keys
+NSString *const kPFGuideChangedImage = @"changedImage";
+NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
+
 @interface PFGuide()
 
 @end
@@ -16,10 +24,10 @@
 @implementation PFGuide
 
 @dynamic classification;
-@dynamic creationDate;
-@dynamic modifiedDate;
+//@dynamic creationDate;
+//@dynamic modifiedDate;
 @dynamic title;
-@dynamic uniqueID;
+//@dynamic uniqueID;
 @dynamic pfSteps;
 @dynamic image;
 @dynamic thumbnail;
@@ -33,8 +41,9 @@
 
 -(void)deleteStepAtIndex:(NSUInteger)index withCompletionBlock:(deleteCompleteBlock)completionBlock
 {
+    int rankToDelete = index+1; // steps are ranked 1 to n
     // get step object
-    PFStep *stepToBeDeleted = [self stepForRank:index+1];
+    PFStep *stepToBeDeleted = [self stepForRank:rankToDelete];
 
     // remove step from parse back end
     __weak typeof(self) weakSelf = self;
@@ -44,25 +53,25 @@
             [weakSelf.rankedStepsInGuide removeObject:stepToBeDeleted];
             
             if ([weakSelf.rankedStepsInGuide count] > 0) {
-            // update rank for remaining steps
-            [weakSelf.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                PFStep *thisStep = (PFStep *)obj;
-                int thisStepRank = [thisStep.rank intValue];
-                if (thisStepRank > index) {
-                    thisStepRank -= 1;
-                    thisStep.rank = [NSNumber numberWithInt:thisStepRank];
-                    [thisStep saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (idx+1 == [weakSelf.rankedStepsInGuide count]) {
-                            // have finished re-ranking steps
-                            completionBlock();
-                        }
-                    }];
-                }
-                else if (idx+1 == [weakSelf.rankedStepsInGuide count]) {
-                    // last step was deleted so no re-ranking is required
-                    completionBlock();
-                }
-            }];
+                // update rank for remaining steps
+                [weakSelf.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    PFStep *thisStep = (PFStep *)obj;
+                    int thisStepRank = [thisStep.rank intValue];
+                    if (thisStepRank > rankToDelete) {
+                        thisStepRank -= 1;
+                        thisStep.rank = [NSNumber numberWithInt:thisStepRank];
+                        [thisStep saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (idx+1 == [weakSelf.rankedStepsInGuide count]) {
+                                // have finished re-ranking steps
+                                completionBlock();
+                            }
+                        }];
+                    }
+                    else if (idx+1 == [weakSelf.rankedStepsInGuide count]) {
+                        // last step was deleted so no re-ranking is required
+                        completionBlock();
+                    }
+                }];
             }
             else {
                 // all the steps have been deleted

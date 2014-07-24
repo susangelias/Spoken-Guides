@@ -8,7 +8,7 @@
 
 #import "GuideQueryTableViewController.h"
 #import "PFStep.h"
-
+#import "SpokenGuideCache.h"
 
 
 @implementation GuideQueryTableViewController
@@ -40,7 +40,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self loadObjects];
     
 }
 - (void)viewDidLoad
@@ -64,6 +63,19 @@
     self.guide.rankedStepsInGuide = [self.objects mutableCopy];
     
     // This method is called every time objects are loaded from Parse via the PFQuery
+    if (!error) {
+        // remove steps for this guide then reload them
+        for (PFStep *step in self.objects ) {
+          //  [[SpokenGuideCache sharedCache] removeObjectForKey:step.objectId];
+            [[SpokenGuideCache sharedCache] setAttributesForPFStep:step
+                                                      changedImage:nil
+                                                  changedThumbnail:nil];
+        }
+        // cellForRowAtIndexPath is being called before the objects are loaded, why I don't know
+        // so force it to be called again now that cache is setup
+       [self.tableView reloadData];
+    }
+
 }
 
 - (void)objectsWillLoad {
@@ -144,19 +156,40 @@
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 
+#pragma mark UITableViewDelegate
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 78;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"guideCell";
     
     guideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[guideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        //   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"guideCell" owner:self options:nil];
-        //   cell = [nib objectAtIndex:0];
-    }
-    
-    
+     }
+   
     // Configure the cell
-    if ([object isKindOfClass:[PFGuide class]]) {
+    NSDictionary *stepAttributes = [[SpokenGuideCache sharedCache] objectForKey:object.objectId];
+    PFStep *stepToDisplay = [stepAttributes objectForKey:kPFStepClassKey];
+    cell.textLabel.text = stepToDisplay.instruction;
+    
+    UIImage *latestThumbnail = [stepAttributes objectForKey:kPFStepChangedThumbnail];
+    if (latestThumbnail) {
+        cell.imageView.image = latestThumbnail;
+        cell.imageView.file = nil;
+    }
+    else if (stepToDisplay.thumbnail) {
+        cell.imageView.image = [UIImage imageNamed:@"image.png"];
+        cell.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
+    }
+
+/*
+    if ([object isKindOfClass:[PFStep class]]) {
         PFStep *stepToDisplay = (PFStep *)object;
         cell.textLabel.text = stepToDisplay.instruction;
         if (stepToDisplay.thumbnail) {
@@ -164,7 +197,7 @@
             cell.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
         }
     }
-    
+ */
     
     return cell;
 }

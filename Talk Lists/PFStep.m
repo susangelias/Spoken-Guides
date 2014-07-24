@@ -9,6 +9,14 @@
 #import "PFStep.h"
 #import <Parse/PFObject+Subclass.h>
 
+// Class key
+NSString *const kPFStepClassKey = @"PFStep";
+
+#pragma mark - Cached PFGuide Attributes
+// keys
+NSString *const kPFStepChangedImage = @"changedImage";
+NSString *const kPFStepChangedThumbnail = @"changedThumbnail";
+
 @implementation PFStep
 
 @dynamic instruction;

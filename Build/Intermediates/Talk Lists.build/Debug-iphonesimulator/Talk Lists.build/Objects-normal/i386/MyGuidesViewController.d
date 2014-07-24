@@ -37,4 +37,5 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/EditGuideViewControllerDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/../GuideDetailViewController.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/GuideCategories.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/guideCell.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/guideCell.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/SpokenGuideCache.h

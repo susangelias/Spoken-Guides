@@ -40,4 +40,5 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/UIImage+Resize.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryContainerViewController.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryDelegate.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryViewController.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryViewController.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/SpokenGuideCache.h

@@ -13,14 +13,12 @@
 #import "PFGuide.h"
 #import "guideCell.h"
 #import "EditGuideViewControllerDelegate.h"
-
+#import "SpokenGuideCache.h"
 
 
 @interface MyGuidesViewController () < EditGuideViewControllerDelegate >
 
-//@property (weak, nonatomic) IBOutlet UITableView *myGuidesTableView;
 @property (weak, nonatomic) IBOutlet UIButton *createNewGuideButton;
-//@property (weak, nonatomic) IBOutlet guideCell *customTableViewCell;
 
 @end
 
@@ -47,7 +45,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 8;
+        self.objectsPerPage = 20;
       
     }
     return self;
@@ -70,10 +68,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    /*
-     The problem was my loadObjects method was causing some strange behaviour behind the scenes. The error is now gone but the main reason I had this method in my viewWillAppear was so that when I returned to main tab from another the main list of people would refresh. I've solved this problem using notification centre but would prefer to use delegation and have a new question I'm about to post. –  LondonGuy Mar 12 at 12:13
-     */
-  //  [super loadObjects];
+ 
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -100,8 +95,18 @@
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    
     // This method is called every time objects are loaded from Parse via the PFQuery
+
+    // called once for cache query and once for network query
+    if (!error) {
+        [[SpokenGuideCache sharedCache] clear]; // CLEAR THE CACHE BEFORE RELOADING IT
+        for (PFGuide *guide in self.objects ) {
+            NSLog(@"LOADED guide into cache %@", guide);
+            [[SpokenGuideCache sharedCache] setAttributesForPFGuide:guide
+                                                       changedImage:nil
+                                                   changedThumbnail:nil];
+            }
+    }
 }
 
 - (void)objectsWillLoad {
@@ -125,7 +130,7 @@
         query.cachePolicy = kPFCachePolicyNetworkOnly;
     }
     
-    [query orderByDescending:@"modifiedDate"];
+    [query orderByDescending:@"updatedAt"];
     
     return query;
 }
@@ -133,17 +138,23 @@
 #pragma mark UITableViewDelegate
 
 /*
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger rowCount = 0;
+    // get the number of guides currently in the cache
+    NSArray *guides = [[SpokenGuideCache sharedCache] allObjects];
+    rowCount = [guides count];
+    NSLog(@"OBJECT count: %lu", (unsigned long)[self.objects count]);
+    return rowCount;
+}
+*/
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     guideCell *customCell = (guideCell *)cell;
     customCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    [customCell.imageView sizeToFit];
-    
-   // CGRect newFrame = cell.imageView.frame;
-  //  if (newFrame.size.width > 90) newFrame.size.width = 90;
-   // cell.imageView.frame = newFrame;
 }
-*/
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 78;
@@ -168,33 +179,42 @@
     guideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[guideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-     //   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"guideCell" owner:self options:nil];
-     //   cell = [nib objectAtIndex:0];
-    }
-
+     }
     
     // Configure the cell
     if ([object isKindOfClass:[PFGuide class]]) {
-        PFGuide *guideToDisplay = (PFGuide *)object;
+        NSDictionary *guideAttributes = [[SpokenGuideCache sharedCache] objectForKey:object.objectId];
+        PFGuide *guideToDisplay = [guideAttributes objectForKey:kPFGuideClassKey];
         cell.textLabel.text = guideToDisplay.title;
-        if (guideToDisplay.thumbnail) {
-         //   PFFile *thumbnailFile = guideToDisplay.thumbnail;
+        
+        UIImage *latestThumbnail = [guideAttributes objectForKey:kPFGuideChangedThumbnail];
+        if (latestThumbnail) {
+            cell.imageView.image = latestThumbnail;
+            cell.imageView.file = nil;
+        }
+        else if (guideToDisplay.thumbnail) {
             cell.imageView.image = [UIImage imageNamed:@"image.png"];
             cell.imageView.file = [guideToDisplay objectForKey:@"thumbnail"];
             }
+        else {
+            // since these cells are re-used, make sure old images are cleaned out
+            cell.imageView.image = nil;
+            cell.imageView.file = nil;
         }
-
-    
+        }
     return cell;
 }
 
 
 /*
  // Override if you need to change the ordering of objects in the table.
- - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
- return [objects objectAtIndex:indexPath.row];
+ - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+     PFObject *object = [self.objects objectAtIndex:indexPath.row];
+     NSLog(@"OBJECT %@ at row %u, updatedAt %@", object, indexPath.row, object.updatedAt);
+     return [self.objects objectAtIndex:indexPath.row];
  }
  */
+
 #pragma mark User Actions
 
 - (IBAction)EditButtonPressed:(UIBarButtonItem *)sender {
@@ -255,10 +275,13 @@
 
 #pragma mark - EditGuideViewControllerDelegate
 
--(void)guideObjectWasChanged:(UIImage *)changedImage
+-(void) changedGuideUploading
 {
-    // this loadObjects gets called too soon and the changedImage has not finished uploading yet
-    // changed image is a 300 x 300 image and I want a thumbnail on this page
+    [self.tableView reloadData];
+}
+
+-(void) changedGuideFinishedUpload
+{
     [self loadObjects];
 }
 

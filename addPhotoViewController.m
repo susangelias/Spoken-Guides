@@ -85,6 +85,7 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    self.selectedPhoto = nil;
     // just dismiss the imagePickerController
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

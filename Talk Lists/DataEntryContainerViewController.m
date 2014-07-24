@@ -45,28 +45,27 @@
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     DataEntryViewController *destinationDataEntryVC = (DataEntryViewController *) segue.destinationViewController;
-     destinationDataEntryVC.entryText = self.entryText;
-     //  destinationDataEntryVC.entryPFFile = self.entryPFFile;
-     destinationDataEntryVC.entryImage = self.entryImage;
-     destinationDataEntryVC.entryNumber = self.entryNumber;
-     destinationDataEntryVC.dataEntryDelegate = self.dataEntryDelegate;
+     self.currentDataEntryVC = (DataEntryViewController *) segue.destinationViewController;
+     self.currentDataEntryVC.entryText = self.entryText;
+     self.currentDataEntryVC.entryImage = self.entryImage;
+     self.currentDataEntryVC.entryNumber = self.entryNumber;
+     self.currentDataEntryVC.dataEntryDelegate = self.dataEntryDelegate;
      
      if ([segue.identifier isEqualToString:SegueIdentifierFirst])
      {
          if (self.childViewControllers.count > 0) {
-             [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:destinationDataEntryVC];
+             [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:self.currentDataEntryVC];
          }
          else {
-             [self addChildViewController:destinationDataEntryVC];
-             ((UIViewController *)destinationDataEntryVC).view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-             [self.view addSubview:((UIViewController *)destinationDataEntryVC).view];
-             [destinationDataEntryVC didMoveToParentViewController:self];
+             [self addChildViewController:self.currentDataEntryVC];
+             ((UIViewController *)self.currentDataEntryVC).view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+             [self.view addSubview:((UIViewController *)self.currentDataEntryVC).view];
+             [self.currentDataEntryVC didMoveToParentViewController:self];
          }
      }
      else if ([segue.identifier isEqualToString:SegueIdentifierSecond])
      {
-         [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:destinationDataEntryVC];
+         [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:self.currentDataEntryVC];
      }
  }
  

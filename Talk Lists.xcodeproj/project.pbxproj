@@ -41,9 +41,11 @@
 		C06E4A40191EBE7800093160 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A3F191EBE7800093160 /* Guide.m */; };
 		C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		C080B7F51947379D0092BC91 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C080B7F41947379D0092BC91 /* Photo.m */; };
+		C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */; };
 		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
 		C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */; };
 		C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */; };
+		C0BE2F45197AA8E100241D23 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = C0BE2F44197AA8E100241D23 /* ReadMe.md */; };
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
 		C0D68CF7197749C700CF5EB3 /* guideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D68CF6197749C700CF5EB3 /* guideCell.xib */; };
@@ -62,7 +64,6 @@
 		C0DCB1951905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1961905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
 		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
-		C0DE5A391938BFFA00909BD5 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = C0DE5A381938BFFA00909BD5 /* ReadMe.md */; };
 		C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */; };
 		C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E70192A5A5900C4F35A /* Slt.framework */; };
 		C0E9A1411941F1FD001C65DE /* UIImageView+SlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E9A1401941F1FD001C65DE /* UIImageView+SlideViews.m */; };
@@ -149,11 +150,14 @@
 		C06E4A42191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAssetsLibrary+CustomPhotoAlbum.m"; path = "Model - core data/ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		C080B7F31947379D0092BC91 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = "Model - core data/Photo.h"; sourceTree = "<group>"; };
 		C080B7F41947379D0092BC91 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = "Model - core data/Photo.m"; sourceTree = "<group>"; };
+		C086DCE8197EF02A00E41EEB /* SpokenGuideCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpokenGuideCache.h; sourceTree = "<group>"; };
+		C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpokenGuideCache.m; sourceTree = "<group>"; };
 		C08B144C192A8D2C00E70FCF /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rejecto.framework; sourceTree = "<group>"; };
 		C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialogControllerDelegate.h; sourceTree = "<group>"; };
 		C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewControllerTest.m; sourceTree = "<group>"; };
 		C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuperView.h"; sourceTree = "<group>"; };
 		C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SuperView.m"; sourceTree = "<group>"; };
+		C0BE2F44197AA8E100241D23 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
 		C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSourceTest.m; sourceTree = "<group>"; };
 		C0BE98C81913E87F00C2990E /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		C0BE98CC1913E8E200C2990E /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -184,7 +188,6 @@
 		C0DCB1931905D9F400E29DBB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C0DCB19B1905D9F400E29DBB /* Talk ListsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Talk ListsTests-Info.plist"; sourceTree = "<group>"; };
 		C0DCB19D1905D9F400E29DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C0DE5A381938BFFA00909BD5 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReadMe.md; path = "Talk Lists/ReadMe.md"; sourceTree = "<group>"; };
 		C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		C0E24E70192A5A5900C4F35A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		C0E9A13F1941F1FD001C65DE /* UIImageView+SlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SlideViews.h"; sourceTree = "<group>"; };
@@ -448,7 +451,6 @@
 		C0DCB1651905D9F400E29DBB = {
 			isa = PBXGroup;
 			children = (
-				C0DE5A381938BFFA00909BD5 /* ReadMe.md */,
 				C0DCB1771905D9F400E29DBB /* Talk Lists */,
 				C0DCB1991905D9F400E29DBB /* Talk ListsTests */,
 				C0BE98C51913E87F00C2990E /* usr */,
@@ -487,6 +489,9 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C086DCE8197EF02A00E41EEB /* SpokenGuideCache.h */,
+				C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */,
+				C0BE2F44197AA8E100241D23 /* ReadMe.md */,
 				C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */,
 				C0230218192A5870006DEF7A /* Framework */,
 				C0F532D6191167E40023CEF0 /* Browse */,
@@ -675,7 +680,7 @@
 				C0DCB1851905D9F400E29DBB /* Main_iPhone.storyboard in Resources */,
 				C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */,
 				C023021B192A5870006DEF7A /* AcousticModelEnglish.bundle in Resources */,
-				C0DE5A391938BFFA00909BD5 /* ReadMe.md in Resources */,
+				C0BE2F45197AA8E100241D23 /* ReadMe.md in Resources */,
 				C0DCB17C1905D9F400E29DBB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,6 +768,7 @@
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
 				C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */,
 				C06E4A43191EE64800093160 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
+				C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

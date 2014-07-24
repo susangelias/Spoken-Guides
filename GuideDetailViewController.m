@@ -15,7 +15,7 @@
 #import "PFStep.h"
 #import "GuideQueryTableViewController.h"
 #import "GuideQueryTableViewControllerDelegate.h"
-
+#import "SpokenGuideCache.h"
 
 typedef NS_ENUM(NSInteger, dialogState) {
     isPlaying,
@@ -82,8 +82,16 @@ typedef NS_ENUM(NSInteger, dialogState) {
 {
     [super viewWillAppear: animated];
     
+    // get a copy of the latest guide attributes from the cache
+    NSDictionary *guideAttributes = [[SpokenGuideCache sharedCache] objectForKey:self.guide.objectId];
+    UIImage *changedImage = [guideAttributes objectForKey:kPFGuideChangedImage];
     self.title = self.guide.title;
-    if (self.guide.image) {
+
+    if (changedImage) {
+        self.guidePicture.image = changedImage;
+        self.guidePicture.file = nil;
+    }
+    else if (self.guide.image) {
         self.guidePicture.file = self.guide.image;
         if (!self.guidePicture.image) {
             self.guidePicture.image = [UIImage imageNamed:@"image.png"];
@@ -273,18 +281,29 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 #pragma mark EditGuideViewControllerDelegate
 
--(void)guideObjectWasChanged:(UIImage *)changedImage
+-(void) changedGuideUploading
 {
-    // if guide title or guide image was changed, update here and pass on update to the guide list controller
-    if (changedImage) {
-        self.guidePicture.image = changedImage;
-    }
-    [self.editGuideDelegate guideObjectWasChanged:nil];
-    
-    // if guide steps changed, pass on update to our child Controller
+    [self.editGuideDelegate changedGuideUploading];
+}
+
+-(void) changedGuideFinishedUpload
+{
+    [self.editGuideDelegate changedGuideFinishedUpload];
+}
+
+-(void) changedStepUploading
+{
+    GuideQueryTableViewController *stepTableViewController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    [stepTableViewController.tableView reloadData];
+}
+
+-(void) changedStepFinishedUpload
+{
     GuideQueryTableViewController *stepTableViewController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
     [stepTableViewController loadObjects];
 }
+
+
 #pragma mark User Actions
 
 - (IBAction)playButtonPressed:(UIButton *)sender {
