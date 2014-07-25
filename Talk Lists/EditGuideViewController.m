@@ -26,6 +26,8 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipeGesture;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 @property (nonatomic, weak)  DataEntryContainerViewController *containerViewController;
+@property (weak, nonatomic) IBOutlet UIImageView *leftIndicator;
+@property (weak, nonatomic) IBOutlet UIImageView *rightIndicator;
 
 // model properties
 @property (strong, nonatomic) PFStep *stepInProgess;
@@ -36,6 +38,7 @@
 @implementation EditGuideViewController
 {
     int stepNumber;
+    swipeDirection transistionDirection;
 }
 
 
@@ -59,6 +62,9 @@
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
     
+    self.leftIndicator.hidden = YES;
+    self.rightIndicator.hidden = YES;
+    
     self.advanceView = YES;
 
 }
@@ -66,6 +72,10 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
+    if (self.guideToEdit.title) {
+        [self setLeftSwipe:YES];
+    }
 
  }
 
@@ -89,6 +99,7 @@
             // changed the guide title
         if (!self.guideToEdit) {
             self.guideToEdit = [self createGuide];
+            self.rightIndicator.hidden = NO;
         }
         if (![textEntry isEqualToString:self.guideToEdit.title]) {
             self.guideToEdit.title = textEntry;
@@ -115,6 +126,7 @@
         // changed step instruction
         if (!self.stepInProgess) {
             self.stepInProgess = [self createStep];
+            self.leftIndicator.hidden = NO;
             // make sure left swipe is enabled
             [self.leftSwipeGesture setEnabled:YES];
             NSLog(@"created step");
@@ -325,11 +337,24 @@
 
 #pragma swipe gestures
 
+-(void)setRightSwipe:(BOOL)activate
+{
+    self.rightSwipeGesture.enabled = activate;
+    self.leftIndicator.hidden = !activate;
+}
+
+-(void)setLeftSwipe: (BOOL)activate
+{
+    self.leftSwipeGesture.enabled = activate;
+    self.rightIndicator.hidden = !activate;
+}
+
 - (IBAction)rightSwipe:(UISwipeGestureRecognizer *)sender {
 // right swipe gesture will display either the title or an existing step but never a new step entry view
-    // reactivate the left swipe gesture
+    transistionDirection = Right;
     NSLog(@"RIGHT SWIPE");
-    self.leftSwipeGesture.enabled = YES;
+    // reactivate the left swipe gesture
+    [self setLeftSwipe:YES];
 
     // about to leave the current view so make sure any changes are saved
     dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.update", NULL);
@@ -375,18 +400,22 @@
             }
         }
         // stepNumber cannot go negative so disable rightSwipe
-        sender.enabled = NO;
+    //    sender.enabled = NO;
+    //    self.leftIndicator.hidden = YES;
+        [self setRightSwipe:NO];
     }
     
     // slide the new view in from the right
+    self.containerViewController.entryTransistionDirection = transistionDirection;
     [self.containerViewController swapViewControllers];
 }
 
 - (IBAction)leftSwipe:(UISwipeGestureRecognizer *)sender {
 // left swipe gesture will display a current step with data or a new step entry view
+    transistionDirection = Left;
     // reactivate right swipe gesture
     NSLog(@"LEFT SWIPE");
-    self.rightSwipeGesture.enabled = YES;
+    [self setRightSwipe:YES];
  
     // about to leave the current view so make sure any changes are saved
     dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.update", NULL);
@@ -401,11 +430,14 @@
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
     if (!self.stepInProgess) {
         // disable left swipe until new step is entered
-        sender.enabled = NO;
+      //  sender.enabled = NO;
+     //   self.leftIndicator.hidden = YES;
+        [self setLeftSwipe:NO];
      }
     // set up view with step data
     [self setContainerWithStep:self.stepInProgess];
     self.containerViewController.dataEntryDelegate = self;
+    self.containerViewController.entryTransistionDirection = transistionDirection;
     [self.containerViewController swapViewControllers];
 
 }
@@ -413,7 +445,6 @@
 -(void)setContainerWithStep:(PFStep *)step
 {
     if (step) {
-     //   self.containerViewController.entryText = step.instruction;
         // check the cache for changes
         NSDictionary *stepAttributes = [[SpokenGuideCache sharedCache] objectForKey:step.objectId];
         if (stepAttributes) {
@@ -423,17 +454,16 @@
             if (changedImage ) {
                 self.containerViewController.entryImage = changedImage;
             }
-
-        else if (step.image) {
-            self.containerViewController.entryImage = [UIImage imageNamed:@"image.png"];    // load the placeholder while the image is downloading
-            [step.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                self.containerViewController.entryImage = [UIImage imageWithData:data];     // downloaded image put into containerViewController for data enty view controller to retreive
-                [self.containerViewController.currentDataEntryVC imageLoaded:[UIImage imageWithData:data]];     // let data entry controller know that the image is ready
-                }];
+            else if (step.image) {
+                self.containerViewController.entryImage = [UIImage imageNamed:@"image.png"];    // load the placeholder while the image is downloading
+                [step.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    self.containerViewController.entryImage = [UIImage imageWithData:data];     // downloaded image put into containerViewController for data enty view controller to retreive
+                    [self.containerViewController.currentDataEntryVC imageLoaded:[UIImage imageWithData:data]];     // let data entry controller know that the image is ready
+                    }];
+                }
+            else {
+                self.containerViewController.entryImage = nil;
             }
-        }
-        else {
-            self.containerViewController.entryImage = nil;
         }
         self.containerViewController.entryNumber = [self.stepInProgess.rank intValue];
     }

@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "DataEntryDelegate.h"
 #import "DataEntryViewController.h"
+#import "EditGuideViewController.h"
 
 #define SegueIdentifierFirst @"embedFirst"
 #define SegueIdentifierSecond @"embedSecond"
@@ -20,6 +21,7 @@
 @property (weak, nonatomic)  NSString *entryText;
 @property (weak, nonatomic) UIImage *entryImage;
 @property int entryNumber;
+@property swipeDirection entryTransistionDirection;
 @property (weak, nonatomic) id <DataEntryDelegate> dataEntryDelegate;
 
 -(void)swapViewControllers;

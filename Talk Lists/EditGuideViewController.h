@@ -11,16 +11,17 @@
 #import "PFGuide.h"
 #import "EditGuideViewControllerDelegate.h"
 
+typedef NS_ENUM(NSUInteger, swipeDirection) {
+    Left,
+    Right
+};
+
 @interface EditGuideViewController : UIViewController
 
 @property (strong, nonatomic) PFGuide *guideToEdit;
 @property (strong, nonatomic) UIImage *downloadedGuideImage;
 @property (weak, nonatomic) id <EditGuideViewControllerDelegate> editGuideDelegate;
 
-//-(void)titleCompleted:(NSString *)title;
 - (IBAction)doneButtonPressed:(UIButton *)sender;
-//-(void) stepInstructionEntryCompleted: (NSString *)instructionText;
-//-(void) stepInstructionTextChanged: (NSRange)range withReplacementText: (NSString *)instructionText;
-//-(void) stepInstructionEditingEnded: (NSString *)instructionText;
 
 @end

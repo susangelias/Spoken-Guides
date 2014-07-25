@@ -75,13 +75,40 @@
  
      [fromViewController willMoveToParentViewController:nil];
      [self addChildViewController:toViewController];
-     [self transitionFromViewController:fromViewController toViewController:toViewController duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
-         [fromViewController removeFromParentViewController];
-         [toViewController didMoveToParentViewController:self];
-     }];
+     
+     CGFloat width = self.view.frame.size.width;
+     CGFloat height = self.view.frame.size.height;
+     
+     if (self.entryTransistionDirection == Left) {
+         toViewController.view.frame = CGRectMake(width, 0, width, height);
+     }
+     else {
+         toViewController.view.frame = CGRectMake(0 - width, 0, width, height);
+     }
+     
+     __weak typeof(self) weakSelf = self;
+     [self transitionFromViewController:fromViewController
+                       toViewController:toViewController
+                               duration:0.4
+                                options:UIViewAnimationOptionTransitionNone
+                             animations:^(void) {
+                                 if (self.entryTransistionDirection == Left) {
+                                     fromViewController.view.frame = CGRectMake(0 - width, 0, width, height);
+                                 }
+                                 else {
+                                     fromViewController.view.frame = CGRectMake(0 + width, 0, width, height);
+                                 }
+                                 toViewController.view.frame = CGRectMake(0, 0, width, height);
+                             } 
+                             completion:^(BOOL finished){
+                                 [fromViewController removeFromParentViewController];
+                                 [toViewController didMoveToParentViewController:weakSelf];
+                             }
+      ];
+
  }
  
- - (void)swapViewControllers
+- (void)swapViewControllers
  {
      self.currentSegueIdentifier = ([self.currentSegueIdentifier  isEqual: SegueIdentifierFirst]) ? SegueIdentifierSecond : SegueIdentifierFirst;
      [self performSegueWithIdentifier:self.currentSegueIdentifier sender:nil];
