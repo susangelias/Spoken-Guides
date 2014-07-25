@@ -101,11 +101,14 @@
     if (!error) {
         [[SpokenGuideCache sharedCache] clear]; // CLEAR THE CACHE BEFORE RELOADING IT
         for (PFGuide *guide in self.objects ) {
-            NSLog(@"LOADED guide into cache %@", guide);
+         //   NSLog(@"LOADED guide into cache %@", guide);
             [[SpokenGuideCache sharedCache] setAttributesForPFGuide:guide
                                                        changedImage:nil
                                                    changedThumbnail:nil];
             }
+        // cellForRowAtIndexPath is being called before the objects are loaded, why I don't know
+        // so force it to be called again now that cache is setup
+        [self.tableView reloadData];
     }
 }
 
@@ -201,7 +204,7 @@
             cell.imageView.image = nil;
             cell.imageView.file = nil;
         }
-        }
+    }
     return cell;
 }
 
@@ -250,23 +253,26 @@
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
      if (editingStyle == UITableViewCellEditingStyleDelete) {
+         __weak typeof(self) weakSelf = self;
          // Delete the row from the data source
          PFGuide *guideToDelete = (PFGuide *)[self.objects objectAtIndex:indexPath.row];
+         // Delete all the guide's steps first
          PFRelation *guideSteps = guideToDelete.pfSteps;
          PFQuery *query = [guideSteps query];
          [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-             NSArray *stepsToDelete = objects;
-             [stepsToDelete enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                 PFStep *stepToDelete = obj;
+             for (PFStep *stepToDelete in objects) {
                  [stepToDelete deleteEventually];
+             };
+             // Now delete the guide
+             [guideToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                 if (succeeded) {
+                     // Delete row from tableview
+                     [weakSelf loadObjects];
+                 }
              }];
          }];
-         [guideToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-             if (succeeded) {
-                 // Delete row from tableview
-                 [self loadObjects];
-              }
-         }];
+
+
       }
      else if (editingStyle == UITableViewCellEditingStyleInsert) {
          // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -289,6 +295,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    /*
     if ([segue.identifier isEqualToString:@"NewGuideSegue"] )
     {
         if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
@@ -296,9 +303,9 @@
             destController.guideToEdit = nil;
             destController.editGuideDelegate = self;
         }
-    }
+    }*/
     // Pass the selected object to the edit view controller.
-    else if ([segue.identifier isEqualToString:@"GuideDetailSegue"]) {
+    if ([segue.identifier isEqualToString:@"GuideDetailSegue"]) {
         if ([[segue destinationViewController ] isKindOfClass:[GuideDetailViewController class]]) {
             GuideDetailViewController *destVC = (GuideDetailViewController *)[segue destinationViewController ];
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

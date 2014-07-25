@@ -44,6 +44,7 @@
 		C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */; };
 		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
 		C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */; };
+		C0AA902619829DB5003B9B06 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AA902519829DB5003B9B06 /* InitialViewController.m */; };
 		C0B0F2A81916B7E300CD8114 /* UIView+SuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */; };
 		C0BE2F45197AA8E100241D23 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = C0BE2F44197AA8E100241D23 /* ReadMe.md */; };
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
@@ -155,6 +156,8 @@
 		C08B144C192A8D2C00E70FCF /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rejecto.framework; sourceTree = "<group>"; };
 		C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialogControllerDelegate.h; sourceTree = "<group>"; };
 		C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewControllerTest.m; sourceTree = "<group>"; };
+		C0AA902419829DB5003B9B06 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		C0AA902519829DB5003B9B06 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C0B0F2A61916B7E300CD8114 /* UIView+SuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SuperView.h"; sourceTree = "<group>"; };
 		C0B0F2A71916B7E300CD8114 /* UIView+SuperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SuperView.m"; sourceTree = "<group>"; };
 		C0BE2F44197AA8E100241D23 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
@@ -356,8 +359,6 @@
 				C051A7EC1975BC5C00E5424C /* EditGuideViewControllerDelegate.h */,
 				C0EF20FE190B1BA5000E95B9 /* addPhotoViewController.h */,
 				C0EF20FF190B1BA5000E95B9 /* addPhotoViewController.m */,
-				C0FC202A192E247D007213AB /* MyGuidesViewController.h */,
-				C0FC202B192E247D007213AB /* MyGuidesViewController.m */,
 			);
 			name = "New Guide";
 			sourceTree = "<group>";
@@ -541,6 +542,10 @@
 		C0F532D6191167E40023CEF0 /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				C0AA902419829DB5003B9B06 /* InitialViewController.h */,
+				C0AA902519829DB5003B9B06 /* InitialViewController.m */,
+				C0FC202A192E247D007213AB /* MyGuidesViewController.h */,
+				C0FC202B192E247D007213AB /* MyGuidesViewController.m */,
 				C0F532D81911684D0023CEF0 /* Specific Category */,
 				C0F532D71911681A0023CEF0 /* Categories */,
 				C036A979190C28CA00D1F251 /* Guide Detail */,
@@ -733,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0AA902619829DB5003B9B06 /* InitialViewController.m in Sources */,
 				C0270137192A3E5000F954EA /* languageOpenEars.m in Sources */,
 				C035E9A219310E0000DBBE4A /* UITextField+SlideViews.m in Sources */,
 				C046D85619180F9300212B5E /* Step+Addendums.m in Sources */,
