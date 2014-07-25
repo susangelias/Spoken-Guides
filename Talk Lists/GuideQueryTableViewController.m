@@ -136,6 +136,8 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     [self.guide moveStepFromNumber:fromIndexPath.row+1 toNumber:toIndexPath.row+1];
+    // need to refresh the rankedSteps array so call load objects which will do this
+    [self loadObjects];
     
     // turn off editing mode automatically after a row is moved
     [self.tableView setEditing:NO animated:YES];
@@ -187,17 +189,11 @@
         cell.imageView.image = [UIImage imageNamed:@"image.png"];
         cell.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
     }
-
-/*
-    if ([object isKindOfClass:[PFStep class]]) {
-        PFStep *stepToDisplay = (PFStep *)object;
-        cell.textLabel.text = stepToDisplay.instruction;
-        if (stepToDisplay.thumbnail) {
-            cell.imageView.image = [UIImage imageNamed:@"image.png"];
-            cell.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
-        }
+    else {
+        // since these cells are re-used, make sure old images are cleaned out
+        cell.imageView.image = nil;
+        cell.imageView.file = nil;
     }
- */
     
     return cell;
 }

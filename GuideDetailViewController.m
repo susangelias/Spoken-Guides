@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusDisplay;
 @property (nonatomic, strong) NSArray *stateStrings;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabelAlternate;
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
@@ -85,18 +86,30 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // get a copy of the latest guide attributes from the cache
     NSDictionary *guideAttributes = [[SpokenGuideCache sharedCache] objectForKey:self.guide.objectId];
     UIImage *changedImage = [guideAttributes objectForKey:kPFGuideChangedImage];
-    self.title = self.guide.title;
+    self.titleLabelAlternate.text = nil;       // clear this label in case a photo was just added
+    
+    if (changedImage || self.guide.image) {
+        // display title in the navigation bar
+        self.title = self.guide.title;
+    }
 
     if (changedImage) {
+        // there is a new picture in the cache
         self.guidePicture.image = changedImage;
         self.guidePicture.file = nil;
     }
     else if (self.guide.image) {
+        // there is an existing picture in the object record
         self.guidePicture.file = self.guide.image;
         if (!self.guidePicture.image) {
             self.guidePicture.image = [UIImage imageNamed:@"image.png"];
         }
         [self.guidePicture loadInBackground];
+    }
+    else {
+        // there is no photo so display title in that area of the screen
+        self.titleLabelAlternate.text = self.guide.title;
+        self.title = nil;
     }
     
     self.currentState = isReset;
