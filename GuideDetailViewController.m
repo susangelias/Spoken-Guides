@@ -118,6 +118,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
         self.dialogController.guide = self.guide;
     }
     
+    // Make sure prompt label is displayed
+    [self.view bringSubviewToFront:self.statusDisplay];
     
     // Check microphone permissions
     if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
@@ -157,11 +159,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
         [self pauseButtonPressed:nil];
     }
     
-    // Remove self as observer for notifications
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
- //   self.guidePicture.image = nil;
-    
     [super viewWillDisappear:animated];
 }
 
@@ -175,6 +172,9 @@ typedef NS_ENUM(NSInteger, dialogState) {
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark GuideQueryTableViewControllerDelegate
 

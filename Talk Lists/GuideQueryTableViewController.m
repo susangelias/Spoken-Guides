@@ -31,7 +31,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 8;
+        self.objectsPerPage = 10;
         
     }
     return self;
@@ -46,6 +46,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // sign up to receive applicationDidBecomeActive notifications so that our cache can be reloaded
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationBecameActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +62,16 @@
     [self.queryForTable clearCachedResult];
 }
 
+-(void)applicationBecameActive:(NSNotification *)notification
+{
+     NSLog(@"application became active GuideQueryTVC %@", self.objects);
+    [self loadCache];     // refresh the cache
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Parse
 
 - (void)objectsDidLoad:(NSError *)error {
@@ -64,18 +80,25 @@
     
     // This method is called every time objects are loaded from Parse via the PFQuery
     if (!error) {
-        // remove steps for this guide then reload them
-        for (PFStep *step in self.objects ) {
-          //  [[SpokenGuideCache sharedCache] removeObjectForKey:step.objectId];
-            [[SpokenGuideCache sharedCache] setAttributesForPFStep:step
-                                                      changedImage:nil
-                                                  changedThumbnail:nil];
-        }
+        [self loadCache];
+        
         // cellForRowAtIndexPath is being called before the objects are loaded, why I don't know
         // so force it to be called again now that cache is setup
        [self.tableView reloadData];
     }
 
+}
+
+-(void)loadCache
+{
+    // remove steps for this guide then reload them
+    for (PFStep *step in self.objects ) {
+        //  [[SpokenGuideCache sharedCache] removeObjectForKey:step.objectId];
+        [[SpokenGuideCache sharedCache] setAttributesForPFStep:step
+                                                  changedImage:nil
+                                              changedThumbnail:nil];
+        NSLog(@"CACHE LOADED WITH GUIDE STEP %@\n", step);
+    }
 }
 
 - (void)objectsWillLoad {
@@ -106,6 +129,16 @@
     }
    
     return query;
+}
+
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentSize.height - scrollView.contentOffset.y < (self.view.bounds.size.height)) {
+        if (![self isLoading]) {
+            [self loadNextPage];
+        }
+    }
 }
 
 #pragma mark UITableViewDataSource
@@ -197,6 +230,9 @@
     
     return cell;
 }
+
+
+#pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
