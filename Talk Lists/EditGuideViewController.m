@@ -29,9 +29,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *leftIndicator;
 @property (weak, nonatomic) IBOutlet UIImageView *rightIndicator;
 
+@property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
+
 // model properties
 @property (strong, nonatomic) PFStep *stepInProgess;
-@property BOOL advanceView;
+
 
 @end
 
@@ -64,8 +66,8 @@
     
     self.leftIndicator.hidden = YES;
     self.rightIndicator.hidden = YES;
-    
-    self.advanceView = YES;
+
+    self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
 
 }
 
@@ -90,7 +92,7 @@
 
 #pragma mark <DataEntryDelegate>
 
--(void)entryTextChanged:(NSString *)textEntry
+-(void)entryTextChanged:(NSString *)textEntry autoAdvance:(BOOL)advance
 {
     __weak typeof(self) weakSelf = self;
     NSLog(@"entryTextChanged");
@@ -125,20 +127,23 @@
     else {
         // changed step instruction
         if (!self.stepInProgess) {
-            self.stepInProgess = [self createStep];
-            self.leftIndicator.hidden = NO;
-            // make sure left swipe is enabled
-            [self.leftSwipeGesture setEnabled:YES];
-            NSLog(@"created step");
+            // create a new step synchronously so that it will have an object ID when added to the cache below
+            dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.createStep", NULL);
+            dispatch_sync(updateQ, ^{
+                self.stepInProgess = [self createStep];
+            });
         }
-        NSLog(@"TEXTENTRY %@ vs Instruction %@", textEntry, self.stepInProgess.instruction);
+
         if (![textEntry isEqualToString:self.stepInProgess.instruction]) {
+            [self.leftSwipeGesture setEnabled:YES];
+
             self.stepInProgess.instruction = textEntry;
             
-            // add step to the cache
+            // update step in the cache
             [[SpokenGuideCache sharedCache] setAttributesForPFStep:self.stepInProgess
                                                       changedImage:nil
                                                   changedThumbnail:nil];
+            
             // notify delegate that text has changed
             if ([self.editGuideDelegate respondsToSelector:@selector(changedStepUploading)]) {
                 [self.editGuideDelegate changedStepUploading];
@@ -147,24 +152,28 @@
             // Start the upload
             __block PFStep *stepToBeUploaded = self.stepInProgess;
             [stepToBeUploaded saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
+                if (succeeded && !error) {
+                    NSLog(@"step uploaded %@", stepToBeUploaded );
                     PFRelation *relation = [weakSelf.guideToEdit relationForKey:@"pfSteps"];
                     [relation addObject:stepToBeUploaded];
-                    [weakSelf.guideToEdit saveInBackground];
-                    if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedStepFinishedUpload)]) {
-                        [weakSelf.editGuideDelegate changedStepFinishedUpload];
-                    }
-                }
-                if (error) {
+                    [weakSelf.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded && !error) {
+                            if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedStepFinishedUpload)]) {
+                                [weakSelf.editGuideDelegate changedStepFinishedUpload];
+                            }
+                        }
+                    }];
+                 }
+                else  {
                     NSLog(@"error uploading step to Parse");
                 }
             }];
         }
     }
-//    if (self.advanceView == YES) {
+    if (advance) {
         // move to next data entry view
- //       [self leftSwipe:self.leftSwipeGesture];
- //   }
+        [self leftSwipe:self.leftSwipeGesture];
+    }
 }
 
 -(void)entryImageChanged:(UIImage *)imageEntry
@@ -224,6 +233,11 @@
     }
    // NSLog(@"starting image upload %@", imageFile);
 
+    // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
+    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+    }];
+    
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded )
         {
@@ -237,6 +251,7 @@
             [thumbnailFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     NSLog(@"thumbnailFile uploaded");
+                    [[UIApplication sharedApplication] endBackgroundTask:_weakSelf.fileUploadBackgroundTaskId];
                     
                     // save PFFile's to guide
                     if (changedGuide) {
@@ -256,17 +271,18 @@
                         changedStep.image = imageFile;
                         changedStep.thumbnail = thumbnailFile;
                         [changedStep saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                         //   int index = [changedStep.rank intValue]-1;
                             if (succeeded) {
                                 [_weakSelf.editGuideDelegate changedStepFinishedUpload];
                             }
                           //  NSLog(@"STEP updated after image upload %@", changedStep);
-                           //  [_weakSelf.guideToEdit.rankedStepsInGuide replaceObjectAtIndex:index withObject:changedStep];
                             if (error) {
                                 NSLog(@"error uploading guide to Parse");
                             }
                         }];
                     }
+                }
+                else {
+                    [[UIApplication sharedApplication] endBackgroundTask:_weakSelf.fileUploadBackgroundTaskId];
                 }
             } progressBlock:^(int percentDone) {
             //    NSLog(@"uploading percent done = %d", percentDone);
@@ -328,11 +344,14 @@
 
 - (IBAction)doneButtonPressed:(UIButton *)sender
 {
- //   self.advanceView = NO;
+    // about to leave the current view so make sure any changes are saved
+    dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.resignFirstResponder", NULL);
+    dispatch_sync(updateQ, ^{
+        [self.containerViewController.currentDataEntryVC viewAboutToChange];
+    });
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 
 #pragma swipe gestures
@@ -359,7 +378,6 @@
     // about to leave the current view so make sure any changes are saved
     dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.update", NULL);
     dispatch_sync(updateQ, ^{
-    //    self.advanceView = NO;
         [self.containerViewController.currentDataEntryVC viewAboutToChange];
     });
     
@@ -379,7 +397,6 @@
     {
         // retreive the guide
         if (self.guideToEdit) {
-        //    self.containerViewController.entryText = self.guideToEdit.title;
             // check the cache for changes
             NSDictionary *guideAttributes = [[SpokenGuideCache sharedCache] objectForKey:self.guideToEdit.objectId];
             if (guideAttributes) {
@@ -399,10 +416,12 @@
                 }
             }
         }
+        else {
+            NSLog(@"error - cache is emtpy");
+        }
+        
         // stepNumber cannot go negative so disable rightSwipe
-    //    sender.enabled = NO;
-    //    self.leftIndicator.hidden = YES;
-        [self setRightSwipe:NO];
+         [self setRightSwipe:NO];
     }
     
     // slide the new view in from the right
@@ -420,7 +439,6 @@
     // about to leave the current view so make sure any changes are saved
     dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.update", NULL);
     dispatch_sync(updateQ, ^{
-     //   self.advanceView = NO;
         [self.containerViewController.currentDataEntryVC viewAboutToChange];
     });
 
@@ -430,9 +448,8 @@
     self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
     if (!self.stepInProgess) {
         // disable left swipe until new step is entered
-      //  sender.enabled = NO;
-     //   self.leftIndicator.hidden = YES;
         [self setLeftSwipe:NO];
+     //   self.advanceView = NO;
      }
     // set up view with step data
     [self setContainerWithStep:self.stepInProgess];
@@ -465,6 +482,11 @@
                 self.containerViewController.entryImage = nil;
             }
         }
+        else {
+            // setup for a new step
+            self.containerViewController.entryText = nil;
+            self.containerViewController.entryImage = nil;
+        }
         self.containerViewController.entryNumber = [self.stepInProgess.rank intValue];
     }
     else {
@@ -479,13 +501,10 @@
     CGPoint touchPoint = [sender locationInView:self.view];
     UIView *touchedView = [self.view hitTest:touchPoint
                                    withEvent:nil];
-    /*
-    if (( ![touchedView isEqual:self.stepEntryView.stepTextView]) ||
-        (![touchedView isEqual:self.stepEntryView.swapTextView]) ||
-        (![touchedView isEqual:self.guideTitle]) ) {
-        [self.stepEntryView.stepTextView resignFirstResponder];
-        [self.guideTitle resignFirstResponder];
-    } */
+    if (![touchedView isEqual:self.containerViewController.view]) {
+        [self.containerViewController.currentDataEntryVC resignFirstResponder];
+    };
+
 }
 
 
@@ -532,13 +551,11 @@
     PFStep *newStep = [PFStep object];
 
     newStep.rank = [NSNumber numberWithInt:stepNumber];
-   // newStep.instruction = @"";
     [self.guideToEdit.rankedStepsInGuide addObject:newStep];
     
-    // add new step to cache
-    [[SpokenGuideCache sharedCache] setAttributesForPFStep:newStep
-                                              changedImage:nil
-                                          changedThumbnail:nil];
+    // upload new step to Parse
+    [newStep saveInBackground];
+    
     return newStep;
 }
 
