@@ -12,7 +12,7 @@
 
 @required
 
--(void)entryTextChanged: (NSString *)textEntry;
+-(void)entryTextChanged: (NSString *)textEntry autoAdvance: (BOOL)advance;
 -(void)entryImageChanged: (UIImage *)imageEntry;
 
 @end

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet SZTextView *textEntryView;
 @property (weak, nonatomic) IBOutlet PFImageView *imageDisplayView;
 @property BOOL textHasChanged;
+@property BOOL advanceView;
 @end
 
 @implementation DataEntryViewController
@@ -47,17 +48,32 @@
         self.addPhotoButton.hidden = YES;
     }
     
-    self.textEntryView.delegate = self;
-
+     self.textEntryView.delegate = self;
+    
+    // sign up to catch any changes the user makes to the font settings
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+        selector:@selector(preferredContentSizeChanged:)
+        name:UIContentSizeCategoryDidChangeNotification
+        object:nil ];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    // setup text attributes for textEntryView
+ //   self.textEntryView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+
     if (self.entryText) {
+        // Text to display
         self.textEntryView.text = self.entryText;
     }
     else {
+        // No Text to display
+        // display the keyboard
+        [self.textEntryView becomeFirstResponder];
+
         // show the placeholder text and set the capitalization style
         if (self.entryNumber > 0) {
             // set placeholder test for a new step
@@ -78,14 +94,34 @@
     }
     
     self.textHasChanged = NO;
+    self.advanceView = NO;
+    
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self viewAboutToChange];
+    [super viewWillDisappear:animated];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark Notifications
+
+-(void)preferredContentSizeChanged:(NSNotification *)notification
+{
+    self.textEntryView.font  = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+}
+
 
 -(void)imageLoaded:(UIImage *)downloadedImage
 {
@@ -94,6 +130,7 @@
         self.entryImage = downloadedImage;
     }
 }
+
 
 -(void)viewAboutToChange
 {
@@ -125,6 +162,7 @@
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
+        self.advanceView = YES;
         [textView resignFirstResponder];
         return NO;
     }
