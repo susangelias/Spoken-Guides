@@ -45,7 +45,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 20;
+        self.objectsPerPage = 18;
       
     }
     return self;
@@ -54,16 +54,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    // sign up to receive applicationDidBecomeActive notifications so that our cache can be reloaded
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationBecameActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+  
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGRect frame = self.createNewGuideButton.frame;
-    frame.origin.y = scrollView.contentOffset.y + self.tableView.frame.size.height - self.createNewGuideButton.frame.size.height;
-    self.createNewGuideButton.frame = frame;
-    
-    [self.view bringSubviewToFront:self.createNewGuideButton];
-}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -90,6 +87,15 @@
     [self.queryForTable clearCachedResult];
 }
 
+-(void)applicationBecameActive:(NSNotification *)notification
+{
+   // NSLog(@"application became active MyGuidesVC %@", self.objects);
+    [self loadCache];     // refresh the cache
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - Parse
 
@@ -99,16 +105,21 @@
 
     // called once for cache query and once for network query
     if (!error) {
-        [[SpokenGuideCache sharedCache] clear]; // CLEAR THE CACHE BEFORE RELOADING IT
-        for (PFGuide *guide in self.objects ) {
-         //   NSLog(@"LOADED guide into cache %@", guide);
-            [[SpokenGuideCache sharedCache] setAttributesForPFGuide:guide
-                                                       changedImage:nil
-                                                   changedThumbnail:nil];
-            }
+        [self loadCache];
+        
         // cellForRowAtIndexPath is being called before the objects are loaded, why I don't know
         // so force it to be called again now that cache is setup
         [self.tableView reloadData];
+    }
+}
+
+-(void)loadCache
+{
+    [[SpokenGuideCache sharedCache] clear]; // CLEAR THE CACHE BEFORE RELOADING IT
+    for (PFGuide *guide in self.objects ) {
+        [[SpokenGuideCache sharedCache] setAttributesForPFGuide:guide
+                                                   changedImage:nil
+                                               changedThumbnail:nil];
     }
 }
 
@@ -137,6 +148,18 @@
     
     return query;
 }
+
+
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentSize.height - scrollView.contentOffset.y < (self.view.bounds.size.height)) {
+        if (![self isLoading]) {
+            [self loadNextPage];
+        }
+    }
+}
+
 
 #pragma mark UITableViewDelegate
 

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-BNRDynamicTypeManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BlurryModalSegue.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1725B6A85BCB4B0B978D6491</key>
+		<key>327296CB6E194622949D4E22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>286B2621494344C08C863E5D</key>
+		<key>3B51DC72AA194DAF90A82AFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3795170FED2E451A945D1CB3</key>
+		<key>4C6B9B616DD545C9A8910126</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2A5CA4FDFE441349303723D</key>
+		<key>6CD19B3471DA45728DA46D9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BDB68747AFD845CDB51E6663</key>
+		<key>98AA57736EF947CC8BF74A54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E851030C1B814643892B9503</key>
+		<key>99AE41C2F3E24FBCA598D657</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3897443873E46C2A3C0258D</key>
+		<key>E27CADD018D04BF08D3D1028</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FA23DE46FEC34978A214474C</key>
+		<key>F17CF69A2ABA47B6BC38FE43</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD2741BC86F64E638CBEA176</key>
 		<dict>
 			<key>primary</key>
 			<true/>
