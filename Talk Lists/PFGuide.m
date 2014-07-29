@@ -24,10 +24,7 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
 @implementation PFGuide
 
 @dynamic classification;
-//@dynamic creationDate;
-//@dynamic modifiedDate;
 @dynamic title;
-//@dynamic uniqueID;
 @dynamic pfSteps;
 @dynamic image;
 @dynamic thumbnail;
@@ -51,7 +48,10 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
         if (succeeded) {
             // remove step from local array of steps in guide
             [weakSelf.rankedStepsInGuide removeObject:stepToBeDeleted];
-            
+          //  weakSelf.numberOfSteps = [NSNumber numberWithInt:[weakSelf.rankedStepsInGuide count]];
+          //  [weakSelf saveInBackground];
+            NSLog(@"deleted step for a total of %d steps", [weakSelf.rankedStepsInGuide count]);
+
             if ([weakSelf.rankedStepsInGuide count] > 0) {
                 // update rank for remaining steps
                 [weakSelf.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

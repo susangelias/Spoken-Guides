@@ -25,10 +25,7 @@ extern NSString *const kPFGuideChangedThumbnail;
 + (NSString *)parseClassName;
 
 @property (nonatomic, retain) NSString * classification;
-//@property (nonatomic, retain) NSDate * creationDate;
-//@property (nonatomic, retain) NSDate * modifiedDate;
 @property (nonatomic, retain) NSString * title;
-//@property (nonatomic, retain) NSString * uniqueID;
 @property (nonatomic, retain, readonly) PFRelation *pfSteps;
 @property (nonatomic, retain) PFFile * image;
 @property (nonatomic, retain) PFFile * thumbnail;
