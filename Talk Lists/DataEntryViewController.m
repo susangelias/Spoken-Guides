@@ -176,7 +176,8 @@
 {
     if (self.textHasChanged) {
         self.textHasChanged = NO;
-        [self.dataEntryDelegate entryTextChanged:textView.text];
+        NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        [self.dataEntryDelegate entryTextChanged:trimmedText autoAdvance:self.advanceView];
     }
 }
 
