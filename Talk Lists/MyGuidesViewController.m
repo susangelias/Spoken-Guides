@@ -20,7 +20,7 @@
 @interface MyGuidesViewController () < EditGuideViewControllerDelegate, UIActionSheetDelegate >
 
 @property (nonatomic) NSUInteger queryOrder;
-@property (nonatomic,strong) NSString * categoryFilter;
+
 
 @end
 

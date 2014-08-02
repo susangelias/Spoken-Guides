@@ -7,7 +7,7 @@
 //
 
 #import "guideCell.h"
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+//#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 
 @implementation guideCell
 

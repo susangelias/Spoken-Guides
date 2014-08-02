@@ -11,6 +11,8 @@
 
 @interface MyGuidesViewController : PFQueryTableViewController
 
+@property (nonatomic,strong) NSString * categoryFilter;
+
 -(void)changeQueryFilter: (NSUInteger)filterType;
 
 @end

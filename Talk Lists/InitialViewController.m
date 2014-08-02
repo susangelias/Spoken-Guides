@@ -45,12 +45,6 @@
     
     self.navigationItem.title = @"Spoken Guides";
    
- 
-    
-}
-
--(void)viewDidLayoutSubviews
-{
     // Replace titleView
     CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 200, 44);
     UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
@@ -63,8 +57,8 @@
     titleView.font = [UIFont boldSystemFontOfSize:20];
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor blackColor];
-  //  titleView.shadowColor = [UIColor darkGrayColor];
-   // titleView.shadowOffset = CGSizeMake(0, -1);
+    //  titleView.shadowColor = [UIColor darkGrayColor];
+    // titleView.shadowOffset = CGSizeMake(0, -1);
     titleView.text = @"";
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
@@ -75,8 +69,8 @@
     subtitleView.font = [UIFont boldSystemFontOfSize:13];
     subtitleView.textAlignment = NSTextAlignmentCenter;
     subtitleView.textColor = [UIColor blackColor];
-  //  subtitleView.shadowColor = [UIColor darkGrayColor];
- //   subtitleView.shadowOffset = CGSizeMake(0, -1);
+    //  subtitleView.shadowColor = [UIColor darkGrayColor];
+    //   subtitleView.shadowOffset = CGSizeMake(0, -1);
     subtitleView.text = @"";
     subtitleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:subtitleView];
@@ -86,12 +80,15 @@
                                                  UIViewAutoresizingFlexibleTopMargin |
                                                  UIViewAutoresizingFlexibleBottomMargin);
     self.navigationItem.titleView = _headerTitleSubtitleView;
+    
 }
+
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self setHeaderTitle:@"Spoken Guides" andSubtitle:@"ALL"];
+    MyGuidesViewController *childVC = [self.childViewControllers firstObject];
+    [self setHeaderTitle:@"Spoken Guides" andSubtitle:childVC.categoryFilter];
     
 
 }
