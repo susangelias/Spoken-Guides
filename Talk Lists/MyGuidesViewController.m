@@ -14,11 +14,13 @@
 #import "guideCell.h"
 #import "EditGuideViewControllerDelegate.h"
 #import "SpokenGuideCache.h"
+#import "InitialViewController.h"
 
 
-@interface MyGuidesViewController () < EditGuideViewControllerDelegate >
+@interface MyGuidesViewController () < EditGuideViewControllerDelegate, UIActionSheetDelegate >
 
-@property (weak, nonatomic) IBOutlet UIButton *createNewGuideButton;
+@property (nonatomic) NSUInteger queryOrder;
+@property (nonatomic,strong) NSString * categoryFilter;
 
 @end
 
@@ -47,6 +49,7 @@
         // The number of objects to show per page
         self.objectsPerPage = 18;
       
+        self.categoryFilter = @"ALL";
     }
     return self;
 }
@@ -115,7 +118,7 @@
 
 -(void)loadCache
 {
-    [[SpokenGuideCache sharedCache] clear]; // CLEAR THE CACHE BEFORE RELOADING IT
+ //   [[SpokenGuideCache sharedCache] removeAllObjects]; // CLEAR THE CACHE BEFORE RELOADING IT
     for (PFGuide *guide in self.objects ) {
         [[SpokenGuideCache sharedCache] setAttributesForPFGuide:guide
                                                    changedImage:nil
@@ -133,8 +136,18 @@
 // Override to customize what kind of query to perform on the class. The default is to query for
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    
+ 
+    PFQuery *query = [PFQuery queryWithClassName:@"PFGuide"];
+
+    if (self.queryOrder == 1) {
+        // My Guides Only
+        PFUser *currentUser = [PFUser currentUser];
+        [query whereKey: @"user" equalTo: currentUser];
+        }
+    if ( ![self.categoryFilter isEqualToString:@"ALL"] ) {
+        // limit object to a selected category
+        [query whereKey:@"classification" equalTo:self.categoryFilter];
+    }
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.objects count] == 0) {
@@ -150,6 +163,33 @@
 }
 
 
+#pragma mark UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ( ![self.categoryFilter isEqualToString:@"Cancel"]) {
+        self.categoryFilter  = [actionSheet buttonTitleAtIndex:buttonIndex];
+        
+        // update the parent view's subtitle
+        if ([self.parentViewController respondsToSelector:@selector(setHeaderTitle:andSubtitle:)] ) {
+            InitialViewController *parentVC = (InitialViewController *)self.parentViewController;
+            [parentVC setHeaderTitle:@"Spoken Guides" andSubtitle:self.categoryFilter];
+        }
+        
+        [self loadObjects];
+    }
+}
+
+#pragma mark Category Filtering
+
+-(void)changeQueryFilter: (NSUInteger)filterType
+{
+    // ALL GUIDES OR MY GUIDES ONLY
+    self.queryOrder = filterType;
+    
+    [self loadObjects];
+}
+
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -163,17 +203,6 @@
 
 #pragma mark UITableViewDelegate
 
-/*
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger rowCount = 0;
-    // get the number of guides currently in the cache
-    NSArray *guides = [[SpokenGuideCache sharedCache] allObjects];
-    rowCount = [guides count];
-    NSLog(@"OBJECT count: %lu", (unsigned long)[self.objects count]);
-    return rowCount;
-}
-*/
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -266,8 +295,15 @@
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
- // Return NO if you do not want the specified item to be editable.
- return YES;
+     // Return NO if you do not want the specified item to be editable.
+     BOOL canEdit = NO;
+     
+     PFGuide *guideToEdit = (PFGuide *)[self.objects objectAtIndex:indexPath.row];
+     PFACL *guideACL = guideToEdit.ACL;
+    if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
+        canEdit = YES;
+    }
+     return canEdit;
  }
 
 
@@ -318,15 +354,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    /*
-    if ([segue.identifier isEqualToString:@"NewGuideSegue"] )
-    {
-        if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
-            EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
-            destController.guideToEdit = nil;
-            destController.editGuideDelegate = self;
-        }
-    }*/
+
     // Pass the selected object to the edit view controller.
     if ([segue.identifier isEqualToString:@"GuideDetailSegue"]) {
         if ([[segue destinationViewController ] isKindOfClass:[GuideDetailViewController class]]) {
