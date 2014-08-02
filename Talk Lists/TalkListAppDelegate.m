@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 GriffTech. All rights reserved.
 //
 
+NSString *const kParseApplicationKey = @"XS8vaAZaunsYpf2lyR1NNnCCPtkVd9WdqJRWAdVJ";
+NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
+
 #import "TalkListAppDelegate.h"
 #import <Parse/Parse.h>
 #import "PFGuide.h"
 #import "PFStep.h"
-//#import "PFPhoto.h"
 
 @implementation TalkListAppDelegate
 
@@ -20,9 +22,27 @@
     // Set up required items for Parse backend
     [PFGuide registerSubclass];
     [PFStep registerSubclass];
-    [Parse setApplicationId:@"XS8vaAZaunsYpf2lyR1NNnCCPtkVd9WdqJRWAdVJ"
-                  clientKey:@"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr"];
     
+    [Parse setApplicationId:kParseApplicationKey
+                  clientKey:kParseMasterKey];
+    
+    // check if a user is logged in already or should the anonymous user be set up
+    if (![PFUser currentUser]) {
+        // set up an anonymous user
+        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
+            if (error) {
+                NSLog(@"Anonymous login failed");
+            }
+            else {
+                NSLog(@"Anonymous user logged in");
+            }
+        }];
+    }
+    
+    // set default permissions on Parse objects to read- everybody, write-creator
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
     self.window.backgroundColor = [UIColor whiteColor];
     

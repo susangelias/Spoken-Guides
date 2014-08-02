@@ -29,6 +29,7 @@ extern NSString *const kPFGuideChangedThumbnail;
 @property (nonatomic, retain, readonly) PFRelation *pfSteps;
 @property (nonatomic, retain) PFFile * image;
 @property (nonatomic, retain) PFFile * thumbnail;
+@property (nonatomic, retain) PFUser *user;
 
 @property (nonatomic, strong) NSMutableArray *rankedStepsInGuide;
 

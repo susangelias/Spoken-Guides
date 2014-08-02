@@ -16,5 +16,6 @@
 @property (weak, nonatomic) PFGuide *guide;
 @property (nonatomic, strong) NSNumber *currentLine;
 @property (weak, nonatomic) id <EditGuideViewControllerDelegate> editGuideDelegate;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 @end

@@ -28,6 +28,7 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
 @dynamic pfSteps;
 @dynamic image;
 @dynamic thumbnail;
+@dynamic user;
 
 @synthesize  rankedStepsInGuide = _rankedStepsInGuide;
 

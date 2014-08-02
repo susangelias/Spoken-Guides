@@ -10,6 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ListeningController.h"
 
+extern NSString *const kParseApplicationKey;
+extern NSString *const kParseMasterKey;
+
 @interface TalkListAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

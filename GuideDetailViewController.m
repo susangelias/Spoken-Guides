@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
 @interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate>
 
 // View properties
-//@property (weak, nonatomic) IBOutlet UITableView *guideTableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
 @property (weak, nonatomic) IBOutlet PFImageView *guidePicture;
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
@@ -92,6 +91,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
         // display title in the navigation bar
         self.title = self.guide.title;
     }
+ 
 
     if (changedImage) {
         // there is a new picture in the cache
@@ -110,6 +110,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
         // there is no photo so display title in that area of the screen
         self.titleLabelAlternate.text = self.guide.title;
         self.title = nil;
+        self.guidePicture.image = nil;  // make sure an old image is removed
     }
     
     self.currentState = isReset;
@@ -148,6 +149,23 @@ typedef NS_ENUM(NSInteger, dialogState) {
                 [alert show];
             }
         }];
+    }
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+    
+    // check to see if current user is the owner of this guide, if so enable Edit button
+    PFACL *guideACL = self.guide.ACL;
+    if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
+        self.editButton.enabled = YES;
+        //   self.editButtonItem.enabled = YES;
+    }
+    else {
+        //  self.editButtonItem.enabled = NO;
+        self.editButton.enabled = NO;
     }
 }
 

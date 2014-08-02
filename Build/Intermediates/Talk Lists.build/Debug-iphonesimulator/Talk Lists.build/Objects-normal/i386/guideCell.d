@@ -32,5 +32,4 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PFTwitterUtils.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PF_Twitter.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse/Parse.framework/Headers/PFFacebookUtils.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFStep.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Model\ -\ core\ data/ALAssetsLibrary+CustomPhotoAlbum.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/PFStep.h

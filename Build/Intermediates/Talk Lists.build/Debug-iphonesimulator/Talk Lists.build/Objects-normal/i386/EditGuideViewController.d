@@ -41,4 +41,7 @@ dependencies: \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryContainerViewController.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryDelegate.h \
   /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryViewController.h \
-  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/SpokenGuideCache.h
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/SpokenGuideCache.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/TalkListAppDelegate.h \
+  /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/ListeningController.h \
+  /Users/susanelias/Documents/Developer/OpenEarsDistribution/Framework/OpenEars.framework/Headers/OpenEarsEventsObserver.h

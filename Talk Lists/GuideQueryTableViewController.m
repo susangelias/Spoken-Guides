@@ -97,7 +97,6 @@
         [[SpokenGuideCache sharedCache] setAttributesForPFStep:step
                                                   changedImage:nil
                                               changedThumbnail:nil];
-        NSLog(@"CACHE LOADED WITH GUIDE STEP %@\n", step);
     }
 }
 

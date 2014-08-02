@@ -148,6 +148,11 @@
         self.entryImage = addPhotoVC.selectedPhoto;
         [self.dataEntryDelegate entryImageChanged:addPhotoVC.selectedPhoto];
     }
+    else {
+        // photo was removed
+        self.entryImage = nil;
+        [self.dataEntryDelegate entryImageChanged:nil];
+    }
     
 }
 
@@ -185,5 +190,12 @@
 
 #pragma mark - Navigation
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addPhotoSegue"]) {
+        addPhotoViewController *destinationVC = (addPhotoViewController *)segue.destinationViewController;
+        destinationVC.selectedPhoto = self.entryImage;
+    }
+}
 
 @end
