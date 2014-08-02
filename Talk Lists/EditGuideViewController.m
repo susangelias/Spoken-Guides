@@ -17,6 +17,7 @@
 #import "DataEntryContainerViewController.h"
 #import "DataEntryDelegate.h"
 #import "SpokenGuideCache.h"
+#import "TalkListAppDelegate.h"
 
 @interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, DataEntryDelegate >
 
@@ -178,9 +179,15 @@
 
 -(void)entryImageChanged:(UIImage *)imageEntry
 {
-    // User has added or changed image
-    // Save a local copy until the upload is finished
+// User has added, changed or removed image
     
+    if (!imageEntry) {
+        // user has removed image
+        [self entryImageRemoved];
+        return;
+    }
+    
+    // Save a local copy until the upload is finished
     // convert image to NSData
     NSData *imageData = UIImagePNGRepresentation(imageEntry);
     // then convert to PFFile for storing in Parse backend
@@ -250,7 +257,7 @@
           //  NSLog(@"imageFile uploaded");
             [thumbnailFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    NSLog(@"thumbnailFile uploaded");
+                    NSLog(@"thumbnailFile uploaded: %@", thumbnailFile.name);
                     [[UIApplication sharedApplication] endBackgroundTask:_weakSelf.fileUploadBackgroundTaskId];
                     
                     // save PFFile's to guide
@@ -293,13 +300,81 @@
     }];
  }
 
+-(void) entryImageRemoved
+{
+    // remove image and thumbnail from Parse using REST API
+    NSString *imageFileNameToDelete;
+    NSString *thumbnailFileNameToDelete;
+    
+    if (stepNumber == 0) {
+        imageFileNameToDelete = self.guideToEdit.image.name;
+        thumbnailFileNameToDelete = self.guideToEdit.thumbnail.name;
+    }
+    else {
+        imageFileNameToDelete = self.stepInProgess.image.name;
+        thumbnailFileNameToDelete = self.stepInProgess.thumbnail.name;
+    }
+    [self deletePFFile:imageFileNameToDelete];
+    [self deletePFFile:thumbnailFileNameToDelete];
+   
+    
+    // update parse object
+    __weak typeof(self) _weakSelf = self;
+    if (stepNumber == 0) {
+        // guide photo removed
+        self.guideToEdit.image = nil;
+        self.guideToEdit.thumbnail = nil;
+        [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded && !error) {
+                [_weakSelf.editGuideDelegate changedGuideFinishedUpload];
+            }
+        }];
+    }
+    else {
+        // step photo removed
+        self.stepInProgess.image = nil;
+        self.stepInProgess.thumbnail = nil;
+        [self.stepInProgess saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [_weakSelf.editGuideDelegate changedStepFinishedUpload];
+        }];
+    }
+    
+}
+
+-(void)deletePFFile:(NSString *)fileName
+{
+    /*
+     If you still want to delete a file, you can do so through the REST API. You will need to provide the master key in order to be allowed to delete a file. Note that the name of the file must be the name in the response of the upload operation, rather than the original filename.
+     
+     curl -X DELETE \
+     -H "X-Parse-Application-Id: <YOUR_APPLICATION_ID>" \
+     -H "X-Parse-Master-Key: <YOUR_MASTER_KEY>" \
+     https://api.parse.com/1/files/<FILE_NAME>
+     */
+    
+    NSString *endPoint = [NSString stringWithFormat:@"https://api.parse.com/1/files/%@", fileName];
+    NSURL *url = [NSURL URLWithString:endPoint];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:@"-X DELETE"];
+    [request setValue:kParseApplicationKey forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [request setValue:kParseMasterKey forHTTPHeaderField:@"X-Parse-Master-Key"];
+    
+    NSLog(@"DELETING FILE: %@", fileName);
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               if (connectionError) {
+                                   NSLog(@"FILE deletion error: %@, response: %@", connectionError, response);
+                               }
+                           }];
+    
+}
 
 #pragma mark Set Category Button
 
 - (IBAction)setCategoryPressed
 {
-  //  [self.guideTitle resignFirstResponder];
-  //  [self.StepTextView resignFirstResponder];
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Catagory for Your Guide"
                                                              delegate:self
@@ -313,6 +388,7 @@
     [actionSheet addButtonWithTitle:@"Cancel"]; // put at bottom (don't do at all on iPad)
     
     [actionSheet showInView:self.view]; // different on iPad
+    
 }
 
 - (NSDictionary *)categoryChoices
@@ -331,6 +407,7 @@
         // save category to model
         self.guideToEdit.classification = choice;
         self.categoryLabel.text = choice;
+        [self.guideToEdit saveInBackground];
     }
     else {
         // do nothing
@@ -537,6 +614,7 @@
     // set this guide's unique ID
     GuideCategories *cats = [[GuideCategories alloc] init];
     newGuide.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
+    newGuide.user = [PFUser currentUser];
     
     // add new guide to cache
     [[SpokenGuideCache sharedCache] setAttributesForPFGuide:newGuide
@@ -552,7 +630,7 @@
 
     newStep.rank = [NSNumber numberWithInt:stepNumber];
     [self.guideToEdit.rankedStepsInGuide addObject:newStep];
-    
+        
     // upload new step to Parse
     [newStep saveInBackground];
     

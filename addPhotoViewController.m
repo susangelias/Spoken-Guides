@@ -10,15 +10,16 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UIImage+Resize.h"
 
-
-
+NSString *const kCancel = @"Cancel";
+NSString *const kTakePhoto = @"Take Photo";
+NSString *const kChoosePhoto = @"Choose Existing Photo";
+NSString *const kRemovePhoto = @"Remove Photo From Guide";
 
 @implementation addPhotoViewController 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- //   self.library = [[ALAssetsLibrary alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -95,7 +96,7 @@
 - (IBAction)choosePhotoSource
 {
  
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose Photo Source"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose Photo Option"
                                                                  delegate:self
                                                         cancelButtonTitle:nil
                                                    destructiveButtonTitle:nil
@@ -104,7 +105,13 @@
         for (NSString *source in [self photoSources]) {
             [actionSheet addButtonWithTitle:source];
         }
-        [actionSheet addButtonWithTitle:@"Cancel"]; // put at bottom (don't do at all on iPad)
+    
+    
+        // if there is already a photo for this step list option to remove it
+        if (self.selectedPhoto) {
+            [actionSheet addButtonWithTitle:kRemovePhoto];
+        }
+        [actionSheet addButtonWithTitle:kCancel]; // put at bottom (don't do at all on iPad)
         
         [actionSheet showInView:self.view]; // different on iPad
 }
@@ -115,12 +122,13 @@
     // check if camera is avaiable
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ])
     {
-        [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypeCamera] forKey:@"Take Photo"];
+        [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypeCamera] forKey:kTakePhoto];
     }
     // check if photo library is available
     if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypePhotoLibrary)]) {
-        [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypePhotoLibrary] forKey:@"Choose Existing Photo"];
+        [sources setObject: [NSNumber numberWithInt:UIImagePickerControllerSourceTypePhotoLibrary] forKey:kChoosePhoto];
     }
+    
     return [sources copy];
 }
 
@@ -132,7 +140,7 @@
 {
     NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
     
-    if ( ![choice isEqualToString:@"Cancel"]) {
+    if ( [choice isEqualToString:kTakePhoto] || [choice isEqualToString:kChoosePhoto] ) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.sourceType = [[self photoSources][choice] integerValue];
         picker.delegate = self;
@@ -150,11 +158,15 @@
                            animated:YES
                          completion:NULL];
     }
-    else {
+    else if ([choice isEqualToString:kCancel] ) {
         [self.cancelButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
-
+    else if ([choice isEqualToString:kRemovePhoto]) {
+        self.selectedPhoto = nil;
+        [self performSegueWithIdentifier:@"photoAdded" sender:self];
+    }
 }
+
 
 
 - (IBAction)redoPhoto:(UIButton *)sender {
