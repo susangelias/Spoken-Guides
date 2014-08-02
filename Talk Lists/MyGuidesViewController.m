@@ -167,7 +167,7 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ( ![self.categoryFilter isEqualToString:@"Cancel"]) {
+    if ( buttonIndex != actionSheet.numberOfButtons-1 ) {
         self.categoryFilter  = [actionSheet buttonTitleAtIndex:buttonIndex];
         
         // update the parent view's subtitle
