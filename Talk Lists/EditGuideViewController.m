@@ -67,6 +67,9 @@
     
     self.leftIndicator.hidden = YES;
     self.rightIndicator.hidden = YES;
+    
+    [self.leftIndicator setFrame:CGRectMake(311.0f, 149.0f, 9.0f, 21.0f)];
+    [self.rightIndicator setFrame:CGRectMake(0.0f, 149.0f, 9.0f, 21.0f)];
 
     self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
 
