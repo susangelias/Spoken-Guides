@@ -49,7 +49,7 @@
         // The number of objects to show per page
         self.objectsPerPage = 18;
       
-        self.categoryFilter = @"ALL";
+        self.categoryFilter = kALLCATAGORIES;
     }
     return self;
 }
@@ -144,7 +144,7 @@
         PFUser *currentUser = [PFUser currentUser];
         [query whereKey: @"user" equalTo: currentUser];
         }
-    if ( ![self.categoryFilter isEqualToString:@"ALL"] ) {
+    if ( ![self.categoryFilter isEqualToString:kALLCATAGORIES] ) {
         // limit object to a selected category
         [query whereKey:@"classification" equalTo:self.categoryFilter];
     }

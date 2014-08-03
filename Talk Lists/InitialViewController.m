@@ -113,7 +113,7 @@
 - (IBAction)categoryButtonPressed:(UIBarButtonItem *)sender {
     // Create and show action sheet for user to filter the guides shown
     GuideCategories *catagories = [[GuideCategories alloc] init];
-    UIActionSheet *filterSheet = [[UIActionSheet alloc] initWithTitle:@"Filter Guides By:"
+    UIActionSheet *filterSheet = [[UIActionSheet alloc] initWithTitle:@"Filter Guides By Catagory:"
                                                              delegate:[self.childViewControllers firstObject]
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
@@ -122,7 +122,7 @@
         NSString *catKeyString = (NSString *)obj;
         [filterSheet addButtonWithTitle:catKeyString];
     }];
-    [filterSheet addButtonWithTitle:@"ALL"];
+    [filterSheet addButtonWithTitle:kALLCATAGORIES];
     [filterSheet addButtonWithTitle:@"Cancel"];
     [filterSheet showInView:self.view ];
 

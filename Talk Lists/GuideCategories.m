@@ -8,6 +8,8 @@
 
 #import "GuideCategories.h"
 
+NSString *const kALLCATAGORIES = @"ALL CATAGORIES";
+
 @implementation GuideCategories
 
 - (NSArray *)categoryKeys

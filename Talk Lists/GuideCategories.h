@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kALLCATAGORIES;
+
 @interface GuideCategories : NSObject
 
 @property (strong, nonatomic) NSDictionary *categories;
