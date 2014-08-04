@@ -82,6 +82,10 @@
     if (self.guideToEdit.title) {
         [self setLeftSwipe:YES];
     }
+    else {
+        [self setLeftSwipe:NO];
+        [self setRightSwipe:NO];
+    }
 
  }
 
