@@ -295,7 +295,7 @@
                     <navigationItem key="navigationItem" id="8b8-Pm-0Aq">
                         <barButtonItem key="leftBarButtonItem" image="male" id="vYf-u1-M8L">
                             <connections>
-                                <segue destination="VOS-b3-Rhp" kind="push" id="YG4-1f-s6j"/>
+                                <segue destination="VOS-b3-Rhp" kind="push" identifier="myAccountViewSegue" id="YG4-1f-s6j"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="YHq-AK-xVO">

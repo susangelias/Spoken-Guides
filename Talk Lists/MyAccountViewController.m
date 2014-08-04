@@ -137,6 +137,13 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     PFUser *currentUser = [PFUser currentUser];
     NSLog(@"current User after log in %@", currentUser);
+    // move back to previous view
+    if (self.parentViewController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma  mark <PFSignUPViewControllerDelegate>
