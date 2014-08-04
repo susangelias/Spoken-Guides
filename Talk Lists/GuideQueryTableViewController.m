@@ -263,22 +263,26 @@
 -(void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber
 {
     UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:lineNumber];
-    NSMutableAttributedString *cellAttributedText = [currentCell.textLabel.attributedText mutableCopy];
-    NSDictionary *highlightedTextAttributes;
-    NSRange highlightedRange;
-    if (lineNumber >= 0)  {
-        // HIGHLIGHT STROKE COLOR OF CURRENT LINE
-        if (highlightColor) {
-            highlightedTextAttributes  = @{NSForegroundColorAttributeName: highlightColor};
-            highlightedRange =  NSMakeRange(0, [cellAttributedText length]);
+    if (currentCell) {
+        NSMutableAttributedString *cellAttributedText = [currentCell.textLabel.attributedText mutableCopy];
+        NSDictionary *highlightedTextAttributes;
+        NSRange highlightedRange;
+        if (lineNumber >= 0)  {
+            // HIGHLIGHT STROKE COLOR OF CURRENT LINE
+            if (highlightColor) {
+                highlightedTextAttributes  = @{NSForegroundColorAttributeName: highlightColor};
+                highlightedRange =  NSMakeRange(0, [cellAttributedText length]);
+            }
         }
+        // APPLY ATTRIBUTES
+        if (highlightedTextAttributes) {
+            [cellAttributedText addAttributes:highlightedTextAttributes range:highlightedRange];
+        }
+        currentCell.textLabel.attributedText = [cellAttributedText copy];
     }
-    // APPLY ATTRIBUTES
-    if (highlightedTextAttributes) {
-        [cellAttributedText addAttributes:highlightedTextAttributes range:highlightedRange];
+    else {
+        NSLog(@"error: GuideQueryTableViewController: currentCell = nil");
     }
-    currentCell.textLabel.attributedText = [cellAttributedText copy];
-    
 }
 
 /*

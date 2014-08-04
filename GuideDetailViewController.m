@@ -226,15 +226,15 @@ typedef NS_ENUM(NSInteger, dialogState) {
 {
     NSLog(@"DIALOG OVER");
     // Set the Pause button back to Play
+    /*
     [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIBarButtonItem *button = obj;
         if (button.tag == isPaused) {
             [self swapPlayPauseButtons];
         }
     }];
-    
-    // Enable the Edit Button
- //   self.navigationItem.rightBarButtonItem.enabled = YES;
+    */
+    [self setPlayButton];
     
      // update state
     self.currentState = isReset;
@@ -251,7 +251,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
     self.statusDisplay.text = @"";
 }
 
-
+/*
 - (void)swapPlayPauseButtons
 {
     
@@ -280,6 +280,33 @@ typedef NS_ENUM(NSInteger, dialogState) {
     }
      
 }
+ */
+
+-(void) setPlayButton
+{
+    [self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal ];
+    // change action
+    [self.playPauseButton removeTarget:self
+                                action:@selector(pauseButtonPressed:)
+                      forControlEvents:UIControlEventTouchUpInside];
+    [self.playPauseButton addTarget:self
+                             action:@selector(playButtonPressed:)
+                   forControlEvents:UIControlEventTouchUpInside];
+}
+
+ -(void) setPauseButton
+{
+    [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal ];
+    // change action
+    [self.playPauseButton removeTarget:self
+                                action:@selector(playButtonPressed:)
+                      forControlEvents:UIControlEventTouchUpInside];
+    [self.playPauseButton addTarget:self
+                             action:@selector(pauseButtonPressed:)
+                   forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
 
 - (void)highlightCurrentLine:(int) lineNumber
 {
@@ -339,7 +366,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 - (IBAction)playButtonPressed:(UIButton *)sender {
     // toggle button to 'Pause'
-    [self swapPlayPauseButtons];
+  //  [self swapPlayPauseButtons];
+    [self setPauseButton];
     
     // Disable the Edit button
  //   self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -363,7 +391,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
 - (IBAction)pauseButtonPressed:(UIButton *)sender
 {
     // toggle the button  to 'Play'
-    [self swapPlayPauseButtons];
+  //  [self swapPlayPauseButtons];
+    [self setPlayButton];
     
     // Pause the dialog
     if (self.dialogController) {
