@@ -124,7 +124,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     if ([self.speaker isSpeaking]) {
         [self.speaker stopSpeech];
     }
-    if ([self.listener isListening]) {
+    if ([self.listener isListening] && ![self.listener isSuspended]) {
         [self.listener suspendListening];
     }
 

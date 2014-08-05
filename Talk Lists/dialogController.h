@@ -19,7 +19,6 @@
 @property (nonatomic, weak) id <dialogControllerDelegate> dialogControlDelegate;
 @property (nonatomic) int currentLineIndex;
 @property (nonatomic, strong) PFGuide *guide;
-//@property (nonatomic, strong) NSArray *instructions;
 
 - (void)startDialog;
 - (void)pauseDialog;
@@ -27,6 +26,8 @@
 - (void)initializeDialog;
 - (void)recoverFromAudioResetNotification;
 - (void)speakLine;
+-(void)stopAllAudio;
+- (void)suspendAllAudio;
 
 @end
 

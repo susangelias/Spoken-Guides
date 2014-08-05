@@ -75,6 +75,12 @@ typedef NS_ENUM(NSInteger, dialogState) {
                                              selector:@selector(audioRouteChange:)
                                                  name:AVAudioSessionRouteChangeNotification
                                                object:[AVAudioSession sharedInstance]];
+    
+    // sign up for system notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:[UIApplication sharedApplication]];
 
 }
 
@@ -180,8 +186,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
     [super viewWillDisappear:animated];
 }
 
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -211,29 +215,12 @@ typedef NS_ENUM(NSInteger, dialogState) {
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    // unselect the row since text color will change when row is spoken
- //   UITableViewCell *selectedCell = [self.guideTableView cellForRowAtIndexPath:indexPath];
-  //  [selectedCell setSelected:NO animated:YES ];
-}
-
 
 #pragma mark dialogControllerDelegate Methods
 
 - (void)dialogComplete
 {
     NSLog(@"DIALOG OVER");
-    // Set the Pause button back to Play
-    /*
-    [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        UIBarButtonItem *button = obj;
-        if (button.tag == isPaused) {
-            [self swapPlayPauseButtons];
-        }
-    }];
-    */
     [self setPlayButton];
     
      // update state
@@ -391,7 +378,6 @@ typedef NS_ENUM(NSInteger, dialogState) {
 - (IBAction)pauseButtonPressed:(UIButton *)sender
 {
     // toggle the button  to 'Play'
-  //  [self swapPlayPauseButtons];
     [self setPlayButton];
     
     // Pause the dialog
@@ -420,7 +406,28 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 }
 
+-(void) terminateActivity
+{
+    if (self.currentState == isPlaying) {
+        [self pauseButtonPressed:self.playPauseButton];
+        [self.dialogController stopAllAudio];
+        
+        // clear status display as it won't get done in the callback from the dialog controller since we're going into the background
+        self.statusDisplay.text = @"";
+        
+        // release the listener object
+        TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
+        [myApp killListeningController];
+    }
+}
 
+#pragma mark UIApplication Notifications
+
+-(void)resignActive: (NSNotification *)notification
+{
+    NSLog(@"did receive resign Active");
+    [self terminateActivity];
+}
 
 #pragma mark AVAudioSession Notifications
 
@@ -430,12 +437,14 @@ typedef NS_ENUM(NSInteger, dialogState) {
     
     if (type == AVAudioSessionInterruptionTypeBegan) {
         NSLog(@"BEGAN INTERRUPTION, dialog state %d", (int)self.currentState);
+        /*
         if (self.currentState == isPlaying) {
             [self pauseButtonPressed:self.playPauseButton];
             // release the listener object
             TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
             [myApp killListeningController];
-        }
+        } */
+        [self terminateActivity];
     }
     else if (type == AVAudioSessionInterruptionTypeEnded) {
         NSLog(@"END INTERRUPTION, dialog state %d", (int)self.currentState);

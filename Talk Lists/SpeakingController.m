@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) AVSpeechSynthesizer *synthesizer;
 @property (nonatomic, strong) AVSpeechSynthesisVoice *synthesisVoice;
-
+@property BOOL cancelled;
 @end
 
 @implementation SpeakingController
@@ -27,6 +27,8 @@
     {
         NSString *preferredLanguage = [AVSpeechSynthesisVoice currentLanguageCode];
         _synthesisVoice = [AVSpeechSynthesisVoice voiceWithLanguage:preferredLanguage];
+        
+        self.cancelled = NO;
     }
     return _synthesisVoice;
 }
@@ -55,7 +57,6 @@
     utterance.volume = [myVoice.volume floatValue];
     
     utterance.voice = self.synthesisVoice;
-   // NSLog(@"Utterance %@", utterance);
     
     [self.synthesizer speakUtterance:utterance];
     
@@ -63,11 +64,15 @@
 
 - (void)stopSpeech
 {
-    if([self.synthesizer isSpeaking]) {
+    if ([self.synthesizer isSpeaking]) {
         [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+        
+        // Workaround for a known Apple bug where the speech is not actually stopped with the previous call
+        // http://stackoverflow.com/questions/19672814/an-issue-with-avspeechsynthesizer-any-workarounds
         AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:@""];
         [self.synthesizer speakUtterance:utterance];
         [self.synthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+        self.cancelled = YES;
     }
 }
 
@@ -80,9 +85,21 @@
 
 - (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(appHasFinishedSpeaking)]) {
+    NSLog(@"finished utterance:  %@", utterance.speechString);
+    if ( (self.delegate && [self.delegate respondsToSelector:@selector(appHasFinishedSpeaking)]) && (self.cancelled == NO) ) {
         [self.delegate appHasFinishedSpeaking];
     }
+    else {
+        self.cancelled = NO;    // don't report a canceled utterance
+    }
+}
+
+-(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didCancelSpeechUtterance:(AVSpeechUtterance *)utterance
+{
+    // NOT RECEIVING THIS CALL BACK FOR SOME REASON - MAYBE RELATED TO THE APPLE BUG ABOVE
+    // WORKING AROUND WITH THE self.cancelled FLAG
+    NSLog(@"canceled utterance: %@", utterance.speechString);
+    self.cancelled = NO;
 }
 
 @end

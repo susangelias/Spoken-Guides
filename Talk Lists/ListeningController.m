@@ -9,6 +9,7 @@
 #import "ListeningController.h"
 #import <OpenEars/PocketsphinxController.h>
 #import "languageOpenEars.h"
+#import <OpenEars/OpenEarsLogging.h>
 
 
 @interface ListeningController ()
@@ -44,6 +45,7 @@
     self.languageModel = [[languageOpenEars alloc]init];
     self.lmGenerator = self.languageModel.lmGenerator;      // This object takes a couple of seconds to generate
     
+    [OpenEarsLogging startOpenEarsLogging];
     return self;
 }
 
