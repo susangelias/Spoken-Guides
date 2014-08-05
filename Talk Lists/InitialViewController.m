@@ -146,6 +146,11 @@
 
 #pragma mark - Navigation
 
+- (IBAction) goToRoot:(UIStoryboardSegue *)segue
+{
+    NSLog(@"called goToRoot: unwind action");
+}
+
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     BOOL performSegue = YES;

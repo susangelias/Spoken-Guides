@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *categoryButton;
 
 -(void) setHeaderTitle:(NSString*)headerTitle andSubtitle:(NSString*)headerSubtitle;
+- (IBAction) goToRoot:(UIStoryboardSegue *)segue;
 
 @end
