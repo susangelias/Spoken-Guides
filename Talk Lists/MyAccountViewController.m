@@ -8,6 +8,7 @@
 
 #import "MyAccountViewController.h"
 #import "GuideUserSignUpViewController.h"
+#import "InitialViewController.h"
 
 @interface MyAccountViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -148,14 +149,54 @@
 
 #pragma  mark <PFSignUPViewControllerDelegate>
 
+void (^dismissMyAccountViewController)(void) = ^ {
+    NSLog(@"block");
+};
+
+
 -(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
 {
     self.logInView.usernameField.text = user.username;
     self.logInView.passwordField.text = user.password;
     
     // dismiss the signUpController
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+    __weak typeof(self) weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        // unwind self back to root view controller
+        SEL theUnwindSelector = @selector(goToRoot:);
+        NSString *unwindSegueIdentifier = @"unwindToRootSeque";
+        
+        UINavigationController *nc = [weakSelf navigationController];
+        // Find the view controller that has this unwindAction selector (may not be one in the nav stack)
+        UIViewController *viewControllerToCallUnwindSelectorOn = [nc viewControllerForUnwindSegueAction: theUnwindSelector
+                                                                                     fromViewController: weakSelf
+                                                                                             withSender: weakSelf];
+        // None found, then do nothing.
+        if (viewControllerToCallUnwindSelectorOn == nil) {
+            NSLog(@"No controller found to unwind too");
+            return;
+        }
+        
+        // Can the controller that we found perform the unwind segue.  (This is decided by that controllers implementation of canPerformSeque: method
+        BOOL cps = [viewControllerToCallUnwindSelectorOn canPerformUnwindSegueAction: theUnwindSelector
+                                                                  fromViewController: weakSelf
+                                                                          withSender: weakSelf];
+        // If we have permision to perform the seque on the controller where the unwindAction is implmented
+        // then get the segue object and perform it.
+        if (cps) {
+            
+            UIStoryboardSegue *unwindSegue = [nc segueForUnwindingToViewController: viewControllerToCallUnwindSelectorOn fromViewController: weakSelf identifier: unwindSegueIdentifier];
+            
+            [viewControllerToCallUnwindSelectorOn prepareForSegue: unwindSegue sender: weakSelf];
+            
+            [unwindSegue perform];
+        }
+
+    }];
+    
+ }
+
 
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info
 {
