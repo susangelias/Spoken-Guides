@@ -11,10 +11,12 @@
 #import "MyGuidesViewController.h"
 #import "MyAccountViewController.h"
 #import "GuideCategories.h"
+#import "TalkListAppDelegate.h"
 
 @interface InitialViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *categoryFilterButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
 
@@ -43,53 +45,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"Spoken Guides";
-   
-    // Replace titleView
-    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 200, 44);
-    UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
-    _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
-    _headerTitleSubtitleView.autoresizesSubviews = YES;
+    self.navigationItem.title = @"SPOKEN GUIDES";
     
-    CGRect titleFrame = CGRectMake(0, 2, 200, 24);
-    UILabel *titleView = [[UILabel alloc] initWithFrame:titleFrame];
-    titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont boldSystemFontOfSize:20];
-    titleView.textAlignment = NSTextAlignmentCenter;
-    titleView.textColor = [UIColor blackColor];
-    //  titleView.shadowColor = [UIColor darkGrayColor];
-    // titleView.shadowOffset = CGSizeMake(0, -1);
-    titleView.text = @"";
-    titleView.adjustsFontSizeToFitWidth = YES;
-    [_headerTitleSubtitleView addSubview:titleView];
-    
-    CGRect subtitleFrame = CGRectMake(0, 24, 200, 44-24);
-    UILabel *subtitleView = [[UILabel alloc] initWithFrame:subtitleFrame];
-    subtitleView.backgroundColor = [UIColor clearColor];
-    subtitleView.font = [UIFont boldSystemFontOfSize:13];
-    subtitleView.textAlignment = NSTextAlignmentCenter;
-    subtitleView.textColor = [UIColor blackColor];
-    //  subtitleView.shadowColor = [UIColor darkGrayColor];
-    //   subtitleView.shadowOffset = CGSizeMake(0, -1);
-    subtitleView.text = @"";
-    subtitleView.adjustsFontSizeToFitWidth = YES;
-    [_headerTitleSubtitleView addSubview:subtitleView];
-    
-    _headerTitleSubtitleView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-                                                 UIViewAutoresizingFlexibleRightMargin |
-                                                 UIViewAutoresizingFlexibleTopMargin |
-                                                 UIViewAutoresizingFlexibleBottomMargin);
-    self.navigationItem.titleView = _headerTitleSubtitleView;
-    
+    // set view background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
 }
 
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    MyGuidesViewController *childVC = [self.childViewControllers firstObject];
-    [self setHeaderTitle:@"Spoken Guides" andSubtitle:childVC.categoryFilter];
-    
+    [super viewDidAppear:animated];    
 
 }
 
@@ -125,22 +90,7 @@
     [filterSheet addButtonWithTitle:kALLCATAGORIES];
     [filterSheet addButtonWithTitle:@"Cancel"];
     [filterSheet showInView:self.view ];
-
-}
-
-#pragma mark View
-
--(void) setHeaderTitle:(NSString*)headerTitle andSubtitle:(NSString*)headerSubtitle {
-    UIView* headerTitleSubtitleView = self.navigationItem.titleView;
     
-    if (headerTitle) {
-        UILabel* titleView = [headerTitleSubtitleView.subviews objectAtIndex:0];
-        titleView.text = headerTitle;
-    }
-    if (headerSubtitle) {
-        UILabel* subtitleView = [headerTitleSubtitleView.subviews objectAtIndex:1];
-        subtitleView.text = headerSubtitle;
-    }
 }
 
 
