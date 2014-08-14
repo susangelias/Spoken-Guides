@@ -12,14 +12,10 @@
 
 extern NSString *const kParseApplicationKey;
 extern NSString *const kParseMasterKey;
+extern NSString *const kAppBackgroundImageName;
 
 @interface TalkListAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) ListeningController *listener;
-
-- (void)killListeningController;
-- (ListeningController *)listener;
-
 
 @end

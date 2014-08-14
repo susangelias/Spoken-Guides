@@ -8,6 +8,7 @@
 
 NSString *const kParseApplicationKey = @"XS8vaAZaunsYpf2lyR1NNnCCPtkVd9WdqJRWAdVJ";
 NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
+NSString *const kAppBackgroundImageName = @"escheresque";
 
 #import "TalkListAppDelegate.h"
 #import <Parse/Parse.h>
@@ -19,6 +20,20 @@ NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // set up app-wide colors
+
+    // set the status bar to use white text
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // set up navigation bar color for entire app
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]]];
+ //   [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:250.0/255 green:235.0/255 blue:215.0/255 alpha:1.0]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.0 alpha:1.0]}];
+    
+    // set the app's custom tintColor
+    self.window.tintColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"AppleGreen"]];
+    
     // Set up required items for Parse backend
     [PFGuide registerSubclass];
     [PFStep registerSubclass];
@@ -44,8 +59,7 @@ NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
-    self.window.backgroundColor = [UIColor whiteColor];
-    
+ //   self.window.backgroundColor = [UIColor whiteColor];
     return YES;
 }
 							
@@ -55,7 +69,6 @@ NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
   //  NSLog(@"APPLICATE WILL RESIGN ACTIVE");
 
-  //  [self killListeningController];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -74,54 +87,12 @@ NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     // Allocate and start the calibration for the ListeningController - this is a singleton and the calibration takes 5 to 7 secs
     NSLog(@"APPLICATION DID BECOME ACTIVE");
-    [self listener];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-#pragma mark Listening Controller
-
-// Need to allocate and initialize listener here because it takes several seconds, otherwise user
-// could see delay in reponse after 1st line read
--(ListeningController *)listener
-{
-    if (!_listener) {
-        // Check microphone permissions
-        if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
-            [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-                if (!granted) {
-                    // Let the user know that they need to turn on the microphone in the system settings
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
-                                                                    message:@"Talk Notes uses the microphone for voice recognition.  To use this feature you must allow microphone access in Settings > Privacy > Microphone"
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                }
-            }];
-        }
-        
-        _listener = [[ListeningController alloc] init];
-        if (_listener) {
-            [_listener startListening];  // start the calibration
-        }
-        
-    }
-    return _listener;
-}
-
-
-- (void)killListeningController
-{
-    if (self.listener) {
-        if ([self.listener isListening]) {
-            [self.listener stopListening];
-        }
-        self.listener = nil;
-    }
 }
 
 @end
