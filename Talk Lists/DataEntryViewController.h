@@ -20,5 +20,6 @@
 
 -(void)imageLoaded:(UIImage *)downloadedImage;
 -(void)viewAboutToChange;
+-(void)retractKeyboard;
 
 @end

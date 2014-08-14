@@ -45,8 +45,7 @@
 
     self.delegate = self;
     
-    
-    [self.logInView setBackgroundColor:[UIColor whiteColor]];
+    [self.logInView setBackgroundColor:[UIColor clearColor]];
     [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
 
     // Remove text shadow
@@ -55,11 +54,22 @@
     layer = self.logInView.passwordField.layer;
     layer.shadowOpacity = 0.0;
     
+    // Set field background color
+    self.logInView.usernameField.backgroundColor = [UIColor colorWithWhite:0.80 alpha:1.0];
+    self.logInView.passwordField.backgroundColor = [UIColor colorWithWhite:0.80 alpha:1.0];
+   
     // Set field text color
     [self.logInView.usernameField setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
     [self.logInView.passwordField setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
     
+    // Remove the button images
+  //  self.view.tintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"AppleGreen"]];
+    
+    [self.logInView.logInButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.logInView.logInButton setBackgroundImage:nil forState:UIControlStateHighlighted];
  
+  //  [self.logInView.logInButton setTitle:@"hey you" forState:UIControlStateNormal];
+  
     
     // Create the sign up view controller
     GuideUserSignUpViewController *signUpViewController = [[GuideUserSignUpViewController alloc]init];
@@ -72,7 +82,7 @@
 -(void) viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    [self.logInView addSubview:self.deleteAllButton];
+ //   [self.logInView addSubview:self.deleteAllButton];
     
     
 }
@@ -80,6 +90,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+ //   [self.logInView.logInButton setTitle:@"hey you" forState:UIControlStateNormal];
 
     if (self.parentViewController) {
         self.logInView.dismissButton.hidden = YES;
@@ -113,6 +125,24 @@
 - (IBAction)deleteMyAccountGuidesButtonPress:(UIButton *)sender
 {
     
+}
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+  //  [super textFieldDidBeginEditing:textField];
+    
+    // Set field background color
+    textField.backgroundColor = [UIColor whiteColor];
+
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+ //   [super textFieldDidEndEditing:textField];
+    
+    // Set field background color
+    textField.backgroundColor = [UIColor colorWithWhite:0.80 alpha:1.0];
 }
 
 #pragma mark <PFLoginViewControllerDelegate>

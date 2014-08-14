@@ -9,7 +9,7 @@
 #import "GuideQueryTableViewController.h"
 #import "PFStep.h"
 #import "SpokenGuideCache.h"
-
+#import "TalkListAppDelegate.h"
 
 @implementation GuideQueryTableViewController
 
@@ -51,6 +51,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationBecameActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
+    // set view background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
 
 }
 
@@ -190,10 +192,6 @@
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 
-#pragma mark UITableViewDelegate
-
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 78;
@@ -255,8 +253,7 @@
 {
     NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:lineNumber inSection:0];
     
-    // get app's customTint color
-    UIColor *customColor = [UIColor blackColor];
+    UIColor *customColor = [UIColor whiteColor];
     [self setTextColor:customColor atIndexPath:selectedIndexPath];
 }
 
@@ -280,9 +277,7 @@
         }
         currentCell.textLabel.attributedText = [cellAttributedText copy];
     }
-    else {
-        NSLog(@"error: GuideQueryTableViewController: currentCell = nil");
-    }
+ 
 }
 
 /*

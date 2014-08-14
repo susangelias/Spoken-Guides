@@ -9,7 +9,8 @@
 #import "DataEntryViewController.h"
 #import "addPhotoViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import "ILTranslucentView.h"
+#import "TalkListAppDelegate.h"
 
 @interface DataEntryViewController () <UITextViewDelegate>
 
@@ -35,6 +36,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+ 
+    // set up background view to reside under the textentry view
+    self.textEntryView.backgroundColor =  [UIColor clearColor];
+    
+    ILTranslucentView *translucentTextEntry = [[ILTranslucentView alloc] initWithFrame:self.textEntryView.frame];
+    [self.view addSubview:translucentTextEntry];
+    translucentTextEntry.backgroundColor = [UIColor clearColor];
+    translucentTextEntry.translucentTintColor = [UIColor clearColor];
+    translucentTextEntry.translucentAlpha = 0.8;
+    translucentTextEntry.translucentStyle = UIBarStyleDefault;
+    [self.view bringSubviewToFront:self.textEntryView];
     
     // make sure a camera or photo library is available before enabling the Add Photo button
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ] ||
@@ -48,8 +60,13 @@
         self.addPhotoButton.hidden = YES;
     }
     
-     self.textEntryView.delegate = self;
+    self.textEntryView.delegate = self;
+//    self.imageDisplayView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
+    self.imageDisplayView.backgroundColor = [UIColor clearColor];
     
+    // darken the placeholder text since background is grey instead of white
+    self.textEntryView.placeholderTextColor = [UIColor colorWithWhite:1.0 alpha:.90];
+
     // sign up to catch any changes the user makes to the font settings
     [[NSNotificationCenter defaultCenter]
         addObserver:self
@@ -64,7 +81,7 @@
 
     // setup text attributes for textEntryView
  //   self.textEntryView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-
+    
     if (self.entryText) {
         // Text to display
         self.textEntryView.text = self.entryText;
@@ -76,7 +93,7 @@
 
         // show the placeholder text and set the capitalization style
         if (self.entryNumber > 0) {
-            // set placeholder test for a new step
+            // set placeholder text for a new step
             self.textEntryView.placeholder = [NSString stringWithFormat:@"Step %d\n\nEnter instructions here", self.entryNumber];
             self.textEntryView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         }
@@ -135,6 +152,11 @@
 -(void)viewAboutToChange
 {
     [self textViewDidEndEditing:self.textEntryView];
+}
+
+-(void)retractKeyboard
+{
+    [self.textEntryView resignFirstResponder];
 }
 
 #pragma mark Add Photo unwind segues

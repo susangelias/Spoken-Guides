@@ -19,7 +19,7 @@
 #import "SpokenGuideCache.h"
 #import "TalkListAppDelegate.h"
 
-@interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, DataEntryDelegate >
+@interface EditGuideViewController () <UIActionSheetDelegate, UIAlertViewDelegate, DataEntryDelegate, UIGestureRecognizerDelegate >
 
 // view properties
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightIndicator;
 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *categoryButton;
 
 // model properties
 @property (strong, nonatomic) PFStep *stepInProgess;
@@ -67,14 +68,24 @@
     
     self.leftIndicator.hidden = YES;
     self.rightIndicator.hidden = YES;
+
+    self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
+    
+    // set view background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
+
+    // set self as gestureRecognizer delegate
+    self.tapGesture.delegate = self;
+}
+
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
     
     [self.leftIndicator setFrame:CGRectMake(311.0f, 149.0f, 9.0f, 21.0f)];
     [self.rightIndicator setFrame:CGRectMake(0.0f, 149.0f, 9.0f, 21.0f)];
-
-    self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
-
+    
 }
-
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
@@ -423,6 +434,18 @@
     
 }
 
+-(void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    
+    // Change button colors from the standard blue to grey/black
+    for (UIView *subView in actionSheet.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subView;
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected] ;
+        }
+    }
+}
 
 #pragma  mark User Actions
 
@@ -581,12 +604,25 @@
     }
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // TAP Gesture recognizer will capture the touches in the toolbar unless we specifically let the button touch
+    // through so that the IBAction can process it
+    if ([touch.view.superview isKindOfClass:[UIToolbar class]]) {
+        return FALSE;
+    }
+    else {
+        return TRUE;
+    }
+}
+
 - (IBAction)tapped:(UITapGestureRecognizer *)sender {
     CGPoint touchPoint = [sender locationInView:self.view];
     UIView *touchedView = [self.view hitTest:touchPoint
                                    withEvent:nil];
+
     if (![touchedView isEqual:self.containerViewController.view]) {
-        [self.containerViewController.currentDataEntryVC resignFirstResponder];
+        [self.containerViewController.currentDataEntryVC retractKeyboard];
     };
 
 }
