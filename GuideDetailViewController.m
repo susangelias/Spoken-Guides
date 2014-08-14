@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
     isReset
 };
 
+NSString * const kHighlightColor = @"AppleGreen";
+
 @interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate>
 
 // View properties
@@ -81,7 +83,18 @@ typedef NS_ENUM(NSInteger, dialogState) {
                                              selector:@selector(resignActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:[UIApplication sharedApplication]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:[UIApplication sharedApplication]];
 
+
+    // set view background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
+
+   // set text color for status display
+    self.statusDisplay.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kHighlightColor]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -183,6 +196,9 @@ typedef NS_ENUM(NSInteger, dialogState) {
         [self pauseButtonPressed:nil];
     }
     
+    // release the listener object
+    [self.dialogController killListeningController];
+    
     [super viewWillDisappear:animated];
 }
 
@@ -271,7 +287,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 -(void) setPlayButton
 {
-    [self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal ];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"play - black"] forState:UIControlStateNormal ];
     // change action
     [self.playPauseButton removeTarget:self
                                 action:@selector(pauseButtonPressed:)
@@ -283,7 +299,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
  -(void) setPauseButton
 {
-    [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal ];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"pause - black"] forState:UIControlStateNormal ];
     // change action
     [self.playPauseButton removeTarget:self
                                 action:@selector(playButtonPressed:)
@@ -300,8 +316,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
     NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:lineNumber inSection:0];
    
     // get app's customTint color
-  //  UIColor *customColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Tangarine"]];
-    UIColor *customColor = [UIColor blueColor];
+    UIColor *customColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kHighlightColor]];
+ //   UIColor *customColor = [UIColor blueColor];
     [self setTextColor:customColor atIndexPath:selectedIndexPath];
  }
 
@@ -399,12 +415,13 @@ typedef NS_ENUM(NSInteger, dialogState) {
             [self.dialogController initializeDialog];
         }
         
-        // Enable the Edit button
-    //    self.navigationItem.rightBarButtonItem.enabled = YES;
+        // release the listener object
+     //   [self.dialogController killListeningController];
     
         self.currentState = isReset;
 
 }
+
 
 -(void) terminateActivity
 {
@@ -416,17 +433,24 @@ typedef NS_ENUM(NSInteger, dialogState) {
         self.statusDisplay.text = @"";
         
         // release the listener object
-        TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
-        [myApp killListeningController];
+     //   TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
+    //    [myApp killListeningController];
     }
 }
+
 
 #pragma mark UIApplication Notifications
 
 -(void)resignActive: (NSNotification *)notification
 {
-    NSLog(@"did receive resign Active");
-    [self terminateActivity];
+    NSLog(@"did receive resign Active %@", notification);
+   // [self terminateActivity];
+}
+
+-(void)didEnterBackground: (NSNotification *) notification
+{
+    NSLog(@" did Enter Background %@", notification);
+//    [self terminateActivity];
 }
 
 #pragma mark AVAudioSession Notifications
@@ -437,14 +461,17 @@ typedef NS_ENUM(NSInteger, dialogState) {
     
     if (type == AVAudioSessionInterruptionTypeBegan) {
         NSLog(@"BEGAN INTERRUPTION, dialog state %d", (int)self.currentState);
-        /*
+        
         if (self.currentState == isPlaying) {
+         /*
             [self pauseButtonPressed:self.playPauseButton];
             // release the listener object
             TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
-            [myApp killListeningController];
-        } */
-        [self terminateActivity];
+            [myApp killListeningController]; */
+            
+           [self terminateActivity];
+        }
+    //    [self terminateActivity];
     }
     else if (type == AVAudioSessionInterruptionTypeEnded) {
         NSLog(@"END INTERRUPTION, dialog state %d", (int)self.currentState);
@@ -457,8 +484,8 @@ typedef NS_ENUM(NSInteger, dialogState) {
 -(void)audioServicesReset: (NSNotification *)notification
 {
     NSLog(@"RECEIVED AUDIO SERVICES RESET NOTIFICATION");
-    TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
-    [myApp killListeningController];
+  //  TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
+    [self.dialogController killListeningController];
     
     [self.dialogController recoverFromAudioResetNotification];
 }
