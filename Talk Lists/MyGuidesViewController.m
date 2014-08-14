@@ -20,6 +20,7 @@
 @interface MyGuidesViewController () < EditGuideViewControllerDelegate, UIActionSheetDelegate >
 
 @property (nonatomic) NSUInteger queryOrder;
+@property (weak, nonatomic) IBOutlet UILabel *currentCategoryLabel;
 
 
 @end
@@ -57,6 +58,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor clearColor];
+
     // sign up to receive applicationDidBecomeActive notifications so that our cache can be reloaded
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationBecameActive:)
@@ -68,7 +72,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
- 
+    
+    self.currentCategoryLabel.text = self.categoryFilter;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -169,14 +174,21 @@
 {
     if ( buttonIndex != actionSheet.numberOfButtons-1 ) {
         self.categoryFilter  = [actionSheet buttonTitleAtIndex:buttonIndex];
-        
-        // update the parent view's subtitle
-        if ([self.parentViewController respondsToSelector:@selector(setHeaderTitle:andSubtitle:)] ) {
-            InitialViewController *parentVC = (InitialViewController *)self.parentViewController;
-            [parentVC setHeaderTitle:@"Spoken Guides" andSubtitle:self.categoryFilter];
-        }
-        
+        self.currentCategoryLabel.text = self.categoryFilter;
         [self loadObjects];
+    }
+}
+
+-(void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+     
+    // Change button colors from the standard blue to grey/black
+    for (UIView *subView in actionSheet.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subView;
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected] ;
+        }
     }
 }
 
@@ -208,6 +220,23 @@
 {
     guideCell *customCell = (guideCell *)cell;
     customCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    /*
+    NSLog(@"customCell.textLabel.Frame %f x %f, %f x %f",customCell.textLabel.frame.origin.x, customCell.textLabel.frame.origin.y, customCell.textLabel.frame.size.width, customCell.textLabel.frame.size.height);
+    NSLog(@"customCell.imageView.Frame %f x %f, %f x %f",customCell.imageView.frame.origin.x, customCell.imageView.frame.origin.y, customCell.imageView.frame.size.width, customCell.imageView.frame.size.height);
+    
+    if (customCell.imageView.file) {
+        NSInteger margin = 10;
+        CGRect ivf = customCell.imageView.frame;
+        CGRect cvf = customCell.textLabel.frame;
+        CGRect frame = CGRectMake(ivf.size.width + margin,
+                                  cvf.origin.y,
+                                  cvf.size.width,
+                                  cvf.size.height);
+        customCell.textLabel.frame = frame;
+        NSLog(@"Adjusted customCell.textLabel.Frame %f x %f, %f x %f",customCell.textLabel.frame.origin.x, customCell.textLabel.frame.origin.y, customCell.textLabel.frame.size.width, customCell.textLabel.frame.size.height);
+
+    } */
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
