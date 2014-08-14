@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-//#import "Guide+Addendums.h"
 #import "ListeningController.h"
 #import "SpeakingController.h"
 #import "dialogControllerDelegate.h"
@@ -26,8 +25,9 @@
 - (void)initializeDialog;
 - (void)recoverFromAudioResetNotification;
 - (void)speakLine;
--(void)stopAllAudio;
+- (void)stopAllAudio;
 - (void)suspendAllAudio;
+- (void)killListeningController;
 
 @end
 

@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 @interface dialogController()
 
 @property (nonatomic, strong) SpeakingController *speaker;
-@property (nonatomic, weak) ListeningController *listener;
+@property (nonatomic, strong) ListeningController *listener;
 @property (nonatomic, strong) NSString *nextLine;
 @property (nonatomic, strong) NSString *heardText;  // for debuggin on iPad only
 @property dialogControllerState currentState;
@@ -36,8 +36,6 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 -(void)setGuide:(PFGuide *)guide
 {
     _guide = guide;
-    
-    [self setupListener];
         
     // Instantiate speech controller
     if (!self.speaker) {
@@ -50,18 +48,47 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     [self initializeDialog];
 }
 
+#pragma mark Listening Controller
 
-
+// Need to allocate and initialize listener here because it takes several seconds, otherwise user
+// could see delay in reponse after 1st line read
 -(ListeningController *)listener
 {
-    // ListeningController is a singleton instantiated by the appDelegate
-    TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
-    _listener = myApp.listener;
-    if (_listener) {
-        // set ourself as the listener's delegate
-        _listener.delegate = self;
+    if (!_listener) {
+        // Check microphone permissions
+        if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
+            [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+                if (!granted) {
+                    // Let the user know that they need to turn on the microphone in the system settings
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
+                                                                    message:@"Talk Notes uses the microphone for voice recognition.  To use this feature you must allow microphone access in Settings > Privacy > Microphone"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+            }];
+        }
+        
+        _listener = [[ListeningController alloc] init];
+        if (_listener) {
+            [_listener startListening];  // start the calibration
+            _listener.delegate = self;
+        }
+        
     }
     return _listener;
+}
+
+
+- (void)killListeningController
+{
+    if (self.listener) {
+        if ([self.listener isListening]) {
+            [self.listener stopListening];
+        }
+        self.listener = nil;
+    }
 }
 
 -(void)setupListener
@@ -101,9 +128,15 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 - (void)startDialog
 {
+
+    __weak typeof(self) weakSelf = self;
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [weakSelf listener];
+    });
+
     if (self.currentLineIndex < [self.guide.rankedStepsInGuide count])     {
         [self speakLine];
-    }
+     }
     else {
         self.currentState = isInactive;
     }
@@ -133,7 +166,6 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 - (void) initializeDialog {
     self.currentLineIndex = 0;
     [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
-    [self suspendAllAudio];
     self.currentState = isInactive;
 }
 
@@ -175,7 +207,15 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 - (void)userHasSpoken:(commandType)command
 {
 
-    if (self.currentState != isInactive) {
+    if (self.currentState == isActivelySpeaking) {
+        // don't try to recognize our own speech
+        // disable the listening if it is on (this state can happen just after
+        // Pocketsphinx has finished calibration and goes straight into listening mode
+        if (self.listener.isListening) {
+            [self.listener suspendListening];
+        }
+    }
+    else if (self.currentState != isInactive) {
         if (command == PROCEED) {
             // SPEAK THE NEXT LINE
             self.currentLineIndex++;
@@ -259,6 +299,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
     else if (self.currentState == isInactive) {
         [self.dialogControlDelegate dialogComplete];
+        if (self.listener) {
+            [self.listener stopListening];
+        }
         [self initializeDialog];        // set up to start dialog over if user presses Play again
     }
 

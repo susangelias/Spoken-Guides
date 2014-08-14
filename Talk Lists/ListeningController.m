@@ -41,10 +41,11 @@
     [self.openEarsEventsObserver setDelegate:self];
                       
     [self.pocketsphinxController setCalibrationTime:kPOCKET_SPHINX_CALIBRATION_LEVEL];
+    self.isCalibrated = NO;
                       
     self.languageModel = [[languageOpenEars alloc]init];
     self.lmGenerator = self.languageModel.lmGenerator;      // This object takes a couple of seconds to generate
-    
+   
     [OpenEarsLogging startOpenEarsLogging];
     return self;
 }
@@ -187,6 +188,7 @@
     }
      */
     self.calibrationJustHappened = YES;
+    self.isCalibrated = YES;
 	NSLog(@"Pocketsphinx calibration is complete.");
 }
 
@@ -195,10 +197,6 @@
     [self.delegate startedListening];
     if (self.calibrationJustHappened == YES) {
         self.calibrationJustHappened = NO;
-        // suspend listening immediately after calibration
-        if ([self isListening]) {
-            [self suspendListening];
-        }
     }
 }
 

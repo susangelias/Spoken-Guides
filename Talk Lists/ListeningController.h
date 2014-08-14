@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, commandType) {
 @interface ListeningController : NSObject <OpenEarsEventsObserverDelegate>
 
 @property (nonatomic, weak) id delegate;
+@property BOOL isCalibrated;
 
 - (void) startListening;
 - (void) stopListening;
