@@ -29,6 +29,8 @@
 		C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B733194FF0F800DE2B08 /* ShareControllerTest.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */; };
+		C07ABE341992DC6C005362C7 /* leftRightSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ABE331992DC6C005362C7 /* leftRightSegue.m */; };
+		C08265D719928C620025403F /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C08265D619928C620025403F /* ILTranslucentView.m */; };
 		C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */; };
 		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
 		C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */; };
@@ -37,7 +39,6 @@
 		C0BE98B01913D0B300C2990E /* ArrayDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BE98AF1913D0B300C2990E /* ArrayDataSourceTest.m */; };
 		C0BE98C91913E87F00C2990E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE98C81913E87F00C2990E /* libOCMock.a */; };
 		C0CD61CE1989AAAC004C430F /* GuideUserSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CD61CD1989AAAC004C430F /* GuideUserSignUpViewController.m */; };
-		C0D68CF7197749C700CF5EB3 /* guideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D68CF6197749C700CF5EB3 /* guideCell.xib */; };
 		C0D863A519783E7100CC68EF /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D863A419783E7100CC68EF /* DataEntryViewController.m */; };
 		C0D863AE1978AFC800CC68EF /* emptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D863AD1978AFC800CC68EF /* emptySegue.m */; };
 		C0DA1F191989A2CB00484255 /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DA1F181989A2CB00484255 /* MyAccountViewController.m */; };
@@ -114,6 +115,10 @@
 		C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGuideViewController.h; sourceTree = "<group>"; };
 		C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewController.m; sourceTree = "<group>"; };
 		C06BB676197437E000944D49 /* GuideQueryTableViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideQueryTableViewControllerDelegate.h; sourceTree = "<group>"; };
+		C07ABE321992DC6C005362C7 /* leftRightSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leftRightSegue.h; sourceTree = "<group>"; };
+		C07ABE331992DC6C005362C7 /* leftRightSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leftRightSegue.m; sourceTree = "<group>"; };
+		C08265D519928C620025403F /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILTranslucentView.h; path = "ILTranslucentView-master/Source/ILTranslucentView.h"; sourceTree = "<group>"; };
+		C08265D619928C620025403F /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILTranslucentView.m; path = "ILTranslucentView-master/Source/ILTranslucentView.m"; sourceTree = "<group>"; };
 		C086DCE8197EF02A00E41EEB /* SpokenGuideCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpokenGuideCache.h; sourceTree = "<group>"; };
 		C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpokenGuideCache.m; sourceTree = "<group>"; };
 		C08B144C192A8D2C00E70FCF /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rejecto.framework; sourceTree = "<group>"; };
@@ -132,7 +137,6 @@
 		C0BE98D11913E8E200C2990E /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		C0CD61CC1989AAAC004C430F /* GuideUserSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideUserSignUpViewController.h; sourceTree = "<group>"; };
 		C0CD61CD1989AAAC004C430F /* GuideUserSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideUserSignUpViewController.m; sourceTree = "<group>"; };
-		C0D68CF6197749C700CF5EB3 /* guideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = guideCell.xib; sourceTree = "<group>"; };
 		C0D863A319783E7100CC68EF /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
 		C0D863A419783E7100CC68EF /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		C0D863AC1978AFC800CC68EF /* emptySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emptySegue.h; sourceTree = "<group>"; };
@@ -300,9 +304,12 @@
 			children = (
 				C0DCB1861905D9F400E29DBB /* Main_iPad.storyboard */,
 				C0DCB1831905D9F400E29DBB /* Main_iPhone.storyboard */,
+				C07ABE321992DC6C005362C7 /* leftRightSegue.h */,
+				C07ABE331992DC6C005362C7 /* leftRightSegue.m */,
+				C08265D519928C620025403F /* ILTranslucentView.h */,
+				C08265D619928C620025403F /* ILTranslucentView.m */,
 				C0D863AC1978AFC800CC68EF /* emptySegue.h */,
 				C0D863AD1978AFC800CC68EF /* emptySegue.m */,
-				C0D68CF6197749C700CF5EB3 /* guideCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -575,6 +582,9 @@
 					C0DCB16D1905D9F400E29DBB = {
 						DevelopmentTeam = YUPQ2JVR7Q;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 0;
 							};
@@ -610,7 +620,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0DCB1881905D9F400E29DBB /* Main_iPad.storyboard in Resources */,
-				C0D68CF7197749C700CF5EB3 /* guideCell.xib in Resources */,
 				C0DCB18D1905D9F400E29DBB /* Images.xcassets in Resources */,
 				C0DCB1851905D9F400E29DBB /* Main_iPhone.storyboard in Resources */,
 				C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */,
@@ -681,6 +690,7 @@
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
+				C07ABE341992DC6C005362C7 /* leftRightSegue.m in Sources */,
 				C0D863A519783E7100CC68EF /* DataEntryViewController.m in Sources */,
 				C0EFE28919771E4900553820 /* guideCell.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,
@@ -689,6 +699,7 @@
 				C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
 				C0CD61CE1989AAAC004C430F /* GuideUserSignUpViewController.m in Sources */,
+				C08265D719928C620025403F /* ILTranslucentView.m in Sources */,
 				C0270133192A3E2700F954EA /* ListeningController.m in Sources */,
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
 				C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */,
