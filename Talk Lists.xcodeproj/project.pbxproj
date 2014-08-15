@@ -29,7 +29,6 @@
 		C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B733194FF0F800DE2B08 /* ShareControllerTest.m */; };
 		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */; };
-		C07ABE341992DC6C005362C7 /* leftRightSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ABE331992DC6C005362C7 /* leftRightSegue.m */; };
 		C08265D719928C620025403F /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C08265D619928C620025403F /* ILTranslucentView.m */; };
 		C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */; };
 		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
@@ -115,8 +114,6 @@
 		C067BEB7192FCA0E00996DF8 /* EditGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGuideViewController.h; sourceTree = "<group>"; };
 		C067BEB8192FCA0E00996DF8 /* EditGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewController.m; sourceTree = "<group>"; };
 		C06BB676197437E000944D49 /* GuideQueryTableViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideQueryTableViewControllerDelegate.h; sourceTree = "<group>"; };
-		C07ABE321992DC6C005362C7 /* leftRightSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leftRightSegue.h; sourceTree = "<group>"; };
-		C07ABE331992DC6C005362C7 /* leftRightSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leftRightSegue.m; sourceTree = "<group>"; };
 		C08265D519928C620025403F /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILTranslucentView.h; path = "ILTranslucentView-master/Source/ILTranslucentView.h"; sourceTree = "<group>"; };
 		C08265D619928C620025403F /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILTranslucentView.m; path = "ILTranslucentView-master/Source/ILTranslucentView.m"; sourceTree = "<group>"; };
 		C086DCE8197EF02A00E41EEB /* SpokenGuideCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpokenGuideCache.h; sourceTree = "<group>"; };
@@ -304,8 +301,6 @@
 			children = (
 				C0DCB1861905D9F400E29DBB /* Main_iPad.storyboard */,
 				C0DCB1831905D9F400E29DBB /* Main_iPhone.storyboard */,
-				C07ABE321992DC6C005362C7 /* leftRightSegue.h */,
-				C07ABE331992DC6C005362C7 /* leftRightSegue.m */,
 				C08265D519928C620025403F /* ILTranslucentView.h */,
 				C08265D619928C620025403F /* ILTranslucentView.m */,
 				C0D863AC1978AFC800CC68EF /* emptySegue.h */,
@@ -690,7 +685,6 @@
 				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
-				C07ABE341992DC6C005362C7 /* leftRightSegue.m in Sources */,
 				C0D863A519783E7100CC68EF /* DataEntryViewController.m in Sources */,
 				C0EFE28919771E4900553820 /* guideCell.m in Sources */,
 				C0DCB1821905D9F400E29DBB /* TalkListAppDelegate.m in Sources */,

@@ -38,6 +38,9 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
+@property (strong, nonatomic) AVAudioSessionRouteDescription *originalAudioRoute;
+@property BOOL routeChangeInProcess;
+
 
 @end
 
@@ -95,6 +98,7 @@ NSString * const kHighlightColor = @"AppleGreen";
    // set text color for status display
     self.statusDisplay.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kHighlightColor]];
     
+    self.routeChangeInProcess = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -431,11 +435,7 @@ NSString * const kHighlightColor = @"AppleGreen";
         
         // clear status display as it won't get done in the callback from the dialog controller since we're going into the background
         self.statusDisplay.text = @"";
-        
-        // release the listener object
-     //   TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
-    //    [myApp killListeningController];
-    }
+        }
 }
 
 
@@ -444,13 +444,11 @@ NSString * const kHighlightColor = @"AppleGreen";
 -(void)resignActive: (NSNotification *)notification
 {
     NSLog(@"did receive resign Active %@", notification);
-   // [self terminateActivity];
 }
 
 -(void)didEnterBackground: (NSNotification *) notification
 {
     NSLog(@" did Enter Background %@", notification);
-//    [self terminateActivity];
 }
 
 #pragma mark AVAudioSession Notifications
@@ -463,22 +461,17 @@ NSString * const kHighlightColor = @"AppleGreen";
         NSLog(@"BEGAN INTERRUPTION, dialog state %d", (int)self.currentState);
         
         if (self.currentState == isPlaying) {
-         /*
+           //  [self terminateActivity];
             [self pauseButtonPressed:self.playPauseButton];
-            // release the listener object
-            TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
-            [myApp killListeningController]; */
             
-           [self terminateActivity];
+            // clear status display as it won't get done in the callback from the dialog controller since we're going into the background
+            self.statusDisplay.text = @"";
+
         }
-    //    [self terminateActivity];
     }
     else if (type == AVAudioSessionInterruptionTypeEnded) {
         NSLog(@"END INTERRUPTION, dialog state %d", (int)self.currentState);
-        //   if (self.currentState == isPaused) {
-        //       [self playButtonPressed:self.playButton];
-        //  }
-    }
+     }
 }
 
 -(void)audioServicesReset: (NSNotification *)notification
@@ -487,7 +480,7 @@ NSString * const kHighlightColor = @"AppleGreen";
   //  TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
     [self.dialogController killListeningController];
     
-    [self.dialogController recoverFromAudioResetNotification];
+  //  [self.dialogController recoverFromAudioResetNotification];
 }
 
 -(void)audioRouteChange: (NSNotification *)notification
@@ -503,6 +496,19 @@ NSString * const kHighlightColor = @"AppleGreen";
     else if (changeReason == AVAudioSessionRouteChangeReasonNewDeviceAvailable) {
         // put up alert for user to resume dialog or abort dialog
         
+    }
+    else if (changeReason == AVAudioSessionRouteChangeReasonCategoryChange) {
+        // make sure audio category is set back to playAndRecord
+        if (self.routeChangeInProcess == NO) {
+            self.routeChangeInProcess = YES;
+            self.originalAudioRoute = route;
+        }
+        if ( (self.routeChangeInProcess == YES) && (![route isEqual: self.originalAudioRoute]) ){
+            [self.dialogController recoverFromAudioCategoryChange];
+            
+            self.routeChangeInProcess = NO;
+        }
+
     }
 }
 

@@ -23,11 +23,12 @@
 - (void)pauseDialog;
 - (void)resumeDialog;
 - (void)initializeDialog;
-- (void)recoverFromAudioResetNotification;
+//- (void)recoverFromAudioResetNotification;
 - (void)speakLine;
 - (void)stopAllAudio;
 - (void)suspendAllAudio;
 - (void)killListeningController;
+- (void)recoverFromAudioCategoryChange;
 
 @end
 

@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 // Need to allocate and initialize listener here because it takes several seconds, otherwise user
 // could see delay in reponse after 1st line read
--(ListeningController *)listener
+-(ListeningController *)createListeningController
 {
     if (!_listener) {
         // Check microphone permissions
@@ -114,9 +114,6 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
     if (self.nextLine) {
         NSString *verifiedLine = [languageOpenEars makePronounciationCorrections:self.nextLine];
-        if ([self.listener isListening]) {
-            [self.listener suspendListening];
-        }
         [self.speaker speak:verifiedLine];
     }
     else {
@@ -129,10 +126,18 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 - (void)startDialog
 {
 
-    __weak typeof(self) weakSelf = self;
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [weakSelf listener];
-    });
+    if (!self.listener) {
+        // create the listening controller and leave it in the listening state
+        __weak typeof(self) weakSelf = self;
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [weakSelf createListeningController];
+        });
+    }
+    else {
+        // reactivate the existing listening controller
+        [self.listener startListening];
+    }
+
 
     if (self.currentLineIndex < [self.guide.rankedStepsInGuide count])     {
         [self speakLine];
@@ -196,10 +201,20 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     self.currentState = isActivelySpeaking;
 }
 
+/*
 -(void)recoverFromAudioResetNotification
 {
     self.listener = nil;
     [self setupListener];
+}
+ */
+
+- (void)recoverFromAudioCategoryChange
+{
+    [self killListeningController];
+    
+    [self createListeningController];
+    
 }
 
 #pragma mark AudioInputDelegate Methods
@@ -207,15 +222,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 - (void)userHasSpoken:(commandType)command
 {
 
-    if (self.currentState == isActivelySpeaking) {
-        // don't try to recognize our own speech
-        // disable the listening if it is on (this state can happen just after
-        // Pocketsphinx has finished calibration and goes straight into listening mode
-        if (self.listener.isListening) {
-            [self.listener suspendListening];
-        }
-    }
-    else if (self.currentState != isInactive) {
+    if (self.currentState != isInactive) {
         if (command == PROCEED) {
             // SPEAK THE NEXT LINE
             self.currentLineIndex++;
@@ -265,7 +272,14 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 -(void)startedListening
 {
-    [self.dialogControlDelegate dialogStartedListening];
+    NSLog(@"started listening in currentState %d", self.currentState);
+    if (self.currentState == isActivelyListening) {
+        [self.dialogControlDelegate dialogStartedListening];
+    }
+    else {
+        // suspend listening in all other states
+        [self.listener suspendListening];
+    }
 }
 
 -(void)stoppedListening
