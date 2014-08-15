@@ -27,7 +27,7 @@
 
 @implementation ListeningController
 
-#define kPOCKET_SPHINX_CALIBRATION_LEVEL 3
+#define kPOCKET_SPHINX_CALIBRATION_LEVEL 1
 #define kPHRASE_LENGTH_LIMIT 10
 
 
