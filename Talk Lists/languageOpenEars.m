@@ -27,7 +27,7 @@ NSString * const gGO_BACK_COMMAND_KEY = @"goBackCommands";
 -(NSDictionary *)commands
 {
     if (!_commands) {
-        _commands = [[NSDictionary alloc]initWithObjectsAndKeys: @[@"NEXT"], gPROCEED_COMMAND_KEY,
+        _commands = [[NSDictionary alloc]initWithObjectsAndKeys: @[@"NEXT",@"PROCEED",@"GO"], gPROCEED_COMMAND_KEY,
                                                                  @[@"REPEAT"], gREPEAT_COMMAND_KEY,
                                                                  @[@"GO BACK"], gGO_BACK_COMMAND_KEY, nil];
     }
@@ -43,7 +43,9 @@ NSString * const gGO_BACK_COMMAND_KEY = @"goBackCommands";
         NSArray *commandArrays = [NSArray arrayWithArray:[self.commands allValues]];
         NSMutableArray *spokenWordsToRecognize = [[NSMutableArray alloc] init];
         for (NSArray *commandArray in commandArrays) {
-            [spokenWordsToRecognize addObject:[commandArray lastObject]];
+            [commandArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [spokenWordsToRecognize addObject:obj];
+            }];
         }
         NSString *name = @"guideLanguage";
         
