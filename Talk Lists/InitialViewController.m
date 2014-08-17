@@ -96,9 +96,9 @@
 
 #pragma mark - Navigation
 
-- (IBAction) goToRoot:(UIStoryboardSegue *)segue
+- (IBAction) unwindToInitialViewController:(UIStoryboardSegue *)unwindSegue
 {
-    NSLog(@"called goToRoot: unwind action");
+    NSLog(@"called unwindToInitialViewController: unwind action");
 }
 
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -144,10 +144,7 @@
 {
     if (buttonIndex == 1) {
         // user wants to sign up
-        // Create the sign up view controller
-        MyAccountViewController *logInViewController = [[MyAccountViewController alloc]init];
-        [self presentViewController:logInViewController animated:YES completion:nil];
-       
+        [self performSegueWithIdentifier:@"myAccountViewSegue" sender:self];
     }
 }
 

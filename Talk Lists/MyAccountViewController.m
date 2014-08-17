@@ -13,10 +13,12 @@
 @interface MyAccountViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteAllButton;
+@property (strong,nonatomic) UIColor *fieldBackgroundColor;
 
 @end
 
 @implementation MyAccountViewController
+
 #pragma mark View Lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,6 +36,7 @@
     if (self) {
         // Custom initialization
         self.fields = PFLogInFieldsDefault;
+        self.fieldBackgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
     }
     return self;
 }
@@ -48,50 +51,54 @@
     [self.logInView setBackgroundColor:[UIColor clearColor]];
     [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
 
-    // Remove text shadow
+    // Configure the user name field
+    [self.logInView.usernameField setTextColor:[UIColor blackColor]];
+        // Remove text shadow
     CALayer *layer = self.logInView.usernameField.layer;
     layer.shadowOpacity = 0.0;
+    self.logInView.usernameField.backgroundColor = self.fieldBackgroundColor;
+    
+    // Configure the password field
+    [self.logInView.passwordField setTextColor:[UIColor blackColor]];
+    // Remove text shadow
     layer = self.logInView.passwordField.layer;
     layer.shadowOpacity = 0.0;
-    
-    // Set field background color
-    self.logInView.usernameField.backgroundColor = [UIColor colorWithWhite:0.80 alpha:1.0];
-    self.logInView.passwordField.backgroundColor = [UIColor colorWithWhite:0.80 alpha:1.0];
+    self.logInView.passwordField.backgroundColor = self.fieldBackgroundColor;
    
-    // Set field text color
-    [self.logInView.usernameField setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
-    [self.logInView.passwordField setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
     
-    // Remove the button images
-  //  self.view.tintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"AppleGreen"]];
-    
-    [self.logInView.logInButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.logInView.logInButton setBackgroundImage:nil forState:UIControlStateHighlighted];
- 
-  //  [self.logInView.logInButton setTitle:@"hey you" forState:UIControlStateNormal];
-  
+    // Configure log in button
+    [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"AppleGreen"] forState:UIControlStateNormal];
+    [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"AppleGreen"] forState:UIControlStateHighlighted];
+
+    // Configure sign up button
+    UIColor *buttonTextColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"AppleGreen"]];
+    [self.logInView.signUpButton setTitleShadowColor:[UIColor clearColor] forState:UIControlStateNormal];
+    [self.logInView.signUpButton setTitleColor:buttonTextColor forState: UIControlStateNormal];
+    [self.logInView.signUpButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.logInView.signUpButton setBackgroundImage:nil forState:UIControlStateHighlighted];
+    [self.logInView.signUpLabel setShadowColor:[UIColor clearColor]];
+    [self.logInView.signUpLabel setTextColor:[UIColor blackColor]];
+
     
     // Create the sign up view controller
     GuideUserSignUpViewController *signUpViewController = [[GuideUserSignUpViewController alloc]init];
     [signUpViewController setDelegate:self];
     [signUpViewController setFields:PFSignUpFieldsDefault];
     [self setSignUpController:signUpViewController];
-    
+ 
+    // configure dismiss button
+    [self.logInView.dismissButton setImage:[UIImage imageNamed:@"cross-black"] forState:UIControlStateNormal];
 }
 
 -(void) viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
- //   [self.logInView addSubview:self.deleteAllButton];
-    
     
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
- //   [self.logInView.logInButton setTitle:@"hey you" forState:UIControlStateNormal];
 
     if (self.parentViewController) {
         self.logInView.dismissButton.hidden = YES;
@@ -142,7 +149,7 @@
  //   [super textFieldDidEndEditing:textField];
     
     // Set field background color
-    textField.backgroundColor = [UIColor colorWithWhite:0.80 alpha:1.0];
+    textField.backgroundColor = self.fieldBackgroundColor;
 }
 
 #pragma mark <PFLoginViewControllerDelegate>
@@ -168,62 +175,19 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     PFUser *currentUser = [PFUser currentUser];
     NSLog(@"current User after log in %@", currentUser);
-    // move back to previous view
-    if (self.parentViewController) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+
+    [self performSegueWithIdentifier:@"unwindToInitialVCSegueID" sender:self];
 }
 
 #pragma  mark <PFSignUPViewControllerDelegate>
-
-void (^dismissMyAccountViewController)(void) = ^ {
-    NSLog(@"block");
-};
-
 
 -(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
 {
     self.logInView.usernameField.text = user.username;
     self.logInView.passwordField.text = user.password;
-    
-    // dismiss the signUpController
-    __weak typeof(self) weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-        // unwind self back to root view controller
-        SEL theUnwindSelector = @selector(goToRoot:);
-        NSString *unwindSegueIdentifier = @"unwindToRootSeque";
-        
-        UINavigationController *nc = [weakSelf navigationController];
-        // Find the view controller that has this unwindAction selector (may not be one in the nav stack)
-        UIViewController *viewControllerToCallUnwindSelectorOn = [nc viewControllerForUnwindSegueAction: theUnwindSelector
-                                                                                     fromViewController: weakSelf
-                                                                                             withSender: weakSelf];
-        // None found, then do nothing.
-        if (viewControllerToCallUnwindSelectorOn == nil) {
-            NSLog(@"No controller found to unwind too");
-            return;
-        }
-        
-        // Can the controller that we found perform the unwind segue.  (This is decided by that controllers implementation of canPerformSeque: method
-        BOOL cps = [viewControllerToCallUnwindSelectorOn canPerformUnwindSegueAction: theUnwindSelector
-                                                                  fromViewController: weakSelf
-                                                                          withSender: weakSelf];
-        // If we have permision to perform the seque on the controller where the unwindAction is implmented
-        // then get the segue object and perform it.
-        if (cps) {
-            
-            UIStoryboardSegue *unwindSegue = [nc segueForUnwindingToViewController: viewControllerToCallUnwindSelectorOn fromViewController: weakSelf identifier: unwindSegueIdentifier];
-            
-            [viewControllerToCallUnwindSelectorOn prepareForSegue: unwindSegue sender: weakSelf];
-            
-            [unwindSegue perform];
-        }
-
-    }];
+ 
+    NSString *unwindSegueIdentifier = @"unwindToInitialVCSegueID";
+    [self performSegueWithIdentifier:unwindSegueIdentifier sender:self];
     
  }
 

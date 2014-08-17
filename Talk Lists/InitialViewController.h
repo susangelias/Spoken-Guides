@@ -13,6 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *categoryButton;
 
-- (IBAction) goToRoot:(UIStoryboardSegue *)segue;
+- (IBAction) unwindToInitialViewController:(UIStoryboardSegue *)unwindSegue;
 
 @end
