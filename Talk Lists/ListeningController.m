@@ -194,7 +194,9 @@
 
 - (void) pocketsphinxDidStartListening {
 	NSLog(@"Pocketsphinx is now listening.  %f", [self.start timeIntervalSinceNow]);
-    [self.delegate startedListening];
+    if ([self.delegate respondsToSelector:@selector(startedListening)]) {
+        [self.delegate startedListening];
+    }
     if (self.calibrationJustHappened == YES) {
         self.calibrationJustHappened = NO;
     }
@@ -210,22 +212,30 @@
 
 - (void) pocketsphinxDidStopListening {
 	NSLog(@"Pocketsphinx has stopped listening.");
-    [self.delegate stoppedListening];
+    if ([self.delegate respondsToSelector:@selector(stoppedListening)]) {
+        [self.delegate stoppedListening];
+    }
 }
 
 - (void) pocketsphinxDidSuspendRecognition {
-    [self.delegate stoppedListening];
-	NSLog(@"Pocketsphinx has suspended recognition.");
+    if ([self.delegate respondsToSelector:@selector(stoppedListening)]) {
+        [self.delegate stoppedListening];
+    }	NSLog(@"Pocketsphinx has suspended recognition.");
 }
 
 - (void) pocketsphinxDidResumeRecognition {
-    [self.delegate startedListening];
+    if ([self.delegate respondsToSelector:@selector(startedListening)]) {
+        [self.delegate startedListening];
+    }
 	NSLog(@"Pocketsphinx has resumed recognition.");
 }
 
 
 - (void) pocketSphinxContinuousSetupDidFail { // This can let you know that something went wrong with the recognition loop startup. Turn on OPENEARSLOGGING to learn why.
 	NSLog(@"Setting up the continuous recognition loop has failed for some reason, please turn on OpenEarsLogging to learn more.");
+    // try again
+    self.pocketsphinxController = nil;
+    [self pocketsphinxController];
 }
 - (void) testRecognitionCompleted {
 	NSLog(@"A test file that was submitted for recognition is now complete.");
