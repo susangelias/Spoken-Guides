@@ -111,7 +111,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
         self.nextLine = step.instruction;
     }
     // Let the Guide Detail VC know the current line so that it can highlight it
-    [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
+    if ([self.dialogControlDelegate respondsToSelector:@selector(setCurrentLine:)]) {
+        [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
+    }
     if (self.nextLine) {
         NSString *verifiedLine = [languageOpenEars makePronounciationCorrections:self.nextLine];
         [self.speaker speak:verifiedLine];
@@ -170,7 +172,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 - (void) initializeDialog {
     self.currentLineIndex = 0;
-    [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
+    if ([self.dialogControlDelegate respondsToSelector:@selector(setCurrentLine:)]) {
+        [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
+    }
     self.currentState = isInactive;
 }
 
@@ -266,7 +270,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 - (void) heardTextIgnored:(NSString *)ignoredText // method for printing debugging info on iPad
 {
     if (ignoredText) {
-        [self.dialogControlDelegate dialogHeardText:ignoredText];
+        if ([self.dialogControlDelegate respondsToSelector:@selector(dialogHeardText:)]) {
+            [self.dialogControlDelegate dialogHeardText:ignoredText];
+        }
     }
 }
 
@@ -274,7 +280,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 {
     NSLog(@"started listening in currentState %d", self.currentState);
     if (self.currentState == isActivelyListening) {
-        [self.dialogControlDelegate dialogStartedListening];
+        if ([self.dialogControlDelegate respondsToSelector:@selector(dialogStartedListening)]) {
+            [self.dialogControlDelegate dialogStartedListening];
+        }
     }
     else {
         // suspend listening in all other states
@@ -284,7 +292,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 -(void)stoppedListening
 {
-    [self.dialogControlDelegate dialogStoppedListening];
+    if ([self.dialogControlDelegate respondsToSelector:@selector(dialogStoppedListening)]) {
+        [self.dialogControlDelegate dialogStoppedListening];
+    }
 }
 
 /*
@@ -312,7 +322,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     }
 
     else if (self.currentState == isInactive) {
-        [self.dialogControlDelegate dialogComplete];
+        if ([self.dialogControlDelegate respondsToSelector:@selector(dialogComplete)]) {
+            [self.dialogControlDelegate dialogComplete];
+        }
         if (self.listener) {
             [self.listener stopListening];
         }

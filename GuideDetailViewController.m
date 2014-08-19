@@ -348,12 +348,16 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 -(void) changedGuideUploading
 {
-    [self.editGuideDelegate changedGuideUploading];
+    if ([self.editGuideDelegate respondsToSelector:@selector(changedGuideUploading)] ) {
+        [self.editGuideDelegate changedGuideUploading];
+    }
 }
 
 -(void) changedGuideFinishedUpload
 {
-    [self.editGuideDelegate changedGuideFinishedUpload];
+    if ([self.editGuideDelegate respondsToSelector:@selector(changedGuideFinishedUpload)]) {
+        [self.editGuideDelegate changedGuideFinishedUpload];
+    }
 }
 
 -(void) changedStepUploading

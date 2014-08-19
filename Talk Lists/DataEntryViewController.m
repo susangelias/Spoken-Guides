@@ -168,12 +168,16 @@
     if (addPhotoVC.selectedPhoto) {
         // update the screen display with the 300 x 300 image, not the thumbnail
         self.entryImage = addPhotoVC.selectedPhoto;
-        [self.dataEntryDelegate entryImageChanged:addPhotoVC.selectedPhoto];
+        if ([self.dataEntryDelegate respondsToSelector:@selector(entryImageChanged:)]) {
+            [self.dataEntryDelegate entryImageChanged:addPhotoVC.selectedPhoto];
+        }
     }
     else {
         // photo was removed
         self.entryImage = nil;
-        [self.dataEntryDelegate entryImageChanged:nil];
+        if ([self.dataEntryDelegate respondsToSelector:@selector(entryImageChanged:)]) {
+            [self.dataEntryDelegate entryImageChanged:nil];
+        }
     }
     
 }
@@ -204,7 +208,9 @@
     if (self.textHasChanged) {
         self.textHasChanged = NO;
         NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        [self.dataEntryDelegate entryTextChanged:trimmedText autoAdvance:self.advanceView];
+        if ([self.dataEntryDelegate respondsToSelector:@selector(entryTextChanged:autoAdvance:)]) {
+            [self.dataEntryDelegate entryTextChanged:trimmedText autoAdvance:self.advanceView];
+        }
     }
 }
 

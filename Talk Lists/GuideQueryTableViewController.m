@@ -238,7 +238,9 @@
     [selectedCell setSelected:NO animated:YES ];
     
     // let delegate know about this action
-    [self.parentDelegate rowSelectedAtIndex:indexPath.row];
+    if ([self.parentDelegate respondsToSelector:@selector(rowSelectedAtIndex:)]) {
+        [self.parentDelegate rowSelectedAtIndex:indexPath.row];
+    }
 }
 
 
