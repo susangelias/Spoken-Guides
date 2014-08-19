@@ -10,6 +10,4 @@
 
 @interface GuideUserSignUpViewController : PFSignUpViewController
 
-@property (nonatomic, strong) PFUser *user;
-
 @end
