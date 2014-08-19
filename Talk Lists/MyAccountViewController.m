@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteAllButton;
 @property (strong,nonatomic) UIColor *fieldBackgroundColor;
-
+@property (strong, nonatomic) UIColor *appleGreen;
 @end
 
 @implementation MyAccountViewController
@@ -37,6 +37,7 @@
         // Custom initialization
         self.fields = PFLogInFieldsDefault;
         self.fieldBackgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
+        self.appleGreen = [UIColor colorWithRed:151.0/255 green:223.0/255 blue:92.0/255 alpha:1.0];
     }
     return self;
 }
@@ -71,7 +72,7 @@
     [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"AppleGreen"] forState:UIControlStateHighlighted];
 
     // Configure sign up button
-    UIColor *buttonTextColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"AppleGreen"]];
+    UIColor *buttonTextColor = self.appleGreen;
     [self.logInView.signUpButton setTitleShadowColor:[UIColor clearColor] forState:UIControlStateNormal];
     [self.logInView.signUpButton setTitleColor:buttonTextColor forState: UIControlStateNormal];
     [self.logInView.signUpButton setBackgroundImage:nil forState:UIControlStateNormal];
@@ -214,7 +215,8 @@
                               otherButtonTitles:nil] show];
         }
         
-        return informationComplete;}
+        return informationComplete;
+}
 
 
 #pragma mark - Navigation
