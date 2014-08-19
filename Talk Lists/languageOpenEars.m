@@ -28,8 +28,8 @@ NSString * const gGO_BACK_COMMAND_KEY = @"goBackCommands";
 {
     if (!_commands) {
         _commands = [[NSDictionary alloc]initWithObjectsAndKeys: @[@"NEXT",@"PROCEED",@"GO"], gPROCEED_COMMAND_KEY,
-                                                                 @[@"REPEAT"], gREPEAT_COMMAND_KEY,
-                                                                 @[@"GO BACK"], gGO_BACK_COMMAND_KEY, nil];
+                                                                 @[@"REPEAT", @"AGAIN", @"WHAT"], gREPEAT_COMMAND_KEY,
+                                                                 @[@"GO BACK", @"PREVIOUS"], gGO_BACK_COMMAND_KEY, nil];
     }
     return _commands;
 }
