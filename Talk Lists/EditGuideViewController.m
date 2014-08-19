@@ -254,7 +254,9 @@
         }
         
         // notify delegate of change
-        [self.editGuideDelegate changedStepUploading];
+        if ([self.editGuideDelegate respondsToSelector:@selector(changedStepUploading)]) {
+            [self.editGuideDelegate changedStepUploading];
+        }
     }
    // NSLog(@"starting image upload %@", imageFile);
 
@@ -284,7 +286,9 @@
                         changedGuide.thumbnail = thumbnailFile;
                         [changedGuide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             if (succeeded) {
-                                [_weakSelf.editGuideDelegate changedGuideFinishedUpload];
+                                if ([_weakSelf.editGuideDelegate respondsToSelector:@selector(changedGuideFinishedUpload) ]) {
+                                    [_weakSelf.editGuideDelegate changedGuideFinishedUpload];
+                                }
                             }
                            // NSLog(@"guide updated after image upload %@:  called delegate with change notice here", changedGuide);
                             if (error) {
@@ -297,7 +301,9 @@
                         changedStep.thumbnail = thumbnailFile;
                         [changedStep saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             if (succeeded) {
-                                [_weakSelf.editGuideDelegate changedStepFinishedUpload];
+                                if ([_weakSelf.editGuideDelegate respondsToSelector:@selector(changedStepFinishedUpload)]) {
+                                    [_weakSelf.editGuideDelegate changedStepFinishedUpload];
+                                }
                             }
                           //  NSLog(@"STEP updated after image upload %@", changedStep);
                             if (error) {
@@ -344,7 +350,9 @@
         self.guideToEdit.thumbnail = nil;
         [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded && !error) {
-                [_weakSelf.editGuideDelegate changedGuideFinishedUpload];
+                if ([_weakSelf.editGuideDelegate respondsToSelector:@selector(changedGuideFinishedUpload)]) {
+                    [_weakSelf.editGuideDelegate changedGuideFinishedUpload];
+                }
             }
         }];
     }
@@ -353,7 +361,9 @@
         self.stepInProgess.image = nil;
         self.stepInProgess.thumbnail = nil;
         [self.stepInProgess saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [_weakSelf.editGuideDelegate changedStepFinishedUpload];
+            if ([_weakSelf.editGuideDelegate respondsToSelector:@selector(changedStepFinishedUpload)]) {
+                [_weakSelf.editGuideDelegate changedStepFinishedUpload];
+            }
         }];
     }
     
@@ -570,28 +580,28 @@
 {
     if (step) {
         // check the cache for changes
+        UIImage *changedImage = nil;
         NSDictionary *stepAttributes = [[SpokenGuideCache sharedCache] objectForKey:step.objectId];
         if (stepAttributes) {
             PFStep *cachedStep = [stepAttributes objectForKey:kPFStepClassKey];
             self.containerViewController.entryText = cachedStep.instruction;
-            UIImage *changedImage = [stepAttributes objectForKey:kPFStepChangedImage];
-            if (changedImage ) {
-                self.containerViewController.entryImage = changedImage;
-            }
-            else if (step.image) {
-                self.containerViewController.entryImage = [UIImage imageNamed:@"image.png"];    // load the placeholder while the image is downloading
-                [step.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    self.containerViewController.entryImage = [UIImage imageWithData:data];     // downloaded image put into containerViewController for data enty view controller to retreive
-                    [self.containerViewController.currentDataEntryVC imageLoaded:[UIImage imageWithData:data]];     // let data entry controller know that the image is ready
-                    }];
-                }
-            else {
-                self.containerViewController.entryImage = nil;
-            }
+            changedImage = [stepAttributes objectForKey:kPFStepChangedImage];
         }
         else {
-            // setup for a new step
-            self.containerViewController.entryText = nil;
+            // step has not been added to the cache yet so just use what data is available in the PFStep input
+            self.containerViewController.entryText = step.instruction;
+        }
+        if (changedImage ) {
+            self.containerViewController.entryImage = changedImage;
+        }
+        else if (step.image) {
+            self.containerViewController.entryImage = [UIImage imageNamed:@"image.png"];    // load the placeholder while the image is downloading
+            [step.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                self.containerViewController.entryImage = [UIImage imageWithData:data];     // downloaded image put into containerViewController for data enty view controller to retreive
+                [self.containerViewController.currentDataEntryVC imageLoaded:[UIImage imageWithData:data]];     // let data entry controller know that the image is ready
+                }];
+            }
+        else {
             self.containerViewController.entryImage = nil;
         }
         self.containerViewController.entryNumber = [self.stepInProgess.rank intValue];
