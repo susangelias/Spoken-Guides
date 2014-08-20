@@ -29,7 +29,6 @@
 @property (nonatomic, weak)  DataEntryContainerViewController *containerViewController;
 @property (weak, nonatomic) IBOutlet UIImageView *leftIndicator;
 @property (weak, nonatomic) IBOutlet UIImageView *rightIndicator;
-
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *categoryButton;
 
@@ -41,8 +40,10 @@
 
 @implementation EditGuideViewController
 {
-    int stepNumber;
+//    int stepNumber;
     swipeDirection transistionDirection;
+    BOOL uploading;     // Used as a flag to delay dismissing view controller if a text step is being uploaded
+    BOOL dismissPending;    // Used as a flag to indicate that the Done button was pressed but it delaying action until the text upload finishes.  Image uploads do not cause any UI delay.
 }
 
 
@@ -58,7 +59,7 @@
 {
     [super viewDidLoad];
     
-    stepNumber = 0;
+    self.stepNumber = 0;
     
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
@@ -76,6 +77,8 @@
 
     // set self as gestureRecognizer delegate
     self.tapGesture.delegate = self;
+    
+    uploading = NO;
 }
 
 -(void)viewWillLayoutSubviews
@@ -116,7 +119,7 @@
     __weak typeof(self) weakSelf = self;
     NSLog(@"entryTextChanged");
     // User has entered or changed text data
-    if (stepNumber == 0) {
+    if (self.stepNumber == 0) {
             // changed the guide title
         if (!self.guideToEdit) {
             self.guideToEdit = [self createGuide];
@@ -130,7 +133,9 @@
                 [self.editGuideDelegate changedGuideUploading];
             }
             
+            uploading = YES;
             [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                uploading = NO;
                 if (succeeded) {
                     NSLog(@"guide uploaded due to title change");
                     if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedGuideFinishedUpload)]) {
@@ -139,6 +144,10 @@
                 }
                 if (error) {
                     NSLog(@"error uploading guide to Parse");
+                }
+                if (dismissPending) {
+                    dismissPending = NO;
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                 }
             }];
         }
@@ -169,13 +178,17 @@
             }
             
             // Start the upload
+            uploading = YES;
             __block PFStep *stepToBeUploaded = self.stepInProgess;
             [stepToBeUploaded saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                uploading = NO;
                 if (succeeded && !error) {
                     NSLog(@"step uploaded %@", stepToBeUploaded );
                     PFRelation *relation = [weakSelf.guideToEdit relationForKey:@"pfSteps"];
                     [relation addObject:stepToBeUploaded];
+                    uploading = YES;
                     [weakSelf.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        uploading = NO;
                         if (succeeded && !error) {
                             if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedStepFinishedUpload)]) {
                                 [weakSelf.editGuideDelegate changedStepFinishedUpload];
@@ -185,6 +198,10 @@
                  }
                 else  {
                     NSLog(@"error uploading step to Parse");
+                }
+                if (dismissPending) {
+                    dismissPending = NO;
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                 }
             }];
         }
@@ -224,7 +241,7 @@
     __weak typeof(self) _weakSelf = self;
     __block PFGuide *changedGuide;
     __block PFStep *changedStep;
-    if (stepNumber == 0) {
+    if (self.stepNumber == 0) {
         changedGuide = self.guideToEdit;
         changedStep = nil;
         // save updated images to cache
@@ -330,7 +347,7 @@
     NSString *imageFileNameToDelete;
     NSString *thumbnailFileNameToDelete;
     
-    if (stepNumber == 0) {
+    if (self.stepNumber == 0) {
         imageFileNameToDelete = self.guideToEdit.image.name;
         thumbnailFileNameToDelete = self.guideToEdit.thumbnail.name;
     }
@@ -344,7 +361,7 @@
     
     // update parse object
     __weak typeof(self) _weakSelf = self;
-    if (stepNumber == 0) {
+    if (self.stepNumber == 0) {
         // guide photo removed
         self.guideToEdit.image = nil;
         self.guideToEdit.thumbnail = nil;
@@ -467,7 +484,12 @@
         [self.containerViewController.currentDataEntryVC viewAboutToChange];
     });
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!uploading) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        dismissPending = YES;
+    }
 }
 
 
@@ -499,10 +521,10 @@
     });
     
     // get the model data
-    stepNumber -= 1;
-    if (stepNumber >= 1) {
+    self.stepNumber -= 1;
+    if (self.stepNumber >= 1) {
         // retreive the step from the model
-        self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
+        self.stepInProgess = [self.guideToEdit stepForRank:self.stepNumber];
         if (self.stepInProgess) {
             [self setContainerWithStep:self.stepInProgess];
         }
@@ -510,7 +532,7 @@
             NSLog(@"ERROR finding step in guide");
         }
     }
-    else if (stepNumber == 0)
+    else if (self.stepNumber == 0)
     {
         // retreive the guide
         if (self.guideToEdit) {
@@ -560,9 +582,9 @@
     });
 
     // get the model data
-    stepNumber += 1;
+    self.stepNumber += 1;
     // check if new step ?
-    self.stepInProgess = [self.guideToEdit stepForRank:stepNumber];
+    self.stepInProgess = [self.guideToEdit stepForRank:self.stepNumber];
     if (!self.stepInProgess) {
         // disable left swipe until new step is entered
         [self setLeftSwipe:NO];
@@ -610,7 +632,7 @@
         // Set up view for new step
         self.containerViewController.entryText = nil;
         self.containerViewController.entryImage = nil;
-        self.containerViewController.entryNumber = stepNumber;
+        self.containerViewController.entryNumber = self.stepNumber;
     }
 }
 
@@ -644,7 +666,7 @@
 {
   if ([segue.identifier isEqualToString:@"embedContainer"]) {
       self.containerViewController = (DataEntryContainerViewController *)segue.destinationViewController;
-      if (stepNumber == 0) {
+      if (self.stepNumber == 0) {
           self.containerViewController.entryText = self.guideToEdit.title;
           self.containerViewController.entryImage = self.downloadedGuideImage;
       }
@@ -681,7 +703,7 @@
 {
     PFStep *newStep = [PFStep object];
 
-    newStep.rank = [NSNumber numberWithInt:stepNumber];
+    newStep.rank = [NSNumber numberWithInt:self.stepNumber];
     [self.guideToEdit.rankedStepsInGuide addObject:newStep];
         
     // upload new step to Parse

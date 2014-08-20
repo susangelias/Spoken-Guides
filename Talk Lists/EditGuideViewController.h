@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, swipeDirection) {
 @property (strong, nonatomic) PFGuide *guideToEdit;
 @property (strong, nonatomic) UIImage *downloadedGuideImage;
 @property (weak, nonatomic) id <EditGuideViewControllerDelegate> editGuideDelegate;
+@property int stepNumber;
 
 - (IBAction)doneButtonPressed:(UIButton *)sender;
 
