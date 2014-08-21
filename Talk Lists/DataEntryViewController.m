@@ -61,12 +61,17 @@
     }
     
     self.textEntryView.delegate = self;
-//    self.imageDisplayView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
     self.imageDisplayView.backgroundColor = [UIColor clearColor];
     
     // darken the placeholder text since background is grey instead of white
     self.textEntryView.placeholderTextColor = [UIColor colorWithWhite:1.0 alpha:.90];
 
+    // indent the text so that it doesn't run into the left & right swipe indicators
+    self.textEntryView.textContainerInset = UIEdgeInsetsMake(self.textEntryView.textContainerInset.top,
+                                                             self.textEntryView.textContainerInset.left + 10,
+                                                             self.textEntryView.textContainerInset.bottom,
+                                                             self.textEntryView.textContainerInset.right - 10);
+    
     // sign up to catch any changes the user makes to the font settings
     [[NSNotificationCenter defaultCenter]
         addObserver:self
