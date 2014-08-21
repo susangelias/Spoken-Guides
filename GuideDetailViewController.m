@@ -35,6 +35,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 @property (weak, nonatomic) IBOutlet UILabel *statusDisplay;
 @property (nonatomic, strong) NSArray *stateStrings;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabelAlternate;
+@property int selectedRowNumber;
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
@@ -137,10 +138,12 @@ NSString * const kHighlightColor = @"AppleGreen";
     }
     
     self.currentState = isReset;
-    self.currentLine = 0;
+    self.currentLine = [NSNumber numberWithInt:0];
     if (self.guide) {
         self.dialogController.guide = self.guide;
     }
+    
+    self.selectedRowNumber = -1;
     
     // Make sure prompt label is displayed
     [self.view bringSubviewToFront:self.statusDisplay];
@@ -222,6 +225,8 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 -(void)rowSelectedAtIndex:(int)index
 {
+    self.selectedRowNumber = index;
+    
     BOOL wasPlaying = NO;
     if (self.currentState == isPlaying) {
         [self pauseButtonPressed:nil];
@@ -258,36 +263,6 @@ NSString * const kHighlightColor = @"AppleGreen";
     self.statusDisplay.text = @"";
 }
 
-/*
-- (void)swapPlayPauseButtons
-{
-    
-    UIImage *playPauseImage = [self.playPauseButton imageForState:UIControlStateNormal];
-    if (playPauseImage == [UIImage imageNamed:@"play"]) {
-        // replace Play button with Pause button
-        [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal ];
-        // change action
-        [self.playPauseButton removeTarget:self
-                               action:@selector(playButtonPressed:)
-                     forControlEvents:UIControlEventTouchUpInside];
-        [self.playPauseButton addTarget:self
-                            action:@selector(pauseButtonPressed:)
-                  forControlEvents:UIControlEventTouchUpInside];
-    }
-    else {
-        // replace Pause button with Play button
-        [self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal ];
-        // change action
-        [self.playPauseButton removeTarget:self
-                               action:@selector(pauseButtonPressed:)
-                     forControlEvents:UIControlEventTouchUpInside];
-        [self.playPauseButton addTarget:self
-                            action:@selector(playButtonPressed:)
-                  forControlEvents:UIControlEventTouchUpInside];
-    }
-     
-}
- */
 
 -(void) setPlayButton
 {
@@ -321,7 +296,6 @@ NSString * const kHighlightColor = @"AppleGreen";
    
     // get app's customTint color
     UIColor *customColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kHighlightColor]];
- //   UIColor *customColor = [UIColor blueColor];
     [self setTextColor:customColor atIndexPath:selectedIndexPath];
  }
 
@@ -388,6 +362,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     {
         if (self.dialogController) {
             if (self.currentState == isReset) {
+                self.currentLine = 0;
                 [self.dialogController startDialog];
             }
             else if (self.currentState == isPaused) {
@@ -536,6 +511,7 @@ NSString * const kHighlightColor = @"AppleGreen";
         EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
         destController.guideToEdit = self.guide;
         destController.downloadedGuideImage = self.guidePicture.image;
+        destController.stepNumber = self.selectedRowNumber+1;
         destController.editGuideDelegate = self;
     }
     else if ([segue.identifier isEqualToString:@"guideDetailTableViewSegue"]) {
@@ -562,6 +538,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     }
 
     _currentLine = currentLine;
+    
     if ([currentLine integerValue] >= 0) {
         [self highlightCurrentLine:(int)[currentLine integerValue]];
     }

@@ -59,7 +59,7 @@
 {
     [super viewDidLoad];
     
-    self.stepNumber = 0;
+//    self.stepNumber = 0;
     
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
@@ -67,8 +67,10 @@
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(doneButtonPressed:)];
     
-    self.leftIndicator.hidden = YES;
-    self.rightIndicator.hidden = YES;
+    if (self.stepNumber < 1) {
+        self.leftIndicator.hidden = YES;
+        self.rightIndicator.hidden = YES;
+    }
 
     self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
     
@@ -81,24 +83,21 @@
     uploading = NO;
 }
 
--(void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    [self.leftIndicator setFrame:CGRectMake(311.0f, 149.0f, 9.0f, 21.0f)];
-    [self.rightIndicator setFrame:CGRectMake(0.0f, 149.0f, 9.0f, 21.0f)];
-    
-}
+
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+
+    [self setLeftSwipe:NO];
+    [self setRightSwipe:NO];
     
     if (self.guideToEdit.title) {
+        // if a guide title exists, enable the left swipe gesture to get to step 1
         [self setLeftSwipe:YES];
     }
-    else {
-        [self setLeftSwipe:NO];
-        [self setRightSwipe:NO];
+    if (self.stepNumber > 0) {
+        // if a step exists and is our entry point, enable the right swipe as well
+        [self setRightSwipe:YES];
     }
 
  }
@@ -669,6 +668,10 @@
       if (self.stepNumber == 0) {
           self.containerViewController.entryText = self.guideToEdit.title;
           self.containerViewController.entryImage = self.downloadedGuideImage;
+      }
+      else {
+        self.stepInProgess = [self.guideToEdit stepForRank:self.stepNumber];
+        [self setContainerWithStep:self.stepInProgess];
       }
       self.containerViewController.dataEntryDelegate = self;
   }
