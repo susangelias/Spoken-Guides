@@ -139,7 +139,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RfM-NZ-xrD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bqa-2e-56p">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCL-Gb-jUN">
@@ -150,10 +150,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJl-K1-5O5">
-                                <rect key="frame" x="0.0" y="524" width="441" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJl-K1-5O5">
+                                <rect key="frame" x="-5" y="502" width="330" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DhO-nM-Jgm"/>
+                                    <constraint firstAttribute="width" constant="330" id="H6m-Tn-xft"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem image="folder - black" id="wNS-8y-X1B">
                                         <connections>
@@ -171,7 +175,7 @@
                                 </connections>
                             </containerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right - black" translatesAutoresizingMaskIntoConstraints="NO" id="du9-Bz-hKc">
-                                <rect key="frame" x="301" y="122" width="9" height="31"/>
+                                <rect key="frame" x="301" y="100" width="9" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="9" id="XLf-MM-N4w"/>
@@ -179,7 +183,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left- black" translatesAutoresizingMaskIntoConstraints="NO" id="WbI-6R-fne">
-                                <rect key="frame" x="10" y="122" width="9" height="31"/>
+                                <rect key="frame" x="10" y="100" width="9" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="1on-qW-tN1"/>
@@ -190,10 +194,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="aJl-K1-5O5" secondAttribute="centerX" id="4Cv-NK-DY7"/>
                             <constraint firstAttribute="centerX" secondItem="WbI-6R-fne" secondAttribute="centerX" constant="145.5" id="A67-rF-rKG"/>
                             <constraint firstAttribute="centerY" secondItem="du9-Bz-hKc" secondAttribute="centerY" constant="146.5" id="gbc-6g-NDx"/>
                             <constraint firstAttribute="centerY" secondItem="WbI-6R-fne" secondAttribute="centerY" constant="146.5" id="rz2-TU-Yhd"/>
                             <constraint firstAttribute="centerX" secondItem="du9-Bz-hKc" secondAttribute="centerX" constant="-145.5" id="tdf-r9-NbX"/>
+                            <constraint firstAttribute="centerY" secondItem="aJl-K1-5O5" secondAttribute="centerY" constant="-262" id="z9h-Iz-mZP"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="oOm-jW-gIv" appends="YES" id="oO0-eq-nZW"/>
@@ -387,7 +393,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxm-lC-bVb" userLabel="Play Button">
                                 <rect key="frame" x="241" y="81" width="59" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="play - black">
+                                <state key="normal" image="play-green">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -397,7 +403,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-kw-axj" userLabel="Reset Button">
                                 <rect key="frame" x="20" y="81" width="82" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="previous - black">
+                                <state key="normal" image="previous-red">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -420,6 +426,12 @@
                                             <segue destination="FCD-M2-r0Z" kind="custom" customClass="BlurryModalSegue" id="hgc-Lx-G2k"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="DB6-4d-l4o"/>
+                                    <barButtonItem systemItem="action" id="YHr-AL-EMP">
+                                        <connections>
+                                            <action selector="actionButtonPressed:" destination="0pl-vw-p5k" id="aF6-cT-C1q"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c0-Cj-pPl">
@@ -431,9 +443,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2g-W6-UDU">
-                                <rect key="frame" x="0.0" y="158" width="320" height="369"/>
+                                <rect key="frame" x="0.0" y="155" width="320" height="369"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="xWl-SU-8zc" kind="embed" identifier="guideDetailTableViewSegue" id="HOX-1l-bOs"/>
                                 </connections>
@@ -451,6 +463,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="YHr-AL-EMP" id="EkM-nA-aZL"/>
                         <outlet property="bottomToolbar" destination="thW-Da-yd9" id="zsY-Te-9Xb"/>
                         <outlet property="editButton" destination="FqK-Sx-tDe" id="B0b-va-TqF"/>
                         <outlet property="guidePicture" destination="T7S-TP-PlC" id="7je-h6-fbj"/>
@@ -687,7 +700,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEH-hr-MPy">
                                 <rect key="frame" x="246" y="127" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="camera - black">
+                                <state key="normal" image="camera on white">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -741,7 +754,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmV-CH-n9k">
                                 <rect key="frame" x="246" y="127" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="camera - black">
+                                <state key="normal" image="camera on white">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -778,6 +791,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Jz0-LQ-fVo">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="De9-AK-rFL" kind="relationship" relationship="rootViewController" id="NDi-8J-bJK"/>
                     </connections>
@@ -789,13 +806,13 @@
     </scenes>
     <resources>
         <image name="Settings" width="25" height="25"/>
-        <image name="camera - black" width="64" height="64"/>
+        <image name="camera on white" width="32" height="32"/>
         <image name="folder - black" width="16" height="16"/>
-        <image name="left- black" width="29" height="58"/>
+        <image name="left- black" width="14" height="29"/>
         <image name="male" width="32" height="32"/>
-        <image name="play - black" width="64" height="64"/>
-        <image name="previous - black" width="64" height="64"/>
-        <image name="right - black" width="29" height="58"/>
+        <image name="play-green" width="64" height="64"/>
+        <image name="previous-red" width="64" height="64"/>
+        <image name="right - black" width="14" height="29"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -803,7 +820,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eDg-Ov-xZO"/>
-        <segue reference="nKB-da-8Cm"/>
+        <segue reference="c6x-GM-VEb"/>
+        <segue reference="9se-h2-Jzo"/>
     </inferredMetricsTieBreakers>
 </document>

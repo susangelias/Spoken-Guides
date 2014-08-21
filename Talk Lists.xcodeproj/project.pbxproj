@@ -868,6 +868,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Talk Lists";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -900,6 +901,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Talk Lists";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
