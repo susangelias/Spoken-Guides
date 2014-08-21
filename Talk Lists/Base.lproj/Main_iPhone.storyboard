@@ -142,6 +142,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCL-Gb-jUN">
+                                <rect key="frame" x="72" y="535" width="148" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJl-K1-5O5">
                                 <rect key="frame" x="0.0" y="524" width="441" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -154,32 +162,39 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCL-Gb-jUN">
-                                <rect key="frame" x="72" y="535" width="148" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UwQ-cn-S9a">
-                                <rect key="frame" x="10" y="75" width="300" height="436"/>
+                                <rect key="frame" x="10" y="75" width="300" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="XKt-FQ-Meh" kind="embed" identifier="embedContainer" id="RsU-NO-s8h"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="right - black" translatesAutoresizingMaskIntoConstraints="NO" id="du9-Bz-hKc">
-                                <rect key="frame" x="311" y="149" width="9" height="44"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right - black" translatesAutoresizingMaskIntoConstraints="NO" id="du9-Bz-hKc">
+                                <rect key="frame" x="301" y="122" width="9" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="9" id="XLf-MM-N4w"/>
+                                    <constraint firstAttribute="height" constant="31" id="ze5-Ll-2L3"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="left- black" translatesAutoresizingMaskIntoConstraints="NO" id="WbI-6R-fne">
-                                <rect key="frame" x="0.0" y="149" width="9" height="44"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left- black" translatesAutoresizingMaskIntoConstraints="NO" id="WbI-6R-fne">
+                                <rect key="frame" x="10" y="122" width="9" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="1on-qW-tN1"/>
+                                    <constraint firstAttribute="width" constant="9" id="84e-oB-BGK"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="WbI-6R-fne" secondAttribute="centerX" constant="145.5" id="A67-rF-rKG"/>
+                            <constraint firstAttribute="centerY" secondItem="du9-Bz-hKc" secondAttribute="centerY" constant="146.5" id="gbc-6g-NDx"/>
+                            <constraint firstAttribute="centerY" secondItem="WbI-6R-fne" secondAttribute="centerY" constant="146.5" id="rz2-TU-Yhd"/>
+                            <constraint firstAttribute="centerX" secondItem="du9-Bz-hKc" secondAttribute="centerX" constant="-145.5" id="tdf-r9-NbX"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="oOm-jW-gIv" appends="YES" id="oO0-eq-nZW"/>
                             <outletCollection property="gestureRecognizers" destination="uKr-6v-6Tr" appends="YES" id="IOQ-vl-bcr"/>
@@ -412,7 +427,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2g-W6-UDU">
@@ -631,7 +646,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EbB-Pt-dsP"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Fly-Pa-MUK">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="436"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="405"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -643,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="us3-Qp-ewT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3628" y="1921"/>
+            <point key="canvasLocation" x="3568" y="1913"/>
         </scene>
         <!--Data Entry View Controller-->
         <scene sceneID="g1a-jv-nis">
@@ -657,7 +672,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="419"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Swap" translatesAutoresizingMaskIntoConstraints="NO" id="lIK-Kb-nww" customClass="SZTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="Swap" translatesAutoresizingMaskIntoConstraints="NO" id="lIK-Kb-nww" customClass="SZTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -681,6 +696,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="lIK-Kb-nww" secondAttribute="centerY" constant="150" id="C6j-dh-iAn"/>
+                            <constraint firstAttribute="centerX" secondItem="lIK-Kb-nww" secondAttribute="centerX" id="DKa-mC-Yjm"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -707,7 +726,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="419"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Swap" translatesAutoresizingMaskIntoConstraints="NO" id="kQb-nf-Ndv" customClass="SZTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="Swap" translatesAutoresizingMaskIntoConstraints="NO" id="kQb-nf-Ndv" customClass="SZTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -731,6 +750,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="kQb-nf-Ndv" secondAttribute="centerY" constant="150" id="ks8-Rx-axU"/>
+                            <constraint firstAttribute="centerX" secondItem="kQb-nf-Ndv" secondAttribute="centerX" id="s0Q-aH-i2w"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
