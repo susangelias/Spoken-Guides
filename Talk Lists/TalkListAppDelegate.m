@@ -28,7 +28,6 @@ NSString *const kAppBackgroundImageName = @"escheresque";
     
     // set up navigation bar color for entire app
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]]];
- //   [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:250.0/255 green:235.0/255 blue:215.0/255 alpha:1.0]}];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.0 alpha:1.0]}];
     
     // set the app's custom tintColor
@@ -54,12 +53,10 @@ NSString *const kAppBackgroundImageName = @"escheresque";
         }];
     }
     
-    // set default permissions on Parse objects to read- everybody, write-creator
+    // set default permissions on Parse objects to read- creator, write-creator
     PFACL *defaultACL = [PFACL ACL];
-    [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
- //   self.window.backgroundColor = [UIColor whiteColor];
     return YES;
 }
 							

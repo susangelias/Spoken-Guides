@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 NSString * const kHighlightColor = @"AppleGreen";
 
-@interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate>
+@interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate, UIAlertViewDelegate>
 
 // View properties
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
@@ -33,6 +33,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusDisplay;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *actionButton;
 @property (nonatomic, strong) NSArray *stateStrings;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabelAlternate;
 @property int selectedRowNumber;
@@ -183,15 +184,17 @@ NSString * const kHighlightColor = @"AppleGreen";
     
     [super viewDidAppear:animated];
     
-    // check to see if current user is the owner of this guide, if so enable Edit button
+    // check to see if current user is the owner of this guide, if so enable Edit and the Action buttons
     PFACL *guideACL = self.guide.ACL;
     if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
+        // user is the owner of this guide
         self.editButton.enabled = YES;
-        //   self.editButtonItem.enabled = YES;
+        self.actionButton.enabled = YES;
     }
     else {
-        //  self.editButtonItem.enabled = NO;
+        // user is NOT owner of this guide
         self.editButton.enabled = NO;
+        self.actionButton.enabled = NO;
     }
 }
 
@@ -266,7 +269,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 -(void) setPlayButton
 {
-    [self.playPauseButton setImage:[UIImage imageNamed:@"play - black"] forState:UIControlStateNormal ];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"play-green"] forState:UIControlStateNormal ];
     // change action
     [self.playPauseButton removeTarget:self
                                 action:@selector(pauseButtonPressed:)
@@ -278,7 +281,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 
  -(void) setPauseButton
 {
-    [self.playPauseButton setImage:[UIImage imageNamed:@"pause - black"] forState:UIControlStateNormal ];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"pause-orange"] forState:UIControlStateNormal ];
     // change action
     [self.playPauseButton removeTarget:self
                                 action:@selector(playButtonPressed:)
@@ -351,11 +354,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 - (IBAction)playButtonPressed:(UIButton *)sender {
     // toggle button to 'Pause'
-  //  [self swapPlayPauseButtons];
     [self setPauseButton];
-    
-    // Disable the Edit button
- //   self.navigationItem.rightBarButtonItem.enabled = NO;
     
     // Start the dialog
     if (self.guide)
@@ -405,6 +404,24 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 }
 
+- (IBAction)actionButtonPressed:(UIBarButtonItem *)sende
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Publish Guide"
+                                                        message:@"Share Guide With Everyone ?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No" otherButtonTitles:@"Share !",nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"clicked button index %d",buttonIndex);
+    if (buttonIndex == 1) {
+        // change the read permissions for this guide to PUBLIC
+        [self.guide.ACL setPublicReadAccess:YES];
+        [self.guide saveInBackground];
+    }
+}
 
 -(void) terminateActivity
 {
