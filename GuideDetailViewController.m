@@ -101,6 +101,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     self.statusDisplay.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kHighlightColor]];
     
     self.routeChangeInProcess = NO;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -198,6 +199,13 @@ NSString * const kHighlightColor = @"AppleGreen";
     }
 }
 
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.titleLabelAlternate.preferredMaxLayoutWidth = CGRectGetWidth(self.titleLabelAlternate.bounds);
+    [super viewWillLayoutSubviews];
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -266,6 +274,20 @@ NSString * const kHighlightColor = @"AppleGreen";
     self.statusDisplay.text = @"";
 }
 
+- (void)dialogDecodingSpeech
+{
+    self.statusDisplay.text = self.stateStrings[3];
+}
+
+- (void)dialogComprehendedSpeech
+{
+    
+}
+
+- (void)dialogFailedToComprehendSpeech
+{
+    self.statusDisplay.text = @"Say again ?";
+}
 
 -(void) setPlayButton
 {
@@ -543,7 +565,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 - (NSArray *)stateStrings
 {
     if (!_stateStrings) {
-        _stateStrings =  @[@"Say \"Next\" or \"Repeat\"", @"Waiting to resume", @"Reset"];
+        _stateStrings =  @[@"Say \"Next\" or \"Repeat\"", @"Waiting to resume", @"Reset", @"Figuring out what you said"];
     }
     return _stateStrings;
 }

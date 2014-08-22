@@ -41,6 +41,7 @@
     [self.openEarsEventsObserver setDelegate:self];
                       
     [self.pocketsphinxController setCalibrationTime:kPOCKET_SPHINX_CALIBRATION_LEVEL];
+    self.pocketsphinxController.returnNullHypotheses = YES;
     self.isCalibrated = NO;
                       
     self.languageModel = [[languageOpenEars alloc]init];
@@ -169,6 +170,12 @@
                 [self.delegate userHasSpoken:[self proceed:hypothesis]];
             }
         }
+        else {
+            // didn't understand what the user said
+            if ([self.delegate respondsToSelector:@selector(userHasSpoken:)]) {
+                [self.delegate userHasSpoken:-1];
+            }
+        }
     }
 }
 
@@ -204,6 +211,9 @@
 
 - (void) pocketsphinxDidDetectSpeech {
 	NSLog(@"Pocketsphinx has detected speech.");
+    if ([self.delegate respondsToSelector:@selector(detectedSpeech)]) {
+        [self.delegate detectedSpeech];
+    }
 }
 
 - (void) pocketsphinxDidDetectFinishedSpeech {

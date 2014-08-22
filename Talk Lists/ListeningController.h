@@ -42,5 +42,6 @@ typedef NS_ENUM(NSInteger, commandType) {
 @optional
 - (void)userHasSpoken:(BOOL) proceed withText: (NSString *)heardText;
 - (void)heardTextIgnored: (NSString *)heardText;
+- (void)detectedSpeech;
 
 @end

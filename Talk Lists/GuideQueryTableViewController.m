@@ -33,6 +33,8 @@
         // The number of objects to show per page
         self.objectsPerPage = 10;
         
+    
+        
     }
     return self;
 }
@@ -40,8 +42,44 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self stylePFLoadingViewTheHardWay];
 }
+
+- (void)stylePFLoadingViewTheHardWay
+{
+   // self.appleGreen = [UIColor colorWithRed:151.0/255 green:223.0/255 blue:92.0/255 alpha:1.0];
+
+    UIColor *labelTextColor = [UIColor grayColor];
+    UIColor *labelShadowColor = nil;
+    UIActivityIndicatorViewStyle activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    
+    // go through all of the subviews until you find a PFLoadingView subclass
+    for (UIView *subview in self.view.subviews)
+    {
+        if ([subview class] == NSClassFromString(@"PFLoadingView"))
+        {
+            // find the loading label and loading activity indicator inside the PFLoadingView subviews
+            for (UIView *loadingViewSubview in subview.subviews) {
+                if ([loadingViewSubview isKindOfClass:[UILabel class]])
+                {
+                    UILabel *label = (UILabel *)loadingViewSubview;
+                    {
+                        label.textColor = labelTextColor;
+                        label.shadowColor = labelShadowColor;
+                    }
+                }
+                
+                if ([loadingViewSubview isKindOfClass:[UIActivityIndicatorView class]])
+                {
+                    UIActivityIndicatorView *activityIndicatorView = (UIActivityIndicatorView *)loadingViewSubview;
+                    activityIndicatorView.activityIndicatorViewStyle = activityIndicatorViewStyle;
+                }
+            }
+        }
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

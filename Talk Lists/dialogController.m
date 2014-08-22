@@ -225,7 +225,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 - (void)userHasSpoken:(commandType)command
 {
-
+    // dismiss the processing label by assuming we understood the speech
+    [self.dialogControlDelegate dialogComprehendedSpeech];
+    
     if (self.currentState != isInactive) {
         if (command == PROCEED) {
             // SPEAK THE NEXT LINE
@@ -251,21 +253,13 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
             }
             [self speakLine];
         }
+        else {
+            // failed to recognize speech - let the user know
+            [self.dialogControlDelegate dialogFailedToComprehendSpeech];
+        }
     }
 }
 
-/*
-- (void)userHasSpoken:(BOOL)proceed withText:(NSString *)heardText
-{
-    if (self.currentState != isInactive) {
-        [self continueDialog];
-    }
-    // log debugging info
-    if (heardText) {
-        [self.delegate dialogHeardText:heardText];
-    }
-}
- */
 
 - (void) heardTextIgnored:(NSString *)ignoredText // method for printing debugging info on iPad
 {
@@ -297,17 +291,12 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
     }
 }
 
-/*
--(void)calibrationComplete
+- (void) detectedSpeech
 {
-    if ( (!self.currentState == isActivelyListening ) && ([self.listener isListening]) ) {
-        [self.listener suspendListening];
-    }
-    else {
-        NSAssert(YES, @"self.currentState = %d, self.listener isListening = %d", self.currentState, [self.listener isListening]);
-    }
+    [self.dialogControlDelegate dialogDecodingSpeech];
 }
-*/
+
+
 
 #pragma mark textSpeechControllerDelegate Methods
 

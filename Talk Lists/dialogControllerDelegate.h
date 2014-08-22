@@ -15,6 +15,9 @@
 - (void)setCurrentLine:(NSNumber *) lineNumber;
 - (void)dialogStartedListening;
 - (void)dialogStoppedListening;
+- (void)dialogDecodingSpeech;
+- (void)dialogComprehendedSpeech;
+- (void)dialogFailedToComprehendSpeech;
 
 @optional
 - (void)dialogHeardText:(NSString *) heardText;
