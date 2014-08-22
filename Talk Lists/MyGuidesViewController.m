@@ -20,8 +20,7 @@
 @interface MyGuidesViewController () < EditGuideViewControllerDelegate, UIActionSheetDelegate >
 
 @property (nonatomic) NSUInteger queryOrder;
-@property (weak, nonatomic) IBOutlet UILabel *currentCategoryLabel;
-
+@property (weak, nonatomic) IBOutlet UIButton *currentCategoryButton;
 
 @end
 
@@ -73,7 +72,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.currentCategoryLabel.text = self.categoryFilter;
+    [self.currentCategoryButton setTitle:self.categoryFilter forState:UIControlStateNormal];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -174,7 +173,7 @@
 {
     if ( buttonIndex != actionSheet.numberOfButtons-1 ) {
         self.categoryFilter  = [actionSheet buttonTitleAtIndex:buttonIndex];
-        self.currentCategoryLabel.text = self.categoryFilter;
+        [self.currentCategoryButton setTitle:self.categoryFilter forState:UIControlStateNormal];
         [self loadObjects];
     }
 }
@@ -316,6 +315,13 @@
     sender.title = @"Edit";
     sender.action = @selector(EditButtonPressed:);
     
+}
+
+- (IBAction)categoryButtonPressed:(UIButton *)sender {
+    if ([self.parentViewController isKindOfClass:[InitialViewController class]]) {
+        InitialViewController *parentVC = (InitialViewController *)self.parentViewController;
+        [parentVC performSelector:@selector(categoryButtonPressed:) withObject:parentVC.categoryButton];
+    }
 }
 
 #pragma mark - Table view data source
