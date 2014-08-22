@@ -631,23 +631,23 @@ t1408676242
 s259
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/Talk Lists.xcent
-t1408676246
+t1408719092
 s420
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/assetcatalog_dependencies.txt
-t1408676245
+t1408716185
 s858
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/assetcatalog_generated_info.plist
-t1408676245
+t1408716185
 s1063
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app
-t1408677061
+t1408720722
 s680
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app.dSYM
-t1408676953
+t1408720597
 s102
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AcousticModelEnglish.bundle
@@ -663,15 +663,15 @@ t1408676244
 s170
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Base.lproj/Main_iPhone.storyboardc
-t1408677060
+t1408720721
 s918
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Info.plist
-t1408676245
+t1408716185
 s1740
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/PkgInfo
-t1408676245
+t1408716185
 s8
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/ReadMe.md
@@ -683,8 +683,8 @@ t1408676242
 s150
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Talk Lists
-t1408676954
-s11373888
+t1408720598
+s11448096
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/embedded.mobileprovision
 t1408676246
@@ -695,9 +695,9 @@ t1408676244
 s42
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods.a
-c0000000053CA84D700000000010799BC
-t1405781207
-s17275324
+c0000000053F75ED50000000000B72A18
+t1408720597
+s12003864
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Framework/AcousticModelEnglish.bundle
 c0000000052F23A190000000000000198
@@ -900,9 +900,9 @@ t1398121076
 s1819
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Base.lproj/Main_iPhone.storyboard
-c0000000053F6B4C400000000000119FA
-t1408677060
-s72186
+c0000000053F75F4F0000000000012D50
+t1408720719
+s77136
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/DataEntryContainerViewController.h
 c0000000053D2B43D0000000000000332
@@ -990,9 +990,9 @@ t1406880246
 s9154
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Images.xcassets
-c0000000053F6B10E00000000000003DA
-t1408676110
-s986
+c0000000053F74D3400000000000003FC
+t1408716084
+s1020
 
 N/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/InitialViewController.h
 c0000000053F0B69D0000000000000180
@@ -1299,21 +1299,21 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies94dc4544eca6b941^cee35044eca6b941^---0#1#1#--18"Check dependencies36"595835A2-08EB-4D2C-86C8-FC4EC57B5AEC-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesb5a9eecf96a7b941^5ad5eecf96a7b941^---0#1#1#--18"Check dependencies36"C8AAEBB7-0CBA-4B81-A1EB-19D012C0694B-
 
 CCodeSign /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app
-s430369861.708075
-e430369861.967069
+s430413522.365774
+e430413522.663877
 r1
 xCodeSign
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app
 o/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app: replacing existing signature
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"CodeSign Build/Products/Debug-iphoneos/Talk\ Lists.app54"CodeSign Build/Products/Debug-iphoneos/Talk\ Lists.appa950b545eca6b941^8a93f745eca6b941^-124"/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app: replacing existing signature-0#0#1#-19%DVTDocumentLocation2@105"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Products/Debug-iphoneos/Talk%20Lists.app/0000000000000000^1072"CodeSign Build/Products/Debug-iphoneos/Talk\ Lists.app    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    Using code signing identity "iPhone Developer: Susan Elias (V5452U9ZMN)" and provisioning profile "iOS Team Provisioning Profile: *" (79B3B604-5187-485E-A21F-530DD17D1378)    /usr/bin/codesign --force --sign C635A714D0858DF1604CF130AEF7F01418845D29 --resource-rules=/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/ResourceRules.plist --entitlements /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app36"2128604C-4B6C-4548-BBEC-97A9C556FF67-
-b5EF4A6D1-F659-4606-AFB5-D8C0E4A546EB
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"CodeSign Build/Products/Debug-iphoneos/Talk\ Lists.app54"CodeSign Build/Products/Debug-iphoneos/Talk\ Lists.app8eaf5dd296a7b941^5ef4a9d296a7b941^-124"/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app: replacing existing signature-0#0#1#-19%DVTDocumentLocation2@105"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Products/Debug-iphoneos/Talk%20Lists.app/0000000000000000^1072"CodeSign Build/Products/Debug-iphoneos/Talk\ Lists.app    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    Using code signing identity "iPhone Developer: Susan Elias (V5452U9ZMN)" and provisioning profile "iOS Team Provisioning Profile: *" (79B3B604-5187-485E-A21F-530DD17D1378)    /usr/bin/codesign --force --sign C635A714D0858DF1604CF130AEF7F01418845D29 --resource-rules=/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/ResourceRules.plist --entitlements /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app36"A59E2D99-7288-48AA-A4A8-162D748400C1-
+b3F9D256D-8028-4246-A373-07F8778FD215
 
 CCompileAssetCatalog /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Images.xcassets
-s430369044.068642
-e430369045.168361
+s430408984.236909
+e430408985.368294
 r1
 xCompileAssetCatalog
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app
@@ -1327,8 +1327,8 @@ o/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/
 o/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car
 o/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/assetcatalog_generated_info.plist
 o
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection93"CompileAssetCatalog Build/Products/Debug-iphoneos/Talk\ Lists.app Talk\ Lists/Images.xcassets93"CompileAssetCatalog Build/Products/Debug-iphoneos/Talk\ Lists.app Talk\ Lists/Images.xcassetsbea41114e9a6b941^1a1a2b15e9a6b941^-882"/* com.apple.actool.compilation-results *//Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AppIcon29x29@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AppIcon40x40@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AppIcon60x60@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/LaunchImage-700@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/LaunchImage-700-568h@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/assetcatalog_generated_info.plist-0#0#1#-19%DVTDocumentLocation2@87"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Images.xcassets/0000000000000000^1139"CompileAssetCatalog Build/Products/Debug-iphoneos/Talk\ Lists.app Talk\ Lists/Images.xcassets    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/usr/bin/actool --output-format human-readable-text --notices --warnings --export-dependency-info /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/assetcatalog_dependencies.txt --output-partial-info-plist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/assetcatalog_generated_info.plist --app-icon AppIcon --launch-image LaunchImage --platform iphoneos --minimum-deployment-target 7.0 --target-device iphone --compress-pngs --compile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Images.xcassets36"FF7BBC5D-ABFE-4D6D-80D6-BA9D49D6D806-
-b8DF321C9-39C1-475C-8568-376010C00AA9
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection93"CompileAssetCatalog Build/Products/Debug-iphoneos/Talk\ Lists.app Talk\ Lists/Images.xcassets93"CompileAssetCatalog Build/Products/Debug-iphoneos/Talk\ Lists.app Talk\ Lists/Images.xcassetsb7b23c1885a7b941^6f495e1985a7b941^-882"/* com.apple.actool.compilation-results *//Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AppIcon29x29@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AppIcon40x40@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/AppIcon60x60@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/LaunchImage-700@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/LaunchImage-700-568h@2x.png/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/assetcatalog_generated_info.plist-0#0#1#-19%DVTDocumentLocation2@87"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Images.xcassets/0000000000000000^1139"CompileAssetCatalog Build/Products/Debug-iphoneos/Talk\ Lists.app Talk\ Lists/Images.xcassets    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/usr/bin/actool --output-format human-readable-text --notices --warnings --export-dependency-info /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/assetcatalog_dependencies.txt --output-partial-info-plist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/assetcatalog_generated_info.plist --app-icon AppIcon --launch-image LaunchImage --platform iphoneos --minimum-deployment-target 7.0 --target-device iphone --compress-pngs --compile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Images.xcassets36"DDFDB80B-4E77-4A2E-A221-BE0EB5532037-
+b42F5D87E-2B59-4594-98D0-FF6752E62AED
 
 CCompileC Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Objects-normal/armv7/DataEntryContainerViewController.o /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/DataEntryContainerViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s430369043.274018
@@ -2326,15 +2326,13 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection61"Compile
 b8DF321C9-39C1-475C-8568-376010C00AA9
 
 CCompileStoryboard /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Base.lproj/Main_iPhone.storyboard
-s430369860.291900
-e430369861.044855
+s430413519.949446
+e430413521.693162
 r1
 xCompileStoryboard
 x/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Base.lproj/Main_iPhone.storyboard
-o/* com.apple.ibtool.document.warnings */
-o/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Base.lproj/Main_iPhone.storyboard:jXq-57-doF: warning: Segues initiated directly from view controllers must have an identifier for use with -[UIViewController performSegueWithIdentifier:sender:] [9]
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection63"CompileStoryboard Talk\ Lists/Base.lproj/Main_iPhone.storyboard63"CompileStoryboard Talk\ Lists/Base.lproj/Main_iPhone.storyboard9bc64a44eca6b941^417d0b45eca6b941^-296"/* com.apple.ibtool.document.warnings *//Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Base.lproj/Main_iPhone.storyboard:jXq-57-doF: warning: Segues initiated directly from view controllers must have an identifier for use with -[UIViewController performSegueWithIdentifier:sender:]1(21%IDEActivityLogMessage2@139"Segues initiated directly from view controllers must have an identifier for use with -[UIViewController performSegueWithIdentifier:sender:]-430369860#18446744073709551615#0#-1#-23%DVTTextDocumentLocation3@104"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Base.lproj/Main_iPhone.storyboard0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#25"Unsupported Configuration--0#0#1#-19%DVTDocumentLocation4@104"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Base.lproj/Main_iPhone.storyboard0000000000000000^847"CompileStoryboard Talk\ Lists/Base.lproj/Main_iPhone.storyboard    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export IBSC_MINIMUM_COMPATIBILITY_VERSION=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    export XCODE_DEVELOPER_USR_PATH=/Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --minimum-deployment-target 7.0 --output-format human-readable-text --compile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Base.lproj/Main_iPhone.storyboardc /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Base.lproj/Main_iPhone.storyboard36"92E4CE27-C5D1-47A4-BD6B-8D307B6AA3D8-
-b5EF4A6D1-F659-4606-AFB5-D8C0E4A546EB
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection63"CompileStoryboard Talk\ Lists/Base.lproj/Main_iPhone.storyboard63"CompileStoryboard Talk\ Lists/Base.lproj/Main_iPhone.storyboard8e1ef3cf96a7b941^d674b1d196a7b941^---0#0#1#-19%DVTDocumentLocation2@104"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Base.lproj/Main_iPhone.storyboard0000000000000000^847"CompileStoryboard Talk\ Lists/Base.lproj/Main_iPhone.storyboard    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export IBSC_MINIMUM_COMPATIBILITY_VERSION=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    export XCODE_DEVELOPER_USR_PATH=/Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --minimum-deployment-target 7.0 --output-format human-readable-text --compile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Base.lproj/Main_iPhone.storyboardc /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Base.lproj/Main_iPhone.storyboard36"2A3FD89C-2F50-4A34-8BC4-F4046E4B4C69-
+b3F9D256D-8028-4246-A373-07F8778FD215
 
 CCopyStringsFile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/en.lproj/InfoPlist.strings Talk\ Lists/en.lproj/InfoPlist.strings
 s430369044.060145
@@ -2387,18 +2385,18 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection59"Copy Bu
 b8DF321C9-39C1-475C-8568-376010C00AA9
 
 CGenerateDSYMFile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists
-s430369861.045473
-e430369861.280366
+s430413521.693774
+e430413521.938580
 r1
 xGenerateDSYMFile
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app.dSYM
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Talk Lists
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Generate /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app.dSYM125"GenerateDSYMFile Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Listsefae0b45eca6b941^28d24d45eca6b941^---0#0#1#-19%DVTDocumentLocation2@110"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Products/Debug-iphoneos/Talk%20Lists.app.dSYM/0000000000000000^684"GenerateDSYMFile Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM36"CB1AE7BD-3BEC-4EB6-ADE9-8E44369EE5F5-
-b5EF4A6D1-F659-4606-AFB5-D8C0E4A546EB
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Generate /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app.dSYM125"GenerateDSYMFile Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Listscaa5b1d196a7b941^b247f0d196a7b941^---0#0#1#-19%DVTDocumentLocation2@110"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Products/Debug-iphoneos/Talk%20Lists.app.dSYM/0000000000000000^684"GenerateDSYMFile Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app.dSYM36"01AEBB11-C212-455E-A8BB-F25584CEFACB-
+b3F9D256D-8028-4246-A373-07F8778FD215
 
 CLd /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists normal armv7
-s430369043.414003
-e430369044.058427
+s430413397.046245
+e430413397.552384
 r1
 xLd
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Talk Lists
@@ -2468,6 +2466,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Develope
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Accelerate
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/AdSupport.framework/AdSupport
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreText.framework/CoreText
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/system/libcache.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/system/libcommonCrypto.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/system/libcompiler_rt.dylib
@@ -2496,30 +2496,28 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Develope
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/system/libsystem_stats.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/system/libxpc.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
-d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/vImage
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvMisc.dylib
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection109"Link /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Talk Lists73"Ld Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists normal armv7910b6a13e9a6b941^c7f60e14e9a6b941^---0#0#1#--2272"Ld Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists normal armv7    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -L/Users/susanelias/Documents/Developer/Talk\ Lists -L/Users/susanelias/Documents/Developer/Talk\ Lists/usr/lib -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -F/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse -F/Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists -F/Users/susanelias/Documents/Developer/OpenEarsDistribution/Framework -F/Users/susanelias/Documents/Developer/Rejecto -F/Users/susanelias/Documents/Developer/Talk\ Lists/Framework -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Objects-normal/armv7/Talk\ Lists.LinkFileList -dead_strip -ObjC -framework AudioToolbox -framework CFNetwork -framework CoreGraphics -framework CoreLocation -framework MobileCoreServices -framework Parse -framework QuartzCore -framework Security -framework StoreKit -framework SystemConfiguration -weak_framework Accounts -weak_framework Security -weak_framework Social -fobjc-arc -fobjc-link-runtime -miphoneos-version-min=7.0 -framework AudioToolbox -framework AVFoundation -framework AssetsLibrary -framework CoreData -framework CoreGraphics -framework Slt -framework UIKit -framework Foundation -framework OpenEars -framework Rejecto -lPods -lOCMock -Xlinker -dependency_info -Xlinker /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Objects-normal/armv7/Talk\ Lists_dependency_info.dat -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists36"CE5AAC0E-635C-4D10-901B-AEBFB3597A3C-
-b8DF321C9-39C1-475C-8568-376010C00AA9
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection109"Link /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Talk Lists73"Ld Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists normal armv700e50b5596a7b941^446b8d5596a7b941^---0#0#1#--2272"Ld Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists normal armv7    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -L/Users/susanelias/Documents/Developer/Talk\ Lists -L/Users/susanelias/Documents/Developer/Talk\ Lists/usr/lib -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -F/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Parse -F/Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists -F/Users/susanelias/Documents/Developer/OpenEarsDistribution/Framework -F/Users/susanelias/Documents/Developer/Rejecto -F/Users/susanelias/Documents/Developer/Talk\ Lists/Framework -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Objects-normal/armv7/Talk\ Lists.LinkFileList -dead_strip -ObjC -framework AudioToolbox -framework CFNetwork -framework CoreGraphics -framework CoreLocation -framework MobileCoreServices -framework Parse -framework QuartzCore -framework Security -framework StoreKit -framework SystemConfiguration -weak_framework Accounts -weak_framework Security -weak_framework Social -fobjc-arc -fobjc-link-runtime -miphoneos-version-min=7.0 -framework AudioToolbox -framework AVFoundation -framework AssetsLibrary -framework CoreData -framework CoreGraphics -framework Slt -framework UIKit -framework Foundation -framework OpenEars -framework Rejecto -lPods -lOCMock -Xlinker -dependency_info -Xlinker /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Objects-normal/armv7/Talk\ Lists_dependency_info.dat -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Talk\ Lists36"D1DA95A2-7998-495C-B090-08C04CED2A3F-
+bD8310CD2-C517-4BA5-9E74-76A6158805B0
 
 CPhaseScriptExecution Check\ Pods\ Manifest.lock /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh
-s430369860.274233
-e430369860.286275
+s430413519.933640
+e430413519.944261
 r1
 xPhaseScriptExecution
 xCheck Pods Manifest.lock
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/Script-E025F90BF89B4D14B97F158B.sh
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Run custom shell script 'Check Pods Manifest.lock'153"PhaseScriptExecution Check\ Pods\ Manifest.lock Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh1d8e4644eca6b941^5a0d5144eca6b941^---0#0#1#--387"PhaseScriptExecution Check\ Pods\ Manifest.lock Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh    cd "/Users/susanelias/Documents/Developer/Talk Lists"    /bin/sh -c \"/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh\"36"EC5A48C9-CE7B-46C1-9777-315C0D420BD7-
-b5EF4A6D1-F659-4606-AFB5-D8C0E4A546EB
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Run custom shell script 'Check Pods Manifest.lock'153"PhaseScriptExecution Check\ Pods\ Manifest.lock Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh514befcf96a7b941^6bbbf1cf96a7b941^---0#0#1#--387"PhaseScriptExecution Check\ Pods\ Manifest.lock Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh    cd "/Users/susanelias/Documents/Developer/Talk Lists"    /bin/sh -c \"/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-E025F90BF89B4D14B97F158B.sh\"36"8CBA27DB-BFF5-4E54-A323-68D2C3C1146A-
+b3F9D256D-8028-4246-A373-07F8778FD215
 
 CPhaseScriptExecution Copy\ Pods\ Resources /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.sh
-s430369861.280814
-e430369861.703741
+s430413521.938933
+e430413522.361668
 r1
 xPhaseScriptExecution
 xCopy Pods Resources
@@ -2532,18 +2530,18 @@ ototal size is 1071435  speedup is 2006.43
 o/* com.apple.actool.compilation-results */
 o/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car
 o
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection45"Run custom shell script 'Copy Pods Resources'148"PhaseScriptExecution Copy\ Pods\ Resources Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.shb5334845eca6b941^132ab445eca6b941^-383"/Users/susanelias/Documents/Developer/Talk Lists/Pods/Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundlebuilding file list ... donesent 514 bytes  received 20 bytes  1068.00 bytes/sectotal size is 1071435  speedup is 2006.43/* com.apple.actool.compilation-results *//Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car6(21%IDEActivityLogMessage2@110"/Users/susanelias/Documents/Developer/Talk Lists/Pods/Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle-430369861#0#110#-0#-----2@28"building file list ... done-430369861#110#28#-0#-----2@53"sent 514 bytes  received 20 bytes  1068.00 bytes/sec-430369861#139#53#-0#-----2@42"total size is 1071435  speedup is 2006.43-430369861#192#42#-0#-----2@43"/* com.apple.actool.compilation-results */-430369861#234#43#-0#-----2@105"/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car-430369861#277#105#-0#-----0#0#1#--382"PhaseScriptExecution Copy\ Pods\ Resources Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.sh    cd "/Users/susanelias/Documents/Developer/Talk Lists"    /bin/sh -c \"/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.sh\"36"609F5F0E-9DD4-4BC3-AAF2-0B9D98F6197F-
-b5EF4A6D1-F659-4606-AFB5-D8C0E4A546EB
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection45"Run custom shell script 'Copy Pods Resources'148"PhaseScriptExecution Copy\ Pods\ Resources Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.sh11a6f0d196a7b941^fa975cd296a7b941^-383"/Users/susanelias/Documents/Developer/Talk Lists/Pods/Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundlebuilding file list ... donesent 514 bytes  received 20 bytes  1068.00 bytes/sectotal size is 1071435  speedup is 2006.43/* com.apple.actool.compilation-results *//Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car6(21%IDEActivityLogMessage2@110"/Users/susanelias/Documents/Developer/Talk Lists/Pods/Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle-430413521#0#110#-0#-----2@28"building file list ... done-430413521#110#28#-0#-----2@53"sent 514 bytes  received 20 bytes  1068.00 bytes/sec-430413521#139#53#-0#-----2@42"total size is 1071435  speedup is 2006.43-430413521#192#42#-0#-----2@43"/* com.apple.actool.compilation-results */-430413522#234#43#-0#-----2@105"/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Assets.car-430413522#277#105#-0#-----0#0#1#--382"PhaseScriptExecution Copy\ Pods\ Resources Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.sh    cd "/Users/susanelias/Documents/Developer/Talk Lists"    /bin/sh -c \"/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Script-BA5236DAD0D840C8A5E46259.sh\"36"F865B1FF-1355-49AC-9246-14AEB69B6C80-
+b3F9D256D-8028-4246-A373-07F8778FD215
 
 CProcessInfoPlistFile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Talk\ Lists-Info.plist
-s430369045.845125
-e430369045.846640
+s430408985.970115
+e430408985.971903
 r1
 xProcessInfoPlistFile
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app/Info.plist
 x/Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Talk Lists-Info.plist
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Process /Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Talk Lists-Info.plist112"ProcessInfoPlistFile Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist Talk\ Lists/Talk\ Lists-Info.plistb665d815e9a6b941^73bed815e9a6b941^---0#0#1#-19%DVTDocumentLocation2@94"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Talk%20Lists-Info.plist0000000000000000^1067"ProcessInfoPlistFile Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist Talk\ Lists/Talk\ Lists-Info.plist    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Talk\ Lists-Info.plist -genpkginfo /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/ResourceRules.plist -additionalcontentfile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/assetcatalog_generated_info.plist -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist36"81B0F99E-B386-443F-AF92-76C599EE4235-
-b8DF321C9-39C1-475C-8568-376010C00AA9
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Process /Users/susanelias/Documents/Developer/Talk Lists/Talk Lists/Talk Lists-Info.plist112"ProcessInfoPlistFile Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist Talk\ Lists/Talk\ Lists-Info.plist8868f81985a7b941^7dcff81985a7b941^---0#0#1#-19%DVTDocumentLocation2@94"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Talk%20Lists/Talk%20Lists-Info.plist0000000000000000^1067"ProcessInfoPlistFile Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist Talk\ Lists/Talk\ Lists-Info.plist    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility /Users/susanelias/Documents/Developer/Talk\ Lists/Talk\ Lists/Talk\ Lists-Info.plist -genpkginfo /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/ResourceRules.plist -additionalcontentfile /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/assetcatalog_generated_info.plist -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/Info.plist36"E42F71A2-06DC-4B46-B6FB-DE43058560D8-
+b42F5D87E-2B59-4594-98D0-FF6752E62AED
 
 CProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Talk\ Lists-Prefix-ergdwhzljytevuegjxibibgchtsf/Talk\ Lists-Prefix.pch.pch Talk\ Lists/Talk\ Lists-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s430369042.291726
@@ -2564,14 +2562,14 @@ CProcessPCH /Users/susanelias/Library/Developer/Xcode/DerivedData/Talk_Lists-enm
 r0
 
 CProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent
-s430369046.542462
-e430369046.543401
+s430411892.688707
+e430411892.690021
 r1
 xProcessProductPackaging
 x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Talk Lists.build/Debug-iphoneos/Talk Lists.build/Talk Lists.xcent
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection233"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent233"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent25e98a16e9a6b941^191e8b16e9a6b941^---0#0#1#-19%DVTDocumentLocation2@149"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Intermediates/Talk%20Lists.build/Debug-iphoneos/Talk%20Lists.build/Talk%20Lists.xcent003474a1deffdf42^805"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-productPackagingUtility /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist -entitlements -format xml -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent36"18304B37-B840-41F5-9D77-1314D4599955-
-b8DF321C9-39C1-475C-8568-376010C00AA9
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection233"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent233"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent8e5bb07490a7b941^dba6b07490a7b941^---0#0#1#-19%DVTDocumentLocation2@149"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Intermediates/Talk%20Lists.build/Debug-iphoneos/Talk%20Lists.build/Talk%20Lists.xcent0000000000000000^805"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-productPackagingUtility /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Entitlements.plist -entitlements -format xml -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Talk\ Lists.build/Debug-iphoneos/Talk\ Lists.build/Talk\ Lists.xcent36"4A83BEFC-904C-47FF-8910-476FC19F3F4F-
+b289E6CF2-CC29-4B36-9D15-BD13257C8EB6
 
 CProcessProductPackaging /Users/susanelias/Library/MobileDevice/Provisioning\ Profiles/79B3B604-5187-485E-A21F-530DD17D1378.mobileprovision /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app/embedded.mobileprovision
 s430369046.540363
@@ -2584,11 +2582,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection209"Proces
 b8DF321C9-39C1-475C-8568-376010C00AA9
 
 CTouch /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app
-s430369861.704444
-e430369861.707604
+s430413522.362296
+e430413522.365310
 r1
 xTouch
 x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Touch /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app51"Touch Build/Products/Debug-iphoneos/Talk\ Lists.app2460b445eca6b941^9626b545eca6b941^---0#0#1#--416"Touch Build/Products/Debug-iphoneos/Talk\ Lists.app    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app36"C891EFE9-B143-4BB3-ABDD-4F903142F6BA-
-b5EF4A6D1-F659-4606-AFB5-D8C0E4A546EB
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Touch /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/Talk Lists.app51"Touch Build/Products/Debug-iphoneos/Talk\ Lists.app7ac85cd296a7b941^34865dd296a7b941^---0#0#1#--416"Touch Build/Products/Debug-iphoneos/Talk\ Lists.app    cd "/Users/susanelias/Documents/Developer/Talk Lists"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/Talk\ Lists.app36"B0AB5304-9A92-424A-9C1D-24DE31473901-
+b3F9D256D-8028-4246-A373-07F8778FD215
 
