@@ -453,11 +453,7 @@
         self.categoryLabel.text = choice;
         [self.guideToEdit saveInBackground];
     }
-    else {
-        // do nothing
-        self.categoryLabel.text = @"";
-    }
-    
+     
 }
 
 -(void)willPresentActionSheet:(UIActionSheet *)actionSheet
