@@ -8,8 +8,15 @@
 
 #import "GuideQueryTableViewController.h"
 #import "PFStep.h"
+#import "stepCell.h"
 #import "SpokenGuideCache.h"
 #import "TalkListAppDelegate.h"
+
+@interface GuideQueryTableViewController()
+
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+
+@end
 
 @implementation GuideQueryTableViewController
 
@@ -21,8 +28,8 @@
         self.parseClassName = @"PFStep";
         
         // The key of the PFObject to display  the labelofthe default cell style
-   //     self.textKey = @"instruction";
-   //     self.imageKey = @"thumbnail";
+      //  self.textKey = @"instruction";
+     //   self.imageKey = @"thumbnail";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -33,9 +40,7 @@
         // The number of objects to show per page
         self.objectsPerPage = 10;
         
-    
-        
-    }
+     }
     return self;
 }
 
@@ -43,11 +48,16 @@
 {
     [super viewWillAppear:animated];
     [self stylePFLoadingViewTheHardWay];
+    // set view background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
+    
+    // set the insets for this scroll view
+ //   self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0);
 }
 
 - (void)stylePFLoadingViewTheHardWay
 {
-   // self.appleGreen = [UIColor colorWithRed:151.0/255 green:223.0/255 blue:92.0/255 alpha:1.0];
+   // all of this is just to remove the shadow from the 'Loading...' status label
 
     UIColor *labelTextColor = [UIColor grayColor];
     UIColor *labelShadowColor = nil;
@@ -89,8 +99,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationBecameActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
-    // set view background
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
 
 }
 
@@ -232,15 +240,38 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 78;
+    BOOL isSelected = [self.selectedIndexPath isEqual:indexPath];
+    CGRect rect;
+    
+    if (isSelected) {
+        PFStep *step = self.objects[indexPath.row];
+        CGSize constraint;
+      //  if (step.image) {
+       //     constraint = CGSizeMake(kStepCellStdWidthWithImage, NSUIntegerMax);
+      //  }
+      //  else {
+            constraint = CGSizeMake(kStepCellStdWidthNoImage, NSUIntegerMax);
+      //  }
+        UIFont *stepCellFont = [UIFont fontWithName:kStepCellFont size:kStepCellFontSize];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:stepCellFont forKey:NSFontAttributeName];
+        NSAttributedString *text  = [[NSAttributedString alloc] initWithString:step.instruction attributes:attributes];
+        rect = [text boundingRectWithSize:constraint
+                                    options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                    context:nil];
+        float rowHeight = ceilf(rect.size.height);
+        NSLog(@"row height %f", rowHeight);
+        return MAX(rowHeight,kStepCellStdHeight);
+    }
+    else return kStepCellStdHeight;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"guideCell";
+    static NSString *CellIdentifier = @"stepCell";
     
-    guideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    stepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[guideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[stepCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
      }
    
     // Configure the cell
@@ -263,17 +294,27 @@
         cell.imageView.file = nil;
     }
     
+    // check how many lines to display for this cell
+    BOOL isSelected = [self.selectedIndexPath isEqual:indexPath];
+    cell.textLabel.numberOfLines = isSelected?0:3;
+
     return cell;
 }
 
 
-#pragma mark UITableViewDelegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // unselect the row since text color will change when row is spoken
-    UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [selectedCell setSelected:NO animated:YES ];
+    // if there is already a selected path, add to cell to the redraw list
+    NSMutableArray *redrawList = [[NSMutableArray alloc]init];
+    if ((self.selectedIndexPath) && (![self.selectedIndexPath isEqual: indexPath])) {
+        // unselect row
+        [redrawList addObject:self.selectedIndexPath];
+    }
+    // Store the selected row and add it to the redraw list
+    self.selectedIndexPath = indexPath;
+    [redrawList addObject:indexPath];
+    
+    [self.tableView reloadRowsAtIndexPaths:redrawList withRowAnimation:UITableViewRowAnimationNone];
     
     // let delegate know about this action
     if ([self.parentDelegate respondsToSelector:@selector(rowSelectedAtIndex:)]) {
@@ -281,6 +322,11 @@
     }
 }
 
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // this will not get called because of the reloadRowsAtIndexPath method call didSelectRowAtIndexPath
+}
 
 #pragma mark User Actions
 
@@ -319,6 +365,15 @@
     }
  
 }
+
+- (void)setStepAccessToPublic:(BOOL)publicAccessFlag
+{
+    for (PFObject *stepObject in self.objects) {
+        [stepObject.ACL setPublicReadAccess:publicAccessFlag];
+        [stepObject saveInBackground];
+    }
+}
+
 
 /*
 #pragma mark - Navigation

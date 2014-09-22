@@ -1,172 +1,0 @@
-TPods-BlurryModalSegue
-v6
-r1
-cCheck dependencies
-cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-BlurryModalSegue-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a normal i386
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c00000000531E4ABA0000000000A90C10
-t1394494138
-s11078672
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
-c00000000531E4ABB0000000000649DB0
-t1394494139
-s6593968
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk
-c00000000534815EC0000000000000198
-t1397233132
-s408
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/SDKSettings.plist
-c00000000531E4AC400000000000003B4
-t1394494148
-s948
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/CoreServices/SystemVersion.plist
-c00000000531E4AC7000000000000019E
-t1394494151
-s414
-
-N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
-c00000000531E4AD60000000000000ADC
-t1394494166
-s2780
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o
-t1406649100
-s57512
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o
-t1406649100
-s3508
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue.LinkFileList
-c0000000053D7C30C000000000000015D
-t1406649100
-s349
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch
-t1406649100
-s127880
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch
-t1406649100
-s128252
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a
-t2
-s0
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m
-c00000000537F90340000000000000C8B
-t1400868916
-s3211
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-dummy.m
-c0000000053D2E3580000000000000092
-t1406329688
-s146
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-prefix.pch
-c0000000053D2E358000000000000004D
-t1406329688
-s77
-
-CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m
-r0
-
-CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-BlurryModalSegue-dummy.m
-r0
-
-CCheck dependencies
-r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies7c2b368cfa87b941^b35f378cfa87b941^---0#1#1#--18"Check dependencies36"C1E3E9D8-0995-46B2-996F-DEB71F9F7120-
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341900.295839
-e428341900.353796
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.h
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/BuildHeaders/UIImage+BlurredFrame/UIImage+ImageEffects.h
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/BuildHeaders/MZAppearance/MZAppearance.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection114"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m299"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler35d14b8cfa87b941^31955a8cfa87b941^---0#0#1#-19%DVTDocumentLocation2@115"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m0000000000000000^4902"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -fobjc-arc -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BlurryModalSegue/BlurryModalSegue/BlurryModalSegue.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/BlurryModalSegue.o36"C9F98C5F-8C30-4401-8B69-1A69A5ED1435-
-b3E3641C2-8CB5-4069-9572-4583AF95E063
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-BlurryModalSegue-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341900.296219
-e428341900.322504
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-dummy.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-dummy.m
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-dummy.m287"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o Pods-BlurryModalSegue-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler7de74b8cfa87b941^de90528cfa87b941^---0#0#1#-19%DVTDocumentLocation2@92"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-BlurryModalSegue-dummy.m0000000000000000^4889"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o Pods-BlurryModalSegue-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-BlurryModalSegue-dummy.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue-dummy.o36"292D0AA7-3798-4FB4-B6CD-9B83A93138A0-
-b3E3641C2-8CB5-4069-9572-4583AF95E063
-
-CLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a normal i386
-s428341900.426962
-e428341900.435268
-r1
-xLibtool
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a
-xnormal
-xi386
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection133"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a normal i386133"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a normal i38683a26d8cfa87b941^6287898cfa87b941^---0#0#1#--1131"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a normal i386    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Objects-normal/i386/Pods-BlurryModalSegue.LinkFileList -framework Foundation -framework QuartzCore -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-BlurryModalSegue.a36"C1BBCBBF-3623-47B2-BA36-0D298ACA4EAF-
-b3E3641C2-8CB5-4069-9572-4583AF95E063
-
-CProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341900.251186
-e428341900.295347
-r1
-xProcessPCH
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch
-xPods-BlurryModalSegue-prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-prefix.pch
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection43"Precompile Pods-BlurryModalSegue-prefix.pch295"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilerb16a408cfa87b941^809d4b8cfa87b941^---0#0#1#-19%DVTDocumentLocation2@95"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-BlurryModalSegue-prefix.pch0000000000000000^4723"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.dia -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.d -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-BlurryModalSegue-prefix.pch -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-bgfyuhzropjnaydcrrbmjqlvqvkn/Pods-BlurryModalSegue-prefix.pch.pch36"79602C8B-F32C-4760-B4A9-82A19CC7F7A7-
-b3E3641C2-8CB5-4069-9572-4583AF95E063
-
-CProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341900.229789
-e428341900.282308
-r1
-xProcessPCH
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch
-xPods-BlurryModalSegue-prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-BlurryModalSegue-prefix.pch
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection43"Precompile Pods-BlurryModalSegue-prefix.pch295"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilerd9ee3a8cfa87b941^bb45488cfa87b941^---0#0#1#-19%DVTDocumentLocation2@95"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-BlurryModalSegue-prefix.pch0000000000000000^4734"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/Pods-BlurryModalSegue-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-BlurryModalSegue.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -fobjc-arc --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.dia -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.d -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-BlurryModalSegue-prefix.pch -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-drioqsmlzecczmgkvnwcaojwgvdm/Pods-BlurryModalSegue-prefix.pch.pch36"D44D7B9A-EE0F-47E3-A187-147A8B47B961-
-b3E3641C2-8CB5-4069-9572-4583AF95E063
-
-CProcessPCH /Users/susanelias/Library/Developer/Xcode/DerivedData/Talk_Lists-enmazpptzerveicuxbbmfdcohjsc/Index/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-ehrlysgdwjorobhenqhkejhmqvar_ast/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
-r0
-
-CProcessPCH /Users/susanelias/Library/Developer/Xcode/DerivedData/Talk_Lists-enmazpptzerveicuxbbmfdcohjsc/Index/PrecompiledHeaders/Pods-BlurryModalSegue-prefix-hitvhrocxydlbvflmxczzjmfkueu_ast/Pods-BlurryModalSegue-prefix.pch.pch Pods-BlurryModalSegue-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
-r0
-

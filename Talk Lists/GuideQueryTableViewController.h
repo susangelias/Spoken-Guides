@@ -17,6 +17,7 @@
 @property (nonatomic, weak) id <GuideQueryTableViewControllerDelegate> parentDelegate;
 
 - (void)unhighlightCurrentLine:(int) lineNumber;
--(void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber;
+- (void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber;
+- (void)setStepAccessToPublic:(BOOL)publicAccessFlag;
 
 @end

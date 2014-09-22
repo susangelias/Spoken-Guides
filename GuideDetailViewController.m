@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, dialogState) {
 
 NSString * const kHighlightColor = @"AppleGreen";
 
-@interface GuideDetailViewController () < dialogControllerDelegate, UITableViewDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate, UIAlertViewDelegate>
+@interface GuideDetailViewController () < dialogControllerDelegate, GuideQueryTableViewControllerDelegate, EditGuideViewControllerDelegate, UIAlertViewDelegate>
 
 // View properties
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
@@ -442,6 +442,9 @@ NSString * const kHighlightColor = @"AppleGreen";
         // change the read permissions for this guide to PUBLIC
         [self.guide.ACL setPublicReadAccess:YES];
         [self.guide saveInBackground];
+        // change the read permisions for all the guide steps to PUBLIC
+        GuideQueryTableViewController *stepTableViewController = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+        [stepTableViewController setStepAccessToPublic:YES];
     }
 }
 

@@ -1,186 +1,0 @@
-TPods-UIImage+BlurredFrame
-v6
-r1
-cCheck dependencies
-cProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch Pods-UIImage+BlurredFrame-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a normal i386
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c00000000531E4ABA0000000000A90C10
-t1394494138
-s11078672
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk
-c00000000534815EC0000000000000198
-t1397233132
-s408
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/SDKSettings.plist
-c00000000531E4AC400000000000003B4
-t1394494148
-s948
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/CoreServices/SystemVersion.plist
-c00000000531E4AC7000000000000019E
-t1394494151
-s414
-
-N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
-c00000000531E4AD60000000000000ADC
-t1394494166
-s2780
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o
-t1406649100
-s3540
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame.LinkFileList
-c0000000053D7C30B000000000000021E
-t1406649099
-s542
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o
-t1406649100
-s17388
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o
-t1406649100
-s22672
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch
-t1406649099
-s127996
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a
-t1406649100
-s44104
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m
-c0000000053D2E358000000000000009A
-t1406329688
-s154
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-UIImage+BlurredFrame-prefix.pch
-c0000000053D2E358000000000000004D
-t1406329688
-s77
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
-c0000000053D2E35800000000000009A0
-t1406329688
-s2464
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.h
-c00000000537F9035000000000000031A
-t1400868917
-s794
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m
-c00000000537F90350000000000000B16
-t1400868917
-s2838
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.h
-c00000000537F90350000000000001501
-t1400868917
-s5377
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m
-c00000000537F9035000000000000326F
-t1400868917
-s12911
-
-CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m
-r0
-
-CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m
-r0
-
-CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m
-r0
-
-CCheck dependencies
-r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciescfa03dd4e6a6b941^b3614dd4e6a6b941^---0#1#1#--18"Check dependencies36"34B7154A-9DBC-471B-890F-2A5545ABD656-
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341899.975219
-e428341900.022059
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection95"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m299"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o Pods-UIImage+BlurredFrame-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler27daf98bfa87b941^a48b058cfa87b941^---0#0#1#-19%DVTDocumentLocation2@96"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m0000000000000000^4981"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o Pods-UIImage+BlurredFrame-dummy.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-UIImage+BlurredFrame-dummy.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame-dummy.o36"220606FB-1C67-4016-B85E-C82ED9740464-
-b4ACFD70B-D071-495E-8225-88BA54BCB786
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341899.977038
-e428341900.058859
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.h
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection105"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m298"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o UIImage+BlurredFrame/UIImage+BlurredFrame.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler245efa8bfa87b941^910a0f8cfa87b941^---0#0#1#-19%DVTDocumentLocation2@106"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m0000000000000000^4957"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o UIImage+BlurredFrame/UIImage+BlurredFrame.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+BlurredFrame.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+BlurredFrame.o36"35D72F0F-8DAB-4A6F-A826-F04ED58D5F0E-
-b4ACFD70B-D071-495E-8225-88BA54BCB786
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341900.022315
-e428341900.162297
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection105"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m298"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o UIImage+BlurredFrame/UIImage+ImageEffects.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler17f5058cfa87b941^e9b5298cfa87b941^---0#0#1#-19%DVTDocumentLocation2@106"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m0000000000000000^4957"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o UIImage+BlurredFrame/UIImage+ImageEffects.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -include /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/UIImage+BlurredFrame/UIImage+ImageEffects.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/UIImage+ImageEffects.o36"AC7C4119-4646-4390-BD04-F8F208B81260-
-b4ACFD70B-D071-495E-8225-88BA54BCB786
-
-CLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a normal i386
-s428341900.201297
-e428341900.207347
-r1
-xLibtool
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a
-xnormal
-xi386
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection137"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a normal i386137"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a normal i386a0a9338cfa87b941^471d358cfa87b941^---0#0#1#--1125"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a normal i386    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Objects-normal/i386/Pods-UIImage+BlurredFrame.LinkFileList -framework Foundation -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/libPods-UIImage+BlurredFrame.a36"1CBF30A0-50B5-429A-BD9B-96785B2F817C-
-b4ACFD70B-D071-495E-8225-88BA54BCB786
-
-CProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch Pods-UIImage+BlurredFrame-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s428341899.805571
-e428341899.974262
-r1
-xProcessPCH
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch
-xPods-UIImage+BlurredFrame-prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-UIImage+BlurredFrame-prefix.pch
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-environment.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Precompile Pods-UIImage+BlurredFrame-prefix.pch307"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch Pods-UIImage+BlurredFrame-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler3771ce8bfa87b941^9069f98bfa87b941^---0#0#1#-19%DVTDocumentLocation2@99"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-UIImage+BlurredFrame-prefix.pch0000000000000000^4807"ProcessPCH /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch Pods-UIImage+BlurredFrame-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/Pods-UIImage+BlurredFrame-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/BuildHeaders/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Bolts -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Facebook-iOS-SDK/FacebookSDK -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/Parse -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources/i386 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphonesimulator/Pods-UIImage+BlurredFrame.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphonesimulator --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.dia -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.d -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-UIImage+BlurredFrame-prefix.pch -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-glipojgjiayteuhddadsayrcenke/Pods-UIImage+BlurredFrame-prefix.pch.pch36"D57A5D5F-B5A0-443C-9233-CF351E527165-
-b4ACFD70B-D071-495E-8225-88BA54BCB786
-
-CProcessPCH /Users/susanelias/Library/Developer/Xcode/DerivedData/Talk_Lists-enmazpptzerveicuxbbmfdcohjsc/Index/PrecompiledHeaders/Pods-UIImage+BlurredFrame-prefix-cmbysbhtlzvlsvgsrsjnajpvgdyu_ast/Pods-UIImage+BlurredFrame-prefix.pch.pch Pods-UIImage+BlurredFrame-prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
-r0
-
