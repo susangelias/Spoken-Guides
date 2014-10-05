@@ -7,7 +7,10 @@
 //
 
 NSString *const kParseApplicationKey = @"XS8vaAZaunsYpf2lyR1NNnCCPtkVd9WdqJRWAdVJ";
-NSString *const kParseMasterKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
+NSString *const kParseClientKey = @"pOjGQWVowyN0orIiqF74r7LQO5rPLvHv4oDAXqDr";
+//NSString *const kParseApplicationKey = @"r8FRXyBqXv6IhiIOC3SkDVbg2ziQGAPy5SjTAYkG";
+//NSString *const kParseClientKey = @"MSxBp0ajj0vmHse0oB9PF6W1MaHHvsklP5oibmay";
+
 NSString *const kAppBackgroundImageName = @"escheresque";
 
 #import "TalkListAppDelegate.h"
@@ -38,7 +41,7 @@ NSString *const kAppBackgroundImageName = @"escheresque";
     [PFStep registerSubclass];
     
     [Parse setApplicationId:kParseApplicationKey
-                  clientKey:kParseMasterKey];
+                  clientKey:kParseClientKey];
     
     // check if a user is logged in already or should the anonymous user be set up
     if (![PFUser currentUser]) {

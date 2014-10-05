@@ -11,7 +11,7 @@
 #import "ListeningController.h"
 
 extern NSString *const kParseApplicationKey;
-extern NSString *const kParseMasterKey;
+extern NSString *const kParseClientKey;
 extern NSString *const kAppBackgroundImageName;
 
 @interface TalkListAppDelegate : UIResponder <UIApplicationDelegate>
