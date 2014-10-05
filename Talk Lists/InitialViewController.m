@@ -8,7 +8,7 @@
 
 #import "InitialViewController.h"
 #import "EditGuideViewController.h"
-#import "MyGuidesViewController.h"
+#import "AllGuidesViewController.h"
 #import "MyAccountViewController.h"
 #import "GuideCategories.h"
 #import "TalkListAppDelegate.h"
@@ -133,7 +133,7 @@
          if ([[segue destinationViewController] isKindOfClass:[EditGuideViewController class]]) {
              EditGuideViewController *destController = (EditGuideViewController *)[segue destinationViewController];
              destController.guideToEdit = nil;
-             if ([[self.childViewControllers firstObject] isKindOfClass:[MyGuidesViewController class]]) {
+             if ([[self.childViewControllers firstObject] isKindOfClass:[AllGuidesViewController class]]) {
                  destController.editGuideDelegate = [self.childViewControllers firstObject];
              }
          }
