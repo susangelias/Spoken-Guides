@@ -1,165 +1,0 @@
-TPods
-v6
-r1
-cCheck dependencies
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a normal armv7
-cLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a normal armv7s
-cCreateUniversalBinary /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/libPods.a normal armv7\ armv7s
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk
-c00000000534815E00000000000000132
-t1397233120
-s306
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/SDKSettings.plist
-c00000000531E4AB8000000000000036B
-t1394494136
-s875
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/CoreServices/SystemVersion.plist
-c00000000531E4AB8000000000000019E
-t1394494136
-s414
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c00000000531E4ABA0000000000A90C10
-t1394494138
-s11078672
-
-N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
-c00000000531E4AD60000000000000ADC
-t1394494166
-s2780
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o
-t1411483254
-s3456
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods.LinkFileList
-c0000000054218676000000000000008C
-t1411483254
-s140
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a
-t1411483254
-s469576
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o
-t1411483254
-s3456
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods.LinkFileList
-c0000000054218676000000000000008D
-t1411483254
-s141
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a
-t1411483254
-s469568
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods-BNRDynamicTypeManager.a
-c0000000054218676000000000007E020
-t1411483254
-s516128
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods-BlurryModalSegue.a
-c0000000054218676000000000001E050
-t1411483254
-s122960
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods-MZAppearance.a
-c0000000054218676000000000000FCA0
-t1411483254
-s64672
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods-SZTextView.a
-c00000000542186760000000000022E90
-t1411483254
-s142992
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods-UIImage+BlurredFrame.a
-c000000005421867600000000000150A8
-t1411483254
-s86184
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods.a
-t1411483254
-s939192
-
-N/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
-c0000000053F79D7C0000000000000070
-t1408736636
-s112
-
-CBuild AST from /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m
-r0
-
-CCheck dependencies
-r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies59305d3cd7d1b941^5da75d3cd7d1b941^---0#1#1#--18"Check dependencies36"7D358B77-754A-48D7-90ED-B9E256D8B3BC-
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s433176054.672042
-e433176054.761451
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m231"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o Pods-dummy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler641facf6bdd1b941^c3f3c2f6bdd1b941^---0#0#1#-19%DVTDocumentLocation2@75"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-dummy.m0000000000000000^4298"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o Pods-dummy.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/DerivedSources/armv7 -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BNRDynamicTypeManager -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BlurryModalSegue -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/MZAppearance -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/SZTextView -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/UIImage+BlurredFrame -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods-dummy.o36"6CC21629-3274-4E80-B19F-013A9E69A555-
-bF8AD6DB7-7828-47DD-9BF8-6E9859C4EE75
-
-CCompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s433176054.672253
-e433176054.761439
-r1
-xCompileC
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o
-x/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
-xnormal
-xarmv7s
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/susanelias/Documents/Developer/Talk Lists/Pods/Pods-dummy.m233"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o Pods-dummy.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compilerf031acf6bdd1b941^0befc2f6bdd1b941^---0#0#1#-19%DVTDocumentLocation2@75"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Pods/Pods-dummy.m0000000000000000^4305"CompileC /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o Pods-dummy.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fmodules -fmodules-cache-path=/Users/susanelias/Library/Developer/Xcode/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -DDEBUG=1 -DCOCOAPODS=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=7.0 -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-generated-files.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-own-target-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-all-target-headers.hmap -iquote /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Pods-project-headers.hmap -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/include -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BNRDynamicTypeManager -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BlurryModalSegue -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/MZAppearance -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/SZTextView -I/Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/UIImage+BlurredFrame -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/DerivedSources/armv7s -I/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/DerivedSources -F/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BNRDynamicTypeManager -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/BlurryModalSegue -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/MZAppearance -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/SZTextView -isystem /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods/Headers/UIImage+BlurredFrame -MMD -MT dependencies -MF /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.d --serialize-diagnostics /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.dia -c /Users/susanelias/Documents/Developer/Talk\ Lists/Pods/Pods-dummy.m -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods-dummy.o36"84E1CFD1-D177-4FCC-B3D2-8D6FB1DA8BD8-
-bF8AD6DB7-7828-47DD-9BF8-6E9859C4EE75
-
-CCreateUniversalBinary /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/libPods.a normal armv7\ armv7s
-s433176054.780736
-e433176054.795933
-r1
-xCreateUniversalBinary
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods.a
-xnormal
-xarmv7 armv7s
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Create universal binary /Users/susanelias/Documents/Developer/Talk Lists/Build/Products/Debug-iphoneos/libPods.a132"CreateUniversalBinary /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/libPods.a normal armv7\ armv7s07ebc7f6bdd1b941^fcc2cbf6bdd1b941^---0#0#1#-19%DVTDocumentLocation2@97"file:///Users/susanelias/Documents/Developer/Talk%20Lists/Build/Products/Debug-iphoneos/libPods.a0034c813dcffdf42^861"CreateUniversalBinary /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/libPods.a normal armv7\ armv7s    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos/libPods.a36"C8FEC82B-4487-4373-BD04-1662A1E6684D-
-bF8AD6DB7-7828-47DD-9BF8-6E9859C4EE75
-
-CLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a normal armv7
-s433176054.762088
-e433176054.779980
-r1
-xLibtool
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a
-xnormal
-xarmv7
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection158"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a normal armv7158"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a normal armv73128c3f6bdd1b941^79aec7f6bdd1b941^---0#0#1#--1210"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a normal armv7    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only armv7 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/Pods.LinkFileList -framework Foundation -lPods-BNRDynamicTypeManager -lPods-BlurryModalSegue -lPods-MZAppearance -lPods-SZTextView -lPods-UIImage+BlurredFrame -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7/libPods.a36"ABA52797-C62B-4BED-BB17-ACF8EB7D4F00-
-bF8AD6DB7-7828-47DD-9BF8-6E9859C4EE75
-
-CLibtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a normal armv7s
-s433176054.762262
-e433176054.780343
-r1
-xLibtool
-x/Users/susanelias/Documents/Developer/Talk Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a
-xnormal
-xarmv7s
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection160"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a normal armv7s160"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a normal armv7s7b2ec3f6bdd1b941^11c6c7f6bdd1b941^---0#0#1#--1215"Libtool /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a normal armv7s    cd "/Users/susanelias/Documents/Developer/Talk Lists/Pods"    export IPHONEOS_DEPLOYMENT_TARGET=7.0    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only armv7s -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/susanelias/Documents/Developer/Talk\ Lists/Build/Products/Debug-iphoneos -filelist /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/Pods.LinkFileList -framework Foundation -lPods-BNRDynamicTypeManager -lPods-BlurryModalSegue -lPods-MZAppearance -lPods-SZTextView -lPods-UIImage+BlurredFrame -o /Users/susanelias/Documents/Developer/Talk\ Lists/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/Objects-normal/armv7s/libPods.a36"078DE849-3642-46E5-A153-BCEF1CC2BD03-
-bF8AD6DB7-7828-47DD-9BF8-6E9859C4EE75
-
