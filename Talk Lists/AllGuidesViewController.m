@@ -415,6 +415,7 @@ NSInteger const kFetchLimit = 15;
         __weak typeof(self) weakSelf = self;
         // Delete the row from the data source
         PFGuide *guideToDelete = (PFGuide *)[self.guideObjects objectAtIndex:indexPath.row];
+        [self.guideObjects removeObject:guideToDelete];
         // Delete all the guide's steps first
         PFRelation *guideSteps = guideToDelete.pfSteps;
         PFQuery *query = [guideSteps query];
@@ -425,8 +426,8 @@ NSInteger const kFetchLimit = 15;
             // Now delete the guide
             [guideToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    // Delete row from tableview
-                    [weakSelf loadGuides:nil];
+                    // Update the tableview
+                    [weakSelf.tableView reloadData];
                 }
             }];
         }];
