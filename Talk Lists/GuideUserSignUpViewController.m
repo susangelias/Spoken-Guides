@@ -33,7 +33,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
- //   [self.signUpView setBackgroundColor:[UIColor colorWithRed:178.0/255 green:255.0/255 blue:102.0/255 alpha:1.0]];
     self.signUpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
     [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
     
@@ -86,11 +85,11 @@
     [self.signUpView addSubview:self.passwordAgain];
     
     [self.signUpView.dismissButton setFrame:CGRectMake(5.0, 30.0, 20.0, 20.0)];
-    [self.signUpView.usernameField setFrame:CGRectMake(35.0f, 150.0f, 250.0f, 42.0f)];
-    [self.signUpView.passwordField setFrame:CGRectMake(35.0f, 194.0f, 250.0f, 42.0f)];
-    [self.passwordAgain setFrame:CGRectMake(35.0f, 238.0f, 250.0f, 42.0f)];
-    [self.signUpView.emailField setFrame:CGRectMake(35.0f, 282.0f, 250.0f, 42.0f)];
-    [self.signUpView.signUpButton setFrame:CGRectMake(35.0f, 338.0f, 250.0f, 40.0f)];
+    [self.signUpView.usernameField setFrame:CGRectMake(35.0f, 120.0f, 250.0f, 42.0f)];
+    [self.signUpView.passwordField setFrame:CGRectMake(35.0f, 164.0f, 250.0f, 42.0f)];
+    [self.passwordAgain setFrame:CGRectMake(35.0f, 208.0f, 250.0f, 42.0f)];
+    [self.signUpView.emailField setFrame:CGRectMake(35.0f, 252.0f, 250.0f, 42.0f)];
+    [self.signUpView.signUpButton setFrame:CGRectMake(35.0f, 308.0f, 250.0f, 40.0f)];
 }
 
 -(void)viewWillAppear:(BOOL)animated
