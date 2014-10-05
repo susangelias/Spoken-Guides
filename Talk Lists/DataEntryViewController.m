@@ -70,7 +70,7 @@
     self.textEntryView.textContainerInset = UIEdgeInsetsMake(self.textEntryView.textContainerInset.top,
                                                              self.textEntryView.textContainerInset.left + 10,
                                                              self.textEntryView.textContainerInset.bottom,
-                                                             self.textEntryView.textContainerInset.right - 10);
+                                                             self.textEntryView.textContainerInset.right + 10);
     
     // sign up to catch any changes the user makes to the font settings
     [[NSNotificationCenter defaultCenter]
