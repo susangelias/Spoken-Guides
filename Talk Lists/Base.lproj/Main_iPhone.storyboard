@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ure-Oj-PAM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ure-Oj-PAM">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -8,11 +8,11 @@
         <!--Spoken Guides-->
         <scene sceneID="jy6-Dp-R3x">
             <objects>
-                <tableViewController id="lum-ne-Bjf" customClass="MyGuidesViewController" sceneMemberID="viewController">
+                <tableViewController id="lum-ne-Bjf" customClass="AllGuidesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uYp-W2-vbC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MaT-qu-MLp">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -26,16 +26,27 @@
                                 <action selector="categoryButtonPressed:" destination="lum-ne-Bjf" eventType="touchUpInside" id="kNu-UG-4h4"/>
                             </connections>
                         </button>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1qT-JO-fbe">
+                            <rect key="frame" x="-23" y="-15" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                            <state key="normal" title="Load More Guides">
+                                <color key="titleColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="loadMoreButtonPressed:" destination="lum-ne-Bjf" eventType="touchUpInside" id="82Q-Qn-T5K"/>
+                            </connections>
+                        </button>
                         <prototypes>
-                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="guideCell" rowHeight="78" id="msj-vr-7jp" customClass="PFTableViewCell">
-                                <rect key="frame" x="0.0" y="66" width="320" height="78"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="guideCell" id="keS-Q4-7n6" customClass="guideCell">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="msj-vr-7jp" id="d1F-bz-V1S">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="77"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keS-Q4-7n6" id="602-Cg-RMC">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="0pl-vw-p5k" kind="push" identifier="GuideDetailSegue" id="9DZ-rs-NQ0"/>
+                                    <segue destination="0pl-vw-p5k" kind="push" identifier="GuideDetailSegue" trigger="accessoryAction" id="Ggg-vO-UEa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -51,14 +62,20 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="EEV-sW-0AW">
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="myw-c5-OcH">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
                         <outlet property="currentCategoryButton" destination="MaT-qu-MLp" id="XWa-kb-m2T"/>
+                        <outlet property="loadMoreButton" destination="1qT-JO-fbe" id="gQT-bp-ZNO"/>
+                        <outlet property="loadingActivity" destination="ax2-Gw-Jgf" id="j7c-ie-yOA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="des-YR-aqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" id="ax2-Gw-Jgf">
+                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </objects>
             <point key="canvasLocation" x="2175" y="2349"/>
         </scene>
@@ -284,27 +301,20 @@
                         <viewControllerLayoutGuide type="bottom" id="dPA-3d-mhp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4Gq-jp-aJh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-YJ-LuI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="lum-ne-Bjf" kind="embed" identifier="MyGuidesSegue" id="V5g-cr-bh2"/>
-                                </connections>
-                            </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ree-JK-5Cs">
-                                <rect key="frame" x="-121" y="524" width="441" height="44"/>
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <barButtonItem width="162" style="plain" systemItem="fixedSpace" id="EVu-Qq-3JA"/>
+                                    <barButtonItem width="13" style="plain" systemItem="fixedSpace" id="EVu-Qq-3JA"/>
                                     <barButtonItem image="folder - black" id="Rs8-9D-sZv">
                                         <connections>
                                             <action selector="categoryButtonPressed:" destination="De9-AK-rFL" id="ezj-xt-yeE"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="59" style="plain" systemItem="fixedSpace" id="wkd-kk-eGG"/>
+                                    <barButtonItem width="87" style="plain" systemItem="fixedSpace" id="wkd-kk-eGG"/>
                                     <barButtonItem style="plain" id="s69-ZM-wLA">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Adg-bG-yYG">
                                             <rect key="frame" x="263" y="7" width="168" height="30"/>
@@ -320,10 +330,18 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-YJ-LuI">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="lum-ne-Bjf" kind="embed" identifier="MyGuidesSegue" id="V5g-cr-bh2"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="8b8-Pm-0Aq">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="male" id="vYf-u1-M8L">
                             <connections>
                                 <segue destination="VOS-b3-Rhp" kind="custom" identifier="myAccountViewSegue" customClass="BlurryModalSegue" id="YG4-1f-s6j"/>
@@ -343,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47m-H4-1Yo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624" y="1794"/>
+            <point key="canvasLocation" x="1610" y="1800"/>
         </scene>
         <!--Guide Detail View Controller-->
         <scene sceneID="rw3-cd-xGs">
@@ -354,7 +372,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cCG-op-f4Q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dXP-0P-hhA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7S-TP-PlC" customClass="PFImageView">
@@ -513,8 +531,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTD-al-xZW">
-                                <rect key="frame" x="28" y="234" width="35" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTD-al-xZW">
+                                <rect key="frame" x="28" y="235" width="35" height="20"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="highlightedColor"/>
                             </label>
