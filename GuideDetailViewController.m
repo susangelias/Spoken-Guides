@@ -149,6 +149,19 @@ NSString * const kHighlightColor = @"AppleGreen";
     
     // Make sure prompt label is displayed
     [self.view bringSubviewToFront:self.statusDisplay];
+
+    // check to see if current user is the owner of this guide, if so enable Edit and the Action buttons
+    PFACL *guideACL = self.guide.ACL;
+    if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
+        // user is the owner of this guide
+        self.editButton.enabled = YES;
+        self.actionButton.enabled = YES;
+    }
+    else {
+        // user is NOT owner of this guide
+        self.editButton.enabled = NO;
+        self.actionButton.enabled = NO;
+    }
     
     // Check microphone permissions
     if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
@@ -185,18 +198,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     
     [super viewDidAppear:animated];
     
-    // check to see if current user is the owner of this guide, if so enable Edit and the Action buttons
-    PFACL *guideACL = self.guide.ACL;
-    if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
-        // user is the owner of this guide
-        self.editButton.enabled = YES;
-        self.actionButton.enabled = YES;
-    }
-    else {
-        // user is NOT owner of this guide
-        self.editButton.enabled = NO;
-        self.actionButton.enabled = NO;
-    }
+
 }
 
 -(void)viewWillLayoutSubviews
