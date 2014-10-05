@@ -8,9 +8,9 @@
 
 #import "stepCell.h"
 #import "UIView+SuperView.h"
-//#import "Photo+Addendums.h"
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "UIImage+Resize.h"
+
+NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 
 @interface stepCell()
 
@@ -25,14 +25,28 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        // Initialize cell text
+        UIFont *stepCellFont = [UIFont fontWithName:kStepCellFont size:kStepCellFontSize];
+        self.textLabel.font = stepCellFont;
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    // Calling initWithStyle is the only way I have found to get my stepCell to display an image
+    // I'm not sure what is happening in initWithStyle that makes this happen
+    self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"stepCell"];
     return self;
 }
 
 - (void)awakeFromNib
 {
-    // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -40,8 +54,50 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    
 }
 
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    // Position and size the image view to get a square thumbnail size image on the right end of the cell
+    CGRect tableViewCellFrame = self.frame;
+
+    float y = (kStepCellStdHeight - 69.0)/2.0;
+    float x =  (tableViewCellFrame.size.width - 72);
+    self.imageView.frame = CGRectMake(x,y,69,69);
+    
+    float leftInset = 20.0;
+    
+    // make sure the text starts on the left
+    self.textLabel.frame = CGRectMake(leftInset, self.contentView.frame.origin.y, self.contentView.frame.size.width, self.contentView.frame.size.height);
+    self.textLabel.numberOfLines = 0;
+    
+    NSLog(@"imageView.frame origin: %f,%f size: %fx%f",self.imageView.frame.origin.x, self.imageView.frame.origin.y,self.imageView.frame.size.width,self.imageView.frame.size.height);
+    NSLog(@"textLabel.frame origin: %f,%f size: %fx%f",self.textLabel.frame.origin.x, self.textLabel.frame.origin.y,self.textLabel.frame.size.width,self.textLabel.frame.size.height);
+    NSLog(@"contentView.frame origin: %f,%f size: %fx%f",self.contentView.frame.origin.x, self.contentView.frame.origin.y,self.contentView.frame.size.width,self.contentView.frame.size.height);
+    
+}
+/*
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    CGSize adjustedSize = [super sizeThatFits:size];
+    adjustedSize.width += self.contentInsets.left + self.contentInsets.right;
+    adjustedSize.height += self.contentInsets.top + self.contentInsets.bottom;
+    
+    return adjustedSize;
+}
+
+- (void)drawTextInRect:(CGRect)rect
+{
+    CGRect insetRect = CGRectMake(self.contentInsets.left,
+                                  self.contentInsets.top,
+                                  rect.size.width - self.contentInsets.left - self.contentInsets.right,
+                                  rect.size.height - self.contentInsets.top - self.contentInsets.bottom);
+    [super drawTextInRect:insetRect];
+}
+*/
 -(void)configureStepCell: (PFStep *)stepToDisplay
 {
     UITapGestureRecognizer *tapped;
@@ -162,14 +218,5 @@
                      }];
 }
 
-/*
-#pragma mark Photo_AddendumsDelegate
-
-
--(void)imageRetrieved:(UIImage *)image
-{
-    self.imageView.image = image;
-}
-*/
 
 @end
