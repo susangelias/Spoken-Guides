@@ -402,7 +402,7 @@
     
     [request setHTTPMethod:@"-X DELETE"];
     [request setValue:kParseApplicationKey forHTTPHeaderField:@"X-Parse-Application-Id"];
-    [request setValue:kParseMasterKey forHTTPHeaderField:@"X-Parse-Master-Key"];
+    [request setValue:kParseClientKey forHTTPHeaderField:@"X-Parse-Master-Key"];
     
     NSLog(@"DELETING FILE: %@", fileName);
     [NSURLConnection sendAsynchronousRequest:request
