@@ -1,5 +1,5 @@
 //
-//  MyGuidesViewController.m
+//  AllGuidesViewController.m
 //  Talk Lists
 //
 //  Created by Susan Elias on 5/22/14.
