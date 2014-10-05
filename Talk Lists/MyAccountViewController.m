@@ -12,7 +12,6 @@
 
 @interface MyAccountViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *deleteAllButton;
 @property (strong,nonatomic) UIColor *fieldBackgroundColor;
 @property (strong, nonatomic) UIColor *appleGreen;
 @end
