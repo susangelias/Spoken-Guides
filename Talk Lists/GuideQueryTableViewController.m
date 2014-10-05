@@ -175,6 +175,8 @@
         [query orderByAscending:@"rank"];
     }
    
+    query.limit = 1000;
+    
     return query;
 }
 
