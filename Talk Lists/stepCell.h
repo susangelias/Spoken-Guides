@@ -12,7 +12,7 @@
 #define kStepCellFontSize 18.0
 #define kStepCellStdHeight 78.0
 #define kStepCellStdWidthNoImage 300.0
-#define kStepCellStdWidthWithImage 270.0
+#define kStepCellStdWidthWithImage 248.0
 
 extern NSString *const kStepCellFont;
 

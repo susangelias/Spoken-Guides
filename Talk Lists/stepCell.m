@@ -26,7 +26,8 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialize cell text
-        UIFont *stepCellFont = [UIFont fontWithName:kStepCellFont size:kStepCellFontSize];
+       // UIFont *stepCellFont = [UIFont fontWithName:kStepCellFont size:kStepCellFontSize];
+        UIFont *stepCellFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         self.textLabel.font = stepCellFont;
         self.textLabel.textColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
@@ -68,36 +69,22 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
     float x =  (tableViewCellFrame.size.width - 72);
     self.imageView.frame = CGRectMake(x,y,69,69);
     
-    float leftInset = 20.0;
-    
-    // make sure the text starts on the left
-    self.textLabel.frame = CGRectMake(leftInset, self.contentView.frame.origin.y, self.contentView.frame.size.width, self.contentView.frame.size.height);
-    self.textLabel.numberOfLines = 0;
-    
+    NSLog(@"STARTING text Frame width %f", self.textLabel.frame.size.width);
+    if (self.imageView.file) {
+        NSLog(@"have a photo");
+        self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width - 89.0, self.frame.size.height-0.5);
+    } else {
+        NSLog(@"don't have a photo");
+        self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width -30, self.frame.size.height-0.5);
+     }
+//    self.textLabel.numberOfLines = 0;
+
     NSLog(@"imageView.frame origin: %f,%f size: %fx%f",self.imageView.frame.origin.x, self.imageView.frame.origin.y,self.imageView.frame.size.width,self.imageView.frame.size.height);
     NSLog(@"textLabel.frame origin: %f,%f size: %fx%f",self.textLabel.frame.origin.x, self.textLabel.frame.origin.y,self.textLabel.frame.size.width,self.textLabel.frame.size.height);
     NSLog(@"contentView.frame origin: %f,%f size: %fx%f",self.contentView.frame.origin.x, self.contentView.frame.origin.y,self.contentView.frame.size.width,self.contentView.frame.size.height);
     
 }
-/*
-- (CGSize)sizeThatFits:(CGSize)size
-{
-    CGSize adjustedSize = [super sizeThatFits:size];
-    adjustedSize.width += self.contentInsets.left + self.contentInsets.right;
-    adjustedSize.height += self.contentInsets.top + self.contentInsets.bottom;
-    
-    return adjustedSize;
-}
 
-- (void)drawTextInRect:(CGRect)rect
-{
-    CGRect insetRect = CGRectMake(self.contentInsets.left,
-                                  self.contentInsets.top,
-                                  rect.size.width - self.contentInsets.left - self.contentInsets.right,
-                                  rect.size.height - self.contentInsets.top - self.contentInsets.bottom);
-    [super drawTextInRect:insetRect];
-}
-*/
 -(void)configureStepCell: (PFStep *)stepToDisplay
 {
     UITapGestureRecognizer *tapped;
