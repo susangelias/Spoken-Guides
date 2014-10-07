@@ -99,7 +99,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationBecameActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(preferredContentSizeChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
 
+}
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -246,22 +254,26 @@
     CGRect rect;
     
     if (isSelected) {
+
         PFStep *step = self.objects[indexPath.row];
         CGSize constraint;
-      //  if (step.image) {
-       //     constraint = CGSizeMake(kStepCellStdWidthWithImage, NSUIntegerMax);
-      //  }
-      //  else {
+        if (step.image) {
+            constraint = CGSizeMake(kStepCellStdWidthWithImage, NSUIntegerMax);
+        }
+        else {
             constraint = CGSizeMake(kStepCellStdWidthNoImage, NSUIntegerMax);
-      //  }
-        UIFont *stepCellFont = [UIFont fontWithName:kStepCellFont size:kStepCellFontSize];
+        }
+        UIFont *stepCellFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:stepCellFont forKey:NSFontAttributeName];
         NSAttributedString *text  = [[NSAttributedString alloc] initWithString:step.instruction attributes:attributes];
         rect = [text boundingRectWithSize:constraint
                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                     context:nil];
-        float rowHeight = ceilf(rect.size.height);
-        NSLog(@"row height %f", rowHeight);
+        float marginAdjustment = stepCellFont.pointSize + 10.0;
+      //  NSLog(@"stepCellFont.pointSize %f", stepCellFont.pointSize);
+        float rowHeight = ceilf(rect.size.height)+ marginAdjustment;
+
+      //  NSLog(@"row height %f", rowHeight);
         return MAX(rowHeight,kStepCellStdHeight);
     }
     else return kStepCellStdHeight;
@@ -299,6 +311,8 @@
     // check how many lines to display for this cell
     BOOL isSelected = [self.selectedIndexPath isEqual:indexPath];
     cell.textLabel.numberOfLines = isSelected?0:3;
+
+     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 
     return cell;
 }

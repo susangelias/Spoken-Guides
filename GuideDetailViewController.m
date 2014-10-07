@@ -92,8 +92,7 @@ NSString * const kHighlightColor = @"AppleGreen";
                                              selector:@selector(didEnterBackground:)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:[UIApplication sharedApplication]];
-
-
+  
     // set view background
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
 
@@ -103,6 +102,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     self.routeChangeInProcess = NO;
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
