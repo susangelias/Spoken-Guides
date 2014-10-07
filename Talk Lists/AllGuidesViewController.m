@@ -25,7 +25,7 @@ NSInteger const kFetchLimit = 15;
 //@property (nonatomic) NSUInteger totalGuidesInDatabase;
 @property (weak, nonatomic) IBOutlet UIButton *loadMoreButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
-
+@property (nonatomic, strong) PFUser *activeUser;
 @property (nonatomic, strong) NSMutableArray *guideObjects;
 //@property (nonatomic) BOOL loadingGuides;
 @property (nonatomic) NSInteger skip;
@@ -164,14 +164,20 @@ NSInteger const kFetchLimit = 15;
 - (PFQuery *)queryForTable {
     
     PFUser *currentUser = [PFUser currentUser];
-    NSLog(@"current User after log in %@", currentUser);
+    if (![currentUser.objectId isEqual:self.activeUser.objectId]) {
+        NSLog(@"CHANGED USER to %@", currentUser);
+        // clear the guides downloaded
+        [self.guideObjects removeAllObjects];
+        self.activeUser = currentUser;
+    }
+
     
     PFQuery *query = [PFQuery queryWithClassName:@"PFGuide"];
     
     if (self.queryOrder == 1) {
         // My Guides Only
-        PFUser *currentUser = [PFUser currentUser];
-        [query whereKey: @"user" equalTo: currentUser];
+     //   PFUser *currentUser = [PFUser currentUser];
+        [query whereKey: @"user" equalTo: self.activeUser];
     }
     if ( ![self.categoryFilter isEqualToString:kALLCATAGORIES] ) {
         // limit object to a selected category
