@@ -75,9 +75,17 @@ NSInteger const kFetchLimit = 15;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationBecameActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(preferredContentSizeChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
      [self.refreshControl addTarget:self action:@selector(refreshTable:) forControlEvents:UIControlEventValueChanged];
 }
 
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    [self.tableView reloadData];
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -353,7 +361,8 @@ NSInteger const kFetchLimit = 15;
         cell.imageView.image = nil;
         cell.imageView.file = nil;
     }
-    //  }
+    // refresh dynamic text
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     return cell;
 }
 

@@ -17,10 +17,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
+     //   self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
+        self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         self.textLabel.textColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
-      //  self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
