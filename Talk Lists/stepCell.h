@@ -18,6 +18,7 @@ extern NSString *const kStepCellFont;
 
 @interface stepCell : PFTableViewCell
 
--(void)configureStepCell: (PFStep *)stepToDisplay;
+//-(void)configureStepCell: (PFStep *)stepToDisplay;
+-(void)configureStepCell: (PFStep *)stepToDisplay attributes:(NSDictionary *)stepAttributes;
 
 @end

@@ -232,8 +232,6 @@
     // turn off editing mode automatically after a row is moved
     [self.tableView setEditing:NO animated:YES];
     
-    // erase the dialog controller's list of steps and let it rebuild them
-  //  self.dialogController.instructions = nil;
 }
 
 // Override to support conditional rearranging of the table view.
@@ -270,10 +268,8 @@
                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                     context:nil];
         float marginAdjustment = stepCellFont.pointSize + 10.0;
-      //  NSLog(@"stepCellFont.pointSize %f", stepCellFont.pointSize);
         float rowHeight = ceilf(rect.size.height)+ marginAdjustment;
 
-      //  NSLog(@"row height %f", rowHeight);
         return MAX(rowHeight,kStepCellStdHeight);
     }
     else return kStepCellStdHeight;
@@ -291,28 +287,11 @@
     // Configure the cell
     NSDictionary *stepAttributes = [[SpokenGuideCache sharedCache] objectForKey:object.objectId];
     PFStep *stepToDisplay = [stepAttributes objectForKey:kPFStepClassKey];
-    cell.textLabel.text = stepToDisplay.instruction;
-    
-    UIImage *latestThumbnail = [stepAttributes objectForKey:kPFStepChangedThumbnail];
-    if (latestThumbnail) {
-        cell.imageView.image = latestThumbnail;
-        cell.imageView.file = nil;
-    }
-    else if (stepToDisplay.thumbnail) {
-        cell.imageView.image = [UIImage imageNamed:@"image.png"];
-        cell.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
-    }
-    else {
-        // since these cells are re-used, make sure old images are cleaned out
-        cell.imageView.image = nil;
-        cell.imageView.file = nil;
-    }
-    
+    [cell configureStepCell:stepToDisplay attributes:stepAttributes];
+
     // check how many lines to display for this cell
     BOOL isSelected = [self.selectedIndexPath isEqual:indexPath];
     cell.textLabel.numberOfLines = isSelected?0:3;
-
-     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 
     return cell;
 }
