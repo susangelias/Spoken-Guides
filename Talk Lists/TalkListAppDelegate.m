@@ -33,7 +33,7 @@ NSString *const kAppBackgroundImageName = @"escheresque";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // set up navigation bar color for entire app
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor grayColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.0 alpha:1.0]}];
     
     // set the app's custom tintColor
