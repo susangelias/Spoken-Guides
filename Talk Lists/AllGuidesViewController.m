@@ -22,12 +22,10 @@ NSInteger const kFetchLimit = 15;
 
 @property (nonatomic) NSUInteger queryOrder;
 @property (weak, nonatomic) IBOutlet UIButton *currentCategoryButton;
-//@property (nonatomic) NSUInteger totalGuidesInDatabase;
 @property (weak, nonatomic) IBOutlet UIButton *loadMoreButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 @property (nonatomic, strong) PFUser *activeUser;
 @property (nonatomic, strong) NSMutableArray *guideObjects;
-//@property (nonatomic) BOOL loadingGuides;
 @property (nonatomic) NSInteger skip;
 
 @end
@@ -40,25 +38,7 @@ NSInteger const kFetchLimit = 15;
     
     self = [super initWithCoder:aDecoder];
     if (self) {
-        // Class name to query on
-    //    self.parseClassName = @"PFGuide";
-        
-        // The key of the PFObject to display  the labelofthe default cell style
-        //     self.textKey = @"title";
-        //     self.imageKey = @"thumbnail";
-        // self.placeholderImage = [UIImage imageNamed:@"image.png"];
-        
-        // Whether the built-in pull-to-refresh is enabled
-    //    self.pullToRefreshEnabled = YES;
-        
-        // Whether the built-in pagination is enabled
-   //     self.paginationEnabled = YES;
-        
-        // The number of objects to show per page
-    //    self.objectsPerPage = 15;
-        
         self.categoryFilter = kALLCATAGORIES;
-        
     }
     return self;
 }
@@ -121,8 +101,6 @@ NSInteger const kFetchLimit = 15;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [self.loadingActivity stopAnimating];
         if (!error) {
-            NSLog(@"loaded %d guides", [objects count]);
-            NSLog(@"have %d guides in guideObjects array", [self.guideObjects count]);
             NSMutableArray *freshObjects = [NSMutableArray arrayWithArray:objects];
             [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {                 // loop through all the freshly downloaded guides
                 PFGuide *freshGuide = (PFGuide *)obj;
@@ -173,7 +151,6 @@ NSInteger const kFetchLimit = 15;
     
     PFUser *currentUser = [PFUser currentUser];
     if (![currentUser.objectId isEqual:self.activeUser.objectId]) {
-        NSLog(@"CHANGED USER to %@", currentUser);
         // clear the guides downloaded
         [self.guideObjects removeAllObjects];
         self.activeUser = currentUser;
@@ -247,19 +224,6 @@ NSInteger const kFetchLimit = 15;
     [self loadGuides:nil];
 }
 
-#pragma mark UIScrollViewDelegate
-
-/*
- - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
- if (scrollView.contentSize.height - scrollView.contentOffset.y < (self.view.bounds.size.height)) {
- if (![self isLoading]) {
- [self loadObjects:2 clear:YES];
- // [self loadNextPage];
- }
- }
- }
- */
-
 
 #pragma mark UITableViewDelegate
 
@@ -267,26 +231,6 @@ NSInteger const kFetchLimit = 15;
 {
     guideCell *customCell = (guideCell *)cell;
     customCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  //  customCell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
-
-    /*
-     
-     NSLog(@"customCell.textLabel.Frame %f x %f, %f x %f",customCell.textLabel.frame.origin.x, customCell.textLabel.frame.origin.y, customCell.textLabel.frame.size.width, customCell.textLabel.frame.size.height);
-     NSLog(@"customCell.imageView.Frame %f x %f, %f x %f",customCell.imageView.frame.origin.x, customCell.imageView.frame.origin.y, customCell.imageView.frame.size.width, customCell.imageView.frame.size.height);
-     
-     if (customCell.imageView.file) {
-     NSInteger margin = 10;
-     CGRect ivf = customCell.imageView.frame;
-     CGRect cvf = customCell.textLabel.frame;
-     CGRect frame = CGRectMake(ivf.size.width + margin,
-     cvf.origin.y,
-     cvf.size.width,
-     cvf.size.height);
-     customCell.textLabel.frame = frame;
-     NSLog(@"Adjusted customCell.textLabel.Frame %f x %f, %f x %f",customCell.textLabel.frame.origin.x, customCell.textLabel.frame.origin.y, customCell.textLabel.frame.size.width, customCell.textLabel.frame.size.height);
-     
-     }
-     */
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -319,14 +263,12 @@ NSInteger const kFetchLimit = 15;
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"NUMBER OF ROWS IN SECTION %d", [self.guideObjects count]);
     return [self.guideObjects count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"guideCell";
     
-    NSLog(@"cell for row at index path %d", indexPath.row);
     if (indexPath.row > [self.guideObjects count]) {
         return nil;
     }
@@ -409,7 +351,6 @@ NSInteger const kFetchLimit = 15;
 
 
  - (IBAction)loadMoreButtonPressed:(UIButton *)sender {
-     NSLog(@"load More Pressed");
      if  (self.loadingActivity.isAnimating == NO) {
          self.skip = [self.guideObjects count];
          [self loadGuides:nil];
@@ -485,40 +426,6 @@ NSInteger const kFetchLimit = 15;
 
 
 #pragma mark Initializations
-
-/*
--(void)retreiveTotalGuideCount
-{
-    __block NSUInteger totalGuides = 0;
-    PFQuery *query = [PFQuery queryWithClassName:@"PFGuide"];
-    self.queryOrder = 0;        // count all the public guides
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    // set the query limit
-    query.limit = 1000;
-    query.skip = self.skip;
-    
-    __weak typeof(self) weakSelf = self;
-    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-        if (!error) {
-            weakSelf.totalGuidesInDatabase = number;
-            if ([self.guideObjects count] < totalGuides)
-            {
-                // display the load more button
-               self.loadMoreButton.hidden = NO;
-            }
-            else {
-                // all guides are displaying so hide the load more button
-                self.loadMoreButton.hidden = YES;
-            }
-            NSLog(@"total guide count %d", number);
-        }
-        else {
-            NSLog(@"Error in retreiveTotalGuideCount %@", error);
-        }
-    }];
-    
-    }
-*/
 
 -(NSMutableArray *)guideObjects
 {
