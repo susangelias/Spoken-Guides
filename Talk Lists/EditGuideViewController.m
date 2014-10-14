@@ -657,6 +657,37 @@
 
 #pragma mark Navigation
 
+
+- (IBAction)photoCanceled:(UIStoryboardSegue *)segue
+{
+    // work around ios 8.0 bug with unwind segues
+    if  ([[self.childViewControllers firstObject] isKindOfClass:[DataEntryContainerViewController class]]) {
+        DataEntryContainerViewController *dataEntryContainerVC = (DataEntryContainerViewController *)[self.childViewControllers firstObject];
+        [[dataEntryContainerVC.childViewControllers firstObject] photoCanceled:segue];
+    }
+}
+
+- (IBAction)photoAdded:(UIStoryboardSegue *)segue
+{
+    // work around ios 8.0 bug with unwind segues
+    if  ([[self.childViewControllers firstObject] isKindOfClass:[DataEntryContainerViewController class]]) {
+        DataEntryContainerViewController *dataEntryContainerVC = (DataEntryContainerViewController *)[self.childViewControllers firstObject];
+        [[dataEntryContainerVC.childViewControllers firstObject] photoAdded:segue];
+    }
+}
+
+- (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender {
+    UIViewController *superResult = [super viewControllerForUnwindSegueAction:action fromViewController:fromViewController withSender:sender];
+    
+    return superResult;
+}
+
+- (UIStoryboardSegue *)segueForUnwindingToViewController:(UIViewController *)toViewController fromViewController:(UIViewController *)fromViewController identifier:(NSString *)identifier {
+    UIStoryboardSegue *superResult = [super segueForUnwindingToViewController:toViewController fromViewController:fromViewController identifier:identifier];
+    
+    return superResult;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   if ([segue.identifier isEqualToString:@"embedContainer"]) {

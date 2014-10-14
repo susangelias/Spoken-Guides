@@ -96,7 +96,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="TvI-vU-G5Q" kind="unwind" unwindAction="photoCanceled:" id="tFA-JY-CFv"/>
+                                    <segue destination="TvI-vU-G5Q" kind="unwind" identifier="photoCanceled" unwindAction="photoCanceled:" id="9NF-ZG-IEr"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugs-MZ-Tvp">
@@ -127,6 +127,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="URM-gy-Fna"/>
                     <connections>
                         <outlet property="cancelButton" destination="qkz-7D-pJ7" id="nRa-ti-JBq"/>
                         <outlet property="doneButton" destination="zJW-RC-Dc3" id="V0P-EZ-26y"/>
@@ -726,7 +727,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="a6U-TA-t9w" kind="modal" identifier="addPhotoSegue" id="9se-h2-Jzo"/>
+                                    <segue destination="a6U-TA-t9w" kind="modal" identifier="addPhotoSegue" modalPresentationStyle="currentContext" id="9se-h2-Jzo"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -781,7 +782,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="a6U-TA-t9w" kind="modal" identifier="addPhotoSegue" id="nKB-da-8Cm"/>
+                                    <segue destination="a6U-TA-t9w" kind="modal" identifier="addPhotoSegue" modalPresentationStyle="currentContext" id="nKB-da-8Cm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -844,6 +845,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="eDg-Ov-xZO"/>
-        <segue reference="nKB-da-8Cm"/>
+        <segue reference="9se-h2-Jzo"/>
     </inferredMetricsTieBreakers>
 </document>
