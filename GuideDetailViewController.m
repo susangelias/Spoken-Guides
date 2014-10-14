@@ -62,6 +62,7 @@ NSString * const kHighlightColor = @"AppleGreen";
             self.dialogController.dialogControlDelegate = self;
         }
     }
+
 }
 
 
@@ -150,19 +151,6 @@ NSString * const kHighlightColor = @"AppleGreen";
     // Make sure prompt label is displayed
     [self.view bringSubviewToFront:self.statusDisplay];
 
-    // check to see if current user is the owner of this guide, if so enable Edit and the Action buttons
-    PFACL *guideACL = self.guide.ACL;
-    if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
-        // user is the owner of this guide
-        self.editButton.enabled = YES;
-        self.actionButton.enabled = YES;
-    }
-    else {
-        // user is NOT owner of this guide
-        self.editButton.enabled = NO;
-        self.actionButton.enabled = NO;
-    }
-    
     // Check microphone permissions
     if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
         [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
@@ -197,6 +185,24 @@ NSString * const kHighlightColor = @"AppleGreen";
 {
     
     [super viewDidAppear:animated];
+    
+    // NOTE:  To keep the Edit button from briefly displaying then disappearing, I would like the self.editButton to be disabled by default at this point in the execution but
+    // I can't seem to get it to be that way dispite unchecking the Enabled button for it in the Storyboard.
+    // I also tried explicitly setting it the disabled in awakeFromNib and initWithCoder but that didn't work either.
+    
+    // check to see if current user is the owner of this guide, if so enable Edit and the Action buttons
+    PFACL *guideACL = self.guide.ACL;
+    if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
+        // user is the owner of this guide
+        self.editButton.enabled = YES;
+        self.actionButton.enabled = YES;
+    }
+    else {
+        // user is NOT owner of this guide
+        self.editButton.enabled = NO;
+        self.actionButton.enabled = NO;
+    }
+    
     
 
 }
