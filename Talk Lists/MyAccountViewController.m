@@ -69,7 +69,8 @@
     // Configure log in button
     [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"AppleGreen"] forState:UIControlStateNormal];
     [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"AppleGreen"] forState:UIControlStateHighlighted];
-
+    self.logInView.logInButton.titleLabel.shadowOffset = CGSizeMake(0.0, 0.0);
+    
     // Configure sign up button
     UIColor *buttonTextColor = self.appleGreen;
     [self.logInView.signUpButton setTitleShadowColor:[UIColor clearColor] forState:UIControlStateNormal];
@@ -79,6 +80,8 @@
     [self.logInView.signUpLabel setShadowColor:[UIColor clearColor]];
     [self.logInView.signUpLabel setTextColor:[UIColor blackColor]];
 
+    // Configure the 'Don't have an account yet' color
+    [self.logInView.signUpLabel setTextColor:[UIColor whiteColor]];
     
     // Create the sign up view controller
     GuideUserSignUpViewController *signUpViewController = [[GuideUserSignUpViewController alloc]init];
