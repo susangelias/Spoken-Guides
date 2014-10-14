@@ -20,13 +20,14 @@ NSString *const kRemovePhoto = @"Remove Photo From Guide";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.doneButton.hidden = YES;
+    self.redoButton.hidden = YES;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.doneButton.hidden = YES;
-    self.redoButton.hidden = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
