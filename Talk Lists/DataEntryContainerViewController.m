@@ -90,7 +90,7 @@
      [self transitionFromViewController:fromViewController
                        toViewController:toViewController
                                duration:0.4
-                                options:UIViewAnimationOptionTransitionNone
+                                options:UIViewAnimationOptionBeginFromCurrentState
                              animations:^(void) {
                                  if (self.entryTransistionDirection == Left) {
                                      fromViewController.view.frame = CGRectMake(0 - width, 0, width, height);
