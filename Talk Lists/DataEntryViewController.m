@@ -156,12 +156,6 @@
 
 -(void)viewAboutToChange
 {
-    /*
-    if ([self.textEntryView isFirstResponder]) {
-        if (![self.textEntryView.text isEqualToString:@""]) {
-            self.textHasChanged = YES;
-        }
-    } */
     [self textViewDidEndEditing:self.textEntryView];
 }
 
@@ -208,7 +202,6 @@
         [textView resignFirstResponder];
         return NO;
     }
-    
     else {
         return YES;
     }
