@@ -156,6 +156,12 @@
 
 -(void)viewAboutToChange
 {
+    /*
+    if ([self.textEntryView isFirstResponder]) {
+        if (![self.textEntryView.text isEqualToString:@""]) {
+            self.textHasChanged = YES;
+        }
+    } */
     [self textViewDidEndEditing:self.textEntryView];
 }
 
@@ -202,10 +208,15 @@
         [textView resignFirstResponder];
         return NO;
     }
+    
     else {
-        self.textHasChanged = YES;
         return YES;
     }
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.textHasChanged = YES;
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
