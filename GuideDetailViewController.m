@@ -70,30 +70,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 {
     [super viewDidLoad];
 
-    // sign up for AVAudioSession Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(audioInterruption:)
-                                                 name:AVAudioSessionInterruptionNotification
-                                               object:[AVAudioSession sharedInstance]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(audioServicesReset:)
-                                                 name:AVAudioSessionMediaServicesWereResetNotification
-                                               object:[AVAudioSession sharedInstance]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(audioRouteChange:)
-                                                 name:AVAudioSessionRouteChangeNotification
-                                               object:[AVAudioSession sharedInstance]];
-    
-    // sign up for system notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resignActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:[UIApplication sharedApplication]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didEnterBackground:)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:[UIApplication sharedApplication]];
-  
+   
     // set view background
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
 
@@ -179,6 +156,22 @@ NSString * const kHighlightColor = @"AppleGreen";
             }
         }];
     }
+    
+    // sign up for AVAudioSession Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(audioInterruption:)
+                                                 name:AVAudioSessionInterruptionNotification
+                                               object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(audioServicesReset:)
+                                                 name:AVAudioSessionMediaServicesWereResetNotification
+                                               object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(audioRouteChange:)
+                                                 name:AVAudioSessionRouteChangeNotification
+                                               object:[AVAudioSession sharedInstance]];
+    
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -224,7 +217,10 @@ NSString * const kHighlightColor = @"AppleGreen";
     
     // release the listener object
     [self.dialogController killListeningController];
-    
+ 
+    // don't watch for audio notificiations anymore
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     [super viewWillDisappear:animated];
 }
 
@@ -236,9 +232,6 @@ NSString * const kHighlightColor = @"AppleGreen";
     // Dispose of any resources that can be recreated.
 }
 
--(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 #pragma mark GuideQueryTableViewControllerDelegate
 
@@ -468,17 +461,6 @@ NSString * const kHighlightColor = @"AppleGreen";
 }
 
 
-#pragma mark UIApplication Notifications
-
--(void)resignActive: (NSNotification *)notification
-{
-    NSLog(@"did receive resign Active %@", notification);
-}
-
--(void)didEnterBackground: (NSNotification *) notification
-{
-    NSLog(@" did Enter Background %@", notification);
-}
 
 #pragma mark AVAudioSession Notifications
 
