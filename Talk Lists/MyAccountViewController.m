@@ -216,7 +216,15 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil] show];
         }
-        
+    
+    if (informationComplete == YES) {
+        // convert anonymous user to new user signing up
+        if ([PFAnonymousUtils isLinkedWithUser:[PFUser currentUser]]) {
+            [PFUser currentUser].username = [info objectForKey:@"username"];
+            [PFUser currentUser].password = [info objectForKey:@"password"];
+            [PFUser currentUser].email = [info objectForKey:@"email"];
+        }
+    }
         return informationComplete;
 }
 
