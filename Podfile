@@ -1,6 +1,4 @@
-platform:ios,'7.0'
+platform:ios,'8.0'
 pod 'BlurryModalSegue'
-pod 'SZTextView', '~> 1.1'
-pod 'BNRDynamicTypeManager', '~> 0.1.0'
 xcodeproj 'Spoken Guides'
 workspace 'Spoken Guides'
