@@ -305,7 +305,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ree-JK-5Cs">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ree-JK-5Cs">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
@@ -331,15 +331,28 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-YJ-LuI">
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-YJ-LuI">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="CG3-Uy-UDe"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="lum-ne-Bjf" kind="embed" identifier="MyGuidesSegue" id="V5g-cr-bh2"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ree-JK-5Cs" firstAttribute="top" secondItem="nuU-YJ-LuI" secondAttribute="bottom" id="6UH-L2-wH2"/>
+                            <constraint firstItem="nuU-YJ-LuI" firstAttribute="top" secondItem="3k0-z5-PbW" secondAttribute="bottom" id="UK9-Cc-tbk"/>
+                            <constraint firstAttribute="trailing" secondItem="nuU-YJ-LuI" secondAttribute="trailing" id="ciS-nk-Ba6"/>
+                            <constraint firstItem="ree-JK-5Cs" firstAttribute="top" secondItem="nuU-YJ-LuI" secondAttribute="bottom" id="fdz-74-jPz"/>
+                            <constraint firstItem="ree-JK-5Cs" firstAttribute="leading" secondItem="4Gq-jp-aJh" secondAttribute="leading" id="lhU-9l-LmE"/>
+                            <constraint firstAttribute="trailing" secondItem="ree-JK-5Cs" secondAttribute="trailing" id="pev-vu-67m"/>
+                            <constraint firstItem="dPA-3d-mhp" firstAttribute="top" secondItem="ree-JK-5Cs" secondAttribute="bottom" id="rxz-GP-BFz"/>
+                            <constraint firstItem="nuU-YJ-LuI" firstAttribute="leading" secondItem="4Gq-jp-aJh" secondAttribute="leading" id="vAR-1l-rcg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8b8-Pm-0Aq">
                         <nil key="title"/>
