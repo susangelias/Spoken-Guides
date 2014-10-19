@@ -165,8 +165,8 @@
 		C0AA902519829DB5003B9B06 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C0B040B019BFCD23008F112F /* Spoken Guides.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spoken Guides.entitlements"; sourceTree = "<group>"; };
 		C0B5318B19DE08B300E201D0 /* AllGuidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGuidesViewController.h; sourceTree = "<group>"; };
-		C0BC363219F16D1A00F25FD8 /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTextView.h; sourceTree = "<group>"; };
-		C0BC363319F16D1A00F25FD8 /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTextView.m; sourceTree = "<group>"; };
+		C0BC363219F16D1A00F25FD8 /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = Classes/SZTextView.h; sourceTree = "<group>"; };
+		C0BC363319F16D1A00F25FD8 /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
 		C0BC367419F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDynamicTypeManagedButton.h; sourceTree = "<group>"; };
 		C0BC367519F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDynamicTypeManagedButton.m; sourceTree = "<group>"; };
 		C0BC367619F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDynamicTypeManagedLabel.h; sourceTree = "<group>"; };
@@ -399,44 +399,21 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		C0BC362D19F16D1A00F25FD8 /* SZTextView2 */ = {
+		C0BC362D19F16D1A00F25FD8 /* SZTextView */ = {
 			isa = PBXGroup;
 			children = (
-				C0BC363119F16D1A00F25FD8 /* Classes */,
-			);
-			path = SZTextView2;
-			sourceTree = "<group>";
-		};
-		C0BC363119F16D1A00F25FD8 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				C0BC363219F16D1A00F25FD8 /* SZTextView.h */,
 				C0BC363319F16D1A00F25FD8 /* SZTextView.m */,
+				C0BC363219F16D1A00F25FD8 /* SZTextView.h */,
 			);
-			path = Classes;
+			name = SZTextView;
+			path = SZTextView2;
 			sourceTree = "<group>";
 		};
 		C0BC366E19F16E6A00F25FD8 /* BNRDynamicTypeManager */ = {
 			isa = PBXGroup;
 			children = (
-				C0BC366F19F16E6A00F25FD8 /* BNRDynamicTypeManager */,
-			);
-			path = BNRDynamicTypeManager;
-			sourceTree = "<group>";
-		};
-		C0BC366F19F16E6A00F25FD8 /* BNRDynamicTypeManager */ = {
-			isa = PBXGroup;
-			children = (
-				C0BC367219F16E6A00F25FD8 /* BNRDynamicTypeManager */,
-			);
-			path = BNRDynamicTypeManager;
-			sourceTree = "<group>";
-		};
-		C0BC367219F16E6A00F25FD8 /* BNRDynamicTypeManager */ = {
-			isa = PBXGroup;
-			children = (
-				C0BC367319F16E6A00F25FD8 /* Controls */,
 				C0BC367C19F16E6A00F25FD8 /* Core */,
+				C0BC367319F16E6A00F25FD8 /* Controls */,
 			);
 			path = BNRDynamicTypeManager;
 			sourceTree = "<group>";
@@ -453,7 +430,8 @@
 				C0BC367A19F16E6A00F25FD8 /* BNRDynamicTypeManagedTextView.h */,
 				C0BC367B19F16E6A00F25FD8 /* BNRDynamicTypeManagedTextView.m */,
 			);
-			path = Controls;
+			name = Controls;
+			path = BNRDynamicTypeManager/BNRDynamicTypeManager/Controls;
 			sourceTree = "<group>";
 		};
 		C0BC367C19F16E6A00F25FD8 /* Core */ = {
@@ -462,7 +440,8 @@
 				C0BC367D19F16E6A00F25FD8 /* BNRDynamicTypeManager.h */,
 				C0BC367E19F16E6A00F25FD8 /* BNRDynamicTypeManager.m */,
 			);
-			path = Core;
+			name = Core;
+			path = BNRDynamicTypeManager/BNRDynamicTypeManager/Core;
 			sourceTree = "<group>";
 		};
 		C0BE98C51913E87F00C2990E /* usr */ = {
@@ -570,7 +549,7 @@
 		C0DCB1771905D9F400E29DBB /* Talk Lists */ = {
 			isa = PBXGroup;
 			children = (
-				C0BC362D19F16D1A00F25FD8 /* SZTextView2 */,
+				C0BC362D19F16D1A00F25FD8 /* SZTextView */,
 				C0B040B019BFCD23008F112F /* Spoken Guides.entitlements */,
 				C0DA1F161989A2A500484255 /* UserAccount */,
 				C086DCE8197EF02A00E41EEB /* SpokenGuideCache.h */,
