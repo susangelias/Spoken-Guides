@@ -56,17 +56,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    
-    // make sure background is not translusent when it slides on screen
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"OffWhite"]];
-    
-    // set the tint color for the Cancel and Done buttons
- //   self.cancelButton.tintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Charcoal"]];
- //   self.doneButton.tintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Charcoal"]];
-    
-}
 #pragma mark Actions
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
