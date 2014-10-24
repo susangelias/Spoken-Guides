@@ -188,15 +188,20 @@ NSString * const kHighlightColor = @"AppleGreen";
     if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
         // user is the owner of this guide
         self.editButton.enabled = YES;
-        self.actionButton.enabled = YES;
+        // check if guide is already shared and if so diable Action button
+        if ([guideACL getPublicReadAccess] == YES)
+        {
+            self.actionButton.enabled = NO;
+        }
+        else {
+            self.actionButton.enabled = YES;
+        }
     }
     else {
         // user is NOT owner of this guide
         self.editButton.enabled = NO;
         self.actionButton.enabled = NO;
     }
-    
-    
 
 }
 
