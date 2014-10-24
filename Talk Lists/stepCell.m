@@ -15,6 +15,7 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 @interface stepCell()
 
 @property (strong, nonatomic) PFImageView *unzoomedCellImageView;
+@property (nonatomic) BOOL imageCurrentlyEnlarged;
 
 @end
 
@@ -30,6 +31,7 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
         self.textLabel.textColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.imageCurrentlyEnlarged = NO;
     }
     return self;
 }
@@ -125,7 +127,15 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 - (void)cellImageTapped:(UITapGestureRecognizer *)gesture
 {
     // Zooms the thumbnail photo to center screen, enlarged
-    
+
+    // If image is already enlarged, just return
+    if (self.imageCurrentlyEnlarged == YES) {
+        return;
+    }
+    else {
+        self.imageCurrentlyEnlarged = YES;
+    }
+   
     // save original location of unzoomed image
     // convert tapped image frame to superview coordinates
     CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.imageView.center toView:self.superview.superview];
@@ -226,6 +236,7 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
                              enlargedView.image = nil;
                              [enlargedView removeFromSuperview];
                              guideTableView.scrollEnabled = YES;
+                             weakSelf.imageCurrentlyEnlarged = NO;
                          }
                      }];
 }
