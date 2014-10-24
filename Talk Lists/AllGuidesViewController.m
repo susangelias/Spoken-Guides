@@ -98,23 +98,27 @@ NSInteger const kFetchLimit = 15;
 - (void)loadGuides:(NSError *)error {
     PFQuery *query = [self queryForTable];
     [self.loadingActivity startAnimating];
+    __weak typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.loadingActivity stopAnimating];
+        [weakSelf.loadingActivity stopAnimating];
         if (!error) {
+            /*
             NSMutableArray *freshObjects = [NSMutableArray arrayWithArray:objects];
             [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {                 // loop through all the freshly downloaded guides
                 PFGuide *freshGuide = (PFGuide *)obj;
-                [self.guideObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {   // loop through total list of guides
+                [weakSelf.guideObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {   // loop through total list of guides
                     PFGuide *previousGuide = (PFGuide *) obj;
                     if ([freshGuide.objectId isEqualToString: previousGuide.objectId]) {                // refresh a found guides with the fresh download copy
-                        [self.guideObjects replaceObjectAtIndex:idx withObject:freshGuide];
+                        [weakSelf.guideObjects replaceObjectAtIndex:idx withObject:freshGuide];
                         [freshObjects removeObject:freshGuide];                                         // remove the copied guide from the download list
                     }
                 }];
             }];
-            [self.guideObjects addObjectsFromArray:freshObjects];                                       // add any new guides that weren't already in our total list of guides
-            [self loadCache];
-            [self.tableView reloadData];
+            [weakSelf.guideObjects addObjectsFromArray:freshObjects];                                       // add any new guides that weren't already in our total list of guides
+             */
+            weakSelf.guideObjects = [objects mutableCopy];
+            [weakSelf loadCache];
+            [weakSelf.tableView reloadData];
         }
         else {
             NSLog(@"domain %@, code %d, userInfo %@", error.domain, error.code, error.userInfo);
@@ -383,7 +387,8 @@ NSInteger const kFetchLimit = 15;
             [guideToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     // Update the tableview
-                    [weakSelf.tableView reloadData];
+                  //  [weakSelf.tableView reloadData];
+                    [weakSelf refreshTable:nil];
                 }
             }];
         }];
