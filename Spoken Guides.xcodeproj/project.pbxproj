@@ -1015,7 +1015,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Spoken Guides";
 				PROVISIONING_PROFILE = "c3e680d8-c5a4-4678-8628-a712d9d74e14";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 arm64 armv7s,";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1049,7 +1051,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Spoken Guides";
 				PROVISIONING_PROFILE = "c3e680d8-c5a4-4678-8628-a712d9d74e14";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 arm64 armv7s,";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

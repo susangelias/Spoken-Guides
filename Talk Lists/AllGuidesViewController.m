@@ -102,26 +102,12 @@ NSInteger const kFetchLimit = 15;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [weakSelf.loadingActivity stopAnimating];
         if (!error) {
-            /*
-            NSMutableArray *freshObjects = [NSMutableArray arrayWithArray:objects];
-            [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {                 // loop through all the freshly downloaded guides
-                PFGuide *freshGuide = (PFGuide *)obj;
-                [weakSelf.guideObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {   // loop through total list of guides
-                    PFGuide *previousGuide = (PFGuide *) obj;
-                    if ([freshGuide.objectId isEqualToString: previousGuide.objectId]) {                // refresh a found guides with the fresh download copy
-                        [weakSelf.guideObjects replaceObjectAtIndex:idx withObject:freshGuide];
-                        [freshObjects removeObject:freshGuide];                                         // remove the copied guide from the download list
-                    }
-                }];
-            }];
-            [weakSelf.guideObjects addObjectsFromArray:freshObjects];                                       // add any new guides that weren't already in our total list of guides
-             */
             weakSelf.guideObjects = [objects mutableCopy];
             [weakSelf loadCache];
             [weakSelf.tableView reloadData];
         }
         else {
-            NSLog(@"domain %@, code %d, userInfo %@", error.domain, error.code, error.userInfo);
+            NSLog(@"domain %@, code %ld, userInfo %@", error.domain, (long)error.code, error.userInfo);
             if  ( ([error.domain isEqualToString:@"Parse"] && (error.code == 100)) ||
                  ([error.domain isEqualToString:@"NSURLErrorDomain"] && (error.code == -1001)) )
             {
@@ -165,8 +151,9 @@ NSInteger const kFetchLimit = 15;
     
     if (self.queryOrder == 1) {
         // My Guides Only
-     //   PFUser *currentUser = [PFUser currentUser];
-        [query whereKey: @"user" equalTo: self.activeUser];
+        if (self.activeUser) {
+            [query whereKey: @"user" equalTo: self.activeUser];
+        }
     }
     if ( ![self.categoryFilter isEqualToString:kALLCATAGORIES] ) {
         // limit object to a selected category
@@ -290,22 +277,22 @@ NSInteger const kFetchLimit = 15;
     UIImage *latestThumbnail = [guideAttributes objectForKey:kPFGuideChangedThumbnail];
     if (latestThumbnail) {
         // display the local copy of the thumbnail as the upload/download of the new photo hasn't finished yet
-        cell.imageView.image = latestThumbnail;
-        cell.imageView.file = nil;
+        cell.guideImageView.image = latestThumbnail;
+        cell.guideImageView.file = nil;
     }
     else if (guideToDisplay.thumbnail) {
-        cell.imageView.image = [UIImage imageNamed:@"image.png"];
-        cell.imageView.file = [guideToDisplay objectForKey:@"thumbnail"];
-        [cell.imageView.file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        cell.guideImageView.image = [UIImage imageNamed:@"image.png"];
+        cell.guideImageView.file = [guideToDisplay objectForKey:@"thumbnail"];
+        [cell.guideImageView.file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
-                cell.imageView.image = [UIImage imageWithData:data];
+                cell.guideImageView.image = [UIImage imageWithData:data];
             }
         }];
     }
     else {
         // since these cells are re-used, make sure old images are cleaned out
-        cell.imageView.image = nil;
-        cell.imageView.file = nil;
+        cell.guideImageView.image = nil;
+        cell.guideImageView.file = nil;
     }
     // refresh dynamic text
     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
