@@ -17,7 +17,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-     //   self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
         self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         self.textLabel.textColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
@@ -26,14 +25,19 @@
     return self;
 }
 
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    // Calling initWithStyle is the only way I have found to get my stepCell to display an image
-    // I'm not sure what is happening in initWithStyle that makes this happen
-    self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"guideCell"];
+ 
+    self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.textLabel.textColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return self;
 }
+
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -43,7 +47,7 @@
     
     float y = (78.0 - 69.0)/2.0;
     float x = (tableViewCellFrame.size.width - 72);
-    self.imageView.frame = CGRectMake(x,y,69,69);
+    self.guideImageView.frame = CGRectMake(x,y,69,69);
     
     // make sure the text starts on the left
     self.textLabel.frame = CGRectMake(20, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height);

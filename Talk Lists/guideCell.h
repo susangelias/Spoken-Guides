@@ -11,5 +11,6 @@
 
 @interface guideCell : PFTableViewCell
 
+@property (weak, nonatomic) IBOutlet PFImageView *guideImageView;
 
 @end

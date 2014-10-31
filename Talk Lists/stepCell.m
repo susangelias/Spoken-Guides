@@ -24,6 +24,23 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self initializeCellText];
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    // Calling initWithStyle is the only way I have found to get my stepCell to display an image
+    // I'm not sure what is happening in initWithStyle that makes this happen
+  //  self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"stepCell"];
+    [self initializeCellText];
+    
+    return self;
+}
+
+-(void)initializeCellText
+{
     if (self) {
         // Initialize cell text
         UIFont *stepCellFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -33,16 +50,6 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.imageCurrentlyEnlarged = NO;
     }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    // Calling initWithStyle is the only way I have found to get my stepCell to display an image
-    // I'm not sure what is happening in initWithStyle that makes this happen
-    self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"stepCell"];
-    return self;
 }
 
 - (void)awakeFromNib
@@ -67,9 +74,9 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 
     float y = (kStepCellStdHeight - 69.0)/2.0;
     float x =  (tableViewCellFrame.size.width - 72);
-    self.imageView.frame = CGRectMake(x,y,69,69);
+    self.stepImageView.frame = CGRectMake(x,y,69,69);
     
-    if (self.imageView.file) {
+    if (self.stepImageView.file) {
         self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width - 89.0, self.frame.size.height-0.5);
     } else {
         self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width -30, self.frame.size.height-0.5);
@@ -87,19 +94,24 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 
     UIImage *latestThumbnail = [stepAttributes objectForKey:kPFStepChangedThumbnail];
     if (latestThumbnail) {
-        self.imageView.image = latestThumbnail;
-        self.imageView.file = nil;
+        self.stepImageView.image = latestThumbnail;
+        self.stepImageView.file = nil;
     }
     else if (stepToDisplay.thumbnail) {
-        self.imageView.image = [UIImage imageNamed:@"image.png"];
-        self.imageView.file = [stepToDisplay objectForKey:@"thumbnail"];
+        self.stepImageView.image = [UIImage imageNamed:@"image.png"];
+        self.stepImageView.file = [stepToDisplay objectForKey:@"thumbnail"];
+        [self.stepImageView.file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                self.stepImageView.image = [UIImage imageWithData:data];
+            }
+        }];
     }
     else {
         // since these cells are re-used, make sure old images are cleaned out
-        self.imageView.image = nil;
-        self.imageView.file = nil;
+        self.stepImageView.image = nil;
+        self.stepImageView.file = nil;
     }
-    if (self.imageView.image) {
+    if (self.stepImageView.image) {
         // if there is a photo, get the hiRes image loaded in case the user wants to zoom the thumbnail
         self.unzoomedCellImageView.image = [stepAttributes objectForKey:kPFStepChangedImage];
         if (!self.unzoomedCellImageView.image) {
@@ -109,15 +121,15 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
     }
     
     // Add Gesture Recognizer
-    if (self.imageView.image) {
+    if (self.stepImageView.image) {
         tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellImageTapped:)];
         tapped.numberOfTapsRequired = 1;
-        [self.imageView addGestureRecognizer:tapped];
-        self.imageView.userInteractionEnabled = YES;
+        [self.stepImageView addGestureRecognizer:tapped];
+        self.stepImageView.userInteractionEnabled = YES;
     }
     else {
-        self.imageView.image = nil;
-        [self.imageView removeGestureRecognizer:tapped];
+        self.stepImageView.image = nil;
+        [self.stepImageView removeGestureRecognizer:tapped];
     }
 }
 
@@ -138,9 +150,9 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
    
     // save original location of unzoomed image
     // convert tapped image frame to superview coordinates
-    CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.imageView.center toView:self.superview.superview];
+    CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.stepImageView.center toView:self.superview.superview];
     self.unzoomedCellImageView.center = tappedImageCenterConverted;
-    self.unzoomedCellImageView.bounds = self.imageView.bounds;
+    self.unzoomedCellImageView.bounds = self.stepImageView.bounds;
 
     // disable user touchs while zooming
     self.unzoomedCellImageView.userInteractionEnabled = NO;
@@ -158,7 +170,7 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
         else {
             NSLog(@"ERROR DOWNLOADING HI RES IMAGE");
             // set to lo Res image
-            viewToEnlarge.image = weakSelf.imageView.image;
+            viewToEnlarge.image = weakSelf.stepImageView.image;
         }
     }];
     

@@ -46,8 +46,14 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keS-Q4-7n6" id="602-Cg-RMC">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4k-YD-xFO" customClass="PFImageView">
+                                            <rect key="frame" x="243" y="0.0" width="69" height="69"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="guideImageView" destination="F4k-YD-xFO" id="HA3-Iy-N4Y"/>
                                     <segue destination="0pl-vw-p5k" kind="push" identifier="GuideDetailSegue" trigger="accessoryAction" id="Ggg-vO-UEa"/>
                                 </connections>
                             </tableViewCell>
@@ -720,7 +726,15 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NCB-2D-1dE" id="Pnl-R8-NjJ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h97-QV-bss" customClass="PFImageView">
+                                            <rect key="frame" x="243" y="4" width="69" height="69"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stepImageView" destination="h97-QV-bss" id="8GW-6I-hsK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
