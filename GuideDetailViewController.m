@@ -443,7 +443,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"clicked button index %d",buttonIndex);
+ //   NSLog(@"clicked button index %ld",(long)buttonIndex);
     if (buttonIndex == 1) {
         // change the read permissions for this guide to PUBLIC
         [self.guide.ACL setPublicReadAccess:YES];

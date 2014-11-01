@@ -33,7 +33,7 @@ NSString *const kALLCATAGORIES = @"ALL CATAGORIES";
     {
         NSMutableArray *temp = [[NSMutableArray alloc]init];
         [self.categoryKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [temp addObject:[NSString stringWithFormat:@"%d", idx]];
+            [temp addObject:[NSString stringWithFormat:@"%lu",(unsigned long) idx]];
         }];
         _categoryStrings = [temp copy];
     }
