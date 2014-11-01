@@ -313,7 +313,7 @@
     
     // let delegate know about this action
     if ([self.parentDelegate respondsToSelector:@selector(rowSelectedAtIndex:)]) {
-        [self.parentDelegate rowSelectedAtIndex:indexPath.row];
+        [self.parentDelegate rowSelectedAtIndex:(int)indexPath.row];
     }
 }
 
