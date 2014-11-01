@@ -57,32 +57,17 @@ NSString *const kRemovePhoto = @"Remove Photo From Guide";
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // extract new image
-    UIImage *rawPhoto = [info[UIImagePickerControllerEditedImage] resizeToSquareImage];
-    // resize to a square image for this app
-    self.selectedPhoto = [rawPhoto resizeToSquareImage];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        UIImage *rawPhoto = [info[UIImagePickerControllerEditedImage] resizeToSquareImage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.selectedPhoto = [rawPhoto resizeToSquareImage];
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            self.doneButton.hidden = NO;
+            self.redoButton.hidden = NO;
+            self.photoView.image = self.selectedPhoto;
+        });
+    });
     
-    // dismiss view controller
-    [self dismissViewControllerAnimated:YES completion:NULL];   // have memory leak here - change UIImagePickerController to singleton
-
-     // Display image
-    if (self.selectedPhoto ) {
-        // wait for imageView to render before attempting to display photo
-        __weak typeof (self) weakSelf = self;
-        [UIView animateWithDuration:0.0
-                         animations:^{
-                             [weakSelf.view addSubview:weakSelf.photoView];
-                             weakSelf.doneButton.hidden = NO;
-                             weakSelf.redoButton.hidden = NO;
-                          }
-                         completion:^(BOOL finished) {
-                             weakSelf.photoView.image = weakSelf.selectedPhoto;
-                         }
-         ];
-    }
-    
-  // NSLog(@"IMAGE %f x %f ", self.selectedPhoto.size.width, self.selectedPhoto.size.height);
-   // NSLog(@"Thumbnail %f x %f ", self.selectedThumbnail.size.width, self.selectedThumbnail.size.height);
-
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -141,21 +126,21 @@ NSString *const kRemovePhoto = @"Remove Photo From Guide";
 {
     NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
     
-    if ( [choice isEqualToString:kTakePhoto] || [choice isEqualToString:kChoosePhoto] ) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.sourceType = [[self photoSources][choice] integerValue];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
+    if (( [choice isEqualToString:kTakePhoto] || [choice isEqualToString:kChoosePhoto] ) && (self.picker) ) {
+    //    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        self.picker.sourceType = [[self photoSources][choice] integerValue];
+     //   picker.delegate = self;
+     //   picker.allowsEditing = YES;
 
         NSString *desired = (NSString *)kUTTypeImage;
-        if ([[UIImagePickerController availableMediaTypesForSourceType:picker.sourceType] containsObject:desired]) {
-            picker.mediaTypes = @[desired];
+        if ([[UIImagePickerController availableMediaTypesForSourceType:self.picker.sourceType] containsObject:desired]) {
+            self.picker.mediaTypes = @[desired];
         }
         else {
             // fail, can't get media type desired
         }
 
-        [self presentViewController:(UIViewController *)picker
+        [self presentViewController:(UIViewController *)self.picker
                            animated:YES
                          completion:NULL];
     }
@@ -175,6 +160,17 @@ NSString *const kRemovePhoto = @"Remove Photo From Guide";
     self.doneButton.hidden = YES;
     self.redoButton.hidden = YES;
     [self choosePhotoSource];
+}
+
+#pragma mark Initializations
+
+-(UIImagePickerController *)picker {
+    if (!_picker) {
+        _picker = [[UIImagePickerController alloc] init];
+        _picker.delegate = self;
+        _picker.allowsEditing = YES;
+    }
+    return _picker;
 }
 
 @end

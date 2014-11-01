@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
-
+@property (nonatomic, strong) UIImagePickerController *picker;
 
 @end
