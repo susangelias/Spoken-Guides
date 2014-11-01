@@ -41,14 +41,14 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="guideCell" id="keS-Q4-7n6" customClass="guideCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="guideCell" rowHeight="78" id="keS-Q4-7n6" customClass="guideCell">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keS-Q4-7n6" id="602-Cg-RMC">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4k-YD-xFO" customClass="PFImageView">
-                                            <rect key="frame" x="243" y="0.0" width="69" height="69"/>
+                                            <rect key="frame" x="251" y="4" width="69" height="69"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -728,7 +728,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h97-QV-bss" customClass="PFImageView">
-                                            <rect key="frame" x="243" y="4" width="69" height="69"/>
+                                            <rect key="frame" x="251" y="4" width="69" height="69"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
