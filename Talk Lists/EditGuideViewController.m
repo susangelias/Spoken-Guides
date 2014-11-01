@@ -116,7 +116,7 @@
 -(void)entryTextChanged:(NSString *)textEntry autoAdvance:(BOOL)advance
 {
     __weak typeof(self) weakSelf = self;
-    NSLog(@"entryTextChanged");
+ //   NSLog(@"entryTextChanged");
     // User has entered or changed text data
     if (self.stepNumber == 0) {
             // changed the guide title
@@ -207,8 +207,16 @@
     }
     if (advance) {
         // move to next data entry view
-        [self leftSwipe:self.leftSwipeGesture];
+        [self advanceView];
     }
+}
+
+-(void)advanceView
+{
+    // move to next data entry view if allowed
+  //  if (self.leftSwipeGesture.enabled == YES) {
+        [self leftSwipe:self.leftSwipeGesture];
+  //  }
 }
 
 -(void)entryImageChanged:(UIImage *)imageEntry
@@ -258,8 +266,20 @@
         }
     }
     else {
-        changedStep = self.stepInProgess;
         changedGuide = nil;
+        if (!self.stepInProgess) {
+            // case where user entered a photo before the textwater
+            // create a new step synchronously so that it will have an object ID when added to the cache below
+            dispatch_queue_t updateQ = dispatch_queue_create("com.talkLists.createStep", NULL);
+            dispatch_sync(updateQ, ^{
+                self.stepInProgess = [self createStep];
+                changedStep = self.stepInProgess;
+            });
+        }
+        else {
+            changedStep = self.stepInProgess;
+        }
+        
         // save updated images to cache
         NSMutableDictionary *stepAttributes = [[[SpokenGuideCache sharedCache] objectForKey:self.stepInProgess.objectId] mutableCopy];
         if (stepAttributes) {
@@ -583,7 +603,6 @@
     if (!self.stepInProgess) {
         // disable left swipe until new step is entered
         [self setLeftSwipe:NO];
-     //   self.advanceView = NO;
      }
     // set up view with step data
     [self setContainerWithStep:self.stepInProgess];

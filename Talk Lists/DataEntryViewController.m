@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoButton;
 @property (weak, nonatomic) IBOutlet SZTextView *textEntryView;
 @property (weak, nonatomic) IBOutlet PFImageView *imageDisplayView;
-@property BOOL textHasChanged;
+@property BOOL entryHasChanged;
 @property BOOL advanceView;
 @end
 
@@ -78,14 +78,13 @@
         selector:@selector(preferredContentSizeChanged:)
         name:UIContentSizeCategoryDidChangeNotification
         object:nil ];
+    
+     self.entryHasChanged = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    // setup text attributes for textEntryView
- //   self.textEntryView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     
     if (self.entryText) {
         // Text to display
@@ -115,7 +114,7 @@
         self.imageDisplayView.image = nil;
     }
     
-    self.textHasChanged = NO;
+  //  self.entryHasChanged = NO;
     self.advanceView = NO;
     
 }
@@ -184,7 +183,7 @@
             [self.dataEntryDelegate entryImageChanged:nil];
         }
     }
-    
+    self.entryHasChanged = YES;
 }
 
 - (IBAction)photoCanceled:(UIStoryboardSegue *)segue
@@ -209,13 +208,13 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    self.textHasChanged = YES;
+    self.entryHasChanged = YES;
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    if (self.textHasChanged) {
-        self.textHasChanged = NO;
+    if (self.entryHasChanged) {
+        self.entryHasChanged = NO;
         NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.dataEntryDelegate respondsToSelector:@selector(entryTextChanged:autoAdvance:)]) {
             [self.dataEntryDelegate entryTextChanged:trimmedText autoAdvance:self.advanceView];

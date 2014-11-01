@@ -14,5 +14,6 @@
 
 -(void)entryTextChanged: (NSString *)textEntry autoAdvance: (BOOL)advance;
 -(void)entryImageChanged: (UIImage *)imageEntry;
+-(void)advanceView;
 
 @end
