@@ -190,6 +190,8 @@ NSString * const kHighlightColor = @"AppleGreen";
     if ([guideACL getWriteAccessForUser:[PFUser currentUser]]) {
         // user is the owner of this guide
         self.editButton.enabled = YES;
+        // add some editing instructions to the status display for now
+        [self.statusDisplay setText:@"Swipe to delete a step\nLong press to reorder a step"];
         // check if guide is already shared and if so diable Action button
         if ([guideACL getPublicReadAccess] == YES)
         {

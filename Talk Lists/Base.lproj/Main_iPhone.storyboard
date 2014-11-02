@@ -431,11 +431,10 @@
                                     <action selector="resetButtonPressed:" destination="0pl-vw-p5k" eventType="touchUpInside" id="zZI-JF-YNC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds1-PJ-nJF" userLabel="Prompt Label" customClass="BNRDynamicTypeManagedLabel">
-                                <rect key="frame" x="51" y="429" width="225" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds1-PJ-nJF" userLabel="Prompt Label" customClass="BNRDynamicTypeManagedLabel">
+                                <rect key="frame" x="51" y="420" width="225" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="AEG-GJ-dqq"/>
-                                    <constraint firstAttribute="height" constant="21" id="Tsr-0R-92C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -486,11 +485,12 @@
                             <constraint firstItem="7tO-kw-axj" firstAttribute="leading" secondItem="dXP-0P-hhA" secondAttribute="leading" constant="20" id="CRL-Hy-W2o"/>
                             <constraint firstItem="T7S-TP-PlC" firstAttribute="top" secondItem="Fcw-kL-Nlp" secondAttribute="bottom" id="PRG-XQ-q8m"/>
                             <constraint firstAttribute="bottom" secondItem="b2g-W6-UDU" secondAttribute="bottom" constant="41" id="Q0W-C4-Cqg"/>
+                            <constraint firstItem="Ds1-PJ-nJF" firstAttribute="top" secondItem="b2g-W6-UDU" secondAttribute="bottom" constant="1" id="QKx-Sb-fKA"/>
                             <constraint firstAttribute="trailing" secondItem="b2g-W6-UDU" secondAttribute="trailing" id="Tsa-ei-xtJ"/>
                             <constraint firstAttribute="trailing" secondItem="Ds1-PJ-nJF" secondAttribute="trailing" constant="44" id="Wr5-C0-dgg"/>
                             <constraint firstItem="b2g-W6-UDU" firstAttribute="top" secondItem="8c0-Cj-pPl" secondAttribute="bottom" constant="10" id="Z9o-KN-4Qa"/>
+                            <constraint firstAttribute="bottom" secondItem="Ds1-PJ-nJF" secondAttribute="bottom" constant="1" id="aKE-Gz-A4p"/>
                             <constraint firstAttribute="centerX" secondItem="8c0-Cj-pPl" secondAttribute="centerX" id="b2P-hf-UqM"/>
-                            <constraint firstAttribute="bottom" secondItem="Ds1-PJ-nJF" secondAttribute="bottom" constant="10" id="l1P-JS-96s"/>
                             <constraint firstItem="fxm-lC-bVb" firstAttribute="top" secondItem="Fcw-kL-Nlp" secondAttribute="bottom" constant="9" id="lNx-0H-N2h"/>
                             <constraint firstItem="b2g-W6-UDU" firstAttribute="top" secondItem="T7S-TP-PlC" secondAttribute="bottom" id="lSN-MX-1Dc"/>
                             <constraint firstItem="thW-Da-yd9" firstAttribute="leading" secondItem="dXP-0P-hhA" secondAttribute="leading" id="n8M-59-zme"/>
@@ -929,6 +929,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="c6x-GM-VEb"/>
-        <segue reference="9se-h2-Jzo"/>
+        <segue reference="nKB-da-8Cm"/>
     </inferredMetricsTieBreakers>
 </document>
