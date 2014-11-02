@@ -13,6 +13,7 @@
 #import "EditGuideViewController.h"
 #import "EditGuideViewControllerDelegate.h"
 #import "PFStep.h"
+#import "stepCell.h"
 #import "GuideQueryTableViewController.h"
 #import "GuideQueryTableViewControllerDelegate.h"
 #import "SpokenGuideCache.h"
@@ -37,6 +38,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 @property (nonatomic, strong) NSArray *stateStrings;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabelAlternate;
 @property int selectedRowNumber;
+@property (strong, nonatomic) stepCell *currentStepCell;
 
 @property (strong, nonatomic) dialogController  *dialogController;
 @property dialogState currentState;
@@ -331,6 +333,12 @@ NSString * const kHighlightColor = @"AppleGreen";
     
     // Apply text highlight color
     [self setCurrentLine:lineNumber];
+    
+    // Enlarge the spoken line's photo
+    self.currentStepCell = [childVC stepCellAtLineNumber:[lineNumber intValue]];
+    if (self.currentStepCell) {
+        [self.currentStepCell enlargeImage];
+    }
 }
 
 - (void)highlightCurrentLine:(int) lineNumber
@@ -576,7 +584,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 - (NSArray *)stateStrings
 {
     if (!_stateStrings) {
-        _stateStrings =  @[@"Say \"Next\" or \"Repeat\"", @"Waiting to resume", @"Reset", @"Figuring out what you said"];
+        _stateStrings =  @[@"Say \"Next\", \"Repeat\" or \"Go Back\"", @"Waiting to resume", @"Reset", @"Figuring out what you said"];
     }
     return _stateStrings;
 }
@@ -585,6 +593,10 @@ NSString * const kHighlightColor = @"AppleGreen";
 {
     if ([_currentLine integerValue] >= 0) {
         [self unhighlightCurrentLine:(int)[_currentLine integerValue]];
+        // shrink an enlarged photo if there is one
+        if (self.currentStepCell) {
+            [self.currentStepCell shrinkImage];
+        }
     }
 
     _currentLine = currentLine;

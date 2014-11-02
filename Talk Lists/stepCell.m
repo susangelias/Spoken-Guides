@@ -145,112 +145,135 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
         return;
     }
     else {
-        self.imageCurrentlyEnlarged = YES;
+        [self enlargeImage];
     }
    
-    // save original location of unzoomed image
-    // convert tapped image frame to superview coordinates
-    CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.stepImageView.center toView:self.superview.superview];
-    self.unzoomedCellImageView.center = tappedImageCenterConverted;
-    self.unzoomedCellImageView.bounds = self.stepImageView.bounds;
-
-    // disable user touchs while zooming
-    self.unzoomedCellImageView.userInteractionEnabled = NO;
- 
-    // create a new image view based on the origin of the unzoomed view
-    __block UIImageView *viewToEnlarge = [[UIImageView alloc]initWithFrame:self.unzoomedCellImageView.frame];
-    __weak typeof (self) weakSelf = self;
-    
-    // start downloading the hiRes image
-    [self.unzoomedCellImageView loadInBackground:^(UIImage *image, NSError *error) {
-        if (!error) {
-            // save the hiRes image
-            viewToEnlarge.image = image;
-        }
-        else {
-            NSLog(@"ERROR DOWNLOADING HI RES IMAGE");
-            // set to lo Res image
-            viewToEnlarge.image = weakSelf.stepImageView.image;
-        }
-    }];
-    
-    // get pointer to the tableView that this cell belongs to
-    UITableView *guideTableView = nil;
-    UIView *superView = self.superview;
-    while (nil != self.superview && nil == guideTableView) {
-        if ([superView isKindOfClass:[UITableView class]]) {
-            guideTableView = (UITableView *)superView;
-        } else {
-            superView = superView.superview;
-        }
-    }
-
-    // get pointer to the view that the tableView belongs to
-    UIView *myView = guideTableView.superview;
-    
-    // find the point in the center of the screen
-    CGRect fullScreenRect = [[UIScreen mainScreen] applicationFrame];
-    CGPoint fullScreenCenter = CGPointMake(fullScreenRect.size.width/2.0, fullScreenRect.size.height*1/3);
-    CGRect enlargedBounds = CGRectMake(0, myView.frame.origin.y, fullScreenRect.size.width, fullScreenRect.size.width);
-    
-    // disable scrolling of the tableview so that can zoom photo back easily
-    guideTableView.scrollEnabled = NO;
-
-    [myView addSubview:viewToEnlarge];
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionShowHideTransitionViews
-                     animations:^{
-                         viewToEnlarge.center = fullScreenCenter;
-                         viewToEnlarge.bounds =enlargedBounds;
-                    }
-                     completion:^(BOOL finished) {
-                         if (finished) {
-                             // set tap gesture on enlarged photo view so that it can be shrunk back to original size
-                             UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc]initWithTarget:weakSelf action:@selector(enlargedImageTapped:)];
-                             [viewToEnlarge addGestureRecognizer:tapped];
-                             viewToEnlarge.userInteractionEnabled = YES;
-                         }
-                     }];
-}
+ }
 
 -(void)enlargedImageTapped:(UITapGestureRecognizer *)gesture
 {
-    // Shrinkg the enlarged image back down to the thumbnail size and location
-    
-    UIImageView *enlargedView = (UIImageView *)gesture.view;
-    // get pointer to the tableView that this cell belongs to
-    UITableView *guideTableView = nil;
-    UIView *superView = self.superview;
-    while (nil != self.superview && nil == guideTableView) {
-        if ([superView isKindOfClass:[UITableView class]]) {
-            guideTableView = (UITableView *)superView;
-        } else {
-            superView = superView.superview;
+    [self shrinkImage];
+}
+
+-(void) enlargeImage
+{
+    // save original location of unzoomed image
+    // convert tapped image frame to superview coordinates
+    if (self.stepImageView.image) {
+        CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.stepImageView.center toView:self.superview.superview];
+        self.unzoomedCellImageView.center = tappedImageCenterConverted;
+        self.unzoomedCellImageView.bounds = self.stepImageView.bounds;
+
+        // disable user touchs while zooming
+        self.unzoomedCellImageView.userInteractionEnabled = NO;
+
+        // create a new image view based on the origin of the unzoomed view
+        __block UIImageView *viewToEnlarge = [[UIImageView alloc]initWithFrame:self.unzoomedCellImageView.frame];
+        __weak typeof (self) weakSelf = self;
+
+        // start downloading the hiRes image
+        [self.unzoomedCellImageView loadInBackground:^(UIImage *image, NSError *error) {
+            if (!error) {
+                // save the hiRes image
+                viewToEnlarge.image = image;
+            }
+            else {
+                NSLog(@"ERROR DOWNLOADING HI RES IMAGE");
+                // set to lo Res image
+                viewToEnlarge.image = weakSelf.stepImageView.image;
+            }
+        }];
+
+        // get pointer to the tableView that this cell belongs to
+        UITableView *guideTableView = nil;
+        UIView *superView = self.superview;
+        while (nil != self.superview && nil == guideTableView) {
+            if ([superView isKindOfClass:[UITableView class]]) {
+                guideTableView = (UITableView *)superView;
+            } else {
+                superView = superView.superview;
+            }
         }
+
+        // get pointer to the view that the tableView belongs to
+        UIView *myView = guideTableView.superview;
+
+        // find the point in the center of the screen
+        CGRect fullScreenRect = [[UIScreen mainScreen] applicationFrame];
+        CGPoint fullScreenCenter = CGPointMake(fullScreenRect.size.width/2.0, fullScreenRect.size.height*1/3);
+        CGRect enlargedBounds = CGRectMake(0, myView.frame.origin.y, fullScreenRect.size.width, fullScreenRect.size.width);
+
+        // disable scrolling of the tableview so that can zoom photo back easily
+        guideTableView.scrollEnabled = NO;
+
+        [viewToEnlarge setTag:100];
+        [myView addSubview:viewToEnlarge];
+        self.imageCurrentlyEnlarged = YES;
+
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionShowHideTransitionViews
+                         animations:^{
+                             viewToEnlarge.center = fullScreenCenter;
+                             viewToEnlarge.bounds =enlargedBounds;
+                         }
+                         completion:^(BOOL finished) {
+                             if (finished) {
+                                 // set tap gesture on enlarged photo view so that it can be shrunk back to original size
+                                 UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc]initWithTarget:weakSelf action:@selector(enlargedImageTapped:)];
+                                 [viewToEnlarge addGestureRecognizer:tapped];
+                                 viewToEnlarge.userInteractionEnabled = YES;
+
+                             }
+                         }];
     }
+}
+
+-(void) shrinkImage
+{
+    // Shrink the enlarged image back down to the thumbnail size and location
     
-    __weak typeof (self) weakSelf = self;
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionShowHideTransitionViews
-                     animations:^{
-                         if (weakSelf.unzoomedCellImageView) {
-                             enlargedView.bounds = weakSelf.unzoomedCellImageView.bounds;
-                             enlargedView.center = weakSelf.unzoomedCellImageView.center;
+    //UIImageView *enlargedView = (UIImageView *)gesture.view;
+
+    if (self.imageCurrentlyEnlarged == YES) {
+        // get pointer to the tableView that this cell belongs to
+        UITableView *guideTableView = nil;
+        UIView *superView = self.superview;
+        while (nil != self.superview && nil == guideTableView) {
+            if ([superView isKindOfClass:[UITableView class]]) {
+                guideTableView = (UITableView *)superView;
+            } else {
+                superView = superView.superview;
+            }
+        }
+        // get pointer to the view that the tableView belongs to
+        UIView *myView = guideTableView.superview;
+
+        UIImageView *enlargedView = (UIImageView *)[myView viewWithTag:100];
+        
+        __weak typeof (self) weakSelf = self;
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionShowHideTransitionViews
+                         animations:^{
+                             if (weakSelf.unzoomedCellImageView) {
+                                 enlargedView.bounds = weakSelf.unzoomedCellImageView.bounds;
+                                 NSLog(@"UnzoomedCellImageView x %f,  y %f", weakSelf.unzoomedCellImageView.center.x, weakSelf.unzoomedCellImageView.center.y);
+                                 enlargedView.center = weakSelf.unzoomedCellImageView.center;
+                             }
                          }
-                     }
-                     completion:^(BOOL finished) {
-                         if (finished) {
-                             // reenable tap gesture for the tableCellImageView
-                             weakSelf.unzoomedCellImageView.userInteractionEnabled = YES;
-                             // cleanup
-                             enlargedView.image = nil;
-                             [enlargedView removeFromSuperview];
-                             guideTableView.scrollEnabled = YES;
-                             weakSelf.imageCurrentlyEnlarged = NO;
-                         }
-                     }];
+                         completion:^(BOOL finished) {
+                             if (finished) {
+                                 // reenable tap gesture for the tableCellImageView
+                                 weakSelf.unzoomedCellImageView.userInteractionEnabled = YES;
+                                 // cleanup
+                                 enlargedView.image = nil;
+                                 [enlargedView removeFromSuperview];
+                                 guideTableView.scrollEnabled = YES;
+                                 weakSelf.imageCurrentlyEnlarged = NO;
+                             }
+                         }];
+    }
 }
 
 #pragma mark Initializers

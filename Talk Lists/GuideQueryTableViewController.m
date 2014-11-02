@@ -7,8 +7,6 @@
 //
 
 #import "GuideQueryTableViewController.h"
-#import "PFStep.h"
-#import "stepCell.h"
 #import "SpokenGuideCache.h"
 #import "TalkListAppDelegate.h"
 
@@ -127,6 +125,14 @@
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (stepCell *)stepCellAtLineNumber:(int)lineNumber
+{
+    stepCell *step;
+    step = (stepCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:lineNumber inSection:0]];
+    return step;
+}
+
 
 #pragma mark - Parse
 

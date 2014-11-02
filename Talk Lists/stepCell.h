@@ -20,7 +20,8 @@ extern NSString *const kStepCellFont;
 
 @property (weak, nonatomic) IBOutlet PFImageView *stepImageView;
 
-//-(void)configureStepCell: (PFStep *)stepToDisplay;
 -(void)configureStepCell: (PFStep *)stepToDisplay attributes:(NSDictionary *)stepAttributes;
+-(void) enlargeImage;
+-(void) shrinkImage;
 
 @end

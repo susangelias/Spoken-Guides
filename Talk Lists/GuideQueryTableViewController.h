@@ -10,6 +10,7 @@
 #import "PFGuide.h"
 #import "GuideQueryTableViewControllerDelegate.h"
 #import "guideCell.h"
+#import "stepCell.h"
 
 @interface GuideQueryTableViewController : PFQueryTableViewController
 
@@ -20,5 +21,6 @@
 - (void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber;
 - (void)setStepAccessToPublic:(BOOL)publicAccessFlag;
 - (void)refreshUIForRowSelectionAtIndexPath:(NSIndexPath *)indexPath;
+- (stepCell *)stepCellAtLineNumber:(int)lineNumber;
 
 @end
