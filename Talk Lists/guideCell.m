@@ -41,14 +41,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    // Position and size the image view to get a square thumbnail size image on the right end of the cell
-    CGRect tableViewCellFrame = self.frame;
-    
-    float y = (78.0 - 69.0)/2.0;
-    float x = (tableViewCellFrame.size.width - 72);
-    self.guideImageView.frame = CGRectMake(x,y,69,69);
-    
+     
     // make sure the text starts on the left
     self.textLabel.frame = CGRectMake(20, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height);
     self.textLabel.numberOfLines = 0;

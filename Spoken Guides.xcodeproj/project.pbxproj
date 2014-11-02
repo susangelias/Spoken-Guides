@@ -1000,8 +1000,6 @@
 					/Users/susanelias/Documents/Developer/Rejecto,
 					"$(PROJECT_DIR)/Framework",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/FacebookSDK",
-					"$(PROJECT_DIR)/FacebookSDK/FBAudienceNetwork",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";
@@ -1036,8 +1034,6 @@
 					/Users/susanelias/Documents/Developer/Rejecto,
 					"$(PROJECT_DIR)/Framework",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/FacebookSDK",
-					"$(PROJECT_DIR)/FacebookSDK/FBAudienceNetwork",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Talk Lists/Talk Lists-Prefix.pch";

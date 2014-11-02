@@ -69,13 +69,6 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    // Position and size the image view to get a square thumbnail size image on the right end of the cell
-    CGRect tableViewCellFrame = self.frame;
-
-    float y = (kStepCellStdHeight - 69.0)/2.0;
-    float x =  (tableViewCellFrame.size.width - 72);
-    self.stepImageView.frame = CGRectMake(x,y,69,69);
-    
     if (self.stepImageView.file) {
         self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width - 89.0, self.frame.size.height-0.5);
     } else {
