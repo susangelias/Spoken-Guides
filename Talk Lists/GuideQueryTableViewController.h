@@ -19,5 +19,6 @@
 - (void)unhighlightCurrentLine:(int) lineNumber;
 - (void)setTextColor:(UIColor *)highlightColor atIndexPath:(NSIndexPath *)lineNumber;
 - (void)setStepAccessToPublic:(BOOL)publicAccessFlag;
+- (void)refreshUIForRowSelectionAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

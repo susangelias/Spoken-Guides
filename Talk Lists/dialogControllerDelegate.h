@@ -12,7 +12,7 @@
 
 @required
 - (void)dialogComplete;
-- (void)setCurrentLine:(NSNumber *) lineNumber;
+- (void)speakingLineNumber:(NSNumber *) lineNumber;
 - (void)dialogStartedListening;
 - (void)dialogStoppedListening;
 - (void)dialogDecodingSpeech;

@@ -320,6 +320,18 @@ NSString * const kHighlightColor = @"AppleGreen";
     
 }
 
+- (void)speakingLineNumber:(NSNumber *) lineNumber
+{
+    // Enlarges cell if text exceeds the default row height
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[lineNumber intValue ] inSection:0];
+    GuideQueryTableViewController *childVC = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    if ([childVC respondsToSelector:@selector(refreshUIForRowSelectionAtIndexPath:)]) {
+        [childVC refreshUIForRowSelectionAtIndexPath:indexPath];
+    }
+    
+    // Apply text highlight color
+    [self setCurrentLine:lineNumber];
+}
 
 - (void)highlightCurrentLine:(int) lineNumber
 {
@@ -328,6 +340,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     // get app's customTint color
     UIColor *customColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kHighlightColor]];
     [self setTextColor:customColor atIndexPath:selectedIndexPath];
+    
  }
 
 - (void)unhighlightCurrentLine:(int) lineNumber

@@ -110,9 +110,9 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
         PFStep *step = [self.guide.rankedStepsInGuide objectAtIndex:self.currentLineIndex];
         self.nextLine = step.instruction;
     }
-    // Let the Guide Detail VC know the current line so that it can highlight it
-    if ([self.dialogControlDelegate respondsToSelector:@selector(setCurrentLine:)]) {
-        [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
+    // Let the Guide Detail VC know to select the current line for UI feedback just as if user had tapped it
+    if ([self.dialogControlDelegate respondsToSelector:@selector(speakingLineNumber:)]) {
+         [self.dialogControlDelegate speakingLineNumber:[NSNumber numberWithInt:self.currentLineIndex]];
     }
     if (self.nextLine) {
         NSString *verifiedLine = [languageOpenEars makePronounciationCorrections:self.nextLine];
@@ -172,9 +172,10 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 - (void) initializeDialog {
     self.currentLineIndex = 0;
-    if ([self.dialogControlDelegate respondsToSelector:@selector(setCurrentLine:)]) {
-        [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
-    }
+    
+ //   if ([self.dialogControlDelegate respondsToSelector:@selector(setCurrentLine:)]) {
+///        [self.dialogControlDelegate setCurrentLine:[NSNumber numberWithInt:self.currentLineIndex]];
+ //   }
     self.currentState = isInactive;
 }
 

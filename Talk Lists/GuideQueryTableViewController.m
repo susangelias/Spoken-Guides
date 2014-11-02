@@ -299,6 +299,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self refreshUIForRowSelectionAtIndexPath:indexPath];
+    
+    // let delegate know about this action
+    if ([self.parentDelegate respondsToSelector:@selector(rowSelectedAtIndex:)]) {
+        [self.parentDelegate rowSelectedAtIndex:(int)indexPath.row];
+    }
+
+}
+
+- (void)refreshUIForRowSelectionAtIndexPath:(NSIndexPath *)indexPath
+{
     // if there is already a selected path, add to cell to the redraw list
     NSMutableArray *redrawList = [[NSMutableArray alloc]init];
     if ((self.selectedIndexPath) && (![self.selectedIndexPath isEqual: indexPath])) {
@@ -311,12 +322,7 @@
     
     [self.tableView reloadRowsAtIndexPaths:redrawList withRowAnimation:UITableViewRowAnimationNone];
     
-    // let delegate know about this action
-    if ([self.parentDelegate respondsToSelector:@selector(rowSelectedAtIndex:)]) {
-        [self.parentDelegate rowSelectedAtIndex:(int)indexPath.row];
-    }
 }
-
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
