@@ -431,7 +431,7 @@
                                     <action selector="resetButtonPressed:" destination="0pl-vw-p5k" eventType="touchUpInside" id="zZI-JF-YNC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds1-PJ-nJF" userLabel="Prompt Label" customClass="BNRDynamicTypeManagedLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="Ds1-PJ-nJF" userLabel="Prompt Label" customClass="BNRDynamicTypeManagedLabel">
                                 <rect key="frame" x="51" y="420" width="225" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="AEG-GJ-dqq"/>
