@@ -71,38 +71,39 @@
  
  - (void)swapFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController
  {
-     toViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
  
      [fromViewController willMoveToParentViewController:nil];
      [self addChildViewController:toViewController];
      
      CGFloat width = self.view.frame.size.width;
      CGFloat height = self.view.frame.size.height;
+     CGFloat y = self.view.frame.origin.y;
      
      if (self.entryTransistionDirection == Left) {
-         toViewController.view.frame = CGRectMake(width, 0, width, height);
+         toViewController.view.frame = CGRectMake(width, y, width, height);
      }
      else {
-         toViewController.view.frame = CGRectMake(0 - width, 0, width, height);
+         toViewController.view.frame = CGRectMake(0 - width, y, width, height);
      }
+     [self.view addSubview:toViewController.view];
      
      __weak typeof(self) weakSelf = self;
-     [self transitionFromViewController:fromViewController
-                       toViewController:toViewController
-                               duration:0.4
-                                options:UIViewAnimationOptionBeginFromCurrentState
-                             animations:^(void) {
+     [UIView animateWithDuration:0.4
+                           delay:0
+                         options:0
+                      animations:^{
                                  if (self.entryTransistionDirection == Left) {
-                                     fromViewController.view.frame = CGRectMake(0 - width, 0, width, height);
+                                     fromViewController.view.frame = CGRectMake(0 - width, y, width, height);
                                  }
                                  else {
-                                     fromViewController.view.frame = CGRectMake(0 + width, 0, width, height);
+                                     fromViewController.view.frame = CGRectMake(0 + width, y, width, height);
                                  }
-                                 toViewController.view.frame = CGRectMake(0, 0, width, height);
+                                 toViewController.view.frame = CGRectMake(0, y, width, height);
                              } 
                              completion:^(BOOL finished){
                                  [fromViewController removeFromParentViewController];
                                  [toViewController didMoveToParentViewController:weakSelf];
+                                 [fromViewController.view removeFromSuperview];
                              }
       ];
 
