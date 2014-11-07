@@ -807,7 +807,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEH-hr-MPy">
                                 <rect key="frame" x="246" y="127" width="34" height="34"/>
-                                <state key="normal" image="camera on white circle 120x120">
+                                <state key="normal" image="camera on white circle">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -862,7 +862,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmV-CH-n9k">
                                 <rect key="frame" x="246" y="127" width="34" height="34"/>
-                                <state key="normal" image="camera on white circle 120x120">
+                                <state key="normal" image="camera on white circle">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -914,13 +914,13 @@
     </scenes>
     <resources>
         <image name="Settings" width="25" height="25"/>
-        <image name="camera on white circle 120x120" width="60" height="60"/>
+        <image name="camera on white circle" width="60" height="60"/>
         <image name="folder - black" width="16" height="16"/>
-        <image name="left- black" width="14" height="29"/>
+        <image name="left- black" width="15" height="29"/>
         <image name="male" width="32" height="32"/>
         <image name="play-green" width="64" height="64"/>
         <image name="previous-red" width="64" height="64"/>
-        <image name="right - black" width="14" height="29"/>
+        <image name="right - black" width="15" height="29"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -929,6 +929,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="c6x-GM-VEb"/>
-        <segue reference="9se-h2-Jzo"/>
+        <segue reference="nKB-da-8Cm"/>
     </inferredMetricsTieBreakers>
 </document>

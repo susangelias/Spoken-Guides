@@ -2,12 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "folder 16 x 16.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "folder.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "folder 64 x 64.png"
     }
   ],
   "info" : {

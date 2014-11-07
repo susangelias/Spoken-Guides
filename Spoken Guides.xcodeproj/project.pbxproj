@@ -10,6 +10,8 @@
 		C001E3E919733D5800E9AF23 /* GuideQueryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C001E3E819733D5800E9AF23 /* GuideQueryTableViewController.m */; };
 		C0072C6E191BC474000254A8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0072C6D191BC474000254A8 /* AssetsLibrary.framework */; };
 		C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0072C70191BCE62000254A8 /* UIImage+Resize.m */; };
+		C01035651A0925A90011E1AD /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C01035641A0925A90011E1AD /* SZTextView.m */; };
+		C010356B1A09283E0011E1AD /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C010356A1A09283E0011E1AD /* GuideDetailViewController.m */; };
 		C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0195A601979484800EB01B7 /* DataEntryContainerViewController.m */; };
 		C023021B192A5870006DEF7A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0230219192A5870006DEF7A /* AcousticModelEnglish.bundle */; };
 		C023021C192A5870006DEF7A /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C023021A192A5870006DEF7A /* AcousticModelSpanish.bundle */; };
@@ -27,7 +29,6 @@
 		C0443FAD1955D229006ADA60 /* PFGuideTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0443FAC1955D229006ADA60 /* PFGuideTest.m */; };
 		C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B72E194F7B5300DE2B08 /* PFGuide.m */; };
 		C045B734194FF0F800DE2B08 /* ShareControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C045B733194FF0F800DE2B08 /* ShareControllerTest.m */; };
-		C047761D190848250085833C /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C047761C190848250085833C /* GuideDetailViewController.m */; };
 		C04A817519A7AE5300791AA3 /* stepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A817419A7AE5300791AA3 /* stepCell.m */; };
 		C04A833D19A7D35900791AA3 /* FBMissingSymbols.m in Sources */ = {isa = PBXBuildFile; fileRef = C04A833C19A7D35900791AA3 /* FBMissingSymbols.m */; };
 		C04DE14F19D5BA370019AE22 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C04DE14E19D5BA370019AE22 /* Bolts.framework */; };
@@ -51,7 +52,6 @@
 		C0A4DD7119D0630100BB8234 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A4DD7019D0630100BB8234 /* StoreKit.framework */; };
 		C0AA902619829DB5003B9B06 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AA902519829DB5003B9B06 /* InitialViewController.m */; };
 		C0B5318C19DE08B300E201D0 /* AllGuidesViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = C0B5318B19DE08B300E201D0 /* AllGuidesViewController.h */; };
-		C0BC365519F16D1A00F25FD8 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC363319F16D1A00F25FD8 /* SZTextView.m */; };
 		C0BC36AA19F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC367519F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m */; };
 		C0BC36AB19F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC367719F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.m */; };
 		C0BC36AC19F16E6A00F25FD8 /* BNRDynamicTypeManagedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC367919F16E6A00F25FD8 /* BNRDynamicTypeManagedTextField.m */; };
@@ -105,6 +105,10 @@
 		C0072C6D191BC474000254A8 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C0072C6F191BCE62000254A8 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		C0072C70191BCE62000254A8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		C01035631A0925A90011E1AD /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = "Talk Lists/SZTextView/Classes/SZTextView.h"; sourceTree = SOURCE_ROOT; };
+		C01035641A0925A90011E1AD /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = "Talk Lists/SZTextView/Classes/SZTextView.m"; sourceTree = SOURCE_ROOT; };
+		C01035691A09283E0011E1AD /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideDetailViewController.h; sourceTree = "<group>"; };
+		C010356A1A09283E0011E1AD /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideDetailViewController.m; sourceTree = "<group>"; };
 		C0195A5F1979484800EB01B7 /* DataEntryContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryContainerViewController.h; sourceTree = "<group>"; };
 		C0195A601979484800EB01B7 /* DataEntryContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryContainerViewController.m; sourceTree = "<group>"; };
 		C0195A62197952AD00EB01B7 /* DataEntryDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataEntryDelegate.h; sourceTree = "<group>"; };
@@ -131,8 +135,6 @@
 		C045B72D194F7B5300DE2B08 /* PFGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGuide.h; sourceTree = "<group>"; };
 		C045B72E194F7B5300DE2B08 /* PFGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGuide.m; sourceTree = "<group>"; };
 		C045B733194FF0F800DE2B08 /* ShareControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareControllerTest.m; sourceTree = "<group>"; };
-		C047761B190848250085833C /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideDetailViewController.h; path = ../GuideDetailViewController.h; sourceTree = "<group>"; };
-		C047761C190848250085833C /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = ../GuideDetailViewController.m; sourceTree = "<group>"; };
 		C04A817319A7AE5300791AA3 /* stepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stepCell.h; sourceTree = "<group>"; };
 		C04A817419A7AE5300791AA3 /* stepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stepCell.m; sourceTree = "<group>"; };
 		C04A833C19A7D35900791AA3 /* FBMissingSymbols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMissingSymbols.m; sourceTree = "<group>"; };
@@ -165,8 +167,6 @@
 		C0AA902519829DB5003B9B06 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C0B040B019BFCD23008F112F /* Spoken Guides.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spoken Guides.entitlements"; sourceTree = "<group>"; };
 		C0B5318B19DE08B300E201D0 /* AllGuidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGuidesViewController.h; sourceTree = "<group>"; };
-		C0BC363219F16D1A00F25FD8 /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTextView.h; path = Classes/SZTextView.h; sourceTree = "<group>"; };
-		C0BC363319F16D1A00F25FD8 /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTextView.m; path = Classes/SZTextView.m; sourceTree = "<group>"; };
 		C0BC367419F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDynamicTypeManagedButton.h; sourceTree = "<group>"; };
 		C0BC367519F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDynamicTypeManagedButton.m; sourceTree = "<group>"; };
 		C0BC367619F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDynamicTypeManagedLabel.h; sourceTree = "<group>"; };
@@ -402,8 +402,8 @@
 		C0BC362D19F16D1A00F25FD8 /* SZTextView */ = {
 			isa = PBXGroup;
 			children = (
-				C0BC363319F16D1A00F25FD8 /* SZTextView.m */,
-				C0BC363219F16D1A00F25FD8 /* SZTextView.h */,
+				C01035631A0925A90011E1AD /* SZTextView.h */,
+				C01035641A0925A90011E1AD /* SZTextView.m */,
 			);
 			name = SZTextView;
 			path = SZTextView2;
@@ -627,11 +627,11 @@
 		C0F532D9191168830023CEF0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C01035691A09283E0011E1AD /* GuideDetailViewController.h */,
+				C010356A1A09283E0011E1AD /* GuideDetailViewController.m */,
 				C001E3E719733D5800E9AF23 /* GuideQueryTableViewController.h */,
 				C06BB676197437E000944D49 /* GuideQueryTableViewControllerDelegate.h */,
 				C001E3E819733D5800E9AF23 /* GuideQueryTableViewController.m */,
-				C047761B190848250085833C /* GuideDetailViewController.h */,
-				C047761C190848250085833C /* GuideDetailViewController.m */,
 				C0270138192A3E7F00F954EA /* dialogController.h */,
 				C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */,
 				C0270139192A3E7F00F954EA /* dialogController.m */,
@@ -819,7 +819,6 @@
 				C04A833D19A7D35900791AA3 /* FBMissingSymbols.m in Sources */,
 				C001E3E919733D5800E9AF23 /* GuideQueryTableViewController.m in Sources */,
 				C0F532DF191178A20023CEF0 /* GuideCategories.m in Sources */,
-				C047761D190848250085833C /* GuideDetailViewController.m in Sources */,
 				C045B72F194F7B5300DE2B08 /* PFGuide.m in Sources */,
 				C067BEB9192FCA0E00996DF8 /* EditGuideViewController.m in Sources */,
 				C0D863A519783E7100CC68EF /* DataEntryViewController.m in Sources */,
@@ -829,7 +828,9 @@
 				C0BC36AD19F16E6A00F25FD8 /* BNRDynamicTypeManagedTextView.m in Sources */,
 				C0DCB17E1905D9F400E29DBB /* main.m in Sources */,
 				C0EF2100190B1BA5000E95B9 /* addPhotoViewController.m in Sources */,
+				C010356B1A09283E0011E1AD /* GuideDetailViewController.m in Sources */,
 				C04A817519A7AE5300791AA3 /* stepCell.m in Sources */,
+				C01035651A0925A90011E1AD /* SZTextView.m in Sources */,
 				C0BC36AE19F16E6A00F25FD8 /* BNRDynamicTypeManager.m in Sources */,
 				C02BEAAA190EA0EC0092426E /* SpeakingController.m in Sources */,
 				C0BC36AA19F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m in Sources */,
@@ -838,7 +839,6 @@
 				C080B3C219E06D5200575753 /* AllGuidesViewController.m in Sources */,
 				C0270133192A3E2700F954EA /* ListeningController.m in Sources */,
 				C0BC36AB19F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.m in Sources */,
-				C0BC365519F16D1A00F25FD8 /* SZTextView.m in Sources */,
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
 				C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */,
 				C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */,

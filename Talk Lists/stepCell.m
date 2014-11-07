@@ -7,7 +7,6 @@
 //
 
 #import "stepCell.h"
-#import "UIView+SuperView.h"
 #import "UIImage+Resize.h"
 
 NSString *const kStepCellFont = @"HelveticaNeue-Thin";

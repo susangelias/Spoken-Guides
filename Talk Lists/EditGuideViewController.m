@@ -8,8 +8,6 @@
 
 #import "EditGuideViewController.h"
 #import "GuideCategories.h"
-#import "titleViewDelegate.h"
-#import "stepEntryViewDelegate.h"
 #import "UIImage+Resize.h"
 #import "PFGuide.h"
 #import "PFStep.h"

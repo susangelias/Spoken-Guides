@@ -2,12 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "cross-white 16 x 16.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "cross-white.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "cross-white 64 x 64.png"
     }
   ],
   "info" : {
