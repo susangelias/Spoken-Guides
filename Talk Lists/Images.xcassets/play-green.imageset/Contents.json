@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "play-green 64 x 64.png"
+      "filename" : "64x64_icon-ios7-play-outline green.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "play-green 128 x 128.png"
+      "filename" : "128x128_icon-ios7-play-outline green.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "play-green 256 x 256.png"
+      "filename" : "192x192_icon-ios7-play-outline green.png"
     }
   ],
   "info" : {

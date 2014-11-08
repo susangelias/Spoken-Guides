@@ -51,6 +51,7 @@
 		C0A4DD6F19D062F800BB8234 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A4DD6E19D062F800BB8234 /* GameKit.framework */; };
 		C0A4DD7119D0630100BB8234 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A4DD7019D0630100BB8234 /* StoreKit.framework */; };
 		C0AA902619829DB5003B9B06 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AA902519829DB5003B9B06 /* InitialViewController.m */; };
+		C0B09A601A0D2ABE00A30038 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B09A5F1A0D2ABE00A30038 /* InfoTableViewController.m */; };
 		C0B5318C19DE08B300E201D0 /* AllGuidesViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = C0B5318B19DE08B300E201D0 /* AllGuidesViewController.h */; };
 		C0BC36AA19F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC367519F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m */; };
 		C0BC36AB19F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BC367719F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.m */; };
@@ -166,6 +167,8 @@
 		C0AA902419829DB5003B9B06 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		C0AA902519829DB5003B9B06 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C0B040B019BFCD23008F112F /* Spoken Guides.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spoken Guides.entitlements"; sourceTree = "<group>"; };
+		C0B09A5E1A0D2ABE00A30038 /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
+		C0B09A5F1A0D2ABE00A30038 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
 		C0B5318B19DE08B300E201D0 /* AllGuidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGuidesViewController.h; sourceTree = "<group>"; };
 		C0BC367419F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDynamicTypeManagedButton.h; sourceTree = "<group>"; };
 		C0BC367519F16E6A00F25FD8 /* BNRDynamicTypeManagedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDynamicTypeManagedButton.m; sourceTree = "<group>"; };
@@ -490,6 +493,8 @@
 				C0DA1F181989A2CB00484255 /* MyAccountViewController.m */,
 				C0CD61CC1989AAAC004C430F /* GuideUserSignUpViewController.h */,
 				C0CD61CD1989AAAC004C430F /* GuideUserSignUpViewController.m */,
+				C0B09A5E1A0D2ABE00A30038 /* InfoTableViewController.h */,
+				C0B09A5F1A0D2ABE00A30038 /* InfoTableViewController.m */,
 			);
 			name = UserAccount;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				C08265D719928C620025403F /* ILTranslucentView.m in Sources */,
 				C080B3C219E06D5200575753 /* AllGuidesViewController.m in Sources */,
 				C0270133192A3E2700F954EA /* ListeningController.m in Sources */,
+				C0B09A601A0D2ABE00A30038 /* InfoTableViewController.m in Sources */,
 				C0BC36AB19F16E6A00F25FD8 /* BNRDynamicTypeManagedLabel.m in Sources */,
 				C0072C71191BCE62000254A8 /* UIImage+Resize.m in Sources */,
 				C0195A611979484800EB01B7 /* DataEntryContainerViewController.m in Sources */,

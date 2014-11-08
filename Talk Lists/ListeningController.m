@@ -47,7 +47,7 @@
     self.languageModel = [[languageOpenEars alloc]init];
     self.lmGenerator = self.languageModel.lmGenerator;      // This object takes a couple of seconds to generate
    
-    [OpenEarsLogging startOpenEarsLogging];
+ //   [OpenEarsLogging startOpenEarsLogging];       // turn on for debugging
     return self;
 }
 
