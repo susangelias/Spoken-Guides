@@ -118,7 +118,7 @@
 
 -(void)applicationBecameActive:(NSNotification *)notification
 {
-     NSLog(@"application became active GuideQueryTVC %@", self.objects);
+  //   NSLog(@"application became active GuideQueryTVC %@", self.objects);
     [self loadCache];     // refresh the cache
 }
 

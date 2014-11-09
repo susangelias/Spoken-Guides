@@ -273,7 +273,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
 
 -(void)startedListening
 {
-    NSLog(@"started listening in currentState %d", (int)self.currentState);
+ //   NSLog(@"started listening in currentState %d", (int)self.currentState);
     if (self.currentState == isActivelyListening) {
         if ([self.dialogControlDelegate respondsToSelector:@selector(dialogStartedListening)]) {
             [self.dialogControlDelegate dialogStartedListening];

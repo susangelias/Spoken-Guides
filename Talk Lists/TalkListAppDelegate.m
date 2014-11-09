@@ -54,7 +54,7 @@ NSString *const kAppBackgroundImageName = @"escheresque";
                 NSLog(@"Anonymous login failed");
             }
             else {
-                NSLog(@"Anonymous user logged in");
+            //    NSLog(@"Anonymous user logged in");
             }
         }];
     }
@@ -89,7 +89,7 @@ NSString *const kAppBackgroundImageName = @"escheresque";
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     // Allocate and start the calibration for the ListeningController - this is a singleton and the calibration takes 5 to 7 secs
-    NSLog(@"APPLICATION DID BECOME ACTIVE");
+  //  NSLog(@"APPLICATION DID BECOME ACTIVE");
 
 }
 

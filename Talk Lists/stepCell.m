@@ -250,7 +250,7 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
                          animations:^{
                              if (weakSelf.unzoomedCellImageView) {
                                  enlargedView.bounds = weakSelf.unzoomedCellImageView.bounds;
-                                 NSLog(@"UnzoomedCellImageView x %f,  y %f", weakSelf.unzoomedCellImageView.center.x, weakSelf.unzoomedCellImageView.center.y);
+                               //  NSLog(@"UnzoomedCellImageView x %f,  y %f", weakSelf.unzoomedCellImageView.center.x, weakSelf.unzoomedCellImageView.center.y);
                                  enlargedView.center = weakSelf.unzoomedCellImageView.center;
                              }
                          }

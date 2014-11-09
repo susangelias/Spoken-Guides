@@ -51,7 +51,7 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
             [weakSelf.rankedStepsInGuide removeObject:stepToBeDeleted];
           //  weakSelf.numberOfSteps = [NSNumber numberWithInt:[weakSelf.rankedStepsInGuide count]];
           //  [weakSelf saveInBackground];
-            NSLog(@"deleted step for a total of %lu steps", (unsigned long)[weakSelf.rankedStepsInGuide count]);
+          //  NSLog(@"deleted step for a total of %lu steps", (unsigned long)[weakSelf.rankedStepsInGuide count]);
 
             if ([weakSelf.rankedStepsInGuide count] > 0) {
                 // update rank for remaining steps

@@ -134,7 +134,7 @@
             [self.guideToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 uploading = NO;
                 if (succeeded) {
-                    NSLog(@"guide uploaded due to title change");
+                 //   NSLog(@"guide uploaded due to title change");
                     if ([weakSelf.editGuideDelegate respondsToSelector:@selector(changedGuideFinishedUpload)]) {
                         [weakSelf.editGuideDelegate changedGuideFinishedUpload];
                     }
@@ -180,7 +180,7 @@
             [stepToBeUploaded saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 uploading = NO;
                 if (succeeded && !error) {
-                    NSLog(@"step uploaded %@", stepToBeUploaded );
+                  //  NSLog(@"step uploaded %@", stepToBeUploaded );
                     PFRelation *relation = [weakSelf.guideToEdit relationForKey:@"pfSteps"];
                     [relation addObject:stepToBeUploaded];
                     uploading = YES;
@@ -252,7 +252,7 @@
         // save updated images to cache
         NSMutableDictionary *guideAttributes = [[[SpokenGuideCache sharedCache] objectForKey:self.guideToEdit.objectId] mutableCopy];
         if (guideAttributes) {
-            NSLog(@"guideAttributes %@", guideAttributes);
+         //   NSLog(@"guideAttributes %@", guideAttributes);
             [guideAttributes setValue:imageEntry forKey:kPFGuideChangedImage];
             [guideAttributes setValue:thumbnail forKey:kPFGuideChangedThumbnail];
             [[SpokenGuideCache sharedCache] setObject:[guideAttributes copy] forKey:self.guideToEdit.objectId];
@@ -311,7 +311,7 @@
           //  NSLog(@"imageFile uploaded");
             [thumbnailFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    NSLog(@"thumbnailFile uploaded: %@", thumbnailFile.name);
+                 //   NSLog(@"thumbnailFile uploaded: %@", thumbnailFile.name);
                     [[UIApplication sharedApplication] endBackgroundTask:_weakSelf.fileUploadBackgroundTaskId];
                     
                     // save PFFile's to guide
@@ -422,7 +422,7 @@
     [request setValue:kParseApplicationKey forHTTPHeaderField:@"X-Parse-Application-Id"];
     [request setValue:kParseClientKey forHTTPHeaderField:@"X-Parse-Master-Key"];
     
-    NSLog(@"DELETING FILE: %@", fileName);
+  //  NSLog(@"DELETING FILE: %@", fileName);
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue currentQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -523,7 +523,7 @@
 - (IBAction)rightSwipe:(UISwipeGestureRecognizer *)sender {
 // right swipe gesture will display either the title or an existing step but never a new step entry view
     transistionDirection = Right;
-    NSLog(@"RIGHT SWIPE");
+ //   NSLog(@"RIGHT SWIPE");
     // reactivate the left swipe gesture
     [self setLeftSwipe:YES];
 
@@ -585,7 +585,7 @@
 // left swipe gesture will display a current step with data or a new step entry view
     transistionDirection = Left;
     // reactivate right swipe gesture
-    NSLog(@"LEFT SWIPE");
+  //  NSLog(@"LEFT SWIPE");
     [self setRightSwipe:YES];
  
     // about to leave the current view so make sure any changes are saved

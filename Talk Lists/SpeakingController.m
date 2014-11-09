@@ -85,7 +85,7 @@
 
 - (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance
 {
-    NSLog(@"finished utterance:  %@", utterance.speechString);
+ //   NSLog(@"finished utterance:  %@", utterance.speechString);
     if ( (self.delegate && [self.delegate respondsToSelector:@selector(appHasFinishedSpeaking)]) && (self.cancelled == NO) ) {
         [self.delegate appHasFinishedSpeaking];
     }
@@ -98,7 +98,7 @@
 {
     // NOT RECEIVING THIS CALL BACK FOR SOME REASON - MAYBE RELATED TO THE APPLE BUG ABOVE
     // WORKING AROUND WITH THE self.cancelled FLAG
-    NSLog(@"canceled utterance: %@", utterance.speechString);
+ //   NSLog(@"canceled utterance: %@", utterance.speechString);
     self.cancelled = NO;
 }
 

@@ -266,7 +266,7 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 - (void)dialogComplete
 {
-    NSLog(@"DIALOG OVER");
+//    NSLog(@"DIALOG OVER");
     [self setPlayButton];
     
      // update state
@@ -497,7 +497,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     NSUInteger type = [[[notification userInfo] objectForKey:AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];
     
     if (type == AVAudioSessionInterruptionTypeBegan) {
-        NSLog(@"BEGAN INTERRUPTION, dialog state %d", (int)self.currentState);
+    //    NSLog(@"BEGAN INTERRUPTION, dialog state %d", (int)self.currentState);
         
         if (self.currentState == isPlaying) {
            //  [self terminateActivity];
@@ -509,13 +509,13 @@ NSString * const kHighlightColor = @"AppleGreen";
         }
     }
     else if (type == AVAudioSessionInterruptionTypeEnded) {
-        NSLog(@"END INTERRUPTION, dialog state %d", (int)self.currentState);
+     //   NSLog(@"END INTERRUPTION, dialog state %d", (int)self.currentState);
      }
 }
 
 -(void)audioServicesReset: (NSNotification *)notification
 {
-    NSLog(@"RECEIVED AUDIO SERVICES RESET NOTIFICATION");
+  //  NSLog(@"RECEIVED AUDIO SERVICES RESET NOTIFICATION");
   //  TalkListAppDelegate *myApp = [UIApplication sharedApplication].delegate;
     [self.dialogController killListeningController];
     
@@ -527,7 +527,7 @@ NSString * const kHighlightColor = @"AppleGreen";
     NSDictionary *dict = [notification userInfo];
     AVAudioSessionRouteChangeReason changeReason = [[dict valueForKey: AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];
     AVAudioSessionRouteDescription *route = [dict valueForKey:AVAudioSessionRouteChangePreviousRouteKey];
-    NSLog(@"RECEIVED AUDIO SERVICES ROUTE CHANGE NOTIFICATION %d, %@", (int)changeReason,route);
+ //   NSLog(@"RECEIVED AUDIO SERVICES ROUTE CHANGE NOTIFICATION %d, %@", (int)changeReason,route);
     if (changeReason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
         // pause dialog
         

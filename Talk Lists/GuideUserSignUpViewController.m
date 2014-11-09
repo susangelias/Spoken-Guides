@@ -127,7 +127,7 @@
     if ([textField isEqual:self.passwordAgain]) {
         if ( (textField.text.length != 0) && ([textField.text isEqualToString:self.signUpView.passwordField.text]) )
         {
-            NSLog(@"password good to go");
+         //   NSLog(@"password good to go");
         }
         else {
             [[[UIAlertView alloc] initWithTitle:nil message:@"Passwords do not match"

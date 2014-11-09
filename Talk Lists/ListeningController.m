@@ -161,7 +161,7 @@
     heardText = [[heardText stringByAppendingString:@" with a score of "]mutableCopy];
     heardText = [[heardText stringByAppendingString:recognitionScore]mutableCopy];
     */
-    NSLog(@"The received hypothesis is %@ with a score of %@ and an ID of %@", hypothesis, recognitionScore, utteranceID);
+  //  NSLog(@"The received hypothesis is %@ with a score of %@ and an ID of %@", hypothesis, recognitionScore, utteranceID);
     
     if ([hypothesis length] <= kPHRASE_LENGTH_LIMIT) {
         if ([self heardSpeechMatchesOneOfOurCommandPhrases:hypothesis]) {
@@ -182,7 +182,7 @@
 
 - (void) pocketsphinxDidStartCalibration {
 
-	NSLog(@"Pocketsphinx calibration has started. %@", self.start);
+//	NSLog(@"Pocketsphinx calibration has started. %@", self.start);
 }
 
 - (void) pocketsphinxDidCompleteCalibration {
@@ -196,11 +196,11 @@
      */
     self.calibrationJustHappened = YES;
     self.isCalibrated = YES;
-	NSLog(@"Pocketsphinx calibration is complete.");
+//	NSLog(@"Pocketsphinx calibration is complete.");
 }
 
 - (void) pocketsphinxDidStartListening {
-	NSLog(@"Pocketsphinx is now listening.  %f", [self.start timeIntervalSinceNow]);
+//	NSLog(@"Pocketsphinx is now listening.  %f", [self.start timeIntervalSinceNow]);
     if ([self.delegate respondsToSelector:@selector(startedListening)]) {
         [self.delegate startedListening];
     }
@@ -210,18 +210,18 @@
 }
 
 - (void) pocketsphinxDidDetectSpeech {
-	NSLog(@"Pocketsphinx has detected speech.");
+//	NSLog(@"Pocketsphinx has detected speech.");
     if ([self.delegate respondsToSelector:@selector(detectedSpeech)]) {
         [self.delegate detectedSpeech];
     }
 }
 
 - (void) pocketsphinxDidDetectFinishedSpeech {
-	NSLog(@"Pocketsphinx has detected a period of silence, concluding an utterance.");
+//	NSLog(@"Pocketsphinx has detected a period of silence, concluding an utterance.");
 }
 
 - (void) pocketsphinxDidStopListening {
-	NSLog(@"Pocketsphinx has stopped listening.");
+//	NSLog(@"Pocketsphinx has stopped listening.");
     if ([self.delegate respondsToSelector:@selector(stoppedListening)]) {
         [self.delegate stoppedListening];
     }
@@ -230,25 +230,26 @@
 - (void) pocketsphinxDidSuspendRecognition {
     if ([self.delegate respondsToSelector:@selector(stoppedListening)]) {
         [self.delegate stoppedListening];
-    }	NSLog(@"Pocketsphinx has suspended recognition.");
+    }
+    // NSLog(@"Pocketsphinx has suspended recognition.");
 }
 
 - (void) pocketsphinxDidResumeRecognition {
     if ([self.delegate respondsToSelector:@selector(startedListening)]) {
         [self.delegate startedListening];
     }
-	NSLog(@"Pocketsphinx has resumed recognition.");
+//	NSLog(@"Pocketsphinx has resumed recognition.");
 }
 
 
 - (void) pocketSphinxContinuousSetupDidFail { // This can let you know that something went wrong with the recognition loop startup. Turn on OPENEARSLOGGING to learn why.
-	NSLog(@"Setting up the continuous recognition loop has failed for some reason, please turn on OpenEarsLogging to learn more.");
+//	NSLog(@"Setting up the continuous recognition loop has failed for some reason, please turn on OpenEarsLogging to learn more.");
     // try again
     self.pocketsphinxController = nil;
     [self pocketsphinxController];
 }
 - (void) testRecognitionCompleted {
-	NSLog(@"A test file that was submitted for recognition is now complete.");
+//	NSLog(@"A test file that was submitted for recognition is now complete.");
 }
 
 @end

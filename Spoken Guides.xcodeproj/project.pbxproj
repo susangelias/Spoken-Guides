@@ -996,6 +996,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					"armv7,armv7s",
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Susan Elias (V5452U9ZMN)";
@@ -1030,6 +1034,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FA84C67E56C4BDCBB730AEF /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					"armv7,armv7s",
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Susan Elias (YUPQ2JVR7Q)";
