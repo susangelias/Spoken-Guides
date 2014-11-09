@@ -93,7 +93,6 @@
         // Licenses
         cell.textLabel.text = (NSString *)[self.LicenseContentArray objectAtIndex:indexPath.row];
     }
-    NSLog(@"CELL = %@", cell);
     return cell;
 }
 

@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "cross 16 x 16.png"
+      "filename" : "16x16_icon-ios7-cross-green.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "cross.png"
+      "filename" : "32x32_icon-ios7-cross-green.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "cross 64 x 64.png"
+      "filename" : "48x48icon-ios7-cross-green.png"
     }
   ],
   "info" : {

@@ -14,6 +14,7 @@
 
 @property (strong,nonatomic) UIColor *fieldBackgroundColor;
 @property (strong, nonatomic) UIColor *appleGreen;
+@property (strong, nonatomic) IBOutlet UIButton *aboutButton;
 @end
 
 @implementation MyAccountViewController
@@ -90,7 +91,16 @@
     [self setSignUpController:signUpViewController];
  
     // configure dismiss button
-    [self.logInView.dismissButton setImage:[UIImage imageNamed:@"cross-black"] forState:UIControlStateNormal];
+    [self.logInView.dismissButton setImage:[UIImage imageNamed:@"cross-green"] forState:UIControlStateNormal];
+    CGRect currentFrame = self.logInView.dismissButton.frame;
+    [self.logInView.dismissButton setFrame:CGRectMake(currentFrame.origin.x+10, currentFrame.origin.y, currentFrame.size.width, currentFrame.size.height)];
+    
+    // add a button for the About info
+    self.aboutButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [self.logInView addSubview:self.aboutButton];
+    [self.aboutButton sizeToFit];
+    self.aboutButton.center = CGPointMake(290,40.5);
+    [self.aboutButton addTarget:self action:@selector(navigateToInfoViewController:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewWillLayoutSubviews
@@ -110,6 +120,7 @@
     {
         self.logInView.dismissButton.hidden = NO;
     }
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -176,8 +187,8 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    PFUser *currentUser = [PFUser currentUser];
-    NSLog(@"current User after log in %@", currentUser);
+  //  PFUser *currentUser = [PFUser currentUser];
+  //  NSLog(@"current User after log in %@", currentUser);
 
     [self performSegueWithIdentifier:@"unwindToInitialVCSegueID" sender:self];
 }
@@ -231,6 +242,16 @@
 
 #pragma mark - Navigation
 
+- (IBAction)navigateToInfoViewController:(id)sender
+{
+    // Create the info view controller
+    [self performSegueWithIdentifier:@"infoSegue" sender:self];
+}
+
+- (IBAction) unwindToMyAccountViewController:(UIStoryboardSegue *)unwindSegue
+{
+//    NSLog(@"called unwindToMyAccountViewController: unwind action");
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
