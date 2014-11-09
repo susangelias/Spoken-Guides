@@ -101,7 +101,7 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
     
     if (fromIndex > toIndex) {
         thisStep = rankedSteps[fromIndex-1];
-        thisStep.rank  = [NSNumber numberWithUnsignedLong:toIndex];
+        thisStep.rank = [NSNumber numberWithInteger:toIndex];
         [thisStep saveInBackground];
         // re-rank all the steps inbetween
         for (unsigned long i = toIndex-1; i < fromIndex-1; i++) {
@@ -122,8 +122,8 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
         }
         // update the inserted step's rank
         thisStep = rankedSteps[fromIndex-1];
-        thisStep.rank = [NSNumber numberWithUnsignedLong:toIndex];
-        [thisStep saveInBackground];
+        thisStep.rank = [NSNumber numberWithInteger:toIndex];
+      [thisStep saveInBackground];
     }
 }
 
@@ -133,7 +133,7 @@ NSString *const kPFGuideChangedThumbnail = @"changedThumbnail";
     __block PFStep *retrievedStep;
     [self.rankedStepsInGuide enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         PFStep *step = (PFStep *)obj;
-        if (step.rank == [NSNumber numberWithUnsignedLong:rank]) {
+        if ([step.rank integerValue] == rank) {
             *stop = YES;
             retrievedStep = step;
         }
