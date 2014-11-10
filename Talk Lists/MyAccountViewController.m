@@ -50,7 +50,7 @@
     self.delegate = self;
     
     [self.logInView setBackgroundColor:[UIColor clearColor]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]]];
 
     // Configure the user name field
     [self.logInView.usernameField setTextColor:[UIColor blackColor]];
@@ -101,6 +101,8 @@
     [self.aboutButton sizeToFit];
     self.aboutButton.center = CGPointMake(290,40.5);
     [self.aboutButton addTarget:self action:@selector(navigateToInfoViewController:) forControlEvents:UIControlEventTouchUpInside];
+    
+
 }
 
 -(void) viewWillLayoutSubviews

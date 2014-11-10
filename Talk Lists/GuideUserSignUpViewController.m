@@ -34,7 +34,7 @@
     // Do any additional setup after loading the view.
     
     self.signUpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
-    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]]];
     
     // set up the additional Field
     self.passwordAgain = [[UITextField alloc] init];
@@ -85,6 +85,7 @@
     [self.signUpView addSubview:self.passwordAgain];
     
     [self.signUpView.dismissButton setFrame:CGRectMake(5.0, 30.0, 20.0, 20.0)];
+    [self.signUpView.logo setFrame:CGRectMake(60.0, 75.0, 200, 20.0)];
     [self.signUpView.usernameField setFrame:CGRectMake(35.0f, 120.0f, 250.0f, 42.0f)];
     [self.signUpView.passwordField setFrame:CGRectMake(35.0f, 164.0f, 250.0f, 42.0f)];
     [self.passwordAgain setFrame:CGRectMake(35.0f, 208.0f, 250.0f, 42.0f)];
