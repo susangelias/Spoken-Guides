@@ -16,12 +16,11 @@ NSString *const kALLCATAGORIES = @"ALL CATAGORIES";
 {
     if (!_categoryKeys)
     {
-        _categoryKeys = @[NSLocalizedString(@"GENERAL", nil),
-                            NSLocalizedString(@"COOKING", nil),
-                            NSLocalizedString(@"DIY", nil),
+        _categoryKeys = @ [NSLocalizedString(@"COOKING", nil),
                             NSLocalizedString(@"AUTOMOTIVE", nil),
                             NSLocalizedString(@"HOME & GARDEN", nil),
-                            NSLocalizedString(@"HEALTH & FITNESS", nil)];
+                            NSLocalizedString(@"HEALTH & FITNESS", nil),
+                            NSLocalizedString(@"GENERAL", nil)];
     }
     return _categoryKeys;
 }
