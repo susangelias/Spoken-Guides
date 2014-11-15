@@ -326,12 +326,18 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 - (void)speakingLineNumber:(NSNumber *) lineNumber
 {
+    
     // Enlarges cell if text exceeds the default row height
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[lineNumber intValue ] inSection:0];
     GuideQueryTableViewController *childVC = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    [childVC.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+
     if ([childVC respondsToSelector:@selector(refreshUIForRowSelectionAtIndexPath:)]) {
         [childVC refreshUIForRowSelectionAtIndexPath:indexPath];
+    
     }
+    
+    
     
     // Apply text highlight color
     [self setCurrentLine:lineNumber];
