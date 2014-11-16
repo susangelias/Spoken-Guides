@@ -57,8 +57,6 @@
 {
     [super viewDidLoad];
     
-//    self.stepNumber = 0;
-    
     // display the category
     self.categoryLabel.text = self.guideToEdit.classification;
      
@@ -79,6 +77,9 @@
     self.tapGesture.delegate = self;
     
     uploading = NO;
+    
+    [self.view bringSubviewToFront:self.rightIndicator];
+    [self.view bringSubviewToFront:self.leftIndicator];
 }
 
 

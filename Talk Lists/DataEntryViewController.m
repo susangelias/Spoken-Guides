@@ -41,7 +41,8 @@
     self.textEntryView.backgroundColor =  [UIColor clearColor];
     
     ILTranslucentView *translucentTextEntry = [[ILTranslucentView alloc] initWithFrame:self.textEntryView.frame];
-    [self.view addSubview:translucentTextEntry];
+  //  [self.view addSubview:translucentTextEntry];
+    [self.view insertSubview:translucentTextEntry aboveSubview:self.textEntryView];
     translucentTextEntry.backgroundColor = [UIColor clearColor];
     translucentTextEntry.translucentTintColor = [UIColor clearColor];
     translucentTextEntry.translucentAlpha = 0.8;
