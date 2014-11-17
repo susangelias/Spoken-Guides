@@ -36,15 +36,6 @@
     self.signUpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kAppBackgroundImageName]];
     [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]]];
     
-    // set up the additional Field
-    self.passwordAgain = [[UITextField alloc] init];
-    self.passwordAgain.secureTextEntry = YES;
-    NSAttributedString *placeholderStr = [[NSAttributedString alloc] initWithString:@"Confirm Password" attributes:@{ NSForegroundColorAttributeName : [UIColor grayColor]}];
-    self.passwordAgain.attributedPlaceholder = placeholderStr;
-    self.passwordAgain.textAlignment = NSTextAlignmentCenter;
-    self.passwordAgain.backgroundColor = self.fieldBackgroundColor;
-    self.passwordAgain.delegate = self;
-
     // configure user name field
     [self.signUpView.usernameField setTextColor:[UIColor blackColor]];
     self.signUpView.usernameField.backgroundColor = self.fieldBackgroundColor;
@@ -61,6 +52,14 @@
     layer = self.signUpView.passwordField.layer;
     layer.shadowOpacity = 0.0;
 
+    // set up the additional Field
+    self.signUpView.additionalField.secureTextEntry = YES;
+    [self.signUpView.additionalField setTextColor:[UIColor blackColor]];
+    NSAttributedString *placeholderStr = [[NSAttributedString alloc] initWithString:@"Confirm Password" attributes:@{ NSForegroundColorAttributeName : [UIColor grayColor]}];
+    self.signUpView.additionalField.attributedPlaceholder = placeholderStr;
+    self.signUpView.additionalField.textAlignment = NSTextAlignmentCenter;
+    self.signUpView.additionalField.backgroundColor = self.fieldBackgroundColor;
+    
     // configure email field
     [self.signUpView.emailField setTextColor:[UIColor blackColor]];
     self.signUpView.emailField.backgroundColor = self.fieldBackgroundColor;
@@ -77,27 +76,32 @@
 
     // configure dismiss button
     [self.signUpView.dismissButton setImage:[UIImage imageNamed:@"cross-white"] forState:UIControlStateNormal];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 
-    [self.signUpView addSubview:self.passwordAgain];
-    
-    [self.signUpView.dismissButton setFrame:CGRectMake(5.0, 30.0, 20.0, 20.0)];
-    [self.signUpView.logo setFrame:CGRectMake(60.0, 75.0, 200, 20.0)];
-    [self.signUpView.usernameField setFrame:CGRectMake(35.0f, 120.0f, 250.0f, 42.0f)];
-    [self.signUpView.passwordField setFrame:CGRectMake(35.0f, 164.0f, 250.0f, 42.0f)];
-    [self.passwordAgain setFrame:CGRectMake(35.0f, 208.0f, 250.0f, 42.0f)];
-    [self.signUpView.emailField setFrame:CGRectMake(35.0f, 252.0f, 250.0f, 42.0f)];
-    [self.signUpView.signUpButton setFrame:CGRectMake(35.0f, 308.0f, 250.0f, 40.0f)];
+    [self initialUITextFieldPositions];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self.signUpView.usernameField becomeFirstResponder];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,11 +116,8 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    //  [super textFieldDidBeginEditing:textField];
-    
     // Set field background color
     textField.backgroundColor = [UIColor whiteColor];
-    
 }
 
 
@@ -125,8 +126,8 @@
     // Set field background color
     textField.backgroundColor = self.fieldBackgroundColor;
     
-    if ([textField isEqual:self.passwordAgain]) {
-        if ( (textField.text.length != 0) && ([textField.text isEqualToString:self.signUpView.passwordField.text]) )
+    if ([textField isEqual:self.signUpView.additionalField] && (textField.text.length != 0)) {
+        if ( [textField.text isEqualToString:self.signUpView.passwordField.text] )
         {
          //   NSLog(@"password good to go");
         }
@@ -138,6 +139,31 @@
         }
     }
 
+}
+
+
+#pragma mark Keyboard Notifications
+// Having these handlers here somehow activates the self.signUpView (which is a scrollView) to scroll out of the keyboard's way
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    
+}
+
+-(void)initialUITextFieldPositions
+{
+    [self.signUpView.dismissButton setFrame:CGRectMake(5.0, 30.0, 20.0, 20.0)];
+    [self.signUpView.logo setFrame:CGRectMake(60.0, 75.0, 200, 20.0)];
+    [self.signUpView.usernameField setFrame:CGRectMake(35.0f, 120.0f, 250.0f, 42.0f)];
+    [self.signUpView.passwordField setFrame:CGRectMake(35.0f, 164.0f, 250.0f, 42.0f)];
+    [self.signUpView.additionalField setFrame:CGRectMake(35.0f, 208.0f, 250.0f, 42.0f)];
+    [self.signUpView.emailField setFrame:CGRectMake(35.0f, 252.0f, 250.0f, 42.0f)];
+    [self.signUpView.signUpButton setFrame:CGRectMake(35.0f, 308.0f, 250.0f, 40.0f)];
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

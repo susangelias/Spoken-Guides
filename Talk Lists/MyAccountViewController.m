@@ -87,7 +87,8 @@
     // Create the sign up view controller
     GuideUserSignUpViewController *signUpViewController = [[GuideUserSignUpViewController alloc]init];
     [signUpViewController setDelegate:self];
-    [signUpViewController setFields:PFSignUpFieldsDefault];
+ //   [signUpViewController setFields:PFSignUpFieldsDefault];
+    [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
     [self setSignUpController:signUpViewController];
  
     // configure dismiss button
