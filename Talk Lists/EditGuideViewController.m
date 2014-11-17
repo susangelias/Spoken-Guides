@@ -736,7 +736,8 @@
     
     // set this guide's unique ID
     GuideCategories *cats = [[GuideCategories alloc] init];
-    newGuide.classification = cats.categoryKeys[0];  // Set to default category and let the user change this if they want
+    NSString *defaultCategory = [cats.categoryKeys lastObject];
+    newGuide.classification = defaultCategory;  // Set to general category and let the user change this if they want
     newGuide.user = [PFUser currentUser];
     
     // add new guide to cache
