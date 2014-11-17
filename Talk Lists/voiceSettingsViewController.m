@@ -42,7 +42,8 @@
     
     // set the min/max values for the rate slider
     self.rateSlider.minimumValue = AVSpeechUtteranceMinimumSpeechRate;
-    self.rateSlider.maximumValue = MAX_RATE_SLIDER;
+    //self.rateSlider.maximumValue = MAX_RATE_SLIDER;
+    self.rateSlider.maximumValue = 0.50;
     
     // load current settings from the model
     self.rateSlider.value = [self.myVoice.rate floatValue];
@@ -70,7 +71,6 @@
     // save slider settings to the voice shared instance
     self.myVoice.pitch = [NSNumber numberWithFloat:self.pitchSlider.value];
     self.myVoice.rate  = [NSNumber numberWithFloat:self.rateSlider.value];
-//    self.myVoice.volume = [NSNumber numberWithFloat:self.volumeSlider.value];
 
     // dismiss modal view controller
     [self.presentingViewController dismissViewControllerAnimated:YES
