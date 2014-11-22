@@ -582,7 +582,6 @@
                         <outlet property="guidePicture" destination="T7S-TP-PlC" id="7je-h6-fbj"/>
                         <outlet property="playPauseButton" destination="fxm-lC-bVb" id="JRy-Ks-OwO"/>
                         <outlet property="resetButton" destination="7tO-kw-axj" id="bqU-xT-3hQ"/>
-                        <outlet property="settingsButton" destination="NSC-j9-jIq" id="FjC-4Y-dIE"/>
                         <outlet property="statusDisplay" destination="Ds1-PJ-nJF" id="dL5-im-wUh"/>
                         <outlet property="titleLabelAlternate" destination="8c0-Cj-pPl" id="7nj-TC-y4J"/>
                     </connections>

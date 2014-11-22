@@ -37,7 +37,9 @@ NSString *const kAppBackgroundImageName = @"escheresque";
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:0.0 alpha:1.0]}];
     
     // set the app's custom tintColor
-    self.window.tintColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"AppleGreen"]];
+  //  UIColor *appleGreen = [UIColor colorWithRed:151.0/255 green:223.0/255 blue:92.0/255 alpha:1.0];
+    UIColor *appleGreen = [UIColor colorWithHue:0.26 saturation:0.65 brightness:0.87 alpha:1.00];
+    [[UIView appearance] setTintColor:appleGreen];  // will set Alert tints as well
     
     // Set up required items for Parse backend
     [PFGuide registerSubclass];
