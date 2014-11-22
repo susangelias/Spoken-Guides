@@ -43,8 +43,13 @@
     [super layoutSubviews];
      
     // make sure the text starts on the left
-    self.textLabel.frame = CGRectMake(20, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height);
     self.textLabel.numberOfLines = 0;
+    
+    if (self.guideImageView.file) {
+        self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width - 89.0, self.frame.size.height-0.5);
+    } else {
+        self.textLabel.frame = CGRectMake(15.0, 3.0, self.frame.size.width -30, self.frame.size.height-0.5);
+    }
 }
 
 - (void)awakeFromNib
