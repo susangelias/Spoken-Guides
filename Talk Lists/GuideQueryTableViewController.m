@@ -36,7 +36,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 1000;
+        self.objectsPerPage = 30;
         
      }
     return self;
@@ -153,9 +153,7 @@
 
 -(void)loadCache
 {
-    // remove steps for this guide then reload them
     for (PFStep *step in self.objects ) {
-        //  [[SpokenGuideCache sharedCache] removeObjectForKey:step.objectId];
         [[SpokenGuideCache sharedCache] setAttributesForPFStep:step
                                                   changedImage:nil
                                               changedThumbnail:nil];
@@ -164,7 +162,7 @@
 
 - (void)objectsWillLoad {
     [super objectsWillLoad];
-    
+
     // This method is called before a PFQuery is fired to get more objects
 }
 
@@ -189,8 +187,6 @@
         [query orderByAscending:@"rank"];
     }
    
-    query.limit = 1000;
-    
     return query;
 }
 
