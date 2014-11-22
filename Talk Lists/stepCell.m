@@ -152,7 +152,8 @@ NSString *const kStepCellFont = @"HelveticaNeue-Thin";
     // save original location of unzoomed image
     // convert tapped image frame to superview coordinates
     if (self.stepImageView.image) {
-        CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.stepImageView.center toView:self.superview.superview];
+ //       CGPoint tappedImageCenterConverted = [self.viewForBaselineLayout convertPoint:self.stepImageView.center toView:self.superview.superview];
+        CGPoint tappedImageCenterConverted = [self.stepImageView convertPoint:self.stepImageView.center toView:self.superview.superview];
         self.unzoomedCellImageView.center = tappedImageCenterConverted;
         self.unzoomedCellImageView.bounds = self.stepImageView.bounds;
 

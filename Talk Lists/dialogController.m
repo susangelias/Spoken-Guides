@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, dialogControllerState) {
             // ALREADY SPOKE LAST LINE OF INSTRUCTIONS - LET THE USER KNOW THIS
             else if (self.currentLineIndex == [self.guide.rankedStepsInGuide count]) {
                 [self.speaker speak:@"End of instructions"];
-                self.currentLineIndex++;
+              //  self.currentLineIndex++;
                 self.currentState = isInactive;
             }
         }

@@ -48,8 +48,6 @@
 		C086DCEA197EF02A00E41EEB /* SpokenGuideCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C086DCE9197EF02A00E41EEB /* SpokenGuideCache.m */; };
 		C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B144C192A8D2C00E70FCF /* Rejecto.framework */; };
 		C08B3111193E14E000CE49F9 /* EditGuideViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */; };
-		C0A4DD6F19D062F800BB8234 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A4DD6E19D062F800BB8234 /* GameKit.framework */; };
-		C0A4DD7119D0630100BB8234 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A4DD7019D0630100BB8234 /* StoreKit.framework */; };
 		C0AA902619829DB5003B9B06 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AA902519829DB5003B9B06 /* InitialViewController.m */; };
 		C0B09A601A0D2ABE00A30038 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B09A5F1A0D2ABE00A30038 /* InfoTableViewController.m */; };
 		C0B5318C19DE08B300E201D0 /* AllGuidesViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = C0B5318B19DE08B300E201D0 /* AllGuidesViewController.h */; };
@@ -78,6 +76,8 @@
 		C0DCB1951905D9F400E29DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1711905D9F400E29DBB /* Foundation.framework */; };
 		C0DCB1961905D9F400E29DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1751905D9F400E29DBB /* UIKit.framework */; };
 		C0DCB19E1905D9F400E29DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0DCB19C1905D9F400E29DBB /* InfoPlist.strings */; };
+		C0DE44251A1A62550002E102 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DE44241A1A62550002E102 /* GameKit.framework */; };
+		C0DE44271A1A62580002E102 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DE44261A1A62580002E102 /* StoreKit.framework */; };
 		C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */; };
 		C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E24E70192A5A5900C4F35A /* Slt.framework */; };
 		C0ECA732195507D000EF98AA /* PFStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C0ECA731195507D000EF98AA /* PFStep.m */; };
@@ -162,8 +162,6 @@
 		C08B144C192A8D2C00E70FCF /* Rejecto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rejecto.framework; sourceTree = "<group>"; };
 		C08B144E192AC84300E70FCF /* dialogControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialogControllerDelegate.h; sourceTree = "<group>"; };
 		C08B3110193E14E000CE49F9 /* EditGuideViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGuideViewControllerTest.m; sourceTree = "<group>"; };
-		C0A4DD6E19D062F800BB8234 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		C0A4DD7019D0630100BB8234 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C0AA902419829DB5003B9B06 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		C0AA902519829DB5003B9B06 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		C0B040B019BFCD23008F112F /* Spoken Guides.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spoken Guides.entitlements"; sourceTree = "<group>"; };
@@ -214,6 +212,8 @@
 		C0DCB1931905D9F400E29DBB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C0DCB19B1905D9F400E29DBB /* Talk ListsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Talk ListsTests-Info.plist"; sourceTree = "<group>"; };
 		C0DCB19D1905D9F400E29DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C0DE44241A1A62550002E102 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		C0DE44261A1A62580002E102 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C0E24E6E192A5A4B00C4F35A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		C0E24E70192A5A5900C4F35A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		C0EBBF3919479518001F79D0 /* Talk Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Talk Lists.entitlements"; sourceTree = "<group>"; };
@@ -244,13 +244,13 @@
 				C054457E19A7D63A002083AA /* MobileCoreServices.framework in Frameworks */,
 				C054458019A7D659002083AA /* QuartzCore.framework in Frameworks */,
 				C054458219A7D66D002083AA /* Security.framework in Frameworks */,
-				C0A4DD6F19D062F800BB8234 /* GameKit.framework in Frameworks */,
-				C0A4DD7119D0630100BB8234 /* StoreKit.framework in Frameworks */,
 				C0E24E71192A5A5900C4F35A /* Slt.framework in Frameworks */,
 				C054458819A7D726002083AA /* Social.framework in Frameworks */,
 				C054458619A7D691002083AA /* SystemConfiguration.framework in Frameworks */,
 				C04DE14F19D5BA370019AE22 /* Bolts.framework in Frameworks */,
+				C0DE44251A1A62550002E102 /* GameKit.framework in Frameworks */,
 				C0DCB1761905D9F400E29DBB /* UIKit.framework in Frameworks */,
+				C0DE44271A1A62580002E102 /* StoreKit.framework in Frameworks */,
 				C0DCB1721905D9F400E29DBB /* Foundation.framework in Frameworks */,
 				C0E24E6F192A5A4B00C4F35A /* OpenEars.framework in Frameworks */,
 				C08B144D192A8D2C00E70FCF /* Rejecto.framework in Frameworks */,
@@ -524,11 +524,11 @@
 		C0DCB1701905D9F400E29DBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0DE44261A1A62580002E102 /* StoreKit.framework */,
+				C0DE44241A1A62550002E102 /* GameKit.framework */,
 				C04DE15019D5BBCE0019AE22 /* Accounts.framework */,
 				C04DE14E19D5BA370019AE22 /* Bolts.framework */,
 				C0793BB919D5B85B00369E3A /* Parse.framework */,
-				C0A4DD7019D0630100BB8234 /* StoreKit.framework */,
-				C0A4DD6E19D062F800BB8234 /* GameKit.framework */,
 				C054458719A7D726002083AA /* Social.framework */,
 				C054458519A7D691002083AA /* SystemConfiguration.framework */,
 				C054458119A7D66D002083AA /* Security.framework */,

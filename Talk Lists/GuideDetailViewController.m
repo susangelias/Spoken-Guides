@@ -45,7 +45,6 @@ NSString * const kHighlightColor = @"AppleGreen";
 @property (strong, nonatomic) AVAudioSessionRouteDescription *originalAudioRoute;
 @property BOOL routeChangeInProcess;
 
-
 @end
 
 @implementation GuideDetailViewController
@@ -172,7 +171,6 @@ NSString * const kHighlightColor = @"AppleGreen";
                                              selector:@selector(audioRouteChange:)
                                                  name:AVAudioSessionRouteChangeNotification
                                                object:[AVAudioSession sharedInstance]];
-    
 
 }
 
@@ -272,6 +270,10 @@ NSString * const kHighlightColor = @"AppleGreen";
      // update state
     self.currentState = isReset;
     
+    // reset current line to beginning
+    [self scrollToLineNumber:0];
+    self.currentLine = 0;
+    
 }
 
 - (void)dialogStartedListening
@@ -326,18 +328,15 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 - (void)speakingLineNumber:(NSNumber *) lineNumber
 {
+    // Scroll view to spoken line
+    [self scrollToLineNumber:lineNumber];
     
     // Enlarges cell if text exceeds the default row height
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[lineNumber intValue ] inSection:0];
     GuideQueryTableViewController *childVC = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
-    [childVC.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-
     if ([childVC respondsToSelector:@selector(refreshUIForRowSelectionAtIndexPath:)]) {
         [childVC refreshUIForRowSelectionAtIndexPath:indexPath];
-    
     }
-    
-    
     
     // Apply text highlight color
     [self setCurrentLine:lineNumber];
@@ -347,6 +346,13 @@ NSString * const kHighlightColor = @"AppleGreen";
     if (self.currentStepCell) {
         [self.currentStepCell enlargeImage];
     }
+}
+
+-(void)scrollToLineNumber:(NSNumber *)lineNumber
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[lineNumber intValue ] inSection:0];
+    GuideQueryTableViewController *childVC = (GuideQueryTableViewController *)[self.childViewControllers firstObject];
+    [childVC.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)highlightCurrentLine:(int) lineNumber
@@ -444,20 +450,22 @@ NSString * const kHighlightColor = @"AppleGreen";
 
 - (IBAction)resetButtonPressed:(UIButton *)sender
 {
-        // Make sure Play/Pause button is showing Play
-        if (self.currentState == isPlaying) {
-            [self pauseButtonPressed:self.playPauseButton];
-        }
-        
-        // Stop the dialog
-        if (self.dialogController) {
-            [self.dialogController initializeDialog];
-        }
-        
-        // release the listener object
-     //   [self.dialogController killListeningController];
+    // Make sure Play/Pause button is showing Play
+    if (self.currentState == isPlaying) {
+        [self pauseButtonPressed:self.playPauseButton];
+    }
     
-        self.currentState = isReset;
+    // Stop the dialog
+    if (self.dialogController) {
+        [self.dialogController initializeDialog];
+    }
+    
+    // release the listener object
+ //   [self.dialogController killListeningController];
+
+    self.currentState = isReset;
+    [self scrollToLineNumber:0];
+    self.currentLine = 0;
 
 }
 
